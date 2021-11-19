@@ -1,0 +1,1529 @@
+<!-- {% load static %} -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--  -->
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Amita|Zen+Tokyo+Zoo|Yomogi|Fuggles|Tourney|Patrick+Hand|Caveat|Amatic+SC|Bangers|Tangerine|Handlee|Rock+Salt|Markazi+Text|Gruppo|Black+Han+Sans' crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
+
+    <!--  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="Interact_element.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="pattern.css" crossorigin="anonymous">
+    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+
+    <title>Interact creator</title>
+</head>
+
+
+<body>
+    <nav class="border nav">
+        <p class="">Interact</p>
+        <!-- <div class="form-check form-switch">
+            <input class="form-check-input" id="theme_checkbox" type="checkbox" id="flexSwitchCheckDefault"></div> -->
+    </nav>
+    <!-- <div id="interac_Container">
+        <div id="interac_crtr" spellcheck="false">
+            <svg id="interac_Svg" xmlns="http://www.w3.org/2000/svg" xlinkns="http://www.w3.org/1999/xlink" xmlns:xlink="http://www.w3.org/1999/xlink">
+               
+              <g id="InteracGridSvg"> </g>
+            <defs id="textpaths-pathContainer"></defs>
+        </svg>
+        </div>
+    </div> -->
+
+    <div id="dataBox"></div>
+    <div id="terminal"></div>
+    <!-- <svg id="bgbg"> </svg> -->
+    <div id="options_div" class="border" spellcheck="false">
+        <div id="text" class="options_head">
+            <i class="bi bi-type"></i>
+        </div>
+        <div id="draw" class="options_head">
+            <i class="bi bi-brush"></i>
+        </div>
+        <div id="input" class="options_head">
+            <i class="bi bi-ui-checks"></i>
+        </div>
+        <!-- ? -->
+        <div id="templates" class="options_head">
+            <i class="bi bi-file-richtext"></i>
+        </div>
+        <!-- <div class="options_head">
+            <span class="material-icons">
+                exit_to_app
+                </span>
+            <p>Div</p>
+        </div> -->
+        <div class="options_head">
+            <i class="bi bi-layout-text-window"></i>
+        </div>
+        <div id="elements" class="options_head">
+            <i class="bi bi-stars"></i>
+        </div>
+        <div id="box_settings" class="options_head">
+            <i class="bi bi-gear-fill"></i>
+        </div>
+        <div class="options_head for_mobile" id="style_div_for_mobile">
+            <span class="material-icons">
+                settings_applications
+                </span>
+            <p>Style</p>
+        </div>
+    </div>
+    <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+    <div id="style_for_mobile" class="border" spellcheck="false">
+        <div id="back_to_options_div" class="options_head" style="padding: 0px;position: fixed;left: 0;top: 82vh;background: inherit;border:2px white solid;width: fit-content;z-index: 1;">
+            <span class="material-icons">
+                reply
+                </span>
+            <p style="transform:rotate(90)deg"> Style</p>
+
+        </div>
+        <div class="style-head_mob" id="for_mobile_font">
+            <span class="material-icons">brush</span>
+            <p>Font</p>
+        </div>
+        <div class="style-head_mob" id="for_mobile_border">
+            <span class="material-icons">note_alt</span>
+            <p>Border</p>
+        </div>
+        <!-- ? -->
+        <div class="style-head_mob" id="for_mobile_borderRadius">
+            <span class="material-icons">description</span>
+            <p>BorderRadius</p>
+        </div>
+        <div class="style-head_mob" id="for_mobile_background">
+            <span class="material-icons">exit_to_app</span>
+            <p>Background</p>
+        </div>
+        <div class="style-head_mob" id="for_mobile_transform">
+            <span class="material-icons">window</span>
+            <p>Transform</p>
+        </div>
+        <div class="style-head_mob" id="for_mobile_textShadow">
+            <span class="material-icons">settings_applications</span>
+            <p>Text shadow</p>
+        </div>
+        <div class="style-head_mob" id="for_mobile_boxShadow">
+            <span class="material-icons">settings_applications</span>
+            <p>Box shadow</p>
+        </div>
+    </div>
+    <!-- !=================== -->
+    <!-- !!!!!!!!!!!!!!!!!!!!!                      ELEMENTS !!!!!!!!!!!!!!!!!!+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <div id="divbar_elements" class="border options_modal">
+        <div class="tags_holder">
+            <div class="tags_elements tags" id="tags_elements-upload">Upload</div>
+            <div class="tags_elements tags" id="tags_elements-stickers">Stickers</div>
+            <div class="tags_elements tags" id="tags_elements-gifs">Gifs</div>
+            <div class="tags_elements tags" id="tags_elements-drawings">drawings</div>
+
+        </div>
+        <div id="tags_elements-upload_content" class="tags_elements_content tags_content">
+            <div class="melody Upload_file_To_add_btn">Uplaod Image,Audio or Video </div>
+        </div>
+        <div id="tags_elements-drawings_content" class="tags_elements_content tags_content elements_tag_content">
+            <div class="element_mini_dialog">
+                <span class="tile">blobs</span>
+                <span class="tile view_more_elements">view more <i class="bi bi-box-arrow-in-up-left"></i></span>
+                <div class="adviser4">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="ad add_me blob">
+                        <path fill="#24A148" d="M40.5,-45.1C55.8,-35.5,73.6,-25.8,80.5,-10.6C87.5,4.6,83.7,25.4,73.4,41.6C63.1,57.8,46.3,69.5,27.6,76.6C8.9,83.8,-11.7,86.3,-24.8,77.5C-37.8,68.6,-43.4,48.4,-50.5,31.4C-57.7,14.4,-66.6,0.5,-66.2,-13.4C-65.9,-27.4,-56.3,-41.5,-43.7,-51.6C-31.1,-61.6,-15.6,-67.6,-1.5,-65.8C12.7,-64.1,25.3,-54.7,40.5,-45.1Z" style="transform: translate(100px, 100px);" />
+                    </svg>
+
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="ad add_me blob">
+                        <path fill="#F1C21B" d="M50.1,-58.2C62.4,-49.3,68.1,-31.2,67.7,-14.7C67.3,1.8,60.8,16.5,51.4,26.8C42.1,37.1,29.9,42.9,17.9,45.8C5.9,48.7,-5.9,48.8,-20.8,47.5C-35.7,46.3,-53.6,43.8,-61.3,33.8C-68.9,23.8,-66.3,6.3,-63.3,-11.2C-60.3,-28.8,-56.9,-46.3,-46.3,-55.5C-35.7,-64.7,-17.9,-65.5,0.5,-66.1C18.9,-66.7,37.7,-67.1,50.1,-58.2Z" style="transform: translate(100px, 100px);" />
+                    </svg>
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="ad add_me blob">
+                        <path fill="#FF0066" d="M36.9,-54.8C48.8,-42.2,60.1,-32.7,63.2,-21.1C66.2,-9.4,61,4.3,57.5,19.9C54.1,35.4,52.4,52.6,43.1,60.8C33.8,68.9,16.9,68,3.3,63.5C-10.4,59,-20.8,51,-32,43.5C-43.3,36,-55.3,28.9,-61.5,18C-67.8,7.1,-68.3,-7.6,-66.9,-24.7C-65.4,-41.8,-62,-61.1,-50.5,-73.9C-39,-86.7,-19.5,-92.9,-3.5,-88.1C12.5,-83.3,25,-67.5,36.9,-54.8Z" style="transform: translate(100px, 100px);" />
+                    </svg>
+
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="ad add_me blob">
+                        <path fill="#FF0066" d="M33,-53.2C43.7,-50.9,54.2,-44.1,64.8,-34.5C75.4,-24.9,86.3,-12.4,84.3,-1.2C82.3,10.1,67.4,20.2,57.9,31.8C48.4,43.3,44.2,56.3,35.4,67.3C26.7,78.2,13.3,87.2,2.2,83.3C-8.9,79.5,-17.8,62.8,-30.7,54.3C-43.7,45.7,-60.7,45.3,-71.3,37.6C-82,29.9,-86.2,15,-87.3,-0.6C-88.4,-16.2,-86.3,-32.4,-77,-42.4C-67.7,-52.5,-51.3,-56.4,-37.2,-56.8C-23.2,-57.2,-11.6,-54.1,-0.3,-53.7C11.1,-53.3,22.2,-55.5,33,-53.2Z" style="transform: translate(100px, 100px);" />
+                      </svg>
+
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="ad add_me blob">
+                        <path fill="#0F62FE" d="M22.8,-25.7C31.5,-25.1,41.9,-21,49.6,-12.5C57.2,-4,62.2,8.9,60.4,21.2C58.6,33.6,50.1,45.4,38.9,44.7C27.7,44.1,13.8,31,4.2,25.3C-5.5,19.5,-10.9,21,-17.5,20.2C-24.2,19.3,-31.9,16.1,-43.9,7.6C-55.8,-0.9,-71.9,-14.8,-70.8,-24.5C-69.7,-34.3,-51.4,-39.9,-36.7,-38.6C-22.1,-37.3,-11,-29,-2,-26.3C7.1,-23.6,14.1,-26.4,22.8,-25.7Z" style="transform: translate(100px, 100px);" />
+                      </svg>
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="ad add_me blob">
+                        <path fill="#0F62FE" d="M66.9,-22.5C75.9,5.8,64.8,39.9,41.7,56.5C18.6,73.1,-16.6,72.2,-39.7,55.2C-62.8,38.3,-73.8,5.4,-65.2,-22.5C-56.5,-50.5,-28.3,-73.4,0.4,-73.5C29,-73.6,58,-50.9,66.9,-22.5Z" style="transform: translate(100px, 100px);" />
+                      </svg>
+
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="ad add_me blob">
+                        <path fill="#0F62FE" d="M42.8,-71.5C56.6,-66.1,69.8,-57,75.7,-44.5C81.7,-31.9,80.4,-16,75.3,-2.9C70.2,10.1,61.4,20.2,52.7,28C44,35.7,35.4,41.2,26.7,46C17.9,50.7,9,54.8,-2.9,59.8C-14.7,64.8,-29.5,70.7,-38.8,66.2C-48.1,61.8,-51.9,47,-60.2,34.2C-68.5,21.5,-81.2,10.7,-78.6,1.5C-76,-7.8,-58.2,-15.6,-50.7,-29.7C-43.2,-43.8,-46,-64.2,-39.3,-73.7C-32.6,-83.2,-16.3,-81.8,-0.9,-80.2C14.5,-78.7,29,-77,42.8,-71.5Z" style="transform: translate(100px, 100px);" />
+                      </svg>
+
+
+
+                </div>
+            </div>
+            <div class="element_mini_dialog">
+                <span class="tile">waves</span>
+                <span class="tile view_more_elements">view more <i class="bi bi-box-arrow-in-up-left"></i></span>
+                <div class="adviser4">
+                    <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 320" class="ad add_me wave" class="ad add_me wave">
+                        <path fill="#0099ff" fill-opacity="1" d="M0,288L9.6,261.3C19.2,235,38,181,58,133.3C76.8,85,96,43,115,37.3C134.4,32,154,64,173,69.3C192,75,211,53,230,85.3C249.6,117,269,203,288,202.7C307.2,203,326,117,346,117.3C364.8,117,384,203,403,229.3C422.4,256,442,224,461,176C480,128,499,64,518,80C537.6,96,557,192,576,208C595.2,224,614,160,634,122.7C652.8,85,672,75,691,58.7C710.4,43,730,21,749,48C768,75,787,149,806,197.3C825.6,245,845,267,864,261.3C883.2,256,902,224,922,229.3C940.8,235,960,277,979,245.3C998.4,213,1018,107,1037,69.3C1056,32,1075,64,1094,117.3C1113.6,171,1133,245,1152,234.7C1171.2,224,1190,128,1210,112C1228.8,96,1248,160,1267,181.3C1286.4,203,1306,181,1325,181.3C1344,181,1363,203,1382,213.3C1401.6,224,1421,224,1430,224L1440,224L1440,0L1430.4,0C1420.8,0,1402,0,1382,0C1363.2,0,1344,0,1325,0C1305.6,0,1286,0,1267,0C1248,0,1229,0,1210,0C1190.4,0,1171,0,1152,0C1132.8,0,1114,0,1094,0C1075.2,0,1056,0,1037,0C1017.6,0,998,0,979,0C960,0,941,0,922,0C902.4,0,883,0,864,0C844.8,0,826,0,806,0C787.2,0,768,0,749,0C729.6,0,710,0,691,0C672,0,653,0,634,0C614.4,0,595,0,576,0C556.8,0,538,0,518,0C499.2,0,480,0,461,0C441.6,0,422,0,403,0C384,0,365,0,346,0C326.4,0,307,0,288,0C268.8,0,250,0,230,0C211.2,0,192,0,173,0C153.6,0,134,0,115,0C96,0,77,0,58,0C38.4,0,19,0,10,0L0,0Z"></path>
+                      </svg>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 320" class="ad add_me wave">
+                        <path fill="#e7008a" fill-opacity="1" d="M0,224L45,224L90,256L135,32L180,224L225,128L270,256L315,0L360,160L405,32L450,128L495,320L540,192L585,96L630,0L675,288L720,128L765,224L810,96L855,160L900,32L945,96L990,288L1035,320L1080,192L1125,96L1170,224L1215,32L1260,32L1305,64L1350,128L1395,32L1440,128L1440,320L1395,320L1350,320L1305,320L1260,320L1215,320L1170,320L1125,320L1080,320L1035,320L990,320L945,320L900,320L855,320L810,320L765,320L720,320L675,320L630,320L585,320L540,320L495,320L450,320L405,320L360,320L315,320L270,320L225,320L180,320L135,320L90,320L45,320L0,320Z"></path>
+                      </svg>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 320" class="ad add_me wave"><path fill="#0099ff" fill-opacity="1" d="M0,96L0,224L205.7,224L205.7,224L411.4,224L411.4,96L617.1,96L617.1,32L822.9,32L822.9,192L1028.6,192L1028.6,32L1234.3,32L1234.3,128L1440,128L1440,320L1234.3,320L1234.3,320L1028.6,320L1028.6,320L822.9,320L822.9,320L617.1,320L617.1,320L411.4,320L411.4,320L205.7,320L205.7,320L0,320L0,320Z"></path></svg>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 320" class="ad add_me wave">
+                        <path fill="#0099ff" fill-opacity="1" d="M0,96L34.3,117.3C68.6,139,137,181,206,202.7C274.3,224,343,224,411,202.7C480,181,549,139,617,106.7C685.7,75,754,53,823,69.3C891.4,85,960,139,1029,138.7C1097.1,139,1166,85,1234,74.7C1302.9,64,1371,96,1406,112L1440,128L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path>
+                      </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 320" class="ad add_me wave">
+                        <path fill="#ffd700" fill-opacity="1" d="M0,288L16,277.3C32,267,64,245,96,250.7C128,256,160,288,192,293.3C224,299,256,277,288,277.3C320,277,352,299,384,309.3C416,320,448,320,480,277.3C512,235,544,149,576,138.7C608,128,640,192,672,218.7C704,245,736,235,768,213.3C800,192,832,160,864,170.7C896,181,928,235,960,261.3C992,288,1024,288,1056,277.3C1088,267,1120,245,1152,224C1184,203,1216,181,1248,149.3C1280,117,1312,75,1344,96C1376,117,1408,203,1424,245.3L1440,288L1440,320L1424,320C1408,320,1376,320,1344,320C1312,320,1280,320,1248,320C1216,320,1184,320,1152,320C1120,320,1088,320,1056,320C1024,320,992,320,960,320C928,320,896,320,864,320C832,320,800,320,768,320C736,320,704,320,672,320C640,320,608,320,576,320C544,320,512,320,480,320C448,320,416,320,384,320C352,320,320,320,288,320C256,320,224,320,192,320C160,320,128,320,96,320C64,320,32,320,16,320L0,320Z"></path>
+                      </svg>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 320" class="ad add_me wave">
+                        <path fill="#ffd700" fill-opacity="1" d="M0,64L40,64L80,288L120,256L160,288L200,256L240,32L280,96L320,32L360,320L400,160L440,96L480,128L520,32L560,288L600,32L640,96L680,96L720,224L760,320L800,224L840,128L880,64L920,96L960,128L1000,192L1040,96L1080,0L1120,320L1160,96L1200,128L1240,128L1280,128L1320,256L1360,64L1400,64L1440,128L1440,320L1400,320L1360,320L1320,320L1280,320L1240,320L1200,320L1160,320L1120,320L1080,320L1040,320L1000,320L960,320L920,320L880,320L840,320L800,320L760,320L720,320L680,320L640,320L600,320L560,320L520,320L480,320L440,320L400,320L360,320L320,320L280,320L240,320L200,320L160,320L120,320L80,320L40,320L0,320Z"></path>
+                      </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 320" class="ad add_me wave">
+                        <path fill="#00cba9" fill-opacity="1" d="M0,96L48,96C96,96,192,96,288,112C384,128,480,160,576,170.7C672,181,768,171,864,186.7C960,203,1056,245,1152,266.7C1248,288,1344,288,1392,288L1440,288L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                      </svg>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 320" class="ad add_me wave">
+                        <path fill="#00cba9" fill-opacity="1" d="M0,288L0,64L75.8,64L75.8,96L151.6,96L151.6,96L227.4,96L227.4,64L303.2,64L303.2,288L378.9,288L378.9,32L454.7,32L454.7,160L530.5,160L530.5,288L606.3,288L606.3,256L682.1,256L682.1,160L757.9,160L757.9,32L833.7,32L833.7,192L909.5,192L909.5,96L985.3,96L985.3,64L1061.1,64L1061.1,192L1136.8,192L1136.8,288L1212.6,288L1212.6,224L1288.4,224L1288.4,288L1364.2,288L1364.2,64L1440,64L1440,320L1364.2,320L1364.2,320L1288.4,320L1288.4,320L1212.6,320L1212.6,320L1136.8,320L1136.8,320L1061.1,320L1061.1,320L985.3,320L985.3,320L909.5,320L909.5,320L833.7,320L833.7,320L757.9,320L757.9,320L682.1,320L682.1,320L606.3,320L606.3,320L530.5,320L530.5,320L454.7,320L454.7,320L378.9,320L378.9,320L303.2,320L303.2,320L227.4,320L227.4,320L151.6,320L151.6,320L75.8,320L75.8,320L0,320L0,320Z"></path>
+                      </svg>
+
+
+
+                </div>
+            </div>
+        </div>
+        <div id="tags_elements-stickers_content" class="tags_elements_content tags_content elements_tag_content">
+            <div class="searchbarDiv"> <span style="font-size:large;" id="StickerSearchBtn"><i class="bi bi-search"></i></span> <input style="width: 75%;" type="text" placeholder="search"> <span style="font-size:large;"><i class="bi bi-x-square-fill"></i></span> </div>
+            <div style="height: 7%;position: absolute;top: 10%;"> <span>Search via</span> <img src="https://variety.com/wp-content/uploads/2016/10/giphy-logo-e1477932075273.png?w=867" height="30px" width="100px" style="border-radius: 2px;margin: 2px;" alt=""></div>
+
+
+            <div id="StickersSearchResult">
+                <div class="element_mini_dialog">
+                    <span class="tile">Square</span>
+                    <span class="tile view_more_elements">view more <i class="bi bi-box-arrow-in-up-left"></i></span>
+                    <div class="adviser4">
+                        <div class="color_adviser add_me preview_gif" style="background-color: blueviolet;background: url(https://media.giphy.com/media/j4qlZVm73SGBfoNTmH/giphy.gif);background-position: center;background-size: contain;"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: orange;background-image: url(https://media.giphy.com/media/r3gDSFfe569o5mVjpe/giphy.gif);"></div>
+                        <div class="color_adviser add" style="background-color: grey;background-image:url(https://media.giphy.com/media/cNw6l3CMhmVt2XjpV4/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: wheat;background-image:url(https://media.giphy.com/media/nuJuBk5XXkh8BE2kp7/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: pink;background-image:url(https://media.giphy.com/media/RiturJEdLNg2uaqK1R/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color:red;background-image:url(https://media.giphy.com/media/YV9VFXEcB6Cur94JtJ/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: gold;background-image:url(https://media.giphy.com/media/W2ovoYmxDdvZz8qwd0/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: burlywood;background-image:url(https://media.giphy.com/media/cMPjXqMDelWR9SvsfI/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: burlywood;"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: burlywood;"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: burlywood;"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: burlywood;"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: burlywood;"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: burlywood;"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: burlywood;"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: burlywood;"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: burlywood;"></div>
+                    </div>
+                </div>
+                <div class="element_mini_dialog">
+                    <span class="tile">star</span>
+                    <span class="tile view_more_elements">view more <i class="bi bi-box-arrow-in-up-left"></i></span>
+                    <div class="adviser4">
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: blueviolet;background: url(https://media.giphy.com/media/xl1wJfNsy2mwjCi38I/giphy.gif);background-position: center;background-size: contain;"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: orange;background-image: url(https://media.giphy.com/media/2A0jXrfittsR3Qae1U/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: grey;background-image: url(https://media.giphy.com/media/Vf8UeyP351aaaVj6wR/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: wheat;background-image: url(https://media.giphy.com/media/1fhj2RprUOpqCObj2J/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: pink;background-image: url(https://media.giphy.com/media/g0NZo5jXrlTsRKD5B8/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color:red;background-image: url(https://media.giphy.com/media/QSZX4Mls7ITdK/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: gold;"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: burlywood;"></div>
+                    </div>
+                </div>
+                <div class="element_mini_dialog">
+                    <span class="tile">circle</span>
+                    <span class="tile view_more_elements">view more <i class="bi bi-box-arrow-in-up-left"></i></span>
+                    <div class="adviser4">
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: blueviolet;background: url(https://media.giphy.com/media/Y1e73cmMb5orZ3sDj5/giphy.gif);background-position: center;background-size: contain;"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: orange;background-image: url(https://media.giphy.com/media/HHVqzwRIGUY5CUQJzI/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: grey;background-image: url(https://media.giphy.com/media/gFQKQedrN9YCVzZoht/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: wheat;background-image: url(https://media.giphy.com/media/lLMS4825bSHSAwBI6A/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: pink;background-image: url(https://media.giphy.com/media/mDYpcDEHVhqSr470wx/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color:red;background-image: url(https://media.giphy.com/media/d9UAwX6gd6d3zYrTF5/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: gold;"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: burlywood;"></div>
+                    </div>
+                </div>
+                <div class="element_mini_dialog">
+                    <span class="tile">flowers</span>
+                    <span class="tile view_more_elements">view more <i class="bi bi-box-arrow-in-up-left"></i></span>
+                    <div class="adviser4">
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: blueviolet;background: url(https://media.giphy.com/media/00FL7lalg86ZXjsu7T/giphy.gif);background-position: center;background-size: contain;"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: orange;background-image: url(https://media.giphy.com/media/gKBbrdLFxIRoM3CyWx/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: grey;background-image: url(https://media.giphy.com/media/KDPxhebrFSFFkoFNNS/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: wheat;background-image: url(https://media.giphy.com/media/L3cBdIyMz6hhhwOAwC/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: pink;background-image: url(https://media.giphy.com/media/1g0NAOebKULWly1Dec/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color:red;background-image: url(https://media.giphy.com/media/uBo0v6Q4o45rIfpU1I/giphy.gif);"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: gold;"></div>
+                        <div class="color_adviser add_me preview_gif" loading="lazy" style="background-color: burlywood;"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! TEXT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div id="divbar_text" class="border options_modal">
+        <p class="simpbtns" id="CreateTextPathBtn"> Create text path</p>
+        <div class="tags_holder">
+            <div class="tags_text" id="tags_text-shadow">shadows</div>
+            <div class="tags_text" id="tags_text-animated">Animated</div>
+            <div class="tags_text" id="tags_text-box">Boxes</div>
+            <div class="tags_text" id="">stroke</div>
+
+        </div>
+
+        <div id="tags_text-shadow_content" class="tags_content tags_text_content">
+
+
+            <p style="text-shadow: rgb(150 150 150) 4px 4px 2px;font-size:25px;color:white"> light shadow</p> <i class="bi bi-plus-square add_sibling"></i>
+            <p style="text-shadow: rgb(86 170 255 ) 4px 0px 9px;;font-size:35px;color:blue;font-family: Fuggles;"> Fantasy blue</p> <i class="bi bi-plus-square add_sibling"></i>
+            <p style="text-shadow: rgb(255 255 0) 0px 0px 20px;font-size:25px;color:yellow;font-family: serif;"> glowing</p> <i class="bi bi-plus-square add_sibling"></i>
+            <p style="text-shadow: rgb(150 150 150) 4px 4px 2px;font-size:25px;color:white;font-family: Tangerine;"> Tangerine</p> <i class="bi bi-plus-square add_sibling"></i>
+            <p style="text-shadow: rgb(150 150 150) 4px 4px 2px;font-size:25px;color:wheat;font-family: Zen Tokyo Zoo"> Hurray</p> <i class="bi bi-plus-square add_sibling"></i>
+            <p style="text-shadow: rgb(150 150 150) 4px 4px 2px;font-size:25px;color:rgb(128, 29, 29);   font-family: Amatic SC;"> Keep going</p> <i class="bi bi-plus-square add_sibling"></i>
+            <p style="text-shadow: rgb(150 150 150) 4px 4px 2px;font-size:25px;color:black;font-family: Black Han Sans;"> Dark</p> <i class="bi bi-plus-square add_sibling"></i>
+            <p style="text-shadow: rgb(150 150 150) 4px 4px 2px;font-size:25px;color:white"> Text</p> <i class="bi bi-plus-square add_sibling"></i>
+            <p style="text-shadow: rgb(150 150 150) 4px 4px 2px;font-size:25px;color:white"> Text</p> <i class="bi bi-plus-square add_sibling"></i>
+            <p style="text-shadow: rgb(150 150 150) 4px 4px 2px;font-size:25px;color:white"> Text</p> <i class="bi bi-plus-square add_sibling"></i>
+            <p style="text-shadow: rgb(150 150 150) 4px 4px 2px;font-size:25px;color:white"> Text</p> <i class="bi bi-plus-square add_sibling"></i>
+            <p style="text-shadow: rgb(150 150 150) 4px 4px 2px;font-size:25px;color:white"> Text</p> <i class="bi bi-plus-square add_sibling"></i>
+            <p style="text-shadow: rgb(150 150 150) 4px 4px 2px;font-size:25px;color:white"> Text</p> <i class="bi bi-plus-square add_sibling"></i>
+            <p style="text-shadow: rgb(150 150 150) 4px 4px 2px;font-size:25px;color:white"> Text</p> <i class="bi bi-plus-square add_sibling"></i>
+            <p style="text-shadow: rgb(150 150 150) 4px 4px 2px;font-size:25px;color:white"> Text</p> <i class="bi bi-plus-square add_sibling"></i>
+            <p style="text-shadow: rgb(150 150 150) 4px 4px 2px;font-size:25px;color:white"> Text</p> <i class="bi bi-plus-square add_sibling"></i>
+            <p style="text-shadow: rgb(150 150 150) 4px 4px 2px;font-size:25px;color:white"> Text</p> <i class="bi bi-plus-square add_sibling"></i>
+            <p style="text-shadow: rgb(150 150 150) 4px 4px 2px;font-size:25px;color:white"> Text</p> <i class="bi bi-plus-square add_sibling"></i>
+
+        </div>
+        <div id="tags_text-animated_content" class="tags_content tags_text_content">
+
+
+            <!-- ANCHOR -->
+            <p class="interact-text text-shadow-drop-tl">
+                Interact
+            </p>
+            <i class="bi bi-plus-square add_sibling"></i>
+            <!-- !!! -->
+            <!-- ANCHOR -->
+            <p class="interact-text text-flicker-out-glow">
+                Interact
+            </p>
+            <i class="bi bi-plus-square add_sibling"></i>
+            <!-- !!! -->
+            <!-- ANCHOR -->
+            <p class="interact-text tracking-in-contract">
+                Interact
+            </p>
+            <i class="bi bi-plus-square add_sibling"></i>
+            <!-- !!! -->
+            <p class="interact-text tracking-in-contract">
+                Interact
+            </p>
+            <i class="bi bi-plus-square add_sibling"></i>
+            <!-- !!! -->
+            <p class="interact-text tracking-in-contract">
+                Interact
+            </p>
+            <i class="bi bi-plus-square add_sibling"></i>
+            <!-- !!! -->
+            <p class="interact-text tracking-in-contract">
+                Interact
+            </p>
+            <i class="bi bi-plus-square add_sibling"></i>
+            <!-- !!! -->
+        </div>
+
+
+        <!-- ???========================================================================================================== ================================================================ ?? -->
+
+        <div id="tags_text-box_content" class="tags_content tags_text_content">
+            <!-- ANCHOR -->
+            <p class="box_shadow_temp" id="bit"></p>
+            <i class="bi bi-plus-square add_sibling"></i>
+            <!-- ! -->
+            <!-- ANCHOR -->
+            <p class="boder_radius_temp"></p>
+            <i class="bi bi-plus-square add_sibling"></i>
+        </div>
+        <!-- ! -->
+    </div>
+
+    <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!+============================================================================================================================= -->
+
+    <!-- !!!!!!!!!!!!!!!!!!!!!! ADD=========================================================================================================================!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div id="" class="element_opt">
+        <div class="tags_holder_">
+            <div class="tags" id="stickers">Stickers</div>
+            <div class="tags" id="gifs">Gif</div>
+            <div class="tags" id='add_image '>Image</div>
+            <div class="tags">Video</div>
+            <div class="tags">lines</div>
+        </div>
+        <div id="stickers_content" class="tags_content">
+            <input type="text" class="border" id="stickersSearch" placeholder="search">
+        </div>
+        <div id="gifs_content" class="tags_content">
+            <input type="text" class="border" id="giphySearch" placeholder="search">
+        </div>
+        <div id="add_image_content" class="tags_content">
+            <form action="" id="grab" method="POST" enctype="multipart/form-data">
+                <!-- {% csrf_token %} -->
+                <input type="file" class="border" id="add_image_to_box" name="add_image_to_box" placeholder="search">
+                <input type="submit" id="img_sub" value="">
+            </form>
+        </div>
+    </div>
+    <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+
+
+    <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! INPUT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!<!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-  -->
+    <div id="input_list" class="element_opt">
+
+        <input type="text" class="border adble_el user_input" name="" id="">
+        <hr>
+        <input type="file" class="border adble_el user_input" name="" id="">
+        <hr>
+        <input type="date" class="border adble_el user_input" name="" id="">
+        <hr>
+        <input type="checkbox" class="border adble_el user_input" name="" id="">
+        <hr>
+        <input type="radio" class="border adble_el user_input" name="" id="">
+        <hr>
+        <input type="time" class="border adble_el user_input" name="" id="">
+        <hr>
+    </div>
+    <!-- !============================================================================!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+
+    <!--!!!!!!!!!!!!!!!!!!!!!!!! TEMPLATES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+    <div id="divbar_templates" class="border options_modal">
+
+
+        <div class="tags_holder">
+            <div class="tags tags_template" id="tags_template_mainElements">Elements</div>
+            <div class="tags">Picture</div>
+            <div class="tags">Video</div>
+            <div class="tags">Text</div>
+            <div class="tags">Rotate</div>
+            <div class="tags tags_template" id="tags_template_shape">shape</div>
+        </div>
+
+
+        <div class="tags_content tags_template_content" id="tags_template_mainElements_content">
+
+            <img src="https://images.unsplash.com/photo-1454372182658-c712e4c5a1db?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80" alt="imge here">
+            <button class="about show_add_image_modal"> <i class="bi bi-plus-square"></i> Add Image </button>
+
+            <!--  -->
+            <div>
+                <video id="video_element_previewer" controls crossorigin playsinline poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg">
+                    <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" size="576">
+                       <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4" type="video/mp4" size="720">
+                       <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4" type="video/mp4" size="1080">
+           
+               </video></div>
+            <button class="about show_add_video_modal"> <i class="bi bi-plus-square"></i> Add Video </button>
+            <!--  -->
+            <!-- <div style="background-color: cadetblue;"></div> -->
+            <div style="overflow:hidden;background-color: #8bc34a;background-image: none;border-radius: 15%;border-style: solid;border-width: 2px;border-color: #3f51b5;">
+                <div style="position: relative;height: 100%;width: 100%;"><svg xmlns="http://www.w3.org/2000/svg" xlinkns="http://www.w3.org/1999/xlink">
+                    <foreignObject transform="translate(0 0) rotate(-10.219074407818917 111.6171875 176.328125) translate(0 0) skewX(0) translate(0 -0) translate(0 0) skewY(0) translate(-0 -0) translate(0 0) scale(1 1) translate(-0 -0)" primary-element-type="Text" x="37.640625"
+                        y="127.828125" class="draggable" element_groups="" element_name="text0" element_stake="2" style="height: 97px; width: 147.965px; cursor: grab;">
+                        <p style="font-family: Caveat; color: rgb(0, 0, 0); font-size: 36px; text-shadow: rgb(150, 150, 150) 4px 4px 2px; text-align: center; padding: 0px; -webkit-text-stroke: 0.1px rgb(112, 219, 193); letter-spacing: 0px; word-spacing: 4px; line-height: 37px; font-style: italic;"
+                            secondary-element-type="Text">Enjoying!!!</p>
+                    </foreignObject>
+                    <foreignObject transform="translate(0 0) rotate(-8.733193548536521 87.09375 63.6484375) translate(0 0) skewX(0) translate(0 -0) translate(0 0) skewY(0) translate(-0 -0) translate(0 0) scale(1 1) translate(-0 -0)" x="17.0625" y="5.1875" primary-element-type="Image"
+                        class="draggable" element_groups="" element_name="image0" element_stake="2" style="height: 116.93px; width: 140.066px; cursor: grab;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0xzGwBetST_QZVh98p-s7wgGaJYM0o1Le0g&amp;usqp=CAU" draggable="false" secondary-element-type="Image"></foreignObject>
+                    </svg>
+                </div>
+            </div>
+            <button class="about add_minimal_container"> <i class="bi bi-plus-square"></i> Add Container </button>
+            <!--  -->
+            <div>
+                <div id="youtubevideo_element_previewer" data-plyr-provider="youtube" data-plyr-embed-id="bTqVqk7FSmY"></div>
+            </div>
+            <button class="about show_add_youtubevideo_modal"> <i class="bi bi-plus-square"></i> Add Youtube Video </button>
+            <!--  -->
+            <div class="container" style="background-color: pink;">
+                <audio crossorigin playsinline id="audio_element_previewer">
+                    <source src="https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3" type="audio/mp3">
+                    <source src="https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.ogg" type="audio/ogg">
+                </audio>
+            </div>
+            <button class="about show_add_audio_modal"> <i class="bi bi-plus-square"></i> Add Audio </button>
+
+            <!--  -->
+            <div style="background: white;border-radius: 5%;">
+                <svg>
+                <path id="textpath0dhjpkrau" style="stroke: black;fill: none;stroke-width: 2px;display: none;" d='M59.75 85L60.75 83 61.75 82 67.75 74 68.75 73 68.75 71 70.75 70 71.75 69 71.75 68 71.75 66 72.75 66 73.75 64 75.75 61 76.75 61 77.75 58 79.75 58 79.75 57 80.75 56 81.75 56 81.75 54 83.75 53 85.75 52 87.75 50 90.75 49 93.75 48 94.75 48 102.75 47 103.75 47 105.75 47 106.75 47 107.75 47 110.75 47 111.75 47 112.75 47 114.75 47 115.75 47 116.75 47 117.75 47 119.75 47 120.75 47 121.75 47 123.75 47 124.75 48 125.75 48 127.75 50 128.75 51 129.75 52 133.75 56 135.75 56 136.75 58 137.75 59 139.75 62 141.75 64 141.75 66 143.75 67 144.75 70 145.75 70 147.75 74 148.75 75 149.75 76 149.75 78 151.75 79 151.75 80 152.75 83 152.75 84 152.75 85 154.75 87 155.75 93 156.75 95 156.75 96 156.75 97 156.75 99 158.75 99 158.75 100 158.75 101 158.75 102' class="pathfortext" transform="translate(0 0) rotate(0 0 0) translate(0 0) skewX(0) translate(0 -0) translate(0 0) skewY(0) translate(-0 -0) translate(0 0) scale(1 1) translate(-0 -0)"></path>
+                <text style="font-size: 20px;font-family: 'Caveat';color: blue;text-shadow: 2px 2px 2px mediumvioletred;" textpathid="textpath0dhjpkrau" transform="translate(0 0) rotate(0 0 0) translate(0 0) skewX(0) translate(0 -0) translate(0 0) skewY(0) translate(-0 -0) translate(0 0) scale(1 1) translate(-0 -0)" ><textPath href="#textpath0dhjpkrau" textpath="textpath0dhjpkrau" secondary-element-type="Textpath" style="font-size: 45px;color: black;">   Interact</textPath></text>
+            </svg></div>
+            <button class="about"> <i class="bi bi-plus-square"></i> Add Text </button>
+
+            <!--  -->
+            <div style="background-color: white;">
+                <svg viewBox="0 0 608 405">
+                <path id="Interact-path-elementgt63i92wb" d="M-.0000201 103.7000785L14.5625057 133.3964548C29.1250314 163.650511 58.165169 222.2067464 87.4600463 252.4608018 116.4577282 282.157179 145.6252354 282.157179 174.4955481 252.4608018 203.7904246 222.2067464 233.0853008 163.650511 261.9556137 118.6179767 291.1231211 74.4219605 320.1208028 43.749646 349.4156799 66.4750424 378.4558185 88.3639213 407.5808681 163.650511 436.8757451 163.2322518 465.7885136 163.650511 495.0409341 88.3639213 523.9112471 74.0037014 553.163667 59.0858032 582.0764367 103.7000785 596.9361565 126.0072158L611.3713132 148.3143537 611.3713132 416.0000049 596.8087878 416.0000049C582.2462614 416.0000049 553.2061238 416.0000049 523.9112471 416.0000049 494.9135658 416.0000049 465.7460576 416.0000049 436.8757451 416.0000049 407.5808681 416.0000049 378.2859922 416.0000049 349.4156799 416.0000049 320.248172 416.0000049 291.2504901 416.0000049 261.9556137 416.0000049 232.9154752 416.0000049 203.7904246 416.0000049 174.4955481 416.0000049 145.5827786 416.0000049 116.3303584 416.0000049 87.4600463 416.0000049 58.2076261 416.0000049 29.2948565 416.0000049 14.4351368 416.0000049L-.0000201 416.0000049Z" class="draggable" transform="translate(0 0) rotate(0 305.6856384277344 237.39117431640625) translate(0 0) skewX(0) translate(0 -0) translate(0 0) skewY(0) translate(-0 -0) translate(0 0) scale(1 1) translate(-0 -0)" primary-element-type="Path" style="stroke-width: 0px;stroke: black;fill: rosybrown;cursor: grab;"></path>
+                <path id="Interact-path-elementywbxsr4sj" d="M160.9 59.5000076C169.9 87.8000076 158.8 121.9000076 135.7 138.5000076 112.6 155.1000076 77.4 154.2000076 54.3 137.2000076 31.2 120.3000076 20.2 87.4000076 28.8 59.5000076 37.5 31.5000076 65.7 8.6000076 94.4 8.5000076 123 8.4000076 152 31.1000076 160.9 59.5000076Z"  transform="translate(0 0) rotate(0 94.95265197753906 79.4815902709961) translate(0 0) skewX(0) translate(0 -0) translate(0 0) skewY(0) translate(-0 -0) translate(0 0) scale(1 1) translate(-0 -0)" style="stroke-width: 0px;stroke: black;fill: rgb(29 254 15);cursor: grab;"></path>
+            </svg>
+            </div>
+            <button class="about"> <i class="bi bi-plus-square"></i> Add Drawings </button>
+
+            <!--  -->
+            <!-- ! -->
+        </div>
+        <!-- ???????????????????????????????????? -->
+        <div class="tags_content tags_template_content" id="tags_template_shape_content">
+            <!-- ! -->
+            <div class="shape_square">
+            </div>
+            <i class="bi bi-plus-square add_sibling"></i>
+            <!--  -->
+            <div class="shape_rectangle">
+            </div>
+            <i class="bi bi-plus-square add_sibling"></i>
+            <!--  -->
+            <div class="clip_triangle">
+            </div>
+            <i class="bi bi-plus-square add_sibling"></i>
+            <!--  -->
+            <div class="clip_star">
+            </div>
+            <i class="bi bi-plus-square add_sibling"></i>
+            <!--  -->
+            <div class="clip_arrow">
+            </div>
+            <i class="bi bi-plus-square add_sibling"></i>
+            <!--  -->
+            <div class="clip_hexagon">
+            </div>
+            <i class="bi bi-plus-square add_sibling"></i>
+            <!--  -->
+            <div class="shape_circle">
+            </div>
+            <i class="bi bi-plus-square add_sibling"></i>
+        </div>
+    </div>
+
+    <!-- !!!!!!!!!!!====================================================================================================================================== -->
+    <div id="element_opt_closer"></div>
+    <div id="element_opt_two_closer"></div>
+    <div id="element_opt_closer_cross"><span class="material-icons">
+        cancel
+        </span></div>
+    <!-- !!!!!!!!!!!!!DRAW!!!!!!!!!!!!!!!! -->
+    <div id="divbar_draw" class="border options_modal">
+        <div class="tags_holder">
+            <div class="tags tags_draw" id="tags_draw_pencil_brush">Pencil Brush</div>
+            <div class="tags tags_draw" id="tags_draw_line_brush">Line</div>
+            <div class="tags">Shape</div>
+        </div>
+        <div id="tags_draw_pencil_brush_content" class="tags_draw_content tags_content">
+            <div class="brush_selector" id="PencilBrush">
+                <i class="bi bi-brush"></i>
+                <span>select</span></div>
+            <svg class="lookupSvg">
+                <polyline stroke-width="2" points=" 17.375,49 17.375,48 18.375,48 18.375,47 19.375,47 19.375,45 19.375,44 20.375,43 20.375,41 21.375,41 21.375,40 21.375,39 21.375,38 23.375,38 23.375,36 23.375,34 24.375,34 24.375,32 25.375,29 28.375,26 28.375,25 28.375,23 29.375,23 29.375,22 31.375,21 31.375,19 35.375,9 35.375,11 36.375,20 36.375,21 38.375,24 38.375,25 39.375,26 39.375,28 40.375,34 42.375,39 43.375,39 43.375,41 43.375,42 43.375,43 43.375,44 43.375,46 44.375,47 21.375,30 20.375,29 18.375,29 18.375,27 17.375,27 17.375,26 16.375,26 14.375,25 13.375,23 12.375,23 10.375,22 9.375,22 11.375,22 12.375,22 13.375,22 14.375,22 16.375,22 17.375,22 18.375,22 20.375,22 21.375,22 22.375,22 23.375,22 25.375,22 26.375,22 27.375,22 29.375,22 30.375,22 31.375,22 32.375,22 34.375,22 35.375,22 36.375,22 38.375,22 39.375,22 40.375,22 41.375,22 43.375,22 44.375,22 45.375,22 47.375,22 48.375,22 49.375,22 50.375,22 52.375,22 54.375,22 55.375,22 57.375,22 58.375,22 59.375,22 61.375,22 62.375,22 63.375,22 64.375,22 64.375,24 63.375,24 62.375,24 62.375,25 60.375,25 59.375,25 56.375,26 54.375,29 51.375,29 51.375,30 47.375,32 46.375,33 44.375,34 43.375,34 42.375,36 41.375,36 41.375,37 39.375,37 38.375,38 37.375,38 35.375,40 34.375,40 34.375,41 33.375,41 31.375,43 30.375,43 27.375,44 27.375,45 26.375,45 26.375,47 25.375,47 25.375,48 23.375,48 22.375,48 22.375,49 21.375,49 19.375,49 18.375,51 17.375,51 17.375,52 15.375,52 14.375,52 16.375,52 17.375,52" stroke="blue"></polyline> 
+            <polyline stroke-width="2" points=" 71.375,44 71.375,45 71.375,46 71.375,48 71.375,49 71.375,50 71.375,51 71.375,53 72.375,53 74.375,53 75.375,53 76.375,53 77.375,53 79.375,53 80.375,53 81.375,53 81.375,52 83.375,52 83.375,51 83.375,50 83.375,49 83.375,47 83.375,46 83.375,45 83.375,43 83.375,42 83.375,41 84.375,39 84.375,38 85.375,38 85.375,37 87.375,35 87.375,34 88.375,34 89.375,34 91.375,34 91.375,33 92.375,33 93.375,33 94.375,33 96.375,33 97.375,33 98.375,33 100.375,33 101.375,33 101.375,35 102.375,35 102.375,36 104.375,36 104.375,37 105.375,37 105.375,38 105.375,40 106.375,41 108.375,42 108.375,44 108.375,45 108.375,46 109.375,46 109.375,48 110.375,49 110.375,50 111.375,50 113.375,50 114.375,50 115.375,50 117.375,50 118.375,50 119.375,50 119.375,49 119.375,47 119.375,46 119.375,45 120.375,45 120.375,44 120.375,42 120.375,41 120.375,40 122.375,40 122.375,38 122.375,37 132.375,29 136.375,29 146.375,30 148.375,31 149.375,31 149.375,32 150.375,32 150.375,34 152.375,34 152.375,35 153.375,35 153.375,36 154.375,36 156.375,36 156.375,37 157.375,37 158.375,37 159.375,37 161.375,37 162.375,37 163.375,37 165.375,37 165.375,36 166.375,36 166.375,34 166.375,33 167.375,33 167.375,32 167.375,31 169.375,31 169.375,29 170.375,29 170.375,28 171.375,28 174.375,28 177.375,28 178.375,28 180.375,28 181.375,30 183.375,31 184.375,31 185.375,31 185.375,33 188.375,34 189.375,34 190.375,34" stroke="red"></polyline>
+            </svg>
+            <!--  -->
+            <div id="PencilBrushSettings">
+                <!-- <div class="test"><span>Color</span><input type="color" id="PB_color"></div> -->
+                <div id="" class="heightinc">
+                    <div class="heightinc_title"> <span>stroke</span> <span class="fill_previewer" id="stroke-preview"></span>
+                        <ion-icon name="chevron-down-outline" class=""> </ion-icon>
+                    </div>
+                    <div id="">
+                        <div class="bar_holder" id="PB_stroke">
+                            <div class="bar" id="PB_color">Color</div>
+                            <div class="bar">Image</div>
+                            <div class="bar" id="PB_pattern">pattern</div>
+                        </div>
+                        <div bar_content_for="PB_color"><input type="color" name="" class="two_grid colorpicker" id="PB_stroke-color"></div>
+                        <div bar_content_for="PB_pattern"><input type="color" name="" class="two_grid colorpicker prop" id=""></div>
+                    </div>
+                </div>
+                <!--  -->
+                <div class="divninput" Main-style="stroke-width">
+                    <div class="rangeinputdiv textnval"> <span>brush-width</span> <span class="range_value">0</span></div>
+                    <input type="range" style-attr="stroke-width" class="border three_grid rotate" placeholder="" name="" value="1" id="PB_width" min="0" max="100">
+                </div>
+                <div class="divninput" Main-style="stroke-blur">
+                    <div class="rangeinputdiv textnval"> <span>blur</span> <span class="range_value">0</span></div>
+                    <input type="range" style-attr="stroke-width" id="PB_blur" class="border three_grid rotate" placeholder="" name="" value="1" id="PB_width" min="0" max="100">
+                </div>
+                <!--  -->
+                <div id="" class="heightinc">
+                    <div class="heightinc_title"> <span>Fill</span> <span class="fill_previewer"></span>
+                        <ion-icon name="chevron-down-outline" class=""> </ion-icon>
+                    </div>
+                    <div id="style_activeel_background">
+                        <div class="bar_holder" id="PB_fill">
+                            <div class="bar" id="PB_fill-color_">Color</div>
+                            <div class="bar">Image</div>
+                            <div class="bar">pattern</div>
+                        </div>
+                        <div bar_content_for="PB_fill-color_"><input type="color" name="" class="two_grid colorpicker" id="PB_fill-color"> <input type="checkbox" name="" id="PB_fill-transparent"><span>transparent</span> </div>
+
+                    </div>
+                </div>
+
+                <div Main-style="stroke-fill" class="grid-flow-column"><span class="pulse">Fill rule</span> <select name="" id="PB_stroke-linejoins"><option value="nonzero">non-zero</option><option value="odd-even">odd-even</option></select> </div>
+                <div Main-style="stroke-line-join" class="grid-flow-column"><span class="pulse">line-join</span> <select name="" id="PB_stroke-linejoin" value="round"><option value="round">round</option><option value="beval">beval</option><option value="miter">miter</option></select> </div>
+                <div Main-style="stroke-line-end" class="grid-flow-column"><span class="pulse">line end</span> <select name="" id="PB_stroke-linecap" value="round"><option value="round">round</option><option value="square">square</option></select> </div>
+
+                <div id="" class="style-head down_up">
+                    <h5 class="mainprop prop_heading" style="color:#b8f2e6"> <i class="bi bi-fonts bi-main-prop" style="text-shadow: 2px 2px 2px;"></i>Drop Shadow
+                        <ion-icon name="chevron-down-outline" class="downupic"> </ion-icon>
+                    </h5>
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Line -->
+        <div id="tags_draw_line_brush_content" class="tags_draw_content tags_content">
+            <div class="brush_selector" id="LineBrush">
+                <i class="bi bi-brush"></i>
+                <span>select</span></div>
+            <svg class="lookupSvg">
+<line stroke="red" x1="3" y="3" x2="50" y2="50" ></line> </svg>
+
+
+            <div id="line_brush_Settings">
+                <div class="test"><span>Color</span><input type="color" id="LB_color"></div>
+                <div class="test"> <span>Width</span> <input type="range" value="1" id="LB_width" min="0" max="100"> </div>
+                <div class="test"> <span>blur</span> <input type="range" value="0" id="LB_blur" min="0" max="10"> </div>
+            </div>
+            <div>
+                <div class="secondary-text">shadow</div>
+                <div>
+                    <div><span>X</span> <input type="range" name="" id=""></div>
+                    <div><span>Y</span> <input type="range" name="" id=""></div>
+                    <div><span>blur</span> <input type="range" name="" id=""></div>
+                    <div><span>color</span> <input type="color" name="" id=""></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- !============================= -->
+    <!-- !!!!!!!!!!!!!!!INPUT -->
+    <div id="divbar_input" class="border options_modal">
+        <div style="height: 30px;width: 200px;background-color: #429fb3;border:1px white solid" element-type="text-input"></div> <i class="bi bi-plus-square add_sibling"></i>
+        <div class="about">Get text input from user</div>
+    </div>
+    <!-- !!!!!!!!!!!!!!!INPUT -->
+    <!-- !!!!!!!!!!!!!!!BOX SETTINGS -->
+    <div id="divbar_box_settings" class="border options_modal">
+        <div class="tags_holder">
+            <div class="tags_box_settings" id="tags_box_settings-size">size</div>
+            <div class="tags_box_settings" id="tags_box_settings-background">Background</div>
+            <div class="tags_box_settings" id="tags_box_settings-border">Border</div>
+            <div class="tags_box_settings" id="tags_box_settings-settings">Settings</div>
+        </div>
+
+        <div id="tags_box_settings-size_content" class="tags_box_settings_content tags_content">
+            <div class="aspect_ratio_option">1:1</div>
+            <div class="aspect_ratio_option">9:6</div>
+            <div class="aspect_ratio_option">16:9</div>
+            <div class="aspect_ratio_option">4:5</div>
+            <div class="aspect_ratio_option">5:4</div>
+
+            <div class="heightinc aspect_ratio_option custom_aspect_ratio">
+                <div class="heightinc_title"> Custom</div>
+                <div> <span>Height</span> <input type="number" min="1" max="1000" value="100"></div>
+                <div> <span>width</span> <input type="number" min="1" max="1000" value="100"></div>
+            </div>
+
+        </div>
+        <div id="tags_box_settings-settings_content" class="tags_box_settings_content tags_content">
+            <div><span>Grid Visible</span> <input type="checkbox" name="" id="grid_visibility"></div>
+            <div><span>Grid Position</span> <select name="" id="grid_position"><option value="Front">Front</option>
+
+        <option value="Back">Back</option></select></div>
+            <div><span>Gap X</span><input type="number" name="" value="20" id="grid_gapX"></div>
+            <div><span>Gap Y</span><input type="number" value="20" name="" id="grid_gapY"></div>
+            <div><span>Grid Color</span><input type="color" name="" id="grid_color"></div>
+        </div>
+
+        <div id="tags_box_settings-background_content" class="tags_box_settings_content tags_content">
+            <div style="display: grid;grid-auto-flow: column;gap: 10px;margin-bottom: 20px;"><span class="pulse">Color </span> <input type="color" id="Box_Style-Background-color" class="three_grid" name="" id=""></div>
+            <div class="adviser" id="Box_Style-Background-color_adviser">
+                <div class="color_adviser" style="background-color: blueviolet;"></div>
+                <div class="color_adviser" style="background-color: orange;"></div>
+                <div class="color_adviser" style="background-color: grey;"></div>
+                <div class="color_adviser" style="background-color: wheat;"></div>
+                <div class="color_adviser" style="background-color: pink;"></div>
+                <div class="color_adviser" style="background-color:red;"></div>
+                <div class="color_adviser" style="background-color: gold;"></div>
+                <div class="color_adviser" style="background-color: burlywood;"></div>
+            </div>
+            <span class="choose-image">Browse Backgrounds</span>
+            <!-- <div class="adviser_images">
+                    <img src="memphis-bg.jpg" class="adviser_content" width="100%" height="100%" alt="">
+                    <img src="memphis-bg.jpg" class="adviser_content" width="100%" height="100%" alt="">
+                    <img src="memphis-bg.jpg" class="adviser_content" width="100%" height="100%" alt="">
+                    <img src="memphis-bg.jpg" class="adviser_content" width="100%" height="100%" alt="">
+                    <img src="memphis-bg.jpg" class="adviser_content" width="100%" height="100%" alt="">
+                    <img src="memphis-bg.jpg" class="adviser_content" width="100%" height="100%" alt="">
+
+                </div> -->
+            <div class="choose_image"></div>
+        </div>
+        <div id="tags_box_settings-border_content" class="tags_box_settings_content tags_content"></div>
+
+    </div>
+
+
+    <!-- !!!!!!!!!!!!!!!BOX SETTINGS -->
+    <!-- !!!!!!!!!!!!!!!!!!!!!!! DIV !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+    <div class="element_opt templates">
+
+
+
+        <!-- ANCHOR -->
+        <div class="div_delete_onclk_prnt secondaryParent add_child" spellcheck="false">
+
+            <div class="delete_myprnt no_contenteditable" style="color:black;"> &times;</div>
+            <p class="classicP"> Some text .....user can click to remove this box</p>
+        </div>
+
+        <i class="bi bi-plus-square add_sibling"></i>
+
+        <!--  -->
+        <div class="div_with_child content_hide_show secondaryParent" spellcheck="false">
+
+            <h5 class="classicTitle always_show add_child">title(visible)
+                <ion-icon name="chevron-down-outline" class="down_up_trigger">
+                </ion-icon>
+            </h5>
+
+            <div class="classicContent add_child">
+                some content that will hide and shown
+            </div>
+        </div>
+        <i class="bi bi-plus-square add_sibling"></i>
+        <!-- ANCHOR -->
+        <div class="slider" spellcheck="false">
+            <div class="slide_next_btn">next</div>
+            <div class="slide_prev_btn">prev</div>
+            <div class="slide add_child active_slide">
+                content of slide 1
+            </div>
+            <div class="slide add_child">
+                content of slide 2
+            </div>
+            <div class="slide add_child">
+                content of slide 3
+            </div>
+            <div class="slidecount"></div>
+        </div>
+        <i class="bi bi-plus-square add_sibling"></i>
+        <!-- ! -->
+        <!-- ANCHOR -->
+        <div class="datagrp" spellcheck="false">
+            <div class="datagrp_btn">A</div>
+            <div class="datagrp_content add_child active_datagrp">Content A</div>
+            <div class="datagrp_btn">B</div>
+            <div class="datagrp_content add_child"> content B</div>
+            <div class="datagrp_btn">C</div>
+            <div class="datagrp_content add_child"> content C</div>
+            <div class="datagrp_btn">D</div>
+            <div class="datagrp_content add_child"> content D</div>
+        </div>
+        <i class="bi bi-plus-square add_sibling"></i>
+        <!-- ! -->
+        <!-- NOTE COLLAPSAL             -->
+        <!-- ANCHOR -->
+        <div class="datagrp" spellcheck="false"> <span class="datagrp_minimize">&timesb;</span>
+            <div class="datagrp_btn">A</div>
+            <div class="datagrp_content add_child active_datagrp">Content A</div>
+            <div class="datagrp_btn">B</div>
+            <div class="datagrp_content add_child"> content B</div>
+            <div class="datagrp_btn">C</div>
+            <div class="datagrp_content add_child"> content C</div>
+            <div class="datagrp_btn">D</div>
+            <div class="datagrp_content add_child"> content D</div>
+        </div>
+        <i class="bi bi-plus-square add_sibling"></i>
+        <!-- ! -->
+        <!-- NOTE COLLAPSAL             -->
+        <!-- ANCHOR -->
+        <div class="datagrp _hr" spellcheck="false">
+            <div class="datagrp_btn hr">A</div>
+            <div class="datagrp_content add_child active_datagrp">Content A</div>
+            <div class="datagrp_btn hr">B</div>
+            <div class="datagrp_content add_child"> content B</div>
+            <div class="datagrp_btn hr">C</div>
+            <div class="datagrp_content add_child"> content C</div>
+            <div class="datagrp_btn hr">D</div>
+            <div class="datagrp_content add_child"> content D</div>
+        </div>
+        <i class="bi bi-plus-square add_sibling"></i>
+        <!-- ! -->
+        <!-- NOTE COLLAPSAL             -->
+        <div class="borderborder adble_el classicParent div_with_child overflowParent" spellcheck="false">
+            <div class="border collapsible classicTitle no_drag  add_child">Open Section 1</div>
+            <div class="content classicP no_drag  add_child"> content of 1
+            </div>
+            <div class="border collapsible classicTitle no_drag  add_child">Open Section 2</div>
+            <div class="content classicP no_drag  add_child"> content f 2
+            </div>
+            <div class="border collapsible classicTitle no_drag  add_child">Open Section 3</div>
+            <div class="content classicP no_drag  add_child"> conttent of 3
+            </div>
+        </div>
+        <i class="bi bi-plus-square add_sibling"></i>
+
+        <!-- !! -->
+        <!-- ANCHOR -->
+
+        <div spellcheck="false" class="border y_scroll add_child" style="height: 100px;width: 100px; background-color: pink;overflow-x:hidden;overflow-y:scroll;padding:  3px;">
+            <p class="classicP"> Small box for large text,that can be scrolled along y path ....can be made more beautiful with interact styles
+            </p>
+        </div>
+
+        <i class="bi bi-plus-square add_sibling"></i>
+        <!-- ANCHOR -->
+        <div class="div_with_child div_modal_prnt">
+            <div class="div_modal_trigger overflowParent">
+
+                touch me to see hidden content
+
+            </div>
+
+            <div class="div_with_child overflowParent div_modal_box">
+
+                <div class="show_modal_btn"> &times;</div>
+                <p class="classicP"> content here which user can with cross and again see through its trigger</p>
+            </div>
+
+        </div>
+        <i class="bi bi-plus-square add_sibling"></i>
+        <!-- !! -->
+
+
+        <!--  TODO -->
+
+        <button class="border" id="div_modal_btn">Explore all</button>
+
+
+
+    </div>
+    <!-- !!!!!!!!!============================================================================================================== -->
+
+
+    <!-- !!!!!!!!!!!LAYOUTS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+    <div class="element_opt">
+
+
+        <div class="layouts adble_el div_with_child" style="height: 260px; width: 220px;">
+            <div class="layoutP no_drag">Some text here</div>
+            <div class="img no_drag"> <span class="material-icons show-add_media-modal" style="font-size: 300%;">
+                        add_photo_alternate
+                        </span> Img or video here</div>
+        </div>
+
+
+
+        <button class="add_layout">+</button>
+        <!-- !!!!! -->
+        <div class="layouts" style="height: 260px; width: 220px;display: flex;">
+            <div class="height_animation" style="height: 100%;width: 33%;background-color: aqua;"></div>
+            <div class="height_animation" style="height: 100%;width: 33%;background: brown;"></div>
+            <div class="height_animation" style="height: 100%;width: 33%;background: azure;"></div>
+        </div>
+        <button class="add_layout">+</button>
+
+    </div>
+    <!-- !=========================================================================================================================================== -->
+    <!--!!!!!!BOX!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1  -->
+    <div class="element_opt">
+        <div class="tags_holder">
+            <div class="tags" id="box_height">Height</div>
+            <div class="tags">Background</div>
+            <div class="tags">Border</div>
+        </div>
+        <div id="box_height_content" class="tags_content">
+            <label for="">Height</label> <input type="number" class="border" id="" placeholder=""><span>px</span>
+        </div>
+
+    </div>
+
+    <!-- !!+=========================================================================================================== -->
+
+
+
+
+
+
+
+    <!-- !!!!!!!!!!!!!!!!!!!!!OPTIONS_TWO -->
+    <div class="border options_div_two">
+        <div class="options_two_head" id="style" style="height: 9vw;">
+            <p class="rotate-text">STYLE</p>
+        </div>
+        <div class="options_two_head" id="animations" style="display: none;">
+            <p class="rotate-text">ANIMATIONS</p>
+        </div>
+        <div class="options_two_head" id="functions">
+            <p class="rotate-text">FUNCTIONS</p>
+        </div>
+        <div class="options_two_head" id="layers" style="height: 11vw;">
+            <p class="rotate-text">LAYERS</p>
+        </div>
+        <!-- <div class="options_two_head" id="test">
+                <p class="rotate-text">T</p>
+            </div> -->
+    </div>
+    <!-- !+!+====================================== -->
+
+    <!-- !!!!!!STYLE DIV!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+    <div class="border down_up customisable_div" id="style_div">
+
+
+        <div style="display: grid;grid-template-columns: 70% 30%;grid-column-gap: 0px;grid-template-rows: 30px;/* margin-left: 5px; *//* margin-top: 5px; */margin: 5px;"> <span class="tile" style="font-size:small;padding: 5px;font-family: sans-serif;/* font-size: inherit; */">Selected element</span> <svg id="preview_selected_element" preserveAspectRatio="none"></svg></div>
+        <!-- ----------------------------------------FONT---------------------------------------------- -->
+        <div class="style-head down_up" id="Interact_activeel_Text">
+            <h5 class="mainprop prop_heading"> <i class="bi bi-type bi-main-prop"></i> Text
+                <ion-icon name="chevron-down-outline" class="downupic"> </ion-icon>
+            </h5>
+            <hr class="style_hr">
+
+
+        </div>
+        <!-- !!!!!!!! -->
+        <!-- ----------------------------------------Textpath---------------------------------------------- -->
+        <div class="style-head down_up" id="Interact_activeel_Textpath">
+            <h5 class="mainprop prop_heading"> <i class="bi bi-type bi-main-prop"></i> Textpath
+                <ion-icon name="chevron-down-outline" class="downupic"> </ion-icon>
+            </h5>
+            <hr class="style_hr">
+
+
+        </div>
+        <!-- !!!!!!!! -->
+        <!-- !!!!!!!!!!!============================================BORDER -->
+        <div id="Interact_activeel_Border_Style" class="style-head down_up">
+            <h5 class="mainprop prop_heading">
+                <i class="bi bi-border-inner bi-main-prop"></i>Border
+                <ion-icon name="chevron-down-outline" class="downupic"> </ion-icon>
+            </h5>
+            <hr class="style_hr">
+
+        </div>
+        <!-- !! -->
+        <!-- ----------------------------------------Border RADIUS!!!---------------------------------------------- !1!-->
+        <div id="Interact_activeel_Border_Radius" class="style-head down_up">
+            <h5 class="mainprop prop_heading for_pc"> <i class="bi bi-fullscreen bi-main-prop"></i> Border Radius
+                <ion-icon name="chevron-down-outline" class="downupic"> </ion-icon>
+            </h5>
+            <hr class="style_hr">
+
+        </div>
+
+        <!-- ----------------------------------------Text shadow---------------------------------------------- -->
+        <div id="Interact_activeel_Text_Shadow" class="style-head down_up">
+            <h5 class="mainprop prop_heading"> <i class="bi bi-fonts bi-main-prop" style="text-shadow: 2px 2px 2px;"></i>Text Shadow
+                <ion-icon name="chevron-down-outline" class="downupic"> </ion-icon>
+            </h5>
+            <hr class="style_hr">
+
+        </div>
+        <!-- ----------------------------------------DROP shadow---------------------------------------------- -->
+        <div id="Interact_activeel_Drop_Shadow" class="style-head down_up">
+            <h5 class="mainprop prop_heading"> <i class="bi bi-aspect-ratio bi-main-prop" style="filter:drop-shadow(2px 2px 2px white);"></i>Drop Shadow
+                <ion-icon name="chevron-down-outline" class="downupic"> </ion-icon>
+            </h5>
+            <hr class="style_hr">
+
+        </div>
+        <!-- ----------------------------------------Box shadow---------------------------------------------- -->
+        <div id="Interact_activeel_Box_Shadow" class="style-head down_up">
+            <h5 class="mainprop prop_heading"> <i class="bi bi-back bi-main-prop"></i>Box shadow
+                <ion-icon name="chevron-down-outline" class="downupic"> </ion-icon>
+                <!-- <ion-icon name="information-circle-outline"></ion-icon> -->
+                <!-- <i class="fas fa-info-circle" style="font-size: 10px;"></i> -->
+            </h5>
+            <hr class="style_hr">
+            <div id="style_activeel_boxShadow" class="style_content_mobile">
+                <ion-icon name="add-circle-outline" id="add_boxshadow" style="font-size: 25px;"></ion-icon>
+
+                <!-- <ion-icon name="add-circle-outline" id="add_boxshadow" style="font-size: 25px;"></ion-icon> -->
+                <div class="boxshadowdiv">
+                    <span class="shadow_count">1</span>
+                    <ion-icon name="close-circle-outline" class="delete_myprnt"></ion-icon>
+                    <ion-icon name="eye-outline"></ion-icon>
+
+                    <br>
+                    <label class="two_grid tile" for=""> offset X</label>
+                    <label class="two_grid tile" for=""> offset Y </label>
+                    <input type="number" class="border two_grid boxshadow_x" id="" placeholder="" name="" min="0" max="100" step="1">
+
+                    <input type="number" class="border two_grid boxshadow_y" id="" placeholder="" name="" min="0" max="100" step="1">
+
+
+                    <label class="two_grid tile" for=""> blur</label>
+                    <label class="two_grid tile" for=""> spread </label>
+                    <input type="number" class="border two_grid boxshadow_blur" id="" placeholder="" name="" min="0" max="100" step="1">
+
+                    <input type="number" class="border two_grid boxshadow_spread" id="" placeholder="" name="" min="0" max="100" step="1">
+                    <label class="two_grid tile" for=""> color</label>
+
+                    <label class="two_grid tile" for=""> type </label>
+                    <!-- <div class="border one_grid clckprop">
+                        <div class="box_shadow_inset_no"></div>
+                    </div>
+                    <div class="border one_grid clckprop">
+                        <div class="box_shadow_inset"></div>
+                    </div> -->
+                    <input type="color" class="border two_grid colorpicker boxshadow_color" style="transform: translate(4px, -18px);">
+                    <!-- <input type="color" class="border two_grid" value="#111e29" name="" id="text_shadow_color"> -->
+
+                    <div class="border one_grid boxshadow_inset" style="height: 5vh;width: 3.5vw;">
+                        <div class="boxshadow_inset_icon"></div>
+                    </div>
+                    <div class="border one_grid boxshadow_outset" style="height: 5vh;width: 3.5vw;">
+                        <div class="boxshadow_icon"></div>
+                    </div>
+
+                    <!-- <input type="checkbox" name="" class="border two_grid boxshadow_inset" id=""> -->
+                    <hr class="style_hr">
+                </div>
+            </div>
+
+        </div>
+        <!-- background--------------------------------------------------------------------------------------- -->
+        <div id="Interact_activeel_Background" class="style-head down_up">
+            <h5 class="mainprop prop_heading"> <i class="bi bi-image-fill bi-main-prop"></i>Background
+                <ion-icon name="chevron-down-outline" class="downupic"> </ion-icon>
+            </h5>
+            <!-- <div id="style_activeel_background">
+                    
+                </div> -->
+            <!-- <input type="text" class="border prop three_grid" id="background" placeholder="color" name=""> -->
+
+        </div>
+        <!--! Visibility--------------------- -->
+        <!-- <div id="" class="style-head down_up">
+                <h5 class="mainprop prop_heading">Visibility
+                    <ion-icon name="chevron-down-outline" class="downupic"> </ion-icon>
+                </h5>
+                <input type="text" class="border prop three_grid" id="zIndex" placeholder="element stake" name="">
+                <input type="text" class="border prop three_grid" id="opacity" placeholder="opacity" name="">
+
+            </div> -->
+        <!-- TRANSFORM -->
+        <div id="Interact_activeel_Transform" class="style-head down_up">
+            <h5 class="mainprop prop_heading"> <i class="bi bi-arrows-move bi-main-prop"></i> Transform
+                <ion-icon name="chevron-down-outline" class="downupic"> </ion-icon>
+            </h5>
+
+        </div>
+        <!-- !!!!!!!BRUSH -->
+        <div id="Interact_activeel_Brush" class="style-head down_up">
+            <h5 class="mainprop prop_heading"> <i class="bi bi-arrows-move bi-main-prop"></i> Brush
+                <ion-icon name="chevron-down-outline" class="downupic"> </ion-icon>
+            </h5>
+            <!--  -->
+            <!-- <div class="divninput" Main-style="stroke-width">
+                <div class="three_grid tile textnval"> <span>brush-width</span> <span class="range_value">0</span></div>
+                <input type="range" style-attr="stroke-width" class="border three_grid rotate" placeholder="" name="" value="1" id="PB_width" min="0" max="100">
+            </div>
+            <div class="divninput" Main-style="stroke-blur">
+                <div class="three_grid tile textnval"> <span>blur</span> <span class="range_value">0</span></div>
+                <input type="range" style-attr="stroke-width" id="PB_blur" class="border three_grid rotate" placeholder="" name="" value="1" id="PB_width" min="0" max="100">
+            </div>
+            <div Main-style="stroke-fill" class="grid-flow-column"><span class="pulse">Fill rule</span> <select name="" id="PB_stroke-linejoins"><option value="nonzero">non-zero</option><option value="odd-even">odd-even</option></select> </div>
+            <div Main-style="stroke-line-join" class="grid-flow-column"><span class="pulse">line-join</span> <select name="" id="PB_stroke-linejoin" value="round"><option value="round">round</option><option value="beval">beval</option><option value="miter">miter</option></select> </div>
+            <div Main-style="stroke-line-end" class="grid-flow-column"><span class="pulse">line end</span> <select name="" id="PB_stroke-linecap" value="round"><option value="round">round</option><option value="square">square</option></select> </div> -->
+        </div>
+
+        <!--    ! FILTERS -->
+        <!-- <div id="" class="style-head down_up">
+                <h5 class="mainprop prop_heading">Filters
+                    <ion-icon name="chevron-down-outline" class="downupic"> </ion-icon>
+                </h5>
+                Hue
+                <br>
+                <div class="boxy"></div>
+                Invert
+                <br>
+                <div class="boxy"></div>
+            </div> -->
+        <!-- function------------------------ -->
+
+    </div>
+    <!-- !!!+======================================================================================================================== -->
+
+    <!-- !!!!!!!!!FUNCTIONS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+    <div class="border down_up customisable_div" id="functions_div">
+
+        <ion-icon name="add-circle-outline" id="add_InteractFunctionEditor_btn" style="font-size: 25px;"></ion-icon>
+        <hr class="style_hr">
+
+        <!-- <div>
+                <input type="text" class="property border three_grid" placeholder="function name">
+                <ion-icon name="chevron-up-circle-outline"></ion-icon>
+
+                <ion-icon name="close-circle-outline" class="delete_myprnt"></ion-icon>
+                <hr class="style_hrTwo">
+                <div></div>
+
+                <label for="">Trigerer</label>
+                <br>
+                <div style="overflow-x: scroll;display: flex;height:35px;
+    overflow-y: hidden;">
+                    <span class="material-icons trigerer_add">add_box</span> </div>
+                <!-- <input type="text" class="border trigerer two_grid"> -->
+        <!-- <hr class="style_hr"> -->
+
+        <!-- <label for="">Effectors</label>
+            <br>
+            <div style="overflow-x: scroll;display: flex;height:35px;
+            overflow-y: hidden;">
+
+                <span class="material-icons effectors_add">add_box</span></div>
+
+            <!-- <input type="text" class="border effecter three_grid"> -->
+        <!-- <div style="border: 2px black solid;">
+                <div style="display: flex;border: 2px black solid;">
+                    <div class="tagsTwo" id="effectors_function">function</div>
+                    <div class="tagsTwo" id="effectors_transition">transition</div>
+                </div>
+                <div id="" class="tagsTwo_content">
+                    <label class="two_grid" for="">type:</label>
+                    <select class="border two_grid">
+                            <option value="change">Change</option>
+                            <option value="toggle">Toggle</option>
+                            <option value="inc/dec">inc/decrese</option>
+                        </select>
+
+
+                    <input type="text" class="property border two_grid" placeholder="property">
+                    <input type="text" class="value border two_grid" placeholder="value">
+                    <br>
+                    <span class="material-icons" id="add_boxshadow">
+                            add_circle_outline
+                            </span>
+                    <hr class="style_hrTwo"><span class="material-icons" id="add_boxshadow">
+                            add_circle_outline
+                            </span>
+                    <hr class="style_hr">
+                </div>
+                <div id="" class="tagsTwo_content">
+                    <label class="two_grid" for="">For</label>: <input type="text" class="property border two_grid">
+                    <br>
+                    <label class="two_grid" for="">Delay</label>: <input type="text" class="property border two_grid">
+                    <br>
+                    <label class="two_grid" for="">Duration</label>: <input type="text" class="property border two_grid">
+                    <br>
+                    <label class="two_grid" for="">Timing-function</label>: <input type="text" class="property border two_grid">
+                    <hr class="style_hrTwo"><span class="material-icons" id="add_boxshadow">
+                            add_circle_outline
+                            </span>
+                    <hr class="style_hr">
+                </div>
+
+                <span class="material-icons" id="add_boxshadow">
+                        add_circle_outline
+                        </span>
+            </div>
+        </div>  -->
+    </div>
+
+    <!-- !!!!!!=================================================================== -->
+    <!--!!!!!!!!! ANIMATIONS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+    <div class="border down_up customisable_div" id="animations_div">
+
+        <!-- ANim Div -->
+        <span class="material-icons" id="add_Animation_control_div">
+                add_circle_outline
+                </span>
+
+    </div>
+
+    <!-- !!============================================================================ -->
+
+    <div class="border down_up customisable_div" id="layers_div">
+
+    </div>
+    <!-- ++++++++=== -->
+
+
+
+    <!-- !TOOLBOX -->
+    <div id="toolbox">
+
+        <div id="select_container_btn"> Container </div>
+        <div id="container_edit_btn"> edit </div>
+        <div id="freeze_activeel">
+            <!-- <i class="bi bi-file-earmark-play"></i> -->
+            <i class="bi bi-file-earmark-lock2"></i>
+        </div>
+        <div id="delete_activeel">
+            <ion-icon name="trash-outline"></ion-icon>
+        </div>
+        <div id="clone_activeel">
+            <ion-icon name="copy-outline"></ion-icon>
+        </div>
+        <div id="innerText_activeel">
+            <ion-icon name="text-outline"></ion-icon>
+        </div>
+
+        <!-- <div id="play_animation_btn">
+                <ion-icon name="play-circle-outline"></ion-icon>
+            </div> -->
+        <!-- <div id="deselect_activel">
+                <ion-icon name="close-outline"></ion-icon>
+            </div> -->
+        <div id="toolbox_more_btn">
+            <ion-icon name="settings-outline"></ion-icon>
+        </div>
+
+
+        <input type="number" id="z-index_activeel">
+        <!-- <div id="Add_slide">Add Slide</div>
+        <div id="Add_databox">Add Databox </div> -->
+
+    </div>
+    <div id="toolbox_more">
+        <span>Element name</span>
+        <input type="text" name="" id="name_activeel" placeholder="name" autocomplete="off">
+        <span>Element Groups</span>
+
+        <div id="groups_activeel"> <span id="add_element_groups_icon">+</span> </div>
+        <div id="append_activeel"> Append in other element</div>
+        <span>hyperlink</span>
+        <input type="text" name="" id="hyperlink_activeel" placeholder="eg; example.com/toshow" autocomplete="off">
+        <div id="audio_settings_activeel"> <div>  Audio Controls <ion-icon name="chevron-down-outline" class="downupic md hydrated" role="img" aria-label="chevron down outline"> </ion-icon></div>
+        <div style="display: none;"  id="audio_settings_activeel" >
+            <div class="set_box"><span>Settings</span><input type="checkbox" ></div>
+            <div class="set_box"><span>play btn</span><input type="checkbox" ></div>
+            <div class="set_box"><span>valoum</span><input type="checkbox" ></div>
+        </div>
+        </div>
+        <div id="video_settings_activeel"> <div>  Video Controls <ion-icon name="chevron-down-outline" class="downupic md hydrated" role="img" aria-label="chevron down outline"> </ion-icon></div>
+        <div style="display: none;"  id="audio_settings_activeel" >
+            <div class="set_box"><span>Settings</span><input type="checkbox" ></div>
+            <div class="set_box"><span>play btn</span><input type="checkbox" ></div>
+            <div class="set_box"><span>valoum</span><input type="checkbox" ></div>
+        </div>
+        </div>
+        <div id="ytvideo_settings_activeel"> <div>Yt video Controls <ion-icon name="chevron-down-outline" class="downupic md hydrated" role="img" aria-label="chevron down outline"> </ion-icon></div>
+        <div style="display: none;"  id="audio_settings_activeel" >
+            <div class="set_box"><span>Settings</span><input type="checkbox" ></div>
+            <div class="set_box"><span>play btn</span><input type="checkbox" ></div>
+            <div class="set_box"><span>valoum</span><input type="checkbox" ></div>
+        </div>
+        </div>
+        <div id="change_image_activeel" class="change_src_div"><a class="change-link" target="_blank"></a><div class="change-btn">Change Image</div></div>
+        <div id="change_audio_activeel" class="change_src_div"><a class="change-link" target="_blank"></a><div class="change-btn">Change Audio</div></div>
+        <div id="change_video_activeel" class="change_src_div"><a class="change-link" target="_blank"></a><div class="change-btn">Change Video</div></div>
+        <div id="change_youtubevideo_activeel" class="change_src_div"><a class="change-link" target="_blank"></a><div class="change-btn">Change YT-Video</div></div>
+        
+        
+        
+        <!-- <div id="change_video_activeel" class="change-btn">Change Video</div>
+        <div id="change_youtubevideo_activeel">Change YT-Video</div>
+        <div id="change_audio_activeel" class="change-btn">Change Audio</div> -->
+        <!-- <div>content-overflow-x <select name="" id="">
+                <option value="scroll">scroll</option>
+                <option value="auto">auto</option>
+                <option value="hidden">hidden</option>
+                <option value="visible">visible</option>
+            </select> </div> -->
+        <div id="size_settings_activeel">
+            <p>Relative sizing (i)</p>
+            <div class="size_settings_activeel-childs"> <span>Height</span> <span class="form-check form-switch" style="display: inline-flex;z-index: 1;position: relative;right: -5px;">
+                    <input class="form-check-input border_radius_style_switcher" type="checkbox" ></span>
+            </div>
+            <div class="size_settings_activeel-childs"><span>width</span> <span class="form-check form-switch" style="display: inline-flex;z-index: 1;position: relative;right: -5px;">
+                    <input class="form-check-input border_radius_style_switcher" type="checkbox" ></span>
+            </div>
+        </div>
+        <div id="scroll_settings_activeel">
+            <p>Scroll(i)</p>
+            <div class="scroll_settings_activeel-childs"> <span>Height</span> <input class="scroll_settings_activeel-inputs" id="scroll-settings-height" type="number" name="" id=""></div>
+            <div class="scroll_settings_activeel-childs"> <span>width</span> <input class="scroll_settings_activeel-inputs" id="scroll-settings-width" type="number" name="" id=""></div>
+        </div>
+    </div>
+
+    <div id="append_child_info">
+        <p>Drag me over the element to append in it</p><span id="cancel_appending"><ion-icon name="close-outline"></ion-icon></span></div>
+
+    <!-- ????????????????????????????? -->
+
+    <!-- href={% url 'share_interact'%}  -->
+    <div id="submit_box">
+        <a id="submit_btn">
+            Share</a>
+
+        <div id="preview_btn">
+            preview
+        </div>
+
+        <div id="test1"><i class="bi bi-download"></i></div>
+
+    </div>
+
+
+
+
+    <!-- <div id="szt"></div> -->
+    <div class="size_handler_ " id="size_handler_top_left">
+        <div class="size_handler_point"></div>
+    </div>
+    <div class="size_handler_" id="size_handler_top_right">
+        <div class="size_handler_point"></div>
+    </div>
+    <div class="size_handler_ size_handler_mid_hr" id="size_handler_mid_top">
+        <div class="size_handler_point"></div>
+    </div>
+    <div class="size_handler_" id="size_handler_bottom_left">
+        <div class="size_handler_point"></div>
+    </div>
+    <div class="size_handler_" id="size_handler_bottom_right">
+        <div class="size_handler_point"></div>
+    </div>
+    <div class="size_handler_ size_handler_mid_hr" id="size_handler_mid_bottom">
+        <div class="size_handler_point"></div>
+    </div>
+    <div class="size_handler_ size_handler_mid_vr" id="size_handler_mid_right">
+        <div class="size_handler_point"></div>
+    </div>
+    <div class="size_handler_ size_handler_mid_vr" id="size_handler_mid_left">
+        <div class="size_handler_point"></div>
+    </div>
+
+
+    <div id="activeel_container">
+
+    </div>
+    <div class="size_handler_" id="activeel_container-rotate_box">
+        <div class="size_handler_point" id="activeel_container-rotate_center"></div>
+    </div>
+    <div class="activeel_container" id="activeel_container-rotate_line"></div>
+    <div class="activeel_container" id="activeel_container_top"></div>
+    <div class="activeel_container" id="activeel_container_left"></div>
+    <div class="activeel_container" id="activeel_container_right"></div>
+    <div class="activeel_container" id="activeel_container_bottom"></div>
+
+    <div class="modal1" id="BackgroundSelectorModal">
+        <span class="material-icons hide_myprnt" style="position: absolute;top: 5%;left: 5%;font-size: 50px;color: white">cancel</span>
+        <div class="modal3">
+            <div class="left-content">
+                <div class="melody" clickbtn="pattern">Patterns</div>
+                <div class="melody" clickbtn="Upload_Image">Upload Image</div>
+                <div class="melody">Backgrounds</div>
+            </div>
+            <div class="right-content" id="pattern" style="display: grid;">
+                <div id="pattern_editor_big">
+                    <div class="grid_row_two"><span>Backgrund-color</span><span><input type="color" class="three_grid" name="" id="pattern-background-color"></span></div>
+                    <div class="grid_row_two"> <span>foreground-color</span><span><input type="color" class="three_grid" name="" id="foreground-color"></span></div>
+                    <div class="grid_row_two"><span>opacity</span><span><input type="range" class="three_grid" name="" id="pattern-opacity" value="0" min="0" max="1" step="0.1"></span></div>
+                </div>
+                <div id="pattern_dialog">
+                    <div class="pattern Topography"></div>
+                    <div class="pattern Jupiter"></div>
+                    <div class="pattern Chircles"></div>
+                    <div class="pattern Food"></div>
+                    <!-- <div class="pattern Charleis"></div> -->
+                    <div class="pattern Triangles"></div>
+                    <div class="pattern Bubbles"></div>
+                    <!-- <div class="pattern"></div>
+                        <div class="pattern"></div>
+                        <div class="pattern"></div>
+                        <div class="pattern"></div>
+                        <div class="pattern"></div> -->
+                </div>
+            </div>
+            <div class="right-content" id="Upload_Image">
+
+                <div class="add_from_device_btn"> <input type="file" class="add_from_device_input" name="" id=""> <i class="bi bi-plus-square add_sibling"></i><span>Add from Device</span> </div>
+                <span id="upload_or_span">OR</span>
+                <input type="text" class="upload_url_input" name="" id="" placeholder="Enter image url">
+                <span class="fetch_input_url">Get Image</span>
+                <span class="preview_uploaded_file"></span>
+                <span class="set_uploaded_file">Set as Backgrouund</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!--  -->
+    <div class="modal1" id="UploadFileModal">
+        <span class="material-icons hide_myprnt" style="position: absolute;top: 5%;left: 5%;font-size: 50px;color: white">cancel</span>
+        <div class="modal3">
+            <div class="left-content">
+                <div class="tags">Upload</div>
+                <div class="melody" clickbtn="Image_Upload_modal" style="background-image: url(https://media.giphy.com/media/j4qlZVm73SGBfoNTmH/giphy.gif);">Image</div>
+                <div class="melody" clickbtn="Video_Upload_modal">Video</div>
+                <div class="melody" clickbtn="Audio_Upload_modal">Audio</div>
+                <div class="melody" clickbtn="YoutubeVideo_Upload_modal">Youtube</div>
+            </div>
+            <div id="Image_Upload_modal" class="right-content" style="display:grid;">
+                <div class="add_from_device_btn"> <input type="file" class="add_from_device_input" name="" id=""> <i class="bi bi-plus-square add_sibling"></i><span>Add from Device</span> </div>
+                <span id="upload_or_span">OR</span>
+                <input type="text" class="upload_url_input" name="" id="" placeholder="Enter image url">
+                <span class="fetch_input_url">Get Image</span>
+                <span class="preview_uploaded_file"></span>
+                <span class="set_uploaded_file" id="Add_to_page_image">Add to page</span>
+            </div>
+            <div id="Video_Upload_modal" class="right-content">
+                <div class="add_from_device_btn"> <input type="file" class="add_from_device_input" name="" id=""> <i class="bi bi-plus-square add_sibling"></i><span>Add from Device</span> </div>
+                <span id="upload_or_span">OR</span>
+                <input type="text" class="upload_url_input" name="" id="" placeholder="Enter Video(mp4) url">
+                <span class="fetch_input_url">Get Video</span>
+                <span class="preview_uploaded_file"></span>
+                <span class="set_uploaded_file" id="Add_to_page_video">Add to page</span>
+                <span class="">Set Thumbnail</span>
+            </div>
+            <div id="YoutubeVideo_Upload_modal" class="right-content">
+                <!-- <div class="add_from_device_btn"> <input type="file" class="add_from_device_input" name="" id=""> <i class="bi bi-plus-square add_sibling"></i><span>Add from Device</span> </div> -->
+                <!-- <span id="upload_or_span">OR</span> -->
+                <input type="text" class="upload_url_input" name="" id="" placeholder="Enter youtube video share link url">
+                <span class="fetch_input_url">Get Yt Video</span>
+                <span class="preview_uploaded_file" ></span>
+                <span class="set_uploaded_file" id="Add_to_page_Youtubevideo">Add to page</span>
+            </div>   
+            <div id="Audio_Upload_modal" class="right-content">
+                <div class="add_from_device_btn"> <input type="file" class="add_from_device_input" name="" id=""> <i class="bi bi-plus-square add_sibling"></i><span>Add from Device</span> </div>
+                <span id="upload_or_span">OR</span>
+                <input type="text" class="upload_url_input" name="" id="" placeholder="Enter Audio(mp3) url">
+                <span class="fetch_input_url">Get Audio</span>
+                <span class="preview_uploaded_file" style="height: 80px;left: 50%;right: 1%;width: auto;top: 30%;"></span>
+                <span class="set_uploaded_file" id="Add_to_page_audio">Add to page</span>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div id="activeel_position_div">
+        <div class="two_tile"><span class="tile">h:</span> <span id="activeel_position_div_h" class="tile">34</span></div>
+        <div class="two_tile"><span class="tile">w:</span> <span id="activeel_position_div_w" class="tile">34</span></div>
+        <div class="two_tile"><span class="tile">x:</span> <span id="activeel_position_div_x" class="tile">25</span></div>
+        <div class="two_tile"><span class="tile">y:</span> <span id="activeel_position_div_y" class="tile">56</span></div>
+
+    </div>
+    <div id="box_innerhtml"></div>
+<div id="NewInteracBtn">New Interact</div>
+<div id="SaveInteracBtn">Save</div>
+    <div class="modal" id="preview_modal">
+        <span class="material-icons hide_myprnt" id="preview_destroy"  style="position: absolute;top: 5%;left: 5%;font-size: 50px;color: white">cancel</span>
+        <div id="preview_box">
+        </div>
+    </div>
+    <script id="scrpt"></script>
+
+
+    <div id="message_bar" style="display: none;"> <span style="font-size: 30px;">Appended!</span></div>
+    <!-- !!!!!  HOLDER -->
+    <button id="btnrecord"></button>
+    <button id="btnstop"></button>
+
+    <svg id="Draw_svg"></svg>
+    <div id="draw_svg_toolbar">
+        <button class="draw_svg_toolbar_childs" id="add_drawing_to_page">Add drawing to page</button>
+        <button class="draw_svg_toolbar_childs" id="clear_drawing">Clear drawing</button>
+        <button class="draw_svg_toolbar_childs" id="drag_or_draw">Move Drawings</button>
+    </div>
+    <canvas id="background-canvas" style="position:absolute; top:-99999999px; left:-9999999999px;"></canvas>
+    <!--  =========== -->
+    <div id="colorpicker" style="position: fixed;z-index: 9999999;display: none;">
+    </div>
+
+    <span id="transform-origin-point"><span id="transform-origin-point_child"></span></span>
+    <!-- <img src="https://media.giphy.com/media/j4qlZVm73SGBfoNTmH/giphy.gif" crossorigin="anonymous" id="lo" alt="" height="200" width="200" srcset=""> -->
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js" integrity="sha512-jzL0FvPiDtXef2o2XZJWgaEpVAihqquZT/tT89qCVaxVuHwJ/1DFcJ+8TBMXplSJXE8gLbVAUv+Lj20qHpGx+A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+<!--  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.worker.js" integrity="sha512-3piO8GKVGn3D+eEWnTquDnlxM00ESMZpYNAnjmOMswHrGihZvdlsRjSW1bHLqahzIoyL9YWlLWVYRV4J8AHwtg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+<script src="tinycolor.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js" integrity="sha512-wUa0ktp10dgVVhWdRVfcUO4vHS0ryT42WOEcXjVVF2+2rcYBKTY7Yx7JCEzjWgPV+rj2EDUr8TwsoWF6IoIOPg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style id="style">
+
+</style>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+<script>
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin="anonymous"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<script src="https://cdn.rawgit.com/kpym/SVGPathy/master/lib/svgpathy.js" type="text/javascript"></script>
+
+
+<script src="https://unpkg.com/textures@1.2.0/dist/textures.js"></script>
+<script type="module" src="index.js"></script>
+<!-- <script type="module" src="components.js"></script> 
+<script type="module" src="Interact_style.js"></script>
+
+<script type="module" src="functionsfile.js"></script>
+<script type="module" src="functions.js"></script>
+<script type="module" src="Interac_BoxContainer.js"></script>  -->
+
+
+<script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
+
+</html>
+
+
+
+<!-- <div style="background: linear-gradient(to right, #093637, #44A08D);padding: 2px;border-radius: 2%;">
+                <span class="tile">Square</span>
+                <span class="tile">view more <i class="bi bi-box-arrow-in-up-left"></i></span>
+                <div class="adviser4">
+                    <div class="color_adviser" style="background-color: blueviolet;"></div>
+                    <div class="color_adviser" style="background-color: orange;"></div>
+                    <div class="color_adviser" style="background-color: grey;"></div>
+                    <div class="color_adviser" style="background-color: wheat;"></div>
+                    <div class="color_adviser" style="background-color: pink;"></div>
+                    <div class="color_adviser" style="background-color:red;"></div>
+                    <div class="color_adviser" style="background-color: gold;"></div>
+                    <div class="color_adviser" style="background-color: burlywood;"></div>
+                </div>
+                <div class="tile" style="text-align: center;font-size: large;color: white;margin-top: 5px;"><i class="bi bi-arrow-down-short"></i></div>
+            </div> -->

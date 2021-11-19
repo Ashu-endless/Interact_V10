@@ -1,0 +1,179 @@
+[primary-element-type=Image] {
+    overflow: visible;
+}
+
+[secondary-element-type=Image] {
+    background-repeat: round;
+    height: 100%;
+    width: 100%;
+    transition:inherit;
+}
+
+[primary-element-type=Text] {
+    font-size: 25;
+    font-family: Arial;
+    color: black;
+    word-break: break-all;
+    background-repeat: round;
+    overflow: visible;
+}
+
+[primary-element-type=Video] {
+    background-repeat: round;
+    overflow: visible;
+}
+
+[secondary-element-type=Container-div] {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transition:inherit;
+}
+
+[secondary-element-type=Container-Svg] {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.freeze_div {
+    position: absolute;
+    height: 0%;
+    width: 0%;
+    top: 0;
+    left: 0;
+    z-index:100000;
+}
+
+[primary-element-type=YoutubeVideo] {
+    background-repeat: round;
+    overflow: visible;
+}
+
+[primary-element-type=Audio] {
+    background-repeat: round;
+    overflow: visible;
+}
+[secondary-element-type=Audio] {
+    background-repeat: round;
+    height: 100%;
+    width: 100%;
+    transition:inherit;
+}
+
+[primary-element-type=Container] {
+    overflow: visible;
+    background-repeat: round;
+}
+
+[secondary-element-type=Svg] {
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-repeat: round;
+    transition:inherit;
+}
+
+[secondary-element-type=Container-Wrapper] {
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-repeat: round;
+    transition:inherit;
+}
+
+[secondary-element-type=Textdiv] {
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transition:inherit;
+}
+[secondary-element-type=Textdiv2] {
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    overflow: scroll;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transition:inherit;
+}
+[secondary-element-type=Textp] {
+    height: 100%;
+    width: 100%;
+    overflow: hidden auto;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    transition:inherit;
+}
+
+.plyr--audio {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+}
+/* [element-type=text-input] {
+    border-radius: inherit;
+    height: 100%;
+    width: 100%;
+} */
+.plyr {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    align-items: center;
+    direction: ltr;
+    display: flex;
+    flex-direction: column;
+    font-family: inherit;
+    font-family: var(--plyr-font-family,inherit);
+    font-variant-numeric: tabular-nums;
+    font-weight: 400;
+    font-weight: var(--plyr-font-weight-regular,400);
+    line-height: 1.7;
+    line-height: var(--plyr-line-height,1.7);
+    /* min-width: 100%; */
+    /* min-width: 200px; */
+    position: relative;
+    text-shadow: none;
+    transition: box-shadow .3s ease;
+    z-index: 0;
+}
+
+[InteractContainer]{
+    position:fixed ;
+}
+[InteractDiv]{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+[InteractSvg]{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+/* [element-type=container]{
+
+} */
