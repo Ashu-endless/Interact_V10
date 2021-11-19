@@ -1811,9 +1811,33 @@ export function NewBoxContainer(json) {
             document.body.append(BoxContainer_elem)
             
             //?Media
-            for(var el of BoxContainer_elem.querySelectorAll('[primary-element-type=YoutubeVideo]')){
-                console.log(el.getAttribute('yt-id'))
-                BoxContainer.ChangeYtvideo(el,el.getAttribute('yt-id'))
+            // for(var el of BoxContainer_elem.querySelectorAll('[primary-element-type=YoutubeVideo]')){
+            //     console.log(el.getAttribute('yt-id'))
+            //     BoxContainer.ChangeYtvideo(el,el.getAttribute('yt-id'))
+            // }
+            for (var el of preview_box.querySelectorAll('[primary-element-type=Video]')) {
+    
+                BoxContainer.ChangeSrc(el,InteracStyles.getValue({
+                    element: el,
+                    prop: "src"
+                }))
+    
+            }
+            for (var el of preview_box.querySelectorAll('[primary-element-type=YoutubeVideo]')) {
+                BoxContainer.ChangeSrc(el,InteracStyles.getValue({
+                    element: el,
+                    prop: "src"
+                }))
+    
+    
+            }
+            for (var el of preview_box.querySelectorAll('[primary-element-type=Audio]')) {
+                
+                BoxContainer.ChangeSrc(el,InteracStyles.getValue({
+                    element: el,
+                    prop: "src"
+                }))
+    
             }
             
             

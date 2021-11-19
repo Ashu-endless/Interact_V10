@@ -322,11 +322,7 @@ preview.onclick = () => {
         //     }
         // }
         for (var el of preview_box.querySelectorAll('[primary-element-type=Video]')) {
-           
-            // var s = el.style
-            // preview_box.querySelector('svg').append(BoxContainer.CreateAudioElement(el,{return:true,freeze:false}))
-            // BoxContainer.Add(el,{return:true,freeze:false})
-            // el.remove()
+    
             BoxContainer.ChangeSrc(el,InteracStyles.getValue({
                 element: el,
                 prop: "src"
@@ -338,14 +334,11 @@ preview.onclick = () => {
                 element: el,
                 prop: "src"
             }))
-            // BoxContainer.Add(el,{return:true,freeze:false})
-            // el.remove()
+
 
         }
         for (var el of preview_box.querySelectorAll('[primary-element-type=Audio]')) {
-            // preview_box.querySelector('svg').append(BoxContainer.Add(el,{return:true,freeze:false}))
-            // BoxContainer.Add(el,{return:true,freeze:false})
-            // el.remove()
+            
             BoxContainer.ChangeSrc(el,InteracStyles.getValue({
                 element: el,
                 prop: "src"
@@ -432,13 +425,7 @@ for (el of style_head_mob) {
 //     }
 // })
 
-document.querySelector("#NewInteracBtn").onclick=()=>{
-    //document.querySelector('[interactcontainer]').remove()
-    NewBoxContainer({})
-}
-document.querySelector("#SaveInteracBtn").onclick=()=>{
-    Save(BoxContainer.elem().outerHTML)
-}
+
 
 export function BoxContainerClickFunc(e) {
         console.log('clicked on crtr')
@@ -2881,23 +2868,41 @@ textdiv.addEventListener("paste", function(e) {
 });
 
 
+NewArrowBox({
+    for :document.querySelector('#edit_options_more'), 
+    dataHtml:`
+    <div class="arrowboxBtn" id="NewInteracBtn">New Interact</div>
+    <div class="arrowboxBtn" id="SaveInteracBtn">Save</div>
+    <div class="arrowboxBtn" class="edit_options" id="Interac_downloadasimg"><i class="bi bi-download"></i> Download</div>
+
+    `
+})
+
+document.querySelector("#NewInteracBtn").onclick=()=>{
+    //document.querySelector('[interactcontainer]').remove()
+    NewBoxContainer({})
+}
+document.querySelector("#SaveInteracBtn").onclick=()=>{
+    Save(BoxContainer.elem().outerHTML)
+}
+
 //?? DOWNLOAD JPEG,PNG
 NewArrowBox({
-        for: document.querySelector('#test1'),
+        for: document.querySelector('#Interac_downloadasimg'),
         dataHtml: `<div id="downloadContentDiv">
-    <div class="displaybox" id="download_as_png">Download as png</div>
-    <div class="displaybox" id="download_as_jpeg"> Downlaod as jpeg</div>
-    <div class="displaybox">Downlaod as interactive html</div>
+    <div class="arrowboxBtn" id="download_as_png">Download as png</div>
+    <div class="arrowboxBtn" id="download_as_jpeg"> Downlaod as jpeg</div>
+    <div class="arrowboxBtn">Downlaod as interactive html</div>
     </div>`,
         functions: function() {
             document.querySelector('#download_as_png').addEventListener('click', function() {
-                domtoimage.toBlob(box)
+                domtoimage.toBlob(BoxContainer.div())
                     .then(function(blob) {
                         window.saveAs(blob, 'Interac.png');
                     });
             })
             document.querySelector('#download_as_jpeg').addEventListener('click', function() {
-                domtoimage.toJpeg(box, { quality: 1 })
+                domtoimage.toJpeg(BoxContainer.div(), { quality: 1 })
                     .then(function(dataUrl) {
                         var link = document.createElement('a');
                         link.download = 'interac.jpeg';

@@ -26,18 +26,10 @@
 <body>
     <nav class="border nav">
         <p class="">Interact</p>
-        <!-- <div class="form-check form-switch">
-            <input class="form-check-input" id="theme_checkbox" type="checkbox" id="flexSwitchCheckDefault"></div> -->
+        <span class="profile"></span>
+        
     </nav>
-    <!-- <div id="interac_Container">
-        <div id="interac_crtr" spellcheck="false">
-            <svg id="interac_Svg" xmlns="http://www.w3.org/2000/svg" xlinkns="http://www.w3.org/1999/xlink" xmlns:xlink="http://www.w3.org/1999/xlink">
-               
-              <g id="InteracGridSvg"> </g>
-            <defs id="textpaths-pathContainer"></defs>
-        </svg>
-        </div>
-    </div> -->
+    
 
     <div id="dataBox"></div>
     <div id="terminal"></div>
@@ -1282,14 +1274,14 @@
 
     <!-- href={% url 'share_interact'%}  -->
     <div id="submit_box">
-        <a id="submit_btn">
-            Share</a>
 
-        <div id="preview_btn">
-            preview
+        <div class="edit_options" id="preview_btn">
+            <i class="bi bi-eye"></i>preview 
         </div>
 
-        <div id="test1"><i class="bi bi-download"></i></div>
+        <div class="edit_options"  id="edit_options_more"> <i class="bi bi-three-dots-vertical"></i></div>
+        
+
 
     </div>
 
@@ -1434,8 +1426,7 @@
 
     </div>
     <div id="box_innerhtml"></div>
-<div id="NewInteracBtn">New Interact</div>
-<div id="SaveInteracBtn">Save</div>
+
     <div class="modal" id="preview_modal">
         <span class="material-icons hide_myprnt" id="preview_destroy"  style="position: absolute;top: 5%;left: 5%;font-size: 50px;color: white">cancel</span>
         <div id="preview_box">

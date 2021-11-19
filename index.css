@@ -78,9 +78,16 @@ html {
     gap: 10px;
 }
 
+
+#preview_btn {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 2px;
+}
 #submit_btn,
 #preview_btn,
-#test1 {
+.edit_options
+ {
     padding-left: 2px;
     padding-right: 2px;
     background-color: #03a9f4;
@@ -598,28 +605,7 @@ input.range_value[type=number]::-webkit-outer-spin-button {
     top: -34px;
     left: 7vh;
 }
-div#NewInteracBtn {
-    position: fixed;
-    top: 15%;
-    left: 50%;
-    color: wheat;
-    background: #2f142f;
-    padding: 10px;
-    font-family: cursive;
-    border-radius: 5%;
-    border: 2px orange solid;
-}
-div#SaveInteracBtn {
-    position: fixed;
-    top: 15%;
-    left: 70%;
-    color: wheat;
-    background: #2f142f;
-    padding: 10px;
-    font-family: cursive;
-    border-radius: 5%;
-    border: 2px orange solid;
-}
+
 #borderRight {
     top: -70px;
     left: 18vh;
@@ -1718,28 +1704,13 @@ span {
     display: none;
 } */
 
-#size_handler_top_left {
-    /* left: -4px;
-    top: -4px; */
-    /* cursor: nw-resize; */
-}
 
 .clckbox {
     border: 1px dashed white;
 }
 
-#size_handler_top_right {
-    /* right: -4px;
-    top: -4px; */
-    /* cursor: ne-resize;
-    */
-}
 
-#size_handler_bottom_left {
-    /* left: -4px;
-    bottom: -4px; */
-    /* cursor: sw-resize; */
-}
+
 
 .property_selector-prop {
     border: 1px white ridge !important;
@@ -1822,53 +1793,12 @@ span {
     transform: translate(-50%, -50%);
 }
 
-#size_handler_bottom_right {
-    /* right: -4px;
-    bottom: -4px; */
-    /* cursor: se-resize; */
-}
-
-#size_handler_mid_right {
-    /* right: -3px;
-    top: 49%;
-    width: 8px;
-    height: 20px;
-    border-radius: 4px; */
-    /* cursor: ew-resize; */
-}
-
-#size_handler_mid_left {
-    /* left: -3px;
-    top: 49%;
-    width: 8px;
-    height: 20px;
-    border-radius: 4px; */
-    /* cursor: ew-resize; */
-}
-
-#size_handler_mid_top {
-    /* top: -3px;
-    left: 49%;
-    width: 20px;
-    height: 8px;
-    border-radius: 4px; */
-    /* cursor: ns-resize; */
-}
-
-#size_handler_mid_bottom {
-    /* bottom: -3px;
-    left: 49%;
-    width: 20px;
-    height: 8px;
-    border-radius: 4px; */
-    /* cursor: ns-resize; */
-}
 
 
-/* #size_handler_right-mid {
-    right: -4px;
-    top: 49%;
-} */
+
+
+
+
 
 #message_bar {
     background-color: #d8b5b5;
@@ -2064,14 +1994,14 @@ span {
 .element_group_icon {
     filter: drop-shadow(2px 2px 0px black) drop-shadow(-2px -2px 0px black)
 }
-
+/* 
 #downloadContentDiv {
     width: 100%;
     display: grid;
     grid-auto-flow: row;
     gap: 5px;
     padding: 5px;
-}
+} */
 
 #name_activeel,
 #hyperlink_activeel,
@@ -2082,8 +2012,7 @@ span {
 #scroll_settings_activeel,
 #audio_settings_activeel,
 #video_settings_activeel,
-#ytvideo_settings_activeel,
-.displaybox {
+#ytvideo_settings_activeel {
     /* height: 15%; */
     width: 100%;
     margin-bottom: 2px;
@@ -2093,7 +2022,10 @@ span {
     font-size: 14px;
     border: 2px #191e2b solid;
 }
-
+.arrowboxBtn {
+    border: 1px dashed white;
+    background: #03a9f4;
+}
 .scroll_settings_activeel-childs {
     display: grid;
     grid-auto-flow: column;
@@ -2182,7 +2114,7 @@ span {
     position: absolute;
     pointer-events: none;
     border-color: rgba(255, 255, 255, 0);
-    border-top-color: #88b7d5;
+    border-top-color: #ff5722;
     border-width: 15px;
     margin-left: -15px;
 }
@@ -2197,7 +2129,7 @@ span {
     position: absolute;
     pointer-events: none;
     border-color: rgba(255, 163, 249, 0);
-    border-bottom-color: #03a9f4;
+    border-bottom-color: #f57224;
     border-width: 15px;
     margin-left: -15px;
 }
@@ -2881,11 +2813,25 @@ img {
 [arrowBoxFor] {
     width: 200px;
     color: white;
-    border: 2px grey solid;
+    border: 2px darkorange solid;
     background: #262a36;
     max-height: 300px;
     z-index: 10000;
+    border-radius: 2%;
+    padding: 2px;
 }
+
+.profile{
+    border: 1px white solid;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    right: 10px;
+    background-repeat: round;
+    background-image: url(https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png);
+    }
+
 
 .ad {
     background-color: white;
