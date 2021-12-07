@@ -1299,809 +1299,809 @@ export const CreateStyleDiv = {
   },
 };
 
-export function UpdateTransformStyleDiv() {
-  var styleDiv = activeel_Transform;
-  var element = getactiveel()
-  // setmaxminForinput(styleDiv.querySelector("[main-style=height]"))
-  // setmaxminForinput(styleDiv.querySelector("[main-style=width]"))
-  // setmaxminForinput(styleDiv.querySelector("[main-style=rotate]"))
-  // setmaxminForinput(styleDiv.querySelector("[main-style=position-x]"))
-  // setmaxminForinput(styleDiv.querySelector("[main-style=position-y]"))
-  try {
-    var height = parseInt(transformFunc.getValue(element.parentNode).height);
-    var width = parseInt(transformFunc.getValue(element.parentNode).width);
-    var positionx = parseInt(
-      transformFunc.getValue(element.parentNode).positionX,
-    );
-    var positiony = parseInt(
-      transformFunc.getValue(element.parentNode).positionY,
-    );
-    var rotate = parseInt(transformFunc.getValue(element.parentNode).rotate);
-  } catch (err) {
-    var height = parseInt(transformFunc.getValue(element).height);
-    var width = parseInt(transformFunc.getValue(element).width);
-    var positionx = parseInt(transformFunc.getValue(element).positionX);
-    var positiony = parseInt(transformFunc.getValue(element).positionY);
-    var rotate = parseInt(transformFunc.getValue(element).rotate);
-  }
-  CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[Main-style=height]"), val: height })
-  CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[Main-style=width]"), val: width })
-  CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[Main-style=rotate]"), val: rotate })
-  CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[Main-style=position-x]"), val: positionx })
-  CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[Main-style=position-y]"), val: positiony })
-}
+// export function UpdateTransformStyleDiv() {
+//   var styleDiv = activeel_Transform;
+//   var element = getactiveel()
+//   // setmaxminForinput(styleDiv.querySelector("[main-style=height]"))
+//   // setmaxminForinput(styleDiv.querySelector("[main-style=width]"))
+//   // setmaxminForinput(styleDiv.querySelector("[main-style=rotate]"))
+//   // setmaxminForinput(styleDiv.querySelector("[main-style=position-x]"))
+//   // setmaxminForinput(styleDiv.querySelector("[main-style=position-y]"))
+//   try {
+//     var height = parseInt(transformFunc.getValue(element.parentNode).height);
+//     var width = parseInt(transformFunc.getValue(element.parentNode).width);
+//     var positionx = parseInt(
+//       transformFunc.getValue(element.parentNode).positionX,
+//     );
+//     var positiony = parseInt(
+//       transformFunc.getValue(element.parentNode).positionY,
+//     );
+//     var rotate = parseInt(transformFunc.getValue(element.parentNode).rotate);
+//   } catch (err) {
+//     var height = parseInt(transformFunc.getValue(element).height);
+//     var width = parseInt(transformFunc.getValue(element).width);
+//     var positionx = parseInt(transformFunc.getValue(element).positionX);
+//     var positiony = parseInt(transformFunc.getValue(element).positionY);
+//     var rotate = parseInt(transformFunc.getValue(element).rotate);
+//   }
+//   CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[Main-style=height]"), val: height })
+//   CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[Main-style=width]"), val: width })
+//   CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[Main-style=rotate]"), val: rotate })
+//   CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[Main-style=position-x]"), val: positionx })
+//   CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[Main-style=position-y]"), val: positiony })
+// }
 
-export function UpdateOriginalStyleDivs(element) {
+// export function UpdateOriginalStyleDivs(PassedElement) {
 
-  for(var el of document.querySelector('#style_div').querySelectorAll('.divninput')){
-    console.log(el)
-    try{
-    setmaxminForinput(el)}
-    catch (err){}
-  }
+//   for(var el of document.querySelector('#style_div').querySelectorAll('.divninput')){
+//     console.log(el)
+//     try{
+//     setmaxminForinput(el)}
+//     catch (err){}
+//   }
 
-  if(getactiveel().getAttribute('primary-element-type') !="Path" && getactiveel().getAttribute('primary-element-type') !="TextPath" ){
-  var styleDiv = activeel_Border_Radius;
-  var element = getactiveel()
-  var element = element.children[0] || element;
-  // var bre = (element.style.borderRadius.replace(/%/g, "").split(' / ')[1] || "").split(' ') || "0";
-  // var brc = (element.style.borderRadius.replace(/%/g, "").split(' / ')[0] || "").split(' ') || "0";
-  var btlr = window
-    .getComputedStyle(element)
-    .getPropertyValue("border-top-left-radius")
-    .replace(/%/g, "");
-  var btrr = window
-    .getComputedStyle(element)
-    .getPropertyValue("border-top-right-radius")
-    .replace(/%/g, "");
-  var bblr = window
-    .getComputedStyle(element)
-    .getPropertyValue("border-bottom-left-radius")
-    .replace(/%/g, "");
-  var bbrr = window
-    .getComputedStyle(element)
-    .getPropertyValue("border-bottom-right-radius")
-    .replace(/%/g, "");
+//   if(getactiveel().getAttribute('primary-element-type') !="Path" && getactiveel().getAttribute('primary-element-type') !="TextPath" ){
+//   var styleDiv = activeel_Border_Radius;
+//   var element = getactiveel()
+//   var element = element.children[0] || element;
+//   // var bre = (element.style.borderRadius.replace(/%/g, "").split(' / ')[1] || "").split(' ') || "0";
+//   // var brc = (element.style.borderRadius.replace(/%/g, "").split(' / ')[0] || "").split(' ') || "0";
+//   var btlr = window
+//     .getComputedStyle(element)
+//     .getPropertyValue("border-top-left-radius")
+//     .replace(/%/g, "");
+//   var btrr = window
+//     .getComputedStyle(element)
+//     .getPropertyValue("border-top-right-radius")
+//     .replace(/%/g, "");
+//   var bblr = window
+//     .getComputedStyle(element)
+//     .getPropertyValue("border-bottom-left-radius")
+//     .replace(/%/g, "");
+//   var bbrr = window
+//     .getComputedStyle(element)
+//     .getPropertyValue("border-bottom-right-radius")
+//     .replace(/%/g, "");
 
-  // var btlr = styleDiv.querySelector('[style-attr=border-top-left-radius]');
-  // var btrr = styleDiv.querySelector('[style-attr=border-top-right-radius]');
-  // var bblr = styleDiv.querySelector('[style-attr=border-bottom-left-radius]');
-  // var bbrr = styleDiv.querySelector('[style-attr=border-bottom-right-radius]');
-  // var btlre = styleDiv.querySelector('[style-attr=border-top-left-radius-elliptic]');
-  // var btrre = styleDiv.querySelector('[style-attr=border-top-right-radius-elliptic]');
-  // var bblre = styleDiv.querySelector('[style-attr=border-bottom-left-radius-elliptic]');
-  // var bbrre = styleDiv.querySelector('[style-attr=border-bottom-right-radius-elliptic]');
-  // var btlrc = styleDiv.querySelector('[style-attr=border-top-left-radius]');
-  // var btrrc = styleDiv.querySelector('[style-attr=border-top-right-radius]');
-  // var bblrc = styleDiv.querySelector('[style-attr=border-bottom-left-radius]');
-  // var bbrrc = styleDiv.querySelector('[style-attr=border-bottom-right-radius]');
-  //
+//   // var btlr = styleDiv.querySelector('[style-attr=border-top-left-radius]');
+//   // var btrr = styleDiv.querySelector('[style-attr=border-top-right-radius]');
+//   // var bblr = styleDiv.querySelector('[style-attr=border-bottom-left-radius]');
+//   // var bbrr = styleDiv.querySelector('[style-attr=border-bottom-right-radius]');
+//   // var btlre = styleDiv.querySelector('[style-attr=border-top-left-radius-elliptic]');
+//   // var btrre = styleDiv.querySelector('[style-attr=border-top-right-radius-elliptic]');
+//   // var bblre = styleDiv.querySelector('[style-attr=border-bottom-left-radius-elliptic]');
+//   // var bbrre = styleDiv.querySelector('[style-attr=border-bottom-right-radius-elliptic]');
+//   // var btlrc = styleDiv.querySelector('[style-attr=border-top-left-radius]');
+//   // var btrrc = styleDiv.querySelector('[style-attr=border-top-right-radius]');
+//   // var bblrc = styleDiv.querySelector('[style-attr=border-bottom-left-radius]');
+//   // var bbrrc = styleDiv.querySelector('[style-attr=border-bottom-right-radius]');
+//   //
 
-  if (btlr == btrr && btlr == bblr && btlr == bbrr) {
-    styleDiv.querySelector("input[type=checkbox]").checked = true;
+//   if (btlr == btrr && btlr == bblr && btlr == bbrr) {
+//     styleDiv.querySelector("input[type=checkbox]").checked = true;
 
-    styleDiv.querySelector(".diff_borders_div").style.display = "none";
-    styleDiv.querySelector(".same_borders_div").style.display = "grid";
-    if (btlr.split(" ").length == 2) {
-      styleDiv
-        .querySelector("[Main-style=border-radius]")
-        .querySelector("input[type=checkbox]").checked = true;
-      styleDiv.querySelector("[style-attr=border-radius]").value =
-        btlr.split(" ")[0];
-      styleDiv.querySelector("[style-attr=border-radius-elliptic]").value =
-        btlr.split(" ")[1];
-      styleDiv.querySelector(
-        "[style-attr=border-radius-elliptic]",
-      ).disabled = false;
-    } else {
-      styleDiv
-        .querySelector("[Main-style=border-radius]")
-        .querySelector("input[type=checkbox]").checked = false;
-      styleDiv.querySelector("[style-attr=border-radius]").value =
-        btlr.split(" ")[0];
-      styleDiv.querySelector(
-        "[style-attr=border-radius-elliptic]",
-      ).disabled = true;
-    }
-  } else {
-    styleDiv.querySelector(".diff_borders_div").style.display = "grid";
-    styleDiv.querySelector(".same_borders_div").style.display = "none";
-    styleDiv.querySelector("input[type=checkbox]").checked = false;
+//     styleDiv.querySelector(".diff_borders_div").style.display = "none";
+//     styleDiv.querySelector(".same_borders_div").style.display = "grid";
+//     if (btlr.split(" ").length == 2) {
+//       styleDiv
+//         .querySelector("[Main-style=border-radius]")
+//         .querySelector("input[type=checkbox]").checked = true;
+//       styleDiv.querySelector("[style-attr=border-radius]").value =
+//         btlr.split(" ")[0];
+//       styleDiv.querySelector("[style-attr=border-radius-elliptic]").value =
+//         btlr.split(" ")[1];
+//       styleDiv.querySelector(
+//         "[style-attr=border-radius-elliptic]",
+//       ).disabled = false;
+//     } else {
+//       styleDiv
+//         .querySelector("[Main-style=border-radius]")
+//         .querySelector("input[type=checkbox]").checked = false;
+//       styleDiv.querySelector("[style-attr=border-radius]").value =
+//         btlr.split(" ")[0];
+//       styleDiv.querySelector(
+//         "[style-attr=border-radius-elliptic]",
+//       ).disabled = true;
+//     }
+//   } else {
+//     styleDiv.querySelector(".diff_borders_div").style.display = "grid";
+//     styleDiv.querySelector(".same_borders_div").style.display = "none";
+//     styleDiv.querySelector("input[type=checkbox]").checked = false;
 
-    if (btlr.split(" ").length == 2) {
-      styleDiv
-        .querySelector("[Main-style=border-top-left-radius]")
-        .querySelector("input[type=checkbox]").checked = true;
-      styleDiv.querySelector("[style-attr=border-top-left-radius]").value =
-        btlr.split(" ")[0];
-      styleDiv.querySelector(
-        "[style-attr=border-top-left-radius-elliptic]",
-      ).value = btlr.split(" ")[1];
-      styleDiv.querySelector(
-        "[style-attr=border-top-left-radius-elliptic]",
-      ).disabled = false;
-    } else {
-      styleDiv
-        .querySelector("[Main-style=border-top-left-radius]")
-        .querySelector("input[type=checkbox]").checked = false;
-      styleDiv.querySelector("[style-attr=border-top-left-radius]").value =
-        btlr.split(" ")[0];
-      styleDiv.querySelector(
-        "[style-attr=border-top-left-radius-elliptic]",
-      ).disabled = true;
-    }
-    //
-    if (btrr.split(" ").length == 2) {
-      styleDiv
-        .querySelector("[Main-style=border-top-right-radius]")
-        .querySelector("input[type=checkbox]").checked = true;
-      styleDiv.querySelector("[style-attr=border-top-right-radius]").value =
-        btrr.split(" ")[0];
-      styleDiv.querySelector(
-        "[style-attr=border-top-right-radius-elliptic]",
-      ).value = btrr.split(" ")[1];
-      styleDiv.querySelector(
-        "[style-attr=border-top-right-radius-elliptic]",
-      ).disabled = false;
-    } else {
-      styleDiv
-        .querySelector("[Main-style=border-top-right-radius]")
-        .querySelector("input[type=checkbox]").checked = false;
-      styleDiv.querySelector("[style-attr=border-top-right-radius]").value =
-        btrr.split(" ")[0];
-      styleDiv.querySelector(
-        "[style-attr=border-top-right-radius-elliptic]",
-      ).disabled = true;
-    }
-    //
-    if (bblr.split(" ").length == 2) {
-      styleDiv
-        .querySelector("[Main-style=border-bottom-left-radius]")
-        .querySelector("input[type=checkbox]").checked = true;
-      styleDiv.querySelector("[style-attr=border-bottom-left-radius]").value =
-        bblr.split(" ")[0];
-      styleDiv.querySelector(
-        "[style-attr=border-bottom-left-radius-elliptic]",
-      ).value = bblr.split(" ")[1];
-      styleDiv.querySelector(
-        "[style-attr=border-bottom-left-radius-elliptic]",
-      ).disabled = false;
-    } else {
-      styleDiv
-        .querySelector("[Main-style=border-bottom-left-radius]")
-        .querySelector("input[type=checkbox]").checked = false;
-      styleDiv.querySelector("[style-attr=border-bottom-left-radius]").value =
-        bblr.split(" ")[0];
-      styleDiv.querySelector(
-        "[style-attr=border-bottom-left-radius-elliptic]",
-      ).disabled = true;
-    }
-    //
-    if (bbrr.split(" ").length == 2) {
-      styleDiv
-        .querySelector("[Main-style=border-bottom-right-radius]")
-        .querySelector("input[type=checkbox]").checked = true;
-      styleDiv.querySelector("[style-attr=border-bottom-right-radius]").value =
-        bbrr.split(" ")[0];
-      styleDiv.querySelector(
-        "[style-attr=border-bottom-right-radius-elliptic]",
-      ).value = bbrr.split(" ")[1];
-      styleDiv.querySelector(
-        "[style-attr=border-bottom-right-radius-elliptic]",
-      ).disabled = false;
-    } else {
-      styleDiv
-        .querySelector("[Main-style=border-bottom-right-radius]")
-        .querySelector("input[type=checkbox]").checked = false;
-      styleDiv.querySelector("[style-attr=border-bottom-right-radius]").value =
-        bbrr.split(" ")[0];
-      styleDiv.querySelector(
-        "[style-attr=border-bottom-right-radius-elliptic]",
-      ).disabled = true;
-    }
-  }
-  //
-  // if (bre.length == 1 && bre[0] != "" && brc.length == 1 && brc[0] != "") {
-  //     console.log(brc[0])
-  //     styleDiv.querySelector('.diff_borders_div').style.display = 'none';
-  //     styleDiv.querySelector('.same_borders_div').style.display = 'grid';
+//     if (btlr.split(" ").length == 2) {
+//       styleDiv
+//         .querySelector("[Main-style=border-top-left-radius]")
+//         .querySelector("input[type=checkbox]").checked = true;
+//       styleDiv.querySelector("[style-attr=border-top-left-radius]").value =
+//         btlr.split(" ")[0];
+//       styleDiv.querySelector(
+//         "[style-attr=border-top-left-radius-elliptic]",
+//       ).value = btlr.split(" ")[1];
+//       styleDiv.querySelector(
+//         "[style-attr=border-top-left-radius-elliptic]",
+//       ).disabled = false;
+//     } else {
+//       styleDiv
+//         .querySelector("[Main-style=border-top-left-radius]")
+//         .querySelector("input[type=checkbox]").checked = false;
+//       styleDiv.querySelector("[style-attr=border-top-left-radius]").value =
+//         btlr.split(" ")[0];
+//       styleDiv.querySelector(
+//         "[style-attr=border-top-left-radius-elliptic]",
+//       ).disabled = true;
+//     }
+//     //
+//     if (btrr.split(" ").length == 2) {
+//       styleDiv
+//         .querySelector("[Main-style=border-top-right-radius]")
+//         .querySelector("input[type=checkbox]").checked = true;
+//       styleDiv.querySelector("[style-attr=border-top-right-radius]").value =
+//         btrr.split(" ")[0];
+//       styleDiv.querySelector(
+//         "[style-attr=border-top-right-radius-elliptic]",
+//       ).value = btrr.split(" ")[1];
+//       styleDiv.querySelector(
+//         "[style-attr=border-top-right-radius-elliptic]",
+//       ).disabled = false;
+//     } else {
+//       styleDiv
+//         .querySelector("[Main-style=border-top-right-radius]")
+//         .querySelector("input[type=checkbox]").checked = false;
+//       styleDiv.querySelector("[style-attr=border-top-right-radius]").value =
+//         btrr.split(" ")[0];
+//       styleDiv.querySelector(
+//         "[style-attr=border-top-right-radius-elliptic]",
+//       ).disabled = true;
+//     }
+//     //
+//     if (bblr.split(" ").length == 2) {
+//       styleDiv
+//         .querySelector("[Main-style=border-bottom-left-radius]")
+//         .querySelector("input[type=checkbox]").checked = true;
+//       styleDiv.querySelector("[style-attr=border-bottom-left-radius]").value =
+//         bblr.split(" ")[0];
+//       styleDiv.querySelector(
+//         "[style-attr=border-bottom-left-radius-elliptic]",
+//       ).value = bblr.split(" ")[1];
+//       styleDiv.querySelector(
+//         "[style-attr=border-bottom-left-radius-elliptic]",
+//       ).disabled = false;
+//     } else {
+//       styleDiv
+//         .querySelector("[Main-style=border-bottom-left-radius]")
+//         .querySelector("input[type=checkbox]").checked = false;
+//       styleDiv.querySelector("[style-attr=border-bottom-left-radius]").value =
+//         bblr.split(" ")[0];
+//       styleDiv.querySelector(
+//         "[style-attr=border-bottom-left-radius-elliptic]",
+//       ).disabled = true;
+//     }
+//     //
+//     if (bbrr.split(" ").length == 2) {
+//       styleDiv
+//         .querySelector("[Main-style=border-bottom-right-radius]")
+//         .querySelector("input[type=checkbox]").checked = true;
+//       styleDiv.querySelector("[style-attr=border-bottom-right-radius]").value =
+//         bbrr.split(" ")[0];
+//       styleDiv.querySelector(
+//         "[style-attr=border-bottom-right-radius-elliptic]",
+//       ).value = bbrr.split(" ")[1];
+//       styleDiv.querySelector(
+//         "[style-attr=border-bottom-right-radius-elliptic]",
+//       ).disabled = false;
+//     } else {
+//       styleDiv
+//         .querySelector("[Main-style=border-bottom-right-radius]")
+//         .querySelector("input[type=checkbox]").checked = false;
+//       styleDiv.querySelector("[style-attr=border-bottom-right-radius]").value =
+//         bbrr.split(" ")[0];
+//       styleDiv.querySelector(
+//         "[style-attr=border-bottom-right-radius-elliptic]",
+//       ).disabled = true;
+//     }
+//   }
+//   //
+//   // if (bre.length == 1 && bre[0] != "" && brc.length == 1 && brc[0] != "") {
+//   //     console.log(brc[0])
+//   //     styleDiv.querySelector('.diff_borders_div').style.display = 'none';
+//   //     styleDiv.querySelector('.same_borders_div').style.display = 'grid';
 
-  //     styleDiv.querySelector('[Main-style=border-radius]').querySelector('input[type=checkbox]').checked = true;
+//   //     styleDiv.querySelector('[Main-style=border-radius]').querySelector('input[type=checkbox]').checked = true;
 
-  //     styleDiv.querySelector('[style-attr=border-radius]').value = brc[0]
-  //     styleDiv.querySelector('[style-attr=border-radius-elliptic]').disabled = false;
-  //     styleDiv.querySelector('[style-attr=border-radius-elliptic]').value = bre[0]
-  // } else if (brc.length == 1 && brc[0] != "" && bre.length == 1 && bre[0] == "") {
-  //     console.log(brc[0])
-  //     styleDiv.querySelector('.diff_borders_div').style.display = 'none';
-  //     styleDiv.querySelector('.same_borders_div').style.display = 'grid';
+//   //     styleDiv.querySelector('[style-attr=border-radius]').value = brc[0]
+//   //     styleDiv.querySelector('[style-attr=border-radius-elliptic]').disabled = false;
+//   //     styleDiv.querySelector('[style-attr=border-radius-elliptic]').value = bre[0]
+//   // } else if (brc.length == 1 && brc[0] != "" && bre.length == 1 && bre[0] == "") {
+//   //     console.log(brc[0])
+//   //     styleDiv.querySelector('.diff_borders_div').style.display = 'none';
+//   //     styleDiv.querySelector('.same_borders_div').style.display = 'grid';
 
-  //     styleDiv.querySelector('[Main-style=border-radius]').querySelector('input[type=checkbox]').checked = false;
-  //     styleDiv.querySelector('[style-attr=border-radius]').value = brc[0]
-  //     styleDiv.querySelector('[style-attr=border-radius-elliptic]').disabled = true;
-  // } else {
-  //     styleDiv.querySelector('.diff_borders_div').style.display = 'grid';
-  //     styleDiv.querySelector('.same_borders_div').style.display = 'none';
+//   //     styleDiv.querySelector('[Main-style=border-radius]').querySelector('input[type=checkbox]').checked = false;
+//   //     styleDiv.querySelector('[style-attr=border-radius]').value = brc[0]
+//   //     styleDiv.querySelector('[style-attr=border-radius-elliptic]').disabled = true;
+//   // } else {
+//   //     styleDiv.querySelector('.diff_borders_div').style.display = 'grid';
+//   //     styleDiv.querySelector('.same_borders_div').style.display = 'none';
 
-  //     var btlr = styleDiv.querySelector('[style-attr=border-top-left-radius]')
-  //     var btlre = styleDiv.querySelector('[style-attr=border-top-left-radius-elliptic]')
-  //     var btlrc = styleDiv.querySelector('[Main-style=border-top-left-radius]').querySelector('input[type=checkbox]')
-  //         //
-  //     var btrr = styleDiv.querySelector('[style-attr=border-top-right-radius]')
-  //     var btrre = styleDiv.querySelector('[style-attr=border-top-right-radius-elliptic]')
-  //     var btrrc = styleDiv.querySelector('[Main-style=border-top-right-radius]').querySelector('input[type=checkbox]')
-  //         //
-  //     var bbrr = styleDiv.querySelector('[style-attr=border-bottom-right-radius]')
-  //     var bbrre = styleDiv.querySelector('[style-attr=border-bottom-right-radius-elliptic]')
-  //     var bbrrc = styleDiv.querySelector('[Main-style=border-bottom-right-radius]').querySelector('input[type=checkbox]')
-  //         //
-  //     var bblr = styleDiv.querySelector('[style-attr=border-bottom-left-radius]')
-  //     var bblre = styleDiv.querySelector('[style-attr=border-bottom-left-radius-elliptic]')
-  //     var bblrc = styleDiv.querySelector('[Main-style=border-bottom-left-radius]').querySelector('input[type=checkbox]')
+//   //     var btlr = styleDiv.querySelector('[style-attr=border-top-left-radius]')
+//   //     var btlre = styleDiv.querySelector('[style-attr=border-top-left-radius-elliptic]')
+//   //     var btlrc = styleDiv.querySelector('[Main-style=border-top-left-radius]').querySelector('input[type=checkbox]')
+//   //         //
+//   //     var btrr = styleDiv.querySelector('[style-attr=border-top-right-radius]')
+//   //     var btrre = styleDiv.querySelector('[style-attr=border-top-right-radius-elliptic]')
+//   //     var btrrc = styleDiv.querySelector('[Main-style=border-top-right-radius]').querySelector('input[type=checkbox]')
+//   //         //
+//   //     var bbrr = styleDiv.querySelector('[style-attr=border-bottom-right-radius]')
+//   //     var bbrre = styleDiv.querySelector('[style-attr=border-bottom-right-radius-elliptic]')
+//   //     var bbrrc = styleDiv.querySelector('[Main-style=border-bottom-right-radius]').querySelector('input[type=checkbox]')
+//   //         //
+//   //     var bblr = styleDiv.querySelector('[style-attr=border-bottom-left-radius]')
+//   //     var bblre = styleDiv.querySelector('[style-attr=border-bottom-left-radius-elliptic]')
+//   //     var bblrc = styleDiv.querySelector('[Main-style=border-bottom-left-radius]').querySelector('input[type=checkbox]')
 
-  //     if (brc.length == 1) {
-  //         btlr.value = brc[0]
-  //         bbrr.value = brc[0]
-  //         btrr.value = brc[0]
-  //         bblr.value = brc[0]
-  //     } else if (brc.length == 2) {
-  //         btlr.value = brc[0]
-  //         bbrr.value = brc[0]
-  //         btrr.value = brc[1]
-  //         bblr.value = brc[1]
-  //     } else if (brc.length == 3) {
-  //         btlr.value = brc[0]
-  //         btrr.value = brc[1]
-  //         bblr.value = brc[1]
-  //         bbrr.value = brc[2]
-  //     } else if (brc.length == 4) {
-  //         btlr.value = brc[0]
-  //         btrr.value = brc[1]
-  //         bblr.value = brc[2]
-  //         bbrr.value = brc[3]
-  //     }
+//   //     if (brc.length == 1) {
+//   //         btlr.value = brc[0]
+//   //         bbrr.value = brc[0]
+//   //         btrr.value = brc[0]
+//   //         bblr.value = brc[0]
+//   //     } else if (brc.length == 2) {
+//   //         btlr.value = brc[0]
+//   //         bbrr.value = brc[0]
+//   //         btrr.value = brc[1]
+//   //         bblr.value = brc[1]
+//   //     } else if (brc.length == 3) {
+//   //         btlr.value = brc[0]
+//   //         btrr.value = brc[1]
+//   //         bblr.value = brc[1]
+//   //         bbrr.value = brc[2]
+//   //     } else if (brc.length == 4) {
+//   //         btlr.value = brc[0]
+//   //         btrr.value = brc[1]
+//   //         bblr.value = brc[2]
+//   //         bbrr.value = brc[3]
+//   //     }
 
-  //     //
-  //     console.log(bre)
-  //     if (bre.length == 1 && bre[0] != "" && bre[0] != brc[0]) {
-  //         btlre.value = bre[0]
-  //         bbrre.value = bre[0]
-  //         btrre.value = bre[0]
-  //         bblre.value = bre[0]
-  //         btlrc.checked = true;
-  //         btrrc.checked = true;
-  //         bblrc.checked = true;
-  //         bbrrc.checked = true;
-  //     } else if (bre.length == 1 && bre[0] == "" && bre[0] == brc[0]) {
-  //         btlrc.checked = false;
-  //         btrrc.checked = false;
-  //         bblrc.checked = false;
-  //         bbrrc.checked = false;
-  //         btlre.disabled = true
-  //         bbrre.disabled = true
-  //         btrre.disabled = true
-  //         bblre.disabled = true
-  //     }
+//   //     //
+//   //     console.log(bre)
+//   //     if (bre.length == 1 && bre[0] != "" && bre[0] != brc[0]) {
+//   //         btlre.value = bre[0]
+//   //         bbrre.value = bre[0]
+//   //         btrre.value = bre[0]
+//   //         bblre.value = bre[0]
+//   //         btlrc.checked = true;
+//   //         btrrc.checked = true;
+//   //         bblrc.checked = true;
+//   //         bbrrc.checked = true;
+//   //     } else if (bre.length == 1 && bre[0] == "" && bre[0] == brc[0]) {
+//   //         btlrc.checked = false;
+//   //         btrrc.checked = false;
+//   //         bblrc.checked = false;
+//   //         bbrrc.checked = false;
+//   //         btlre.disabled = true
+//   //         bbrre.disabled = true
+//   //         btrre.disabled = true
+//   //         bblre.disabled = true
+//   //     }
 
-  //     if (bre.length == 2) {
-  //         btlre.value = bre[0]
-  //         bbrre.value = bre[0]
-  //         btrre.value = bre[1]
-  //         bblre.value = bre[1]
-  //     } else if (bre.length == 3) {
-  //         btlre.value = bre[0]
-  //         btrre.value = bre[1]
-  //         bblre.value = bre[1]
-  //         bbrre.value = bre[2]
-  //     } else if (bre.length == 4) {
-  //         btlre.value = bre[0]
-  //         btrre.value = bre[1]
-  //         bblre.value = bre[2]
-  //         bbrre.value = bre[3]
-  //     }
+//   //     if (bre.length == 2) {
+//   //         btlre.value = bre[0]
+//   //         bbrre.value = bre[0]
+//   //         btrre.value = bre[1]
+//   //         bblre.value = bre[1]
+//   //     } else if (bre.length == 3) {
+//   //         btlre.value = bre[0]
+//   //         btrre.value = bre[1]
+//   //         bblre.value = bre[1]
+//   //         bbrre.value = bre[2]
+//   //     } else if (bre.length == 4) {
+//   //         btlre.value = bre[0]
+//   //         btrre.value = bre[1]
+//   //         bblre.value = bre[2]
+//   //         bbrre.value = bre[3]
+//   //     }
 
-  // }
-  var styleDiv = activeel_Border;
-  var element = getactiveel().children[0]
-  var bst = styleDiv
-    .querySelector("[Main-style=border-top]")
-    .querySelector("[style-attr=border-style]");
-  var bsr = styleDiv
-    .querySelector("[Main-style=border-right]")
-    .querySelector("[style-attr=border-style]");
-  var bsb = styleDiv
-    .querySelector("[Main-style=border-bottom]")
-    .querySelector("[style-attr=border-style]");
-  var bsl = styleDiv
-    .querySelector("[Main-style=border-left]")
-    .querySelector("[style-attr=border-style]");
+//   // }
+//   var styleDiv = activeel_Border;
+//   var element = getactiveel().children[0]
+//   var bst = styleDiv
+//     .querySelector("[Main-style=border-top]")
+//     .querySelector("[style-attr=border-style]");
+//   var bsr = styleDiv
+//     .querySelector("[Main-style=border-right]")
+//     .querySelector("[style-attr=border-style]");
+//   var bsb = styleDiv
+//     .querySelector("[Main-style=border-bottom]")
+//     .querySelector("[style-attr=border-style]");
+//   var bsl = styleDiv
+//     .querySelector("[Main-style=border-left]")
+//     .querySelector("[style-attr=border-style]");
 
-  var bwt = styleDiv
-    .querySelector("[Main-style=border-top]")
-    .querySelector("[style-attr=border-width]");
-  var bwr = styleDiv
-    .querySelector("[Main-style=border-right]")
-    .querySelector("[style-attr=border-width]");
-  var bwb = styleDiv
-    .querySelector("[Main-style=border-bottom]")
-    .querySelector("[style-attr=border-width]");
-  var bwl = styleDiv
-    .querySelector("[Main-style=border-left]")
-    .querySelector("[style-attr=border-width]");
+//   var bwt = styleDiv
+//     .querySelector("[Main-style=border-top]")
+//     .querySelector("[style-attr=border-width]");
+//   var bwr = styleDiv
+//     .querySelector("[Main-style=border-right]")
+//     .querySelector("[style-attr=border-width]");
+//   var bwb = styleDiv
+//     .querySelector("[Main-style=border-bottom]")
+//     .querySelector("[style-attr=border-width]");
+//   var bwl = styleDiv
+//     .querySelector("[Main-style=border-left]")
+//     .querySelector("[style-attr=border-width]");
 
-  var bct = styleDiv
-    .querySelector("[Main-style=border-top]")
-    .querySelector("[style-attr=border-color]");
-  var bcr = styleDiv
-    .querySelector("[Main-style=border-right]")
-    .querySelector("[style-attr=border-color]");
-  var bcb = styleDiv
-    .querySelector("[Main-style=border-bottom]")
-    .querySelector("[style-attr=border-color]");
-  var bcl = styleDiv
-    .querySelector("[Main-style=border-left]")
-    .querySelector("[style-attr=border-color]");
+//   var bct = styleDiv
+//     .querySelector("[Main-style=border-top]")
+//     .querySelector("[style-attr=border-color]");
+//   var bcr = styleDiv
+//     .querySelector("[Main-style=border-right]")
+//     .querySelector("[style-attr=border-color]");
+//   var bcb = styleDiv
+//     .querySelector("[Main-style=border-bottom]")
+//     .querySelector("[style-attr=border-color]");
+//   var bcl = styleDiv
+//     .querySelector("[Main-style=border-left]")
+//     .querySelector("[style-attr=border-color]");
 
-  var bs = styleDiv
-    .querySelector("[Main-style=border]")
-    .querySelector("[style-attr=border-style]");
-  var bw = styleDiv
-    .querySelector("[Main-style=border]")
-    .querySelector("[style-attr=border-width]");
-  var bc = styleDiv
-    .querySelector("[Main-style=border]")
-    .querySelector("[style-attr=border-color]");
-  // var bs = element.style.borderStyle.split(' ')
-  // var bw = element.style.borderWidth.replace(/px/g, "").split(' ')
-  // var bc = element.style.borderColor.replace(/, /g, ",").split(' ')
-  try {
-    var computedBorders = {
-      bst: getComputedValue(element, "border-top-style"),
-      bsr: getComputedValue(element, "border-right-style"),
-      bsb: getComputedValue(element, "border-bottom-style"),
-      bsl: getComputedValue(element, "border-left-style"),
-      bwt: parseInt(getComputedValue(element, "border-top-width")),
-      bwr: parseInt(getComputedValue(element, "border-right-width")),
-      bwb: parseInt(getComputedValue(element, "border-bottom-width")),
-      bwl: parseInt(getComputedValue(element, "border-left-width")),
-      bct: tinycolor(getComputedValue(element, "border-top-color")).toHexString(),
-      bcr: tinycolor(
-        getComputedValue(element, "border-right-color"),
-      ).toHexString(),
-      bcb: tinycolor(
-        getComputedValue(element, "border-bottom-color"),
-      ).toHexString(),
-      bcl: tinycolor(
-        getComputedValue(element, "border-left-color"),
-      ).toHexString(),
-    };
-    // console.log(bs)
-    // console.log(bst.value)
-    // console.log(bs.length)
-    bst.value = computedBorders.bst;
-    bsr.value = computedBorders.bsr;
-    bsl.value = computedBorders.bsl;
-    bsb.value = computedBorders.bsb;
+//   var bs = styleDiv
+//     .querySelector("[Main-style=border]")
+//     .querySelector("[style-attr=border-style]");
+//   var bw = styleDiv
+//     .querySelector("[Main-style=border]")
+//     .querySelector("[style-attr=border-width]");
+//   var bc = styleDiv
+//     .querySelector("[Main-style=border]")
+//     .querySelector("[style-attr=border-color]");
+//   // var bs = element.style.borderStyle.split(' ')
+//   // var bw = element.style.borderWidth.replace(/px/g, "").split(' ')
+//   // var bc = element.style.borderColor.replace(/, /g, ",").split(' ')
+//   try {
+//     var computedBorders = {
+//       bst: getComputedValue(element, "border-top-style"),
+//       bsr: getComputedValue(element, "border-right-style"),
+//       bsb: getComputedValue(element, "border-bottom-style"),
+//       bsl: getComputedValue(element, "border-left-style"),
+//       bwt: parseInt(getComputedValue(element, "border-top-width")),
+//       bwr: parseInt(getComputedValue(element, "border-right-width")),
+//       bwb: parseInt(getComputedValue(element, "border-bottom-width")),
+//       bwl: parseInt(getComputedValue(element, "border-left-width")),
+//       bct: tinycolor(getComputedValue(element, "border-top-color")).toHexString(),
+//       bcr: tinycolor(
+//         getComputedValue(element, "border-right-color"),
+//       ).toHexString(),
+//       bcb: tinycolor(
+//         getComputedValue(element, "border-bottom-color"),
+//       ).toHexString(),
+//       bcl: tinycolor(
+//         getComputedValue(element, "border-left-color"),
+//       ).toHexString(),
+//     };
+//     // console.log(bs)
+//     // console.log(bst.value)
+//     // console.log(bs.length)
+//     bst.value = computedBorders.bst;
+//     bsr.value = computedBorders.bsr;
+//     bsl.value = computedBorders.bsl;
+//     bsb.value = computedBorders.bsb;
 
-    bct.value = computedBorders.bct;
-    bcr.value = computedBorders.bcr;
-    bcl.value = computedBorders.bcl;
-    bcb.value = computedBorders.bcb;
+//     bct.value = computedBorders.bct;
+//     bcr.value = computedBorders.bcr;
+//     bcl.value = computedBorders.bcl;
+//     bcb.value = computedBorders.bcb;
 
-    bwt.value = computedBorders.bwt;
-    bwr.value = computedBorders.bwr;
-    bwl.value = computedBorders.bwl;
-    bwb.value = computedBorders.bwb;
+//     bwt.value = computedBorders.bwt;
+//     bwr.value = computedBorders.bwr;
+//     bwl.value = computedBorders.bwl;
+//     bwb.value = computedBorders.bwb;
 
-    bw.value = computedBorders.bwt;
-    bc.value = computedBorders.bct;
-    bs.value = computedBorders.bst;
+//     bw.value = computedBorders.bwt;
+//     bc.value = computedBorders.bct;
+//     bs.value = computedBorders.bst;
 
-    styleDiv.querySelector(".same_borders_div").style.display = "none";
-    styleDiv.querySelector(".diff_borders_div").style.display = "grid";
-    styleDiv.querySelector("input[type=checkbox]").checked = false;
+//     styleDiv.querySelector(".same_borders_div").style.display = "none";
+//     styleDiv.querySelector(".diff_borders_div").style.display = "grid";
+//     styleDiv.querySelector("input[type=checkbox]").checked = false;
 
-    if (
-      computedBorders.bwt == computedBorders.bwr &&
-      computedBorders.bwt == computedBorders.bwl &&
-      computedBorders.bwt == computedBorders.bwb
-    ) {
-      if (
-        computedBorders.bct == computedBorders.bcr &&
-        computedBorders.bct == computedBorders.bcl &&
-        computedBorders.bct == computedBorders.bcb
-      ) {
-        if (
-          computedBorders.bst == computedBorders.bsr &&
-          computedBorders.bst == computedBorders.bsl &&
-          computedBorders.bst == computedBorders.bsb
-        ) {
-          styleDiv.querySelector(".same_borders_div").style.display = "grid";
-          styleDiv.querySelector(".diff_borders_div").style.display = "none";
-          styleDiv.querySelector("input[type=checkbox]").checked = true;
-        }
-      }
-    }
-  }
-  catch (err) { }
+//     if (
+//       computedBorders.bwt == computedBorders.bwr &&
+//       computedBorders.bwt == computedBorders.bwl &&
+//       computedBorders.bwt == computedBorders.bwb
+//     ) {
+//       if (
+//         computedBorders.bct == computedBorders.bcr &&
+//         computedBorders.bct == computedBorders.bcl &&
+//         computedBorders.bct == computedBorders.bcb
+//       ) {
+//         if (
+//           computedBorders.bst == computedBorders.bsr &&
+//           computedBorders.bst == computedBorders.bsl &&
+//           computedBorders.bst == computedBorders.bsb
+//         ) {
+//           styleDiv.querySelector(".same_borders_div").style.display = "grid";
+//           styleDiv.querySelector(".diff_borders_div").style.display = "none";
+//           styleDiv.querySelector("input[type=checkbox]").checked = true;
+//         }
+//       }
+//     }
+//   }
+//   catch (err) { }
 
-  // if (bs.length == 1 && bw.length == 1 && bc.length == 1) {
-  //     styleDiv.querySelector('.same_borders_div').style.display = "grid";
-  //     styleDiv.querySelector('.diff_borders_div').style.display = "none";
-  //     styleDiv.querySelector('input[type=checkbox]').checked = true;
-  //     styleDiv.querySelector('[Main-style=border]').querySelector('[style-attr=border-style]').value = bs[0];
-  //     styleDiv.querySelector('[Main-style=border]').querySelector('[style-attr=border-width]').value = bw[0]
-  //     styleDiv.querySelector('[Main-style=border]').querySelector('[style-attr=border-color]').value = tinycolor(bc[0]).toHexString();
+//   // if (bs.length == 1 && bw.length == 1 && bc.length == 1) {
+//   //     styleDiv.querySelector('.same_borders_div').style.display = "grid";
+//   //     styleDiv.querySelector('.diff_borders_div').style.display = "none";
+//   //     styleDiv.querySelector('input[type=checkbox]').checked = true;
+//   //     styleDiv.querySelector('[Main-style=border]').querySelector('[style-attr=border-style]').value = bs[0];
+//   //     styleDiv.querySelector('[Main-style=border]').querySelector('[style-attr=border-width]').value = bw[0]
+//   //     styleDiv.querySelector('[Main-style=border]').querySelector('[style-attr=border-color]').value = tinycolor(bc[0]).toHexString();
 
-  // } else {
-  //     styleDiv.querySelector('.same_borders_div').style.display = "none";
-  //     styleDiv.querySelector('.diff_borders_div').style.display = "grid";
-  //     styleDiv.querySelector('input[type=checkbox]').checked = false;
-  //     if (bs.length == 1) {
-  //         bst.value = bs[0]
-  //         bsb.value = bs[0]
-  //         bsr.value = bs[0]
-  //         bsl.value = bs[0]
-  //     } else if (bs.length == 2) {
-  //         bst.value = bs[0]
-  //         bsb.value = bs[0]
-  //         bsr.value = bs[1]
-  //         bsl.value = bs[1]
-  //     } else if (bs.length == 3) {
-  //         bst.value = bs[0]
-  //         bsb.value = bs[2]
-  //         bsr.value = bs[1]
-  //         bsl.value = bs[1]
-  //     } else if (bs.length == 4) {
-  //         bst.value = bs[0]
-  //         bsb.value = bs[1]
-  //         bsr.value = bs[2]
-  //         bsl.value = bs[3]
-  //     }
-  //     //
-  //     if (bw.length == 1) {
-  //         bwt.value = bw[0] || '0'
-  //         bwb.value = bw[0] || '0'
-  //         bwr.value = bw[0] || '0'
-  //         bwl.value = bw[0] || '0'
-  //     } else if (bw.length == 2) {
-  //         bwt.value = bw[0] || '0'
-  //         bwb.value = bw[0] || '0'
-  //         bwr.value = bw[1] || '0'
-  //         bwl.value = bw[1] || '0'
-  //     } else if (bw.length == 3) {
-  //         bwt.value = bw[0] || '0'
-  //         bwb.value = bw[2] || '0'
-  //         bwr.value = bw[1] || '0'
-  //         bwl.value = bw[1] || '0'
-  //     } else if (bw.length == 4) {
-  //         bwt.value = bw[0] || '0'
-  //         bwb.value = bw[1] || '0'
-  //         bwr.value = bw[2] || '0'
-  //         bwl.value = bw[3] || '0'
-  //     }
-  //     //
-  //     console.log(tinycolor(bs[0]).toHexString())
-  //     if (bc.length == 1) {
-  //         bct.value = tinycolor(bc[0]).toHexString();
-  //         bcb.value = tinycolor(bc[0]).toHexString()
-  //         bcr.value = tinycolor(bc[0]).toHexString()
-  //         bcl.value = tinycolor(bc[0]).toHexString()
-  //     } else if (bw.length == 2) {
-  //         bct.value = tinycolor(bc[0]).toHexString()
-  //         bcb.value = tinycolor(bc[0]).toHexString()
-  //         bcr.value = tinycolor(bc[1]).toHexString()
-  //         bcl.value = tinycolor(bc[1]).toHexString()
-  //     } else if (bw.length == 3) {
-  //         bct.value = tinycolor(bc[0]).toHexString()
-  //         bcb.value = tinycolor(bc[2]).toHexString()
-  //         bcr.value = tinycolor(bc[1]).toHexString()
-  //         bcl.value = tinycolor(bc[1]).toHexString()
-  //     } else if (bw.length == 4) {
-  //         bct.value = tinycolor(bc[0]).toHexString()
-  //         bcb.value = tinycolor(bc[1]).toHexString()
-  //         bcr.value = tinycolor(bc[2]).toHexString()
-  //         bcl.value = tinycolor(bc[3]).toHexString()
-  // }
+//   // } else {
+//   //     styleDiv.querySelector('.same_borders_div').style.display = "none";
+//   //     styleDiv.querySelector('.diff_borders_div').style.display = "grid";
+//   //     styleDiv.querySelector('input[type=checkbox]').checked = false;
+//   //     if (bs.length == 1) {
+//   //         bst.value = bs[0]
+//   //         bsb.value = bs[0]
+//   //         bsr.value = bs[0]
+//   //         bsl.value = bs[0]
+//   //     } else if (bs.length == 2) {
+//   //         bst.value = bs[0]
+//   //         bsb.value = bs[0]
+//   //         bsr.value = bs[1]
+//   //         bsl.value = bs[1]
+//   //     } else if (bs.length == 3) {
+//   //         bst.value = bs[0]
+//   //         bsb.value = bs[2]
+//   //         bsr.value = bs[1]
+//   //         bsl.value = bs[1]
+//   //     } else if (bs.length == 4) {
+//   //         bst.value = bs[0]
+//   //         bsb.value = bs[1]
+//   //         bsr.value = bs[2]
+//   //         bsl.value = bs[3]
+//   //     }
+//   //     //
+//   //     if (bw.length == 1) {
+//   //         bwt.value = bw[0] || '0'
+//   //         bwb.value = bw[0] || '0'
+//   //         bwr.value = bw[0] || '0'
+//   //         bwl.value = bw[0] || '0'
+//   //     } else if (bw.length == 2) {
+//   //         bwt.value = bw[0] || '0'
+//   //         bwb.value = bw[0] || '0'
+//   //         bwr.value = bw[1] || '0'
+//   //         bwl.value = bw[1] || '0'
+//   //     } else if (bw.length == 3) {
+//   //         bwt.value = bw[0] || '0'
+//   //         bwb.value = bw[2] || '0'
+//   //         bwr.value = bw[1] || '0'
+//   //         bwl.value = bw[1] || '0'
+//   //     } else if (bw.length == 4) {
+//   //         bwt.value = bw[0] || '0'
+//   //         bwb.value = bw[1] || '0'
+//   //         bwr.value = bw[2] || '0'
+//   //         bwl.value = bw[3] || '0'
+//   //     }
+//   //     //
+//   //     console.log(tinycolor(bs[0]).toHexString())
+//   //     if (bc.length == 1) {
+//   //         bct.value = tinycolor(bc[0]).toHexString();
+//   //         bcb.value = tinycolor(bc[0]).toHexString()
+//   //         bcr.value = tinycolor(bc[0]).toHexString()
+//   //         bcl.value = tinycolor(bc[0]).toHexString()
+//   //     } else if (bw.length == 2) {
+//   //         bct.value = tinycolor(bc[0]).toHexString()
+//   //         bcb.value = tinycolor(bc[0]).toHexString()
+//   //         bcr.value = tinycolor(bc[1]).toHexString()
+//   //         bcl.value = tinycolor(bc[1]).toHexString()
+//   //     } else if (bw.length == 3) {
+//   //         bct.value = tinycolor(bc[0]).toHexString()
+//   //         bcb.value = tinycolor(bc[2]).toHexString()
+//   //         bcr.value = tinycolor(bc[1]).toHexString()
+//   //         bcl.value = tinycolor(bc[1]).toHexString()
+//   //     } else if (bw.length == 4) {
+//   //         bct.value = tinycolor(bc[0]).toHexString()
+//   //         bcb.value = tinycolor(bc[1]).toHexString()
+//   //         bcr.value = tinycolor(bc[2]).toHexString()
+//   //         bcl.value = tinycolor(bc[3]).toHexString()
+//   // }
 
-  // }
+//   // }
   
 
-}
+// }
 
-// Transaform
+// // Transaform
 
-  // console.log(activeel_Transform)
-  UpdateTransformStyleDiv()
-
-
-  // styleDiv.querySelector("[style-attr=height]").value = height || 0;
-  // styleDiv
-  //   .querySelector("[Main-style=height]")
-  //   .querySelector(".range_value").innerHTML = height || 0;
-  // styleDiv.querySelector("[style-attr=width]").value = width || 0;
-  // styleDiv
-  //   .querySelector("[Main-style=width]")
-  //   .querySelector(".range_value").innerHTML = width || 0;
-  // styleDiv.querySelector("[style-attr=position-x]").value = positionx || 0;
-  // styleDiv
-  //   .querySelector("[Main-style=position-x]")
-  //   .querySelector(".range_value").innerHTML = positionx || 0;
-  // styleDiv.querySelector("[style-attr=position-y]").value = positiony || 0;
-  // styleDiv
-  //   .querySelector("[Main-style=position-y]")
-  //   .querySelector(".range_value").innerHTML = positiony || 0;
-  // styleDiv.querySelector("[style-attr=rotate]").value = rotate || 0;
-  // styleDiv
-  //   .querySelector("[Main-style=rotate]")
-  //   .querySelector(".range_value").innerHTML = rotate || 0;
-  // ****
+//   // console.log(activeel_Transform)
+//   UpdateTransformStyleDiv()
 
 
-  // styleDiv.querySelector('[style-attr=skewX]').value = skewX || 0;
-  // styleDiv.querySelector('[Main-style=skewX]').querySelector('.range_value').innerHTML = skewX || 0;
-  // styleDiv.querySelector('[style-attr=skewY]').value = skewY || 0;
-  // styleDiv.querySelector('[Main-style=skewY]').querySelector('.range_value').innerHTML = skewY || 0;
+//   // styleDiv.querySelector("[style-attr=height]").value = height || 0;
+//   // styleDiv
+//   //   .querySelector("[Main-style=height]")
+//   //   .querySelector(".range_value").innerHTML = height || 0;
+//   // styleDiv.querySelector("[style-attr=width]").value = width || 0;
+//   // styleDiv
+//   //   .querySelector("[Main-style=width]")
+//   //   .querySelector(".range_value").innerHTML = width || 0;
+//   // styleDiv.querySelector("[style-attr=position-x]").value = positionx || 0;
+//   // styleDiv
+//   //   .querySelector("[Main-style=position-x]")
+//   //   .querySelector(".range_value").innerHTML = positionx || 0;
+//   // styleDiv.querySelector("[style-attr=position-y]").value = positiony || 0;
+//   // styleDiv
+//   //   .querySelector("[Main-style=position-y]")
+//   //   .querySelector(".range_value").innerHTML = positiony || 0;
+//   // styleDiv.querySelector("[style-attr=rotate]").value = rotate || 0;
+//   // styleDiv
+//   //   .querySelector("[Main-style=rotate]")
+//   //   .querySelector(".range_value").innerHTML = rotate || 0;
+//   // ****
 
 
-  // TEXT
-  if(getactiveel().getAttribute('primary-element-type') == "Text")
-  {
-  var styleDiv = activeel_Text;
-  var element = getactiveel()
-  for (el of activeel_Text.querySelectorAll("[Main-style=textAlign]")) {
-    el.style.background = "none";
-  }
-  try {
-    styleDiv.querySelector(
-      `[align=${element.children[0].style.textAlign}]`,
-    ).style.background = "#03a9f4";
-  } catch (err) { }
-  try {
-    if (element.children[0].style.fontWeight == "bold") {
-      styleDiv.querySelector("[Main-style=fontWeight]").style.background =
-        "#03a9f4";
-    } else {
-      styleDiv.querySelector("[Main-style=fontWeight]").style.background =
-        "none";
-    }
-    if (element.children[0].style.textDecoration == "underline") {
-      styleDiv.querySelector("[Main-style=textDecoration]").style.background =
-        "#03a9f4";
-    } else {
-      styleDiv.querySelector("[Main-style=textDecoration]").style.background =
-        "none";
-    }
-    if (element.children[0].style.fontStyle == "italic") {
-      styleDiv.querySelector("[Main-style=fontStyle]").style.background =
-        "#03a9f4";
-    } else {
-      styleDiv.querySelector("[Main-style=fontStyle]").style.background =
-        "none";
-    }
+//   // styleDiv.querySelector('[style-attr=skewX]').value = skewX || 0;
+//   // styleDiv.querySelector('[Main-style=skewX]').querySelector('.range_value').innerHTML = skewX || 0;
+//   // styleDiv.querySelector('[style-attr=skewY]').value = skewY || 0;
+//   // styleDiv.querySelector('[Main-style=skewY]').querySelector('.range_value').innerHTML = skewY || 0;
 
 
-    // for (var propes of text_props) {
-    //     console.log(propes)
-    //     try {
-    //         console.log(InteracStyles.getValue({ element: getactiveel(), prop: propes, }))
-    //         styleDiv.querySelector(`[style-attr=${propes}]`).value = InteracStyles.getValue({ element: getactiveel(), prop: propes, });
-    //         styleDiv.querySelector(`[Main-style=${propes}]`).querySelector('.range_value').innerHTML = InteracStyles.getValue({ element: getactiveel(), prop: propes });
-    //     }
-    //     catch (err) {
-    //         console.log(InteracStyles.getValue({ element: getactiveel(), prop: propes, }))
+//   // TEXT
+//   if(getactiveel().getAttribute('primary-element-type') == "Text")
+//   {
+//   var styleDiv = activeel_Text;
+//   var element = getactiveel()
+//   for (el of activeel_Text.querySelectorAll("[Main-style=textAlign]")) {
+//     el.style.background = "none";
+//   }
+//   try {
+//     styleDiv.querySelector(
+//       `[align=${element.children[0].style.textAlign}]`,
+//     ).style.background = "#03a9f4";
+//   } catch (err) { }
+//   try {
+//     if (element.children[0].style.fontWeight == "bold") {
+//       styleDiv.querySelector("[Main-style=fontWeight]").style.background =
+//         "#03a9f4";
+//     } else {
+//       styleDiv.querySelector("[Main-style=fontWeight]").style.background =
+//         "none";
+//     }
+//     if (element.children[0].style.textDecoration == "underline") {
+//       styleDiv.querySelector("[Main-style=textDecoration]").style.background =
+//         "#03a9f4";
+//     } else {
+//       styleDiv.querySelector("[Main-style=textDecoration]").style.background =
+//         "none";
+//     }
+//     if (element.children[0].style.fontStyle == "italic") {
+//       styleDiv.querySelector("[Main-style=fontStyle]").style.background =
+//         "#03a9f4";
+//     } else {
+//       styleDiv.querySelector("[Main-style=fontStyle]").style.background =
+//         "none";
+//     }
 
-    //     }
-    // }
-    console.log("ASs")
-    styleDiv.querySelector("[style-attr=color]").value = tinycolor(element.children[0].style.color).toHexString();
-    styleDiv.querySelector("[style-attr=font-size]").value = parseFloat(InteracStyles.getValue({ element: getactiveel(), prop: "font-size" }))
-    styleDiv.querySelector("[style-attr=font-family]").value = InteracStyles.getValue({ element: getactiveel(), prop: "font-family" })
-    styleDiv.querySelector("[style-attr=font-family]").style.fontFamily = InteracStyles.getValue({ element: getactiveel(), prop: "font-family" })
-    styleDiv.querySelector("[style-attr=-webkit-text-stroke-color]").value = InteracStyles.getValue({ element: getactiveel(), prop: "-webkit-text-stroke-color" })
-    // console.log(InteracStyles.getValue({ element: getactiveel(),prop: "font-family" }),InteracStyles.getValue({ element: getactiveel(),prop: "font-size" }))
-    console.log("ASs")
-    CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=line-height]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "line-height" }) })
-    CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=word-spacing]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "word-spacing" }) })
-    CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=letter-spacing]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "letter-spacing" }) })
-    CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=padding-left]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "padding-left" }) })
-    CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=padding-right]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "padding-right" }) })
-    CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=padding-top]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "padding-top" }) })
-    CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=padding-bottom]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "padding-bottom" }) })
-    CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=-webkit-text-stroke-width]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "-webkit-text-stroke-width" }) })
-    console.log("ASs")
-    console.log(InteracStyles.getValue({ element: getactiveel(), prop: "-webkit-text-stroke-width" }))
+
+//     // for (var propes of text_props) {
+//     //     console.log(propes)
+//     //     try {
+//     //         console.log(InteracStyles.getValue({ element: getactiveel(), prop: propes, }))
+//     //         styleDiv.querySelector(`[style-attr=${propes}]`).value = InteracStyles.getValue({ element: getactiveel(), prop: propes, });
+//     //         styleDiv.querySelector(`[Main-style=${propes}]`).querySelector('.range_value').innerHTML = InteracStyles.getValue({ element: getactiveel(), prop: propes });
+//     //     }
+//     //     catch (err) {
+//     //         console.log(InteracStyles.getValue({ element: getactiveel(), prop: propes, }))
+
+//     //     }
+//     // }
+//     console.log("ASs")
+//     styleDiv.querySelector("[style-attr=color]").value = tinycolor(element.children[0].style.color).toHexString();
+//     styleDiv.querySelector("[style-attr=font-size]").value = parseFloat(InteracStyles.getValue({ element: getactiveel(), prop: "font-size" }))
+//     styleDiv.querySelector("[style-attr=font-family]").value = InteracStyles.getValue({ element: getactiveel(), prop: "font-family" })
+//     styleDiv.querySelector("[style-attr=font-family]").style.fontFamily = InteracStyles.getValue({ element: getactiveel(), prop: "font-family" })
+//     styleDiv.querySelector("[style-attr=-webkit-text-stroke-color]").value = InteracStyles.getValue({ element: getactiveel(), prop: "-webkit-text-stroke-color" })
+//     // console.log(InteracStyles.getValue({ element: getactiveel(),prop: "font-family" }),InteracStyles.getValue({ element: getactiveel(),prop: "font-size" }))
+//     console.log("ASs")
+//     CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=line-height]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "line-height" }) })
+//     CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=word-spacing]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "word-spacing" }) })
+//     CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=letter-spacing]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "letter-spacing" }) })
+//     CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=padding-left]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "padding-left" }) })
+//     CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=padding-right]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "padding-right" }) })
+//     CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=padding-top]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "padding-top" }) })
+//     CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=padding-bottom]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "padding-bottom" }) })
+//     CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=-webkit-text-stroke-width]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "-webkit-text-stroke-width" }) })
+//     console.log("ASs")
+//     console.log(InteracStyles.getValue({ element: getactiveel(), prop: "-webkit-text-stroke-width" }))
   
-  } catch (err) { 
-    console.log(err)
-  }
-  // styleDiv.querySelector("[style-attr=line-height]").value =
-  //   parseInt(element.children[0].style.lineHeight) ||
-  //   parseInt(getComputedValue(element.children[0], "line-height"));
-  // styleDiv
-  //   .querySelector("[Main-style=line-height]")
-  //   .querySelector(".range_value").innerHTML =
-  //   parseInt(element.children[0].style.lineHeight) ||
-  //   parseInt(getComputedValue(element.children[0], "line-height"));
-  // //
-  // styleDiv.querySelector("[style-attr=word-spacing]").value =
-  //   parseInt(element.children[0].style.wordSpacing) || "0";
-  // styleDiv
-  //   .querySelector("[Main-style=word-spacing]")
-  //   .querySelector(".range_value").innerHTML =
-  //   parseInt(element.children[0].style.wordSpacing) || "0";
+//   } catch (err) { 
+//     console.log(err)
+//   }
+//   // styleDiv.querySelector("[style-attr=line-height]").value =
+//   //   parseInt(element.children[0].style.lineHeight) ||
+//   //   parseInt(getComputedValue(element.children[0], "line-height"));
+//   // styleDiv
+//   //   .querySelector("[Main-style=line-height]")
+//   //   .querySelector(".range_value").innerHTML =
+//   //   parseInt(element.children[0].style.lineHeight) ||
+//   //   parseInt(getComputedValue(element.children[0], "line-height"));
+//   // //
+//   // styleDiv.querySelector("[style-attr=word-spacing]").value =
+//   //   parseInt(element.children[0].style.wordSpacing) || "0";
+//   // styleDiv
+//   //   .querySelector("[Main-style=word-spacing]")
+//   //   .querySelector(".range_value").innerHTML =
+//   //   parseInt(element.children[0].style.wordSpacing) || "0";
 
-  // styleDiv.querySelector("[style-attr=letter-spacing]").value =
-  //   parseInt(element.children[0].style.letterSpacing) || "0";
-  // styleDiv
-  //   .querySelector("[Main-style=letter-spacing]")
-  //   .querySelector(".range_value").innerHTML =
-  //   parseInt(element.children[0].style.letterSpacing) || "0";
-  // //
-  // styleDiv.querySelector("[style-attr=-webkit-text-stroke-width]").value =
-  //   parseInt(element.children[0].style.webkitTextStrokeWidth) || 0;
-  // styleDiv
-  //   .querySelector("[Main-style=text-stroke]")
-  //   .querySelector(".range_value").innerHTML =
-  //   parseInt(element.children[0].style.webkitTextStrokeWidth) || 0;
-  // styleDiv.querySelector("[style-attr=-webkit-text-stroke-color]").value =
-  //   tinycolor(element.children[0].style.webkitTextStrokeColor).toHexString();
-  // //
+//   // styleDiv.querySelector("[style-attr=letter-spacing]").value =
+//   //   parseInt(element.children[0].style.letterSpacing) || "0";
+//   // styleDiv
+//   //   .querySelector("[Main-style=letter-spacing]")
+//   //   .querySelector(".range_value").innerHTML =
+//   //   parseInt(element.children[0].style.letterSpacing) || "0";
+//   // //
+//   // styleDiv.querySelector("[style-attr=-webkit-text-stroke-width]").value =
+//   //   parseInt(element.children[0].style.webkitTextStrokeWidth) || 0;
+//   // styleDiv
+//   //   .querySelector("[Main-style=text-stroke]")
+//   //   .querySelector(".range_value").innerHTML =
+//   //   parseInt(element.children[0].style.webkitTextStrokeWidth) || 0;
+//   // styleDiv.querySelector("[style-attr=-webkit-text-stroke-color]").value =
+//   //   tinycolor(element.children[0].style.webkitTextStrokeColor).toHexString();
+//   // //
 
-  // styleDiv.querySelector("[style-attr=padding-right]").value = parseInt(
-  //   getComputedValue(element.children[0], "padding-right"),
-  // );
-  // styleDiv.querySelector("[style-attr=padding-top]").value = parseInt(
-  //   getComputedValue(element.children[0], "padding-top"),
-  // );
-  // styleDiv.querySelector("[style-attr=padding-bottom]").value = parseInt(
-  //   getComputedValue(element.children[0], "padding-bottom"),
-  // );
-  // styleDiv.querySelector("[style-attr=padding-left]").value = parseInt(
-  //   getComputedValue(element.children[0], "padding-left"),
-  // );
+//   // styleDiv.querySelector("[style-attr=padding-right]").value = parseInt(
+//   //   getComputedValue(element.children[0], "padding-right"),
+//   // );
+//   // styleDiv.querySelector("[style-attr=padding-top]").value = parseInt(
+//   //   getComputedValue(element.children[0], "padding-top"),
+//   // );
+//   // styleDiv.querySelector("[style-attr=padding-bottom]").value = parseInt(
+//   //   getComputedValue(element.children[0], "padding-bottom"),
+//   // );
+//   // styleDiv.querySelector("[style-attr=padding-left]").value = parseInt(
+//   //   getComputedValue(element.children[0], "padding-left"),
+//   // );
 
-  // styleDiv
-  //   .querySelector("[Main-style=padding-left]")
-  //   .querySelector(".range_value").innerHTML = parseInt(
-  //   getComputedValue(element.children[0], "padding-left"),
-  // );
-  // styleDiv
-  //   .querySelector("[Main-style=padding-top]")
-  //   .querySelector(".range_value").innerHTML = parseInt(
-  //   getComputedValue(element.children[0], "padding-top"),
-  // );
-  // styleDiv
-  //   .querySelector("[Main-style=padding-right]")
-  //   .querySelector(".range_value").innerHTML = parseInt(
-  //   getComputedValue(element.children[0], "padding-right"),
-  // );
-  // styleDiv
-  //   .querySelector("[Main-style=padding-bottom]")
-  //   .querySelector(".range_value").innerHTML = parseInt(
-  //   getComputedValue(element.children[0], "padding-bottom"),
-  // );
+//   // styleDiv
+//   //   .querySelector("[Main-style=padding-left]")
+//   //   .querySelector(".range_value").innerHTML = parseInt(
+//   //   getComputedValue(element.children[0], "padding-left"),
+//   // );
+//   // styleDiv
+//   //   .querySelector("[Main-style=padding-top]")
+//   //   .querySelector(".range_value").innerHTML = parseInt(
+//   //   getComputedValue(element.children[0], "padding-top"),
+//   // );
+//   // styleDiv
+//   //   .querySelector("[Main-style=padding-right]")
+//   //   .querySelector(".range_value").innerHTML = parseInt(
+//   //   getComputedValue(element.children[0], "padding-right"),
+//   // );
+//   // styleDiv
+//   //   .querySelector("[Main-style=padding-bottom]")
+//   //   .querySelector(".range_value").innerHTML = parseInt(
+//   //   getComputedValue(element.children[0], "padding-bottom"),
+//   // );
 
 
-  // for (el of styleDiv.querySelectorAll("input[type='range']")) {
-  //   var value = ((el.value - el.min) / (el.max - el.min)) * 100;
-  //   el.style.background =
-  //     "linear-gradient(to right, #191e2b 0%, rgb(15 34 60)" +
-  //     value +
-  //     "%, #fff " +
-  //     value +
-  //     "%, white 100%)";
-  // }
+//   // for (el of styleDiv.querySelectorAll("input[type='range']")) {
+//   //   var value = ((el.value - el.min) / (el.max - el.min)) * 100;
+//   //   el.style.background =
+//   //     "linear-gradient(to right, #191e2b 0%, rgb(15 34 60)" +
+//   //     value +
+//   //     "%, #fff " +
+//   //     value +
+//   //     "%, white 100%)";
+//   // }
 
-  // TEXT END
-  // TEXTSHADOW
+//   // TEXT END
+//   // TEXTSHADOW
 
-  var styleDiv = activeel_Text_Shadow;
+//   var styleDiv = activeel_Text_Shadow;
 
-  try {
-    styleDiv.querySelector("[StyleDivFor]").remove();
-  } catch (err) { }
-  styleDiv.append(
-    CreateStyleDiv.CreateTextShadowStyleDiv(InteracStyles.getValue({ element: getactiveel(), prop: "text-shadow" })),
-  );
-  }
+//   try {
+//     styleDiv.querySelector("[StyleDivFor]").remove();
+//   } catch (err) { }
+//   styleDiv.append(
+//     CreateStyleDiv.CreateTextShadowStyleDiv(InteracStyles.getValue({ element: getactiveel(), prop: "text-shadow" })),
+//   );
+//   }
   
-  if(getactiveel().getAttribute('primary-element-type') == "Textpath"){
+//   if(getactiveel().getAttribute('primary-element-type') == "Textpath"){
 
-    var styleDiv = activeel_Textpath;
-    var element = getactiveel()
+//     var styleDiv = activeel_Textpath;
+//     var element = getactiveel()
     
-    try {
-      if (element.children[0].style.fontWeight == "bold") {
-        styleDiv.querySelector("[Main-style=fontWeight]").style.background =
-          "#03a9f4";
-      } else {
-        styleDiv.querySelector("[Main-style=fontWeight]").style.background =
-          "none";
-      }
-      if (element.children[0].style.textDecoration == "underline") {
-        styleDiv.querySelector("[Main-style=textDecoration]").style.background =
-          "#03a9f4";
-      } else {
-        styleDiv.querySelector("[Main-style=textDecoration]").style.background =
-          "none";
-      }
-      if (element.children[0].style.fontStyle == "italic") {
-        styleDiv.querySelector("[Main-style=fontStyle]").style.background =
-          "#03a9f4";
-      } else {
-        styleDiv.querySelector("[Main-style=fontStyle]").style.background =
-          "none";
-      }
+//     try {
+//       if (element.children[0].style.fontWeight == "bold") {
+//         styleDiv.querySelector("[Main-style=fontWeight]").style.background =
+//           "#03a9f4";
+//       } else {
+//         styleDiv.querySelector("[Main-style=fontWeight]").style.background =
+//           "none";
+//       }
+//       if (element.children[0].style.textDecoration == "underline") {
+//         styleDiv.querySelector("[Main-style=textDecoration]").style.background =
+//           "#03a9f4";
+//       } else {
+//         styleDiv.querySelector("[Main-style=textDecoration]").style.background =
+//           "none";
+//       }
+//       if (element.children[0].style.fontStyle == "italic") {
+//         styleDiv.querySelector("[Main-style=fontStyle]").style.background =
+//           "#03a9f4";
+//       } else {
+//         styleDiv.querySelector("[Main-style=fontStyle]").style.background =
+//           "none";
+//       }
   
   
 
      
-      styleDiv.querySelector("[style-attr=color]").value = InteracStyles.getValue({ element: getactiveel(), prop: "color" })
-      styleDiv.querySelector("[style-attr=font-size]").value = parseFloat(InteracStyles.getValue({ element: getactiveel(), prop: "font-size" }))
-      styleDiv.querySelector("[style-attr=font-family]").value = InteracStyles.getValue({ element: getactiveel(), prop: "font-family" })
-      styleDiv.querySelector("[style-attr=font-family]").style.fontFamily = InteracStyles.getValue({ element: getactiveel(), prop: "font-family" })
-      styleDiv.querySelector("[style-attr=-webkit-text-stroke-color]").value = InteracStyles.getValue({ element: getactiveel(), prop: "-webkit-text-stroke-color" })
-      CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=word-spacing]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "word-spacing" }) })
-      CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=letter-spacing]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "letter-spacing" }) })
-      CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=-webkit-text-stroke-width]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "-webkit-text-stroke-width" }) })
+//       styleDiv.querySelector("[style-attr=color]").value = InteracStyles.getValue({ element: getactiveel(), prop: "color" })
+//       styleDiv.querySelector("[style-attr=font-size]").value = parseFloat(InteracStyles.getValue({ element: getactiveel(), prop: "font-size" }))
+//       styleDiv.querySelector("[style-attr=font-family]").value = InteracStyles.getValue({ element: getactiveel(), prop: "font-family" })
+//       styleDiv.querySelector("[style-attr=font-family]").style.fontFamily = InteracStyles.getValue({ element: getactiveel(), prop: "font-family" })
+//       styleDiv.querySelector("[style-attr=-webkit-text-stroke-color]").value = InteracStyles.getValue({ element: getactiveel(), prop: "-webkit-text-stroke-color" })
+//       CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=word-spacing]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "word-spacing" }) })
+//       CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=letter-spacing]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "letter-spacing" }) })
+//       CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=-webkit-text-stroke-width]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "-webkit-text-stroke-width" }) })
       
     
-    } catch (err) { 
-      console.log(err)
-    }
-    var styleDiv = activeel_Text_Shadow;
+//     } catch (err) { 
+//       console.log(err)
+//     }
+//     var styleDiv = activeel_Text_Shadow;
 
-    try {
-      styleDiv.querySelector("[StyleDivFor]").remove();
-    } catch (err) { }
-    styleDiv.append(
-      CreateStyleDiv.CreateTextShadowStyleDiv(InteracStyles.getValue({ element: getactiveel(), prop: "text-shadow" })),
-    );
+//     try {
+//       styleDiv.querySelector("[StyleDivFor]").remove();
+//     } catch (err) { }
+//     styleDiv.append(
+//       CreateStyleDiv.CreateTextShadowStyleDiv(InteracStyles.getValue({ element: getactiveel(), prop: "text-shadow" })),
+//     );
     
-  }
+//   }
 
   
 
-  // DROPSHADOW
+//   // DROPSHADOW
 
-  var styleDiv = activeel_Drop_Shadow;
+//   var styleDiv = activeel_Drop_Shadow;
 
-  try {
-    styleDiv.querySelector("[StyleDivFor]").remove();
-  } catch (err) { }
-  styleDiv.append(
-    CreateStyleDiv.CreateDropShadowStyleDiv(
-      InteracStyles.getValue({ element: getactiveel(), prop: "drop-shadow" }),
-    ),
-  );
+//   try {
+//     styleDiv.querySelector("[StyleDivFor]").remove();
+//   } catch (err) { }
+//   styleDiv.append(
+//     CreateStyleDiv.CreateDropShadowStyleDiv(
+//       InteracStyles.getValue({ element: getactiveel(), prop: "drop-shadow" }),
+//     ),
+//   );
 
 
-  var styleDiv = activeel_Background;
-  if (
-    InteracStyles.getValue({ element: getactiveel(), prop: "background-color" }) == "transparent" ||
-    InteracStyles.getValue({ element: getactiveel(), prop: "background-color" }) == ""
-    // element.style.backgroundColor == "" ||
-    // element.style.backgroundColor == "transparent"
-  ) {
-    styleDiv.querySelector("input[type=checkbox]").checked = true;
-    styleDiv.querySelector("input[type=color]").disabled = true;
-  } else {
-    styleDiv.querySelector("input[type=color]").disabled = false;
-    styleDiv.querySelector("input[type=checkbox]").checked = false;
-    styleDiv.querySelector("input[type=color]").value = InteracStyles.getValue({ element: getactiveel(), prop: "background-color" })
-  }
+//   var styleDiv = activeel_Background;
+//   if (
+//     InteracStyles.getValue({ element: getactiveel(), prop: "background-color" }) == "transparent" ||
+//     InteracStyles.getValue({ element: getactiveel(), prop: "background-color" }) == ""
+//     // element.style.backgroundColor == "" ||
+//     // element.style.backgroundColor == "transparent"
+//   ) {
+//     styleDiv.querySelector("input[type=checkbox]").checked = true;
+//     styleDiv.querySelector("input[type=color]").disabled = true;
+//   } else {
+//     styleDiv.querySelector("input[type=color]").disabled = false;
+//     styleDiv.querySelector("input[type=checkbox]").checked = false;
+//     styleDiv.querySelector("input[type=color]").value = InteracStyles.getValue({ element: getactiveel(), prop: "background-color" })
+//   }
 
-  if (InteracStyles.getValue({ element: getactiveel(), prop: "background-image" }) == "") {
-    styleDiv.querySelector(
-      ".background_image_previewer",
-    ).style.backgroundImage = "";
-  } else {
-    styleDiv.querySelector(
-      ".background_image_previewer",
-    ).style.backgroundImage = InteracStyles.getValue({ element: getactiveel(), prop: "background-image" });
-  }
-}
+//   if (InteracStyles.getValue({ element: getactiveel(), prop: "background-image" }) == "") {
+//     styleDiv.querySelector(
+//       ".background_image_previewer",
+//     ).style.backgroundImage = "";
+//   } else {
+//     styleDiv.querySelector(
+//       ".background_image_previewer",
+//     ).style.backgroundImage = InteracStyles.getValue({ element: getactiveel(), prop: "background-image" });
+//   }
+// }
 
 // SHOW STYLING PROPS
 activeel_Text.style.display = "none";
@@ -2259,6 +2259,7 @@ export function getTextshadowfromStyleDiv(Div) {
 }
 
 export function styleDivOninputUpdate() {
+
   activeel_Border_Radius.addEventListener("input", function () {
     var same_borders_div =
       activeel_Border_Radius.querySelector(".same_borders_div");
@@ -3181,13 +3182,24 @@ activeel_Textpath.addEventListener("input", UpdateTextpathStyleDiv)
 export const InteracStyles = {
   // json = {el,incdecsign,prop,value,layer}
   UpdateStyles: function (json) {
-    var element = json.element;
+    var elements;
+    //console.log(Array.isArray(json.element))
+    if( NodeList.prototype.isPrototypeOf(json.element) ){
+      elements = json.element
+    }else{
+      elements = []
+      elements.push(json.element)
+    }
+    console.log(elements)
+    for(var element of elements){
+    //?***
+    var element = element;
     var prop = json.prop || json.property;
     var value = json.value || json.val;
     var layer = json.layer || false;
     var incdecsign = json.incdecsign;
     var border_el = element.children[0]
-    var element_type = json.element.getAttribute("primary-element-type");
+    var element_type = element.getAttribute("primary-element-type");
     var SvgEl = element_type == "Path";
     var TextEl =  element_type == "Text";
     var TextpathEl =  element_type == "Textpath";
@@ -3549,7 +3561,7 @@ export const InteracStyles = {
       // }
 
       // break
-    }
+    }}
   },
 
   getValue: function (json) {
@@ -3633,7 +3645,6 @@ export const InteracStyles = {
         return element.children[0].style[snakeToCamel(prop)];
         break;
       case "color":
-        console.log('here')
         if(TextEl){
           if(Text_stylel.style[prop] != ""){
           return tinycolor(Text_stylel.style[prop]).toHexString()}
@@ -3641,7 +3652,7 @@ export const InteracStyles = {
             return "#000000"
           }
         }else if(TextpathEl){
-          console.log(Textpath_stylel.style.fill)
+          //console.log(Textpath_stylel.style.fill)
           if(Textpath_stylel.style.fill != ""){
             return tinycolor(Textpath_stylel.style.fill).toHexString()}
             else{

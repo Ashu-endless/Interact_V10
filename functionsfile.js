@@ -5,6 +5,7 @@ import { getactiveel, ShowUploadModal } from './index.js'
 import { DragAndDropListener, activeel_size_handler } from './size_handler.js';
 import { BoxContainer, layerDiv, } from './Interac_BoxContainer.js';
 import { InteractMessage } from "./InteracTerminal.js";
+import { EndlessSizeHandler } from './InteracSizehandler.js';
 // import { boxsvg } from '.';
 // import { box } from '.';
 const layers_div = document.querySelector('#layers_div')
@@ -246,6 +247,7 @@ export const activeelFunction = {
         var any_active = document.querySelectorAll('.active');
         for (el of any_active) {
             el.classList.remove('active');
+            EndlessSizeHandler.HideHandler({element:el})
         }
     },
     makeactive: function(element) {

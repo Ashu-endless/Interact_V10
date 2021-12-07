@@ -1,7 +1,8 @@
-import { transformFunc,UpdateTransformStyleDiv } from './Interact_style.js';
+import { transformFunc } from './Interact_style.js';
 import { getactiveel, } from './index.js';
 import { gettarget, toolboxFuncs, activeelFunction, activeel_position_divFuncs, getparent } from './functionsfile.js';
 import { BoxContainer } from './Interac_BoxContainer.js';
+import { UpdateTransformStyleDiv, } from './UpdateStyleDiv.js';
 
 var el;
 var dx;
@@ -33,6 +34,9 @@ const size_handler_all = document.querySelectorAll('.size_handler_');
 const size_handler_point_all = document.querySelectorAll('.size_handler_point');
 var initX, initY, mousePressX, mousePressY, initW, initH, initRotate;
 // //////////
+
+
+
 // var data = { name: effector_selectors[elem_count].getAttribute('value'), functions: { change: { prop: [], val: [] }, inc: {} } }
 //                         data.transitions = transitions_container[elem_count].getAttribute('prop_value');
 //                         for (el of functions_container[elem_count].querySelectorAll('[functionality_prop]')) {
@@ -182,11 +186,16 @@ export function DragMoveListener() {
 
             var startX = e.x
             var startY = e.y
-            var positionx = transformFunc.getValue(target).positionX
-            var positiony = transformFunc.getValue(target).positionY
+            var Draggable_data = {}
+            var elem = document.querySelectorAll('.active');
+            for(var i=0;i<elem.length;i++){
+                Draggable_data[i] = {}
+            Draggable_data[i].positionx = transformFunc.getValue(elem[i]).positionX
+            Draggable_data[i].positiony = transformFunc.getValue(elem[i]).positionY
+        }
 
             activeel_position_divFuncs.position()
-            UpdateTransformStyleDiv()
+            UpdateTransformStyleDiv(target)
             document.body.onmousemove = (e) => {
                     var dx = e.clientX - startX 
                     var dy = e.clientY - startY
@@ -194,14 +203,16 @@ export function DragMoveListener() {
                     // var dy = (e.clientY - startY) / 0.5
 
                     // console.log(target.tagName)
-                    transformFunc.updateValue(target, 'position-x', (positionx + dx) + "px")
-                    transformFunc.updateValue(target, 'position-y',(positiony + dy) + "px")
+                    for(var i=0;i<elem.length;i++){
+                    transformFunc.updateValue(elem[i], 'position-x', (Draggable_data[i].positionx + dx) + "px")
+                    transformFunc.updateValue(elem[i], 'position-y',(Draggable_data[i].positiony + dy) + "px")
+                    }
                     activeel_position_divFuncs.position()
-                    UpdateTransformStyleDiv()
+                    UpdateTransformStyleDiv(target)
                 },
                 document.body.onmouseup = (e) => {
                     target.style.cursor = "grab"
-                    activeel_position_divFuncs.hide()
+                   // activeel_position_divFuncs.hide()
                     document.body.onmousemove = (e) => {
                         ""
                     }
@@ -864,3 +875,4 @@ function gresizeHandler(event, left = false, top = false, xResize = false, yResi
     })
 
 }
+

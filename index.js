@@ -12,16 +12,17 @@ var k;
 const preview = document.querySelector('#preview_btn');
 const preview_destroy = document.querySelector('#preview_destroy');
 
+import { EndlessSizeHandler } from './InteracSizehandler.js';
 import { property_selector_container, transitions_controller } from './components.js';
 // import { keyframes_creator, InteractAnimation, keyframes, update_animation_keyframes } from './keyframes.js';
-import { style_textShadow_updater, style_boxShadow_updater, add_textshadow, apply_box_shadow, apply_text_shadow, add_boxshadow, applying_box_shadow, applying_text_shadow, box_shadow_type_switcher, refresh_style_div, transformFunc, show_styling_properties, CreateStyleDiv, UpdateOriginalStyleDivs, styleDivOninputUpdate,InteracStyles, } from './Interact_style.js';
+import { style_textShadow_updater, style_boxShadow_updater, add_textshadow, apply_box_shadow, apply_text_shadow, add_boxshadow, applying_box_shadow, applying_text_shadow, box_shadow_type_switcher, refresh_style_div, transformFunc, show_styling_properties, CreateStyleDiv, styleDivOninputUpdate,InteracStyles, } from './Interact_style.js';
 import { activeel_size_handler, DragMoveListener, DragAndDropListener } from './size_handler.js';
 // import { activeel_container_resizer } from './size_handler_svg.js';
 import { InteractFunctions, InteractFunctionCreator } from './functions.js';
 import { heightInc, gettarget, getparent, bardivFunc, preview_selected_element, toolboxFuncs, LayersDivFuncs, activeelFunction, getUniqueid, getAllBoxElementsInfo, DragAboveandDrop } from './functionsfile.js';
 import { NewArrowBox } from './arrowbox.js';
 import { Save,BoxContainer,NewBoxContainer, update_triggerer_selector, update_effector_selector } from './Interac_BoxContainer.js';
-
+import { UpdateOriginalStyleDivs } from './UpdateStyleDiv.js';
 
 
 const activeel_Text = document.querySelector('#Interact_activeel_Text');
@@ -145,7 +146,7 @@ document.body.addEventListener('click', function(e) {
         }
     }
     if (check_activeel()) {
-        activeel_size_handler.position(getactiveel())
+        //activeel_size_handler.position(getactiveel())
             // activeel_container_position()
 
     }
@@ -179,7 +180,7 @@ document.body.oninput = (e) => {
     }
 
     if (check_activeel()) {
-        activeel_size_handler.position(getactiveel())
+       // activeel_size_handler.position(getactiveel())
             // activeel_container_position()
 
     }
@@ -424,10 +425,93 @@ for (el of style_head_mob) {
 //         box.contentEditable = false
 //     }
 // })
+const selctor_div = document.querySelector('.koi')
+function B_mousemove(e,e_x,e_y){
+    //console.log(e.target)
+    var gotelement = gettarget(e,'primary-element-type');
+    if(gotelement != null && gotelement.classList.contains('active') == false){
+         gotelement.classList.add('active')
+         EndlessSizeHandler.SetHandler({element:gotelement})
+     }
+    if((e.y - e_y)>1){
+        selctor_div.style.height = `${e.y - e_y}px`
+    }else{
+        
+        selctor_div.style.height = `${e_y - e.y}px`
+        selctor_div.style.top = `${e_y - parseFloat(selctor_div.style.height) }px`
+
+    }
+    if((e.x - e_x)>1){
+        selctor_div.style.width = `${e.x - e_x}px`
+    }else{
+        selctor_div.style.width = `${e_x - e.x}px`
+        selctor_div.style.left = `${e_x - parseFloat(selctor_div.style.width) }px`
+    }
 
 
+    //((e.y - e_y)>1) ? height = `${e.y - e_y}px`  : height = `${e_y - e.y}px`;
+    //selctor_div.style.height = height
+   // document.querySelector('.koi').style.width = `${e.x - e_x}px`
+
+}
 
 export function BoxContainerClickFunc(e) {
+    activeelFunction.nullactive()
+    DragMoveListener()
+    if(e.target.getAttribute('InteractSvg') != null ){
+    selctor_div.style.display = "block"
+    var e_y = e.y
+    var e_x = e.x
+    var div = document.querySelector('.koi')
+    selctor_div.style.height = "0px" 
+    selctor_div.style.width = "0px" 
+    div.style.left = e.x + "px"
+    div.style.top = e.y + "px"
+    
+ //BoxContainer.elem().addEventListener('mousemove',e => B_mousemove(e,e_x,e_y))
+ BoxContainer.elem().onmousemove=(e)=>{
+     B_mousemove(e,e_x,e_y)
+ }
+ //BoxContainer.elem().addEventListener('mouseup',e => B_mousemove(e,e_x,e_y))
+ window.onmouseup=(e)=>{
+     selctor_div.style.display = "none"
+    BoxContainer.elem().onmousemove=(e)=>{
+        ""
+    }
+     //BoxContainer.elem().removeEventListener('mousemove',B_mousemove)
+     //BoxContainer.elem().removeEventListener('mousemove',e => B_mousemove(e,e_x,e_y))
+ }}else{
+     var gotelement = gettarget(e,'primary-element-type');
+     if(gotelement != null ){
+         gotelement.classList.add('active')
+         EndlessSizeHandler.SetHandler({element:gotelement})
+     }
+ }
+}
+
+
+selctor_div.addEventListener('mousemove',function(e){
+    var e_y = parseFloat(selctor_div.style.top)
+    var e_x = parseFloat(selctor_div.style.left)
+
+    if((e.y - e_y)>1){
+        selctor_div.style.height = `${e.y - e_y}px`
+    }else{
+        
+        selctor_div.style.height = `${e_y - e.y}px`
+        selctor_div.style.top = `${e_y - parseFloat(selctor_div.style.height) }px`
+
+    }
+    if((e.x - e_x)>1){
+        selctor_div.style.width = `${e.x - e_x}px`
+    }else{
+        selctor_div.style.width = `${e_x - e.x}px`
+        selctor_div.style.left = `${e_x - parseFloat(selctor_div.style.width) }px`
+    }
+})
+
+//export function BoxContainerClickFunc(e) {
+export function BoxContainegrClickFunc(e) {
         console.log('clicked on crtr')
             // !!! FUCNTION RELATED
         update_all_elements_name_list()
@@ -670,7 +754,7 @@ if(getactiveel().getAttribute("locked") == "true"){
 
         DragMoveListener()
         if (check_activeel()) {
-            activeel_size_handler.position(getactiveel())
+            //activeel_size_handler.position(getactiveel())
 
                 // LayersDivFuncs.UpdateLayersDiv()sss
 
@@ -3024,3 +3108,10 @@ var player = new Plyr('#video_element_previewer', {});
 console.log('d')
 var player = new Plyr('#youtubevideo_element_previewer');
 var player = new Plyr('#audio_element_previewer', {});
+
+
+window.addEventListener("load", function(){
+    console.log(document.querySelector('#preview_btn').getBoundingClientRect())
+    //EndlessSizeHandler.NewSizeHandler({element:document.querySelector('#preview_btn')})
+    //EndlessSizeHandler.NewSizeHandler({element:BoxContainer.elem()})
+});

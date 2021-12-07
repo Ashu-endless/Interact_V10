@@ -561,7 +561,21 @@ export const BoxContainer = {
         var text_div = document.createElement("div");
         var text_p = document.createElement("div");
         var text = document.createElement("p");
+            text_div.addEventListener('dblclick',function(){
+                this.children[0].contentEditable = true
+            })
 
+            // text_p.addEventListener('input',function(){
+            //     console.log('in')
+            //     var str = this.innerText.split('');
+            //     this.innerHTML = ""
+            //     for(var char of str){
+            //         var span = document.createElement('span');
+            //         span.innerText = char
+            //         this.append(span)
+            //     }
+    
+            // })
         text_div.append(text_p);
         text_p.append(text);
 
@@ -989,7 +1003,15 @@ export const BoxContainer = {
         fo.querySelector("div").setAttribute("data-plyr-embed-id", json.src);
         fo.setAttribute("yt-id", json.src);
         // console.log(div.querySelector("div").id);
+        var check = fo.querySelector("div")
         var player = new Plyr(`#${fo.querySelector("div").id}`);
+        console.log(player)
+        player.prototype.farewell = function() {
+            alert('hihiiihi');
+          };
+          console.log(player)
+        console.log(check)
+
         var freeze_div = document.createElement("div");
         freeze_div.classList.add("freeze_div");
         fo.append(freeze_div);
@@ -1868,7 +1890,7 @@ export function NewBoxContainer(json) {
         }
     }
 
-    BoxContainer.div().addEventListener('click', e => BoxContainerClickFunc(e))
+    BoxContainer.elem().addEventListener('mousedown', e => BoxContainerClickFunc(e))
 
 
 
