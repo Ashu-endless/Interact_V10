@@ -159,6 +159,7 @@
 
 [InteractContainer]{
     position:fixed ;
+    transform-origin: right top;
 }
 [InteractDiv]{
     height: 100%;

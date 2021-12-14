@@ -8,10 +8,10 @@ import {
   TextShadowStyleDiv,
   DropShadowStyleDiv,
   DropShadowStyleBox,
-  BackgroundStyleDiv, BrushStyleDiv,TextpathStyleDiv
+  BackgroundStyleDiv, BrushStyleDiv, TextpathStyleDiv
 } from "./components.js";
 import { getparent } from "./functionsfile.js";
-import { BoxContainer, text_props,layerDiv, } from "./Interac_BoxContainer.js";
+import { BoxContainer, text_props, layerDiv, } from "./Interac_BoxContainer.js";
 import { CreateRangeValueTemplate, setmaxminForinput } from "./functions.js";
 import {
   getUniqueid,
@@ -30,10 +30,10 @@ document.querySelector("#foreground-color").oninput = (e) => {
   for (el of document.querySelector("#pattern_dialog").children) {
     // console.log(window.getComputedStyle(el).getPropertyValue('background-image'))
     var val = `${window
-        .getComputedStyle(el)
-        .getPropertyValue("background-image")
-        .split("fill=")[1]
-        .split(" ")[0]
+      .getComputedStyle(el)
+      .getPropertyValue("background-image")
+      .split("fill=")[1]
+      .split(" ")[0]
       }`.replace(/['"]+/g, "");
     var valu = `#${val.replace(/%23/g, "")}`;
     // var val = `${window.getComputedStyle(el).getPropertyValue('background-image').split('fill=')[1].split(' ')[0]}`.replace(/['"]+/g, '')
@@ -67,10 +67,10 @@ document.querySelector("#pattern-opacity").oninput = (e) => {
   for (el of document.querySelector("#pattern_dialog").children) {
     // console.log(window.getComputedStyle(el).getPropertyValue('background-image'))
     var val = `${window
-        .getComputedStyle(el)
-        .getPropertyValue("background-image")
-        .split("fill-opacity=")[1]
-        .split(" ")[0]
+      .getComputedStyle(el)
+      .getPropertyValue("background-image")
+      .split("fill-opacity=")[1]
+      .split(" ")[0]
       }`.replace(/['"]+/g, "");
     console.log(val);
     console.log(`fill-opacity='${val}'`);
@@ -523,66 +523,66 @@ export const transformFunc = {
     // console.log(BoxContainer.elem().style.transform)
     // !!
     if (element.tagName == "text") {
-     if(prop == "position-x"){
-      var element_rotation = transformFunc.getValue(element).rotate
-      transformFunc.updateValue(element, 'rotate', '0deg')
-       var pathel = BoxContainer.svg().querySelector(`#${element.children[0].getAttribute("textpath")}`);
-      pathel.style.display = "block";
-      var path_elx = pathel.parentNode.getBoundingClientRect().x - pathel.getBoundingClientRect().x
-      var elx = element.parentNode.getBoundingClientRect().x - element.getBoundingClientRect().x
-      var path_el_diff = elx - path_elx;
-      var translation = (parseFloat(value) - transformFunc.getValue(element).positionX)
-      // var translation = parseFloat(value) - path_el_diff
-      pathel.setAttribute("d",SVGPath(pathel.getAttribute("d")).translate(translation, 0).toString());
-      transformFunc.updateValue(element, 'rotate', element_rotation)
-      pathel.style.display = "none"
-    }
-    else if(prop == "position-y"){
-      var element_rotation = transformFunc.getValue(element).rotate
-      transformFunc.updateValue(element, 'rotate', '0deg')
-      var pathel = BoxContainer.svg().querySelector(`#${element.children[0].getAttribute("textpath")}`);
-     pathel.style.display = "block";
-     var path_elx = pathel.parentNode.getBoundingClientRect().y - pathel.getBoundingClientRect().y
-     var elx = element.parentNode.getBoundingClientRect().y - element.getBoundingClientRect().y
-     var path_el_diff = elx - path_elx;
-     var translation = (parseFloat(value) - transformFunc.getValue(element).positionY)
-     // var translation = parseFloat(value) - path_el_diff
-     pathel.setAttribute("d",SVGPath(pathel.getAttribute("d")).translate( 0,translation).toString());
-     transformFunc.updateValue(element, 'rotate', element_rotation) 
-     pathel.style.display = "none"
-    }
-   else if(prop == "rotate"){
-    var pathel = BoxContainer.svg().querySelector(`#${element.children[0].getAttribute("textpath")}`);
-    pathel.style.display = "block";
-    // transformFunc.updateValue(pathel,"rotate",value)
-    // var element = pathel
-    var old_val = element
-    .getAttributeNS(null, "transform")
-    .split("rotate(")[1]
-    .split(")")[0];
-  var set_null_t = element
-    .getAttributeNS(null, "transform")
-    .replace(`rotate(${old_val})`, `rotate(0 0 0)`);
-  element.setAttributeNS(null, "transform", set_null_t);
+      if (prop == "position-x") {
+        var element_rotation = transformFunc.getValue(element).rotate
+        transformFunc.updateValue(element, 'rotate', '0deg')
+        var pathel = BoxContainer.svg().querySelector(`#${element.children[0].getAttribute("textpath")}`);
+        pathel.style.display = "block";
+        var path_elx = pathel.parentNode.getBoundingClientRect().x - pathel.getBoundingClientRect().x
+        var elx = element.parentNode.getBoundingClientRect().x - element.getBoundingClientRect().x
+        var path_el_diff = elx - path_elx;
+        var translation = (parseFloat(value) - transformFunc.getValue(element).positionX)
+        // var translation = parseFloat(value) - path_el_diff
+        pathel.setAttribute("d", SVGPath(pathel.getAttribute("d")).translate(translation, 0).toString());
+        transformFunc.updateValue(element, 'rotate', element_rotation)
+        pathel.style.display = "none"
+      }
+      else if (prop == "position-y") {
+        var element_rotation = transformFunc.getValue(element).rotate
+        transformFunc.updateValue(element, 'rotate', '0deg')
+        var pathel = BoxContainer.svg().querySelector(`#${element.children[0].getAttribute("textpath")}`);
+        pathel.style.display = "block";
+        var path_elx = pathel.parentNode.getBoundingClientRect().y - pathel.getBoundingClientRect().y
+        var elx = element.parentNode.getBoundingClientRect().y - element.getBoundingClientRect().y
+        var path_el_diff = elx - path_elx;
+        var translation = (parseFloat(value) - transformFunc.getValue(element).positionY)
+        // var translation = parseFloat(value) - path_el_diff
+        pathel.setAttribute("d", SVGPath(pathel.getAttribute("d")).translate(0, translation).toString());
+        transformFunc.updateValue(element, 'rotate', element_rotation)
+        pathel.style.display = "none"
+      }
+      else if (prop == "rotate") {
+        var pathel = BoxContainer.svg().querySelector(`#${element.children[0].getAttribute("textpath")}`);
+        pathel.style.display = "block";
+        // transformFunc.updateValue(pathel,"rotate",value)
+        // var element = pathel
+        var old_val = element
+          .getAttributeNS(null, "transform")
+          .split("rotate(")[1]
+          .split(")")[0];
+        var set_null_t = element
+          .getAttributeNS(null, "transform")
+          .replace(`rotate(${old_val})`, `rotate(0 0 0)`);
+        element.setAttributeNS(null, "transform", set_null_t);
 
-  var pos_x =
-    element.getBoundingClientRect().x -
-    element.parentNode.getBoundingClientRect().x +
-    element.getBoundingClientRect().width / 2;
-  var pos_y =
-    element.getBoundingClientRect().y -
-    element.parentNode.getBoundingClientRect().y +
-    element.getBoundingClientRect().height / 2;
-  var new_transformation = element
-    .getAttributeNS(null, "transform")
-    .replace(
-      `rotate(0 0 0)`,
-      `rotate(${parseFloat(value) || 0} ${pos_x} ${pos_y})`,
-    );
-  element.setAttributeNS(null, "transform", new_transformation);
-  pathel.style.display = "none"
-}
-      
+        var pos_x =
+          element.getBoundingClientRect().x -
+          element.parentNode.getBoundingClientRect().x +
+          element.getBoundingClientRect().width / 2;
+        var pos_y =
+          element.getBoundingClientRect().y -
+          element.parentNode.getBoundingClientRect().y +
+          element.getBoundingClientRect().height / 2;
+        var new_transformation = element
+          .getAttributeNS(null, "transform")
+          .replace(
+            `rotate(0 0 0)`,
+            `rotate(${parseFloat(value) || 0} ${pos_x} ${pos_y})`,
+          );
+        element.setAttributeNS(null, "transform", new_transformation);
+        pathel.style.display = "none"
+      }
+
 
 
 
@@ -723,11 +723,30 @@ export const transformFunc = {
           //     transformFunc.updateValue(el, 'position-y', py)
 
           // }
+          var cont_R = transformFunc.getValue(element).rotate;
+          
+              transformFunc.updateValue(
+                element,
+                "rotate",
+                0,
+              );
+          var element_h = transformFunc.getValue(element).fheight;
+
           if (el_settings.relativeSizingHeight) {
-            for (var el of element.querySelector("svg").children) {
+            for (var el of element.querySelectorAll(`[primary-element-type]`)) {
+              
+              
+              var cs_R = transformFunc.getValue(el).rotate;
+
+              transformFunc.updateValue(
+                element,
+                "rotate",
+                0,
+              );
               var el_y = transformFunc.getValue(el).positionY;
-              var element_h = transformFunc.getValue(element).fheight;
+              
               var el_h = transformFunc.getValue(el).fheight;
+
               var ratioyh = element_h / el_y;
               var ratiohh = element_h / el_h;
               // console.log(ratioxw)
@@ -746,12 +765,25 @@ export const transformFunc = {
                 "position-y",
                 parseFloat(value) / ratioyh,
               );
+              transformFunc.updateValue(
+                el,
+                "rotate",
+               cs_R,
+              );
+             
               // transformFunc.updateValue(el, 'position-y', py)
             }
           }
         }
 
         element.style.height = parseFloat(value) + "px";
+
+        transformFunc.updateValue(
+          element,
+          "rotate",
+          cont_R,
+        );
+
         if (element.getAttribute("primary-element-type") == "Container") {
           if (el_settings.scrollHeight == "0") {
             element.querySelector(
@@ -768,10 +800,29 @@ export const transformFunc = {
         }
       } else if (prop == "width") {
         if (element.getAttribute("primary-element-type") == "Container") {
-          if (el_settings.relativeSizingWidth) {
-            for (var el of element.querySelector("svg").children) {
-              var el_x = transformFunc.getValue(el).positionX;
+          var cont_R = transformFunc.getValue(element).rotate;
+          
+              transformFunc.updateValue(
+                element,
+                "rotate",
+                0,
+              );
+          
               var element_w = transformFunc.getValue(element).fwidth;
+
+          
+          if (el_settings.relativeSizingWidth) {
+            for (var el of element.querySelectorAll(`[primary-element-type]`)) {
+              
+              var cs_R = transformFunc.getValue(el).rotate;
+
+              transformFunc.updateValue(
+                element,
+                "rotate",
+                0,
+              );
+              
+              var el_x = transformFunc.getValue(el).positionX;
               var el_w = transformFunc.getValue(el).fwidth;
               var ratioxw = element_w / el_x;
               var ratioww = element_w / el_w;
@@ -791,12 +842,26 @@ export const transformFunc = {
                 "position-x",
                 parseFloat(value) / ratioxw,
               );
+
+              transformFunc.updateValue(
+                el,
+                "rotate",
+               cs_R,
+              );
               // transformFunc.updateValue(el, 'position-y', py)
             }
           }
         }
 
         element.style.width = parseFloat(value) + "px";
+
+        transformFunc.updateValue(
+          element,
+          "rotate",
+          cont_R,
+        );
+
+
         if (element.getAttribute("primary-element-type") == "Container") {
           if (el_settings.scrollWidth == "0") {
             element.querySelector(
@@ -1025,7 +1090,7 @@ export const CreateStyleDiv = {
     styleDiv.append(CreateRangeValueTemplate({ prop: "text-stroke", val: 0, icon: `<i class="bi bi-arrows-expand"></i>`, attr: "Main-style", attrval: "-webkit-text-stroke-width" }))
     styleDiv.append(CreateRangeValueTemplate({ prop: "letter-spacing", val: 0, icon: `<i class="bi bi-arrows-expand"></i>`, attr: "Main-style", attrval: "letter-spacing" }))
     styleDiv.append(CreateRangeValueTemplate({ prop: "word-spacing", val: 0, icon: `<i class="bi bi-arrows-expand"></i>`, attr: "Main-style", attrval: "word-spacing" }))
-    
+
 
     for (var el of styleDiv.querySelectorAll('.divninput_hover')) {
       el.classList.remove('divninput_hover')
@@ -1805,7 +1870,7 @@ export const CreateStyleDiv = {
 //   // }
 
 //   // }
-  
+
 
 // }
 
@@ -1911,7 +1976,7 @@ export const CreateStyleDiv = {
 //     CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=-webkit-text-stroke-width]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "-webkit-text-stroke-width" }) })
 //     console.log("ASs")
 //     console.log(InteracStyles.getValue({ element: getactiveel(), prop: "-webkit-text-stroke-width" }))
-  
+
 //   } catch (err) { 
 //     console.log(err)
 //   }
@@ -2005,12 +2070,12 @@ export const CreateStyleDiv = {
 //     CreateStyleDiv.CreateTextShadowStyleDiv(InteracStyles.getValue({ element: getactiveel(), prop: "text-shadow" })),
 //   );
 //   }
-  
+
 //   if(getactiveel().getAttribute('primary-element-type') == "Textpath"){
 
 //     var styleDiv = activeel_Textpath;
 //     var element = getactiveel()
-    
+
 //     try {
 //       if (element.children[0].style.fontWeight == "bold") {
 //         styleDiv.querySelector("[Main-style=fontWeight]").style.background =
@@ -2033,10 +2098,10 @@ export const CreateStyleDiv = {
 //         styleDiv.querySelector("[Main-style=fontStyle]").style.background =
 //           "none";
 //       }
-  
-  
 
-     
+
+
+
 //       styleDiv.querySelector("[style-attr=color]").value = InteracStyles.getValue({ element: getactiveel(), prop: "color" })
 //       styleDiv.querySelector("[style-attr=font-size]").value = parseFloat(InteracStyles.getValue({ element: getactiveel(), prop: "font-size" }))
 //       styleDiv.querySelector("[style-attr=font-family]").value = InteracStyles.getValue({ element: getactiveel(), prop: "font-family" })
@@ -2045,8 +2110,8 @@ export const CreateStyleDiv = {
 //       CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=word-spacing]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "word-spacing" }) })
 //       CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=letter-spacing]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "letter-spacing" }) })
 //       CreateStyleDiv.UpdateRangeValueDiv({ div: styleDiv.querySelector("[main-style=-webkit-text-stroke-width]"), val: InteracStyles.getValue({ element: getactiveel(), prop: "-webkit-text-stroke-width" }) })
-      
-    
+
+
 //     } catch (err) { 
 //       console.log(err)
 //     }
@@ -2058,10 +2123,10 @@ export const CreateStyleDiv = {
 //     styleDiv.append(
 //       CreateStyleDiv.CreateTextShadowStyleDiv(InteracStyles.getValue({ element: getactiveel(), prop: "text-shadow" })),
 //     );
-    
+
 //   }
 
-  
+
 
 //   // DROPSHADOW
 
@@ -2272,7 +2337,7 @@ export function styleDivOninputUpdate() {
           prop: "border-radius",
           layer: true,
           value: `${same_borders_div.querySelector("[style-attr=border-radius]")
-              .value || 0
+            .value || 0
             }% ${same_borders_div.querySelector(
               "[style-attr=border-radius-elliptic]",
             ).value || 0
@@ -2285,7 +2350,7 @@ export function styleDivOninputUpdate() {
           prop: "border-radius",
           layer: true,
           value: `${same_borders_div.querySelector("[style-attr=border-radius]")
-              .value || 0
+            .value || 0
             }%`,
         });
 
@@ -2699,9 +2764,9 @@ export function styleDivOninputUpdate() {
   // !! TExtEnd
 
 
-//?Textpathstart
+  //?Textpathstart
 
-activeel_Textpath.addEventListener("input", UpdateTextpathStyleDiv)
+  activeel_Textpath.addEventListener("input", UpdateTextpathStyleDiv)
   activeel_Textpath.addEventListener("click", UpdateTextpathStyleDiv)
   function UpdateTextpathStyleDiv() {
     var styleDiv = activeel_Textpath;
@@ -2725,7 +2790,7 @@ activeel_Textpath.addEventListener("input", UpdateTextpathStyleDiv)
       prop: "fontSize",
       val: fontSize,
     });
-  
+
     InteracStyles.UpdateStyles({
       element: getactiveel(),
       layer: true,
@@ -2750,7 +2815,7 @@ activeel_Textpath.addEventListener("input", UpdateTextpathStyleDiv)
       prop: "wordSpacing",
       val: wordSpacing,
     });
-   
+
     InteracStyles.UpdateStyles({
       element: getactiveel(),
       layer: true,
@@ -2828,7 +2893,7 @@ activeel_Textpath.addEventListener("input", UpdateTextpathStyleDiv)
       }
     });
 
-  
+
 
   var styleDiv = activeel_Border;
   var bst = styleDiv
@@ -3184,352 +3249,352 @@ export const InteracStyles = {
   UpdateStyles: function (json) {
     var elements;
     //console.log(Array.isArray(json.element))
-    if( NodeList.prototype.isPrototypeOf(json.element) ){
+    if (NodeList.prototype.isPrototypeOf(json.element)) {
       elements = json.element
-    }else{
+    } else {
       elements = []
       elements.push(json.element)
     }
     console.log(elements)
-    for(var element of elements){
-    //?***
-    var element = element;
-    var prop = json.prop || json.property;
-    var value = json.value || json.val;
-    var layer = json.layer || false;
-    var incdecsign = json.incdecsign;
-    var border_el = element.children[0]
-    var element_type = element.getAttribute("primary-element-type");
-    var SvgEl = element_type == "Path";
-    var TextEl =  element_type == "Text";
-    var TextpathEl =  element_type == "Textpath";
-    if(TextEl){
-      var Text_stylel = element.children[0]
-    }
-    if(TextpathEl){
-      var Textpath_stylel = element.children[0]
-    }
-    
-    var HtmlEl = element_type == "Image" || element_type == "Text";
-    // if (element_type == "Text") {
-    var text_element = element.children[0];
-    // }
-    // console.log(element, prop, value, layer, incdecsign)
-    var layer_element = document.querySelector(
-      `[layer_element_name=${element.getAttribute("element_name")}]`,
-    );
-    var textpaddingelem = element.children[0].children[0]
-    // console.log(CamelToHypehn(prop))\
-    // console.log(prop)
-    switch (CamelToHypehn(prop)) {
-      case "border-style":
-      case "border-color":
-      case "background-image":
-        // console.log(element.children[0])
-        // console.log([snakeToCamel(prop)])
-        if (layer) {
-          // layer_element.style[snakeToCamel(prop)] = value;
-        }
-        element.children[0].style[snakeToCamel(prop)] = value || "";
+    for (var element of elements) {
+      //?***
+      var element = element;
+      var prop = json.prop || json.property;
+      var value = json.value || json.val;
+      var layer = json.layer || false;
+      var incdecsign = json.incdecsign;
+      var border_el = element.children[0]
+      var element_type = element.getAttribute("primary-element-type");
+      var SvgEl = element_type == "Path";
+      var TextEl = element_type == "Text";
+      var TextpathEl = element_type == "Textpath";
+      if (TextEl) {
+        var Text_stylel = element.children[0]
+      }
+      if (TextpathEl) {
+        var Textpath_stylel = element.children[0]
+      }
 
-        break;
-      case "inner-text":
-        if (element_type == "Text") {
-          element.children[0].children[0].innerHTML = value;
-          if (layer) {
-            layer_element.innerText = value;
-          }
-        } else if (element_type == "Textpath") {
-          element.children[0].innerHTML = value;
-        }
-        break;
-      // !!!!
-      case "height":
-      case "width":
-      case "position-y":
-      case "position-x":
-      case "rotate":
-        if (incdecsign == undefined) {
-          transformFunc.updateValue(element, prop, value);
-        } else {
-          if (incdecsign == "+") {
-            transformFunc.updateValue(
-              element,
-              prop,
-              transformFunc.getValue(element)[prop] + parseFloat(value),
-            );
-          } else if (incdecsign == "-") {
-            transformFunc.updateValue(
-              element,
-              prop,
-              transformFunc.getValue(element)[prop] - parseFloat(value),
-            );
-          }
-        }
-        break;
-
-      case "border-top-width":
-      case "border-left-width":
-      case "border-right-width":
-      case "border-bottom-width":
-        if (incdecsign == undefined) {
-          text_element.style[snakeToCamel(prop)] = value;
-          if (layer) {
-            layer_element.style[snakeToCamel(prop)] = value;
-          }
-        } else {
-          if (incdecsign == "+") {
-            // text_element.style[snakeToCamel(prop)] = parseInt(text_element.style[snakeToCamel(prop)]) + parseFloat(value) + "px"
-            text_element.style[snakeToCamel(prop)] =
-              parseInt(getComputedValue(text_element, prop)) +
-              parseFloat(value) +
-              "px";
-          } else if (incdecsign == "-") {
-            // text_element.style[snakeToCamel(prop)] = parseInt(text_element.style[snakeToCamel(prop)]) - parseFloat(value) + "px"
-            text_element.style[snakeToCamel(prop)] =
-              parseInt(getComputedValue(text_element, prop)) -
-              parseFloat(value) +
-              "px";
-          }
-        }
-        break;
-      case "font-family":
-      case "text-shadow":
-      case "font-size":
-      case "letter-spacing":
-      case "word-spacing":
-      case "line-height":
-      case "font-weight":
-      case "font-style":
-      case "text-align":
-      case "text-decoration":
-        // element.children[0].children[0].style[snakeToCamel(prop)] = value;
-        element.children[0].style[snakeToCamel(prop)] = value;
-        break;
-      case "color":
-        if(TextEl){
-          Text_stylel.style.color = value
-        }else if(TextpathEl){
-          Textpath_stylel.style.fill = value
-        }
-        break
-      case "-webkit-text-stroke-width":
-          if(TextEl){
-            Text_stylel.style[prop] = value
-          }else if(TextpathEl){
-            Textpath_stylel.style.strokeWidth = value
-          }
-          break
-      case "-webkit-text-stroke-color":
-            if(TextEl){
-              Text_stylel.style[prop] = value
-            }else if(TextpathEl){
-              Textpath_stylel.style.stroke = value
-            }
-            break
-      
-
-      case "drop-shadow":
-        if (SvgEl) {
-          element.style.filter = value.split("&&&")[0];
-          element.setAttribute("dropShadow", value.split("&&&")[1]);
-        } else {
-          element.children[0].style.filter = value.split("&&&")[0];
-          element.children[0].setAttribute("dropShadow", value.split("&&&")[1]);
-        }
-        break;
-
-      case "link":
-        var a = document.createElement("a");
-        a.classList.add("Interact_link");
-        element.insertBefore(a.element.children[0]);
-        break;
-
-      case "display":
-        console.log([snakeToCamel(prop)]);
-        element.style[snakeToCamel(prop)] = value;
-        break;
-      case "border-top-left-radius":
-      case "border-top-right-radius":
-      case "border-bottom-left-radius":
-      case "border-bottom-right-radius":
-        if (incdecsign != true) {
-          element.children[0].style[snakeToCamel(prop)] = value;
+      var HtmlEl = element_type == "Image" || element_type == "Text";
+      // if (element_type == "Text") {
+      var text_element = element.children[0];
+      // }
+      // console.log(element, prop, value, layer, incdecsign)
+      var layer_element = document.querySelector(
+        `[layer_element_name=${element.getAttribute("element_name")}]`,
+      );
+      var textpaddingelem = element.children[0].children[0]
+      // console.log(CamelToHypehn(prop))\
+      // console.log(prop)
+      switch (CamelToHypehn(prop)) {
+        case "border-style":
+        case "border-color":
+        case "background-image":
+          // console.log(element.children[0])
+          // console.log([snakeToCamel(prop)])
           if (layer) {
             // layer_element.style[snakeToCamel(prop)] = value;
           }
-        } else {
-          var prev_val = getComputedValue(element.children[0], prop).split(" ");
-          if (incdecsign == "+") {
-            if (prev_val.length == 2) {
-              element.children[0].style[snakeToCamel(prop)] = `${parseInt(prev_val[0]) + parseFloat(value)
-                }% ${parseInt(prev_val[1]) + parseFloat(value)}%`;
-            } else {
-              element.children[0].style[snakeToCamel(prop)] = `${parseInt(prev_val[0]) + parseFloat(value)
-                }%`;
+          element.children[0].style[snakeToCamel(prop)] = value || "";
+
+          break;
+        case "inner-text":
+          if (element_type == "Text") {
+            element.children[0].children[0].innerHTML = value;
+            if (layer) {
+              layer_element.innerText = value;
             }
-            element.children[0].style[snakeToCamel(prop)] =
-              parseInt(getComputedValue(text_element, prop)) +
-              parseFloat(value) +
-              "px";
-          } else if (incdecsign == "-") {
-            if (prev_val.length == 2) {
-              element.children[0].style[snakeToCamel(prop)] = `${parseInt(prev_val[0]) - parseFloat(value)
-                }% ${parseInt(prev_val[1]) + parseFloat(value)}%`;
-            } else {
-              element.children[0].style[snakeToCamel(prop)] = `${parseInt(prev_val[0]) - parseFloat(value)
-                }%`;
+          } else if (element_type == "Textpath") {
+            element.children[0].innerHTML = value;
+          }
+          break;
+        // !!!!
+        case "height":
+        case "width":
+        case "position-y":
+        case "position-x":
+        case "rotate":
+          if (incdecsign == undefined) {
+            transformFunc.updateValue(element, prop, value);
+          } else {
+            if (incdecsign == "+") {
+              transformFunc.updateValue(
+                element,
+                prop,
+                transformFunc.getValue(element)[prop] + parseFloat(value),
+              );
+            } else if (incdecsign == "-") {
+              transformFunc.updateValue(
+                element,
+                prop,
+                transformFunc.getValue(element)[prop] - parseFloat(value),
+              );
             }
           }
-        }
-        break;
-      case "border-radius":
-        InteracStyles.UpdateStyles({
-          element: element,
-          prop: "border-top-left-radius",
-          value: value,
-          layer: layer,
-        });
-        InteracStyles.UpdateStyles({
+          break;
 
-          element: element,
-          prop: "border-top-right-radius",
-          value: value,
-          layer: layer,
-        });
-        InteracStyles.UpdateStyles({
-          element: element,
-          prop: "border-bottom-left-radius",
-          value: value,
-          layer: layer,
-        });
-        InteracStyles.UpdateStyles({
-          element: element,
-          prop: "border-bottom-right-radius",
-          value: value,
-          layer: layer,
-        });
-        break;
-      case "border-width":
-        element.children[0].style.borderWidth = value;
-        break;
-      case "background-color":
-        if (SvgEl) {
-          element.style.fill = value;
-        } else {
-          element.children[0].style.backgroundColor = value;
-        }
-        break;
-      case "border-top-color":
-        border_el.style.borderColor = `${value} ${getComputedValue(border_el, "border-right-color")} ${getComputedValue(border_el, "border-bottom-color")} ${getComputedValue(border_el, "border-left-color")}`
-        break
-      case "border-left-color":
-        border_el.style.borderColor = `${getComputedValue(border_el, "border-top-color")} ${getComputedValue(border_el, "border-right-color")} ${getComputedValue(border_el, "border-bottom-color")} ${value}`
-        break
-      case "border-bottom-color":
-        border_el.style.borderColor = `${getComputedValue(border_el, "border-top-color")} ${getComputedValue(border_el, "border-right-color")} ${value} ${getComputedValue(border_el, "border-left-color")}`
-        break
-      case "border-right-color":
-        border_el.style.borderColor = `${getComputedValue(border_el, "border-top-color")} ${value} ${getComputedValue(border_el, "border-bottom-color")} ${getComputedValue(border_el, "border-left-color")}`
-        break
-      case "border-top-style":
-        border_el.style.borderTopStyle = `${value} ${getComputedValue(border_el, "border-right-style")} ${getComputedValue(border_el, "border-bottom-style")} ${getComputedValue(border_el, "border-left-style")}`
-        break
-      case "border-left-style":
-        border_el.style.borderLeftStyle = `${getComputedValue(border_el, "border-top-style")} ${getComputedValue(border_el, "border-right-style")} ${getComputedValue(border_el, "border-bottom-style")} ${value}`
-        break
-      case "border-bottom-style":
-        border_el.style.borderBottomStyle = `${getComputedValue(border_el, "border-top-style")} ${getComputedValue(border_el, "border-right-style")} ${value} ${getComputedValue(border_el, "border-left-style")}`
-        break
-      case "border-right-style":
-        border_el.style.borderRightStyle = `${getComputedValue(border_el, "border-top-style")} ${value} ${getComputedValue(border_el, "border-bottom-style")} ${getComputedValue(border_el, "border-left-style")}`
-        break
-      case "border-top-width":
-        if (incdecsign == undefined) {
-          border_el.style.borderColor = `${parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
-        }
-        else {
-          if (incdecsign == "+") {
-            border_el.style.borderColor = `${parseInt(getComputedValue(border_el, "border-top-width")) + parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
-
-          } else if (incdecsign == "-") {
-            border_el.style.borderColor = `${parseInt(getComputedValue(border_el, "border-top-width")) - parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
-
+        case "border-top-width":
+        case "border-left-width":
+        case "border-right-width":
+        case "border-bottom-width":
+          if (incdecsign == undefined) {
+            text_element.style[snakeToCamel(prop)] = value;
+            if (layer) {
+              layer_element.style[snakeToCamel(prop)] = value;
+            }
+          } else {
+            if (incdecsign == "+") {
+              // text_element.style[snakeToCamel(prop)] = parseInt(text_element.style[snakeToCamel(prop)]) + parseFloat(value) + "px"
+              text_element.style[snakeToCamel(prop)] =
+                parseInt(getComputedValue(text_element, prop)) +
+                parseFloat(value) +
+                "px";
+            } else if (incdecsign == "-") {
+              // text_element.style[snakeToCamel(prop)] = parseInt(text_element.style[snakeToCamel(prop)]) - parseFloat(value) + "px"
+              text_element.style[snakeToCamel(prop)] =
+                parseInt(getComputedValue(text_element, prop)) -
+                parseFloat(value) +
+                "px";
+            }
           }
-        }
-        break
-      case "padding-top":
-        console.log(value)
-        if (incdecsign == undefined) {
-          textpaddingelem.style.padding = `${parseInt(value)}px ${getComputedValue(textpaddingelem, "padding-right")} ${getComputedValue(textpaddingelem, "padding-bottom")} ${getComputedValue(textpaddingelem, "padding-left")}`
-        
-          console.log(`${parseInt(value)}px ${getComputedValue(textpaddingelem, "padding-right")} ${getComputedValue(textpaddingelem, "padding-bottom")} ${getComputedValue(textpaddingelem, "padding-left")}`)
-        console.log(textpaddingelem)
-      }
-        else {
-          if (incdecsign == "+") {
-            border_el.style.borderColor = `${parseInt(getComputedValue(border_el, "border-top-width")) + parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
-
-          } else if (incdecsign == "-") {
-            border_el.style.borderColor = `${parseInt(getComputedValue(border_el, "border-top-width")) - parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
-
+          break;
+        case "font-family":
+        case "text-shadow":
+        case "font-size":
+        case "letter-spacing":
+        case "word-spacing":
+        case "line-height":
+        case "font-weight":
+        case "font-style":
+        case "text-align":
+        case "text-decoration":
+          // element.children[0].children[0].style[snakeToCamel(prop)] = value;
+          element.children[0].style[snakeToCamel(prop)] = value;
+          break;
+        case "color":
+          if (TextEl) {
+            Text_stylel.style.color = value
+          } else if (TextpathEl) {
+            Textpath_stylel.style.fill = value
           }
-        }
-        break
-      case "padding-left":
-        if (incdecsign == undefined) {
-          textpaddingelem.style.padding = `${getComputedValue(textpaddingelem, "padding-top")} ${getComputedValue(textpaddingelem, "padding-right")} ${getComputedValue(textpaddingelem, "padding-bottom")} ${parseInt(value)}px`
-        }
-        else {
-          if (incdecsign == "+") {
-            border_el.style.borderColor = `${parseInt(getComputedValue(border_el, "border-top-width")) + parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
-
-          } else if (incdecsign == "-") {
-            border_el.style.borderColor = `${parseInt(getComputedValue(border_el, "border-top-width")) - parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
-
+          break
+        case "-webkit-text-stroke-width":
+          if (TextEl) {
+            Text_stylel.style[prop] = value
+          } else if (TextpathEl) {
+            Textpath_stylel.style.strokeWidth = value
           }
-        }
-        break
-      case "padding-right":
-        if (incdecsign == undefined) {
-          textpaddingelem.style.padding = `${getComputedValue(textpaddingelem, "padding-top")} ${parseInt(value)}px ${getComputedValue(textpaddingelem, "padding-bottom")} ${getComputedValue(textpaddingelem, "padding-left")}`
-        }
-        else {
-          if (incdecsign == "+") {
-            border_el.style.borderColor = `${parseInt(getComputedValue(border_el, "border-top-width")) + parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
-
-          } else if (incdecsign == "-") {
-            border_el.style.borderColor = `${parseInt(getComputedValue(border_el, "border-top-width")) - parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
-
+          break
+        case "-webkit-text-stroke-color":
+          if (TextEl) {
+            Text_stylel.style[prop] = value
+          } else if (TextpathEl) {
+            Textpath_stylel.style.stroke = value
           }
-        }
-        break
-      case "padding-bottom":
-        textpaddingelem = textpaddingelem.parentNode
-        if (incdecsign == undefined) {
-          textpaddingelem.style.padding = `${getComputedValue(textpaddingelem, "padding-top")} ${getComputedValue(textpaddingelem, "padding-right")} ${parseInt(value)}px  ${getComputedValue(textpaddingelem, "padding-left")}`
-        }
-        else {
-          if (incdecsign == "+") {
-            border_el.style.borderColor = `${parseInt(getComputedValue(border_el, "border-top-width")) + parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
+          break
 
-          } else if (incdecsign == "-") {
-            border_el.style.borderColor = `${parseInt(getComputedValue(border_el, "border-top-width")) - parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
 
+        case "drop-shadow":
+          if (SvgEl) {
+            element.style.filter = value.split("&&&")[0];
+            element.setAttribute("dropShadow", value.split("&&&")[1]);
+          } else {
+            element.children[0].style.filter = value.split("&&&")[0];
+            element.children[0].setAttribute("dropShadow", value.split("&&&")[1]);
           }
-        }
-        break
-      case "stroke-width":
-        element.style[prop] = parseFloat(value) + "px"
-      case "stroke":
-        element.style[prop] = value
-      case "src":
-        BoxContainer.ChangeSrc(element,value)
-      break
+          break;
+
+        case "link":
+          var a = document.createElement("a");
+          a.classList.add("Interact_link");
+          element.insertBefore(a.element.children[0]);
+          break;
+
+        case "display":
+          console.log([snakeToCamel(prop)]);
+          element.style[snakeToCamel(prop)] = value;
+          break;
+        case "border-top-left-radius":
+        case "border-top-right-radius":
+        case "border-bottom-left-radius":
+        case "border-bottom-right-radius":
+          if (incdecsign != true) {
+            element.children[0].style[snakeToCamel(prop)] = value;
+            if (layer) {
+              // layer_element.style[snakeToCamel(prop)] = value;
+            }
+          } else {
+            var prev_val = getComputedValue(element.children[0], prop).split(" ");
+            if (incdecsign == "+") {
+              if (prev_val.length == 2) {
+                element.children[0].style[snakeToCamel(prop)] = `${parseInt(prev_val[0]) + parseFloat(value)
+                  }% ${parseInt(prev_val[1]) + parseFloat(value)}%`;
+              } else {
+                element.children[0].style[snakeToCamel(prop)] = `${parseInt(prev_val[0]) + parseFloat(value)
+                  }%`;
+              }
+              element.children[0].style[snakeToCamel(prop)] =
+                parseInt(getComputedValue(text_element, prop)) +
+                parseFloat(value) +
+                "px";
+            } else if (incdecsign == "-") {
+              if (prev_val.length == 2) {
+                element.children[0].style[snakeToCamel(prop)] = `${parseInt(prev_val[0]) - parseFloat(value)
+                  }% ${parseInt(prev_val[1]) + parseFloat(value)}%`;
+              } else {
+                element.children[0].style[snakeToCamel(prop)] = `${parseInt(prev_val[0]) - parseFloat(value)
+                  }%`;
+              }
+            }
+          }
+          break;
+        case "border-radius":
+          InteracStyles.UpdateStyles({
+            element: element,
+            prop: "border-top-left-radius",
+            value: value,
+            layer: layer,
+          });
+          InteracStyles.UpdateStyles({
+
+            element: element,
+            prop: "border-top-right-radius",
+            value: value,
+            layer: layer,
+          });
+          InteracStyles.UpdateStyles({
+            element: element,
+            prop: "border-bottom-left-radius",
+            value: value,
+            layer: layer,
+          });
+          InteracStyles.UpdateStyles({
+            element: element,
+            prop: "border-bottom-right-radius",
+            value: value,
+            layer: layer,
+          });
+          break;
+        case "border-width":
+          element.children[0].style.borderWidth = value;
+          break;
+        case "background-color":
+          if (SvgEl) {
+            element.style.fill = value;
+          } else {
+            element.children[0].style.backgroundColor = value;
+          }
+          break;
+        case "border-top-color":
+          border_el.style.borderColor = `${value} ${getComputedValue(border_el, "border-right-color")} ${getComputedValue(border_el, "border-bottom-color")} ${getComputedValue(border_el, "border-left-color")}`
+          break
+        case "border-left-color":
+          border_el.style.borderColor = `${getComputedValue(border_el, "border-top-color")} ${getComputedValue(border_el, "border-right-color")} ${getComputedValue(border_el, "border-bottom-color")} ${value}`
+          break
+        case "border-bottom-color":
+          border_el.style.borderColor = `${getComputedValue(border_el, "border-top-color")} ${getComputedValue(border_el, "border-right-color")} ${value} ${getComputedValue(border_el, "border-left-color")}`
+          break
+        case "border-right-color":
+          border_el.style.borderColor = `${getComputedValue(border_el, "border-top-color")} ${value} ${getComputedValue(border_el, "border-bottom-color")} ${getComputedValue(border_el, "border-left-color")}`
+          break
+        case "border-top-style":
+          border_el.style.borderTopStyle = `${value} ${getComputedValue(border_el, "border-right-style")} ${getComputedValue(border_el, "border-bottom-style")} ${getComputedValue(border_el, "border-left-style")}`
+          break
+        case "border-left-style":
+          border_el.style.borderLeftStyle = `${getComputedValue(border_el, "border-top-style")} ${getComputedValue(border_el, "border-right-style")} ${getComputedValue(border_el, "border-bottom-style")} ${value}`
+          break
+        case "border-bottom-style":
+          border_el.style.borderBottomStyle = `${getComputedValue(border_el, "border-top-style")} ${getComputedValue(border_el, "border-right-style")} ${value} ${getComputedValue(border_el, "border-left-style")}`
+          break
+        case "border-right-style":
+          border_el.style.borderRightStyle = `${getComputedValue(border_el, "border-top-style")} ${value} ${getComputedValue(border_el, "border-bottom-style")} ${getComputedValue(border_el, "border-left-style")}`
+          break
+        case "border-top-width":
+          if (incdecsign == undefined) {
+            border_el.style.borderColor = `${parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
+          }
+          else {
+            if (incdecsign == "+") {
+              border_el.style.borderColor = `${parseInt(getComputedValue(border_el, "border-top-width")) + parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
+
+            } else if (incdecsign == "-") {
+              border_el.style.borderColor = `${parseInt(getComputedValue(border_el, "border-top-width")) - parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
+
+            }
+          }
+          break
+        case "padding-top":
+          console.log(value)
+          if (incdecsign == undefined) {
+            textpaddingelem.style.padding = `${parseInt(value)}px ${getComputedValue(textpaddingelem, "padding-right")} ${getComputedValue(textpaddingelem, "padding-bottom")} ${getComputedValue(textpaddingelem, "padding-left")}`
+
+            console.log(`${parseInt(value)}px ${getComputedValue(textpaddingelem, "padding-right")} ${getComputedValue(textpaddingelem, "padding-bottom")} ${getComputedValue(textpaddingelem, "padding-left")}`)
+            console.log(textpaddingelem)
+          }
+          else {
+            if (incdecsign == "+") {
+              border_el.style.borderColor = `${parseInt(getComputedValue(border_el, "border-top-width")) + parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
+
+            } else if (incdecsign == "-") {
+              border_el.style.borderColor = `${parseInt(getComputedValue(border_el, "border-top-width")) - parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
+
+            }
+          }
+          break
+        case "padding-left":
+          if (incdecsign == undefined) {
+            textpaddingelem.style.padding = `${getComputedValue(textpaddingelem, "padding-top")} ${getComputedValue(textpaddingelem, "padding-right")} ${getComputedValue(textpaddingelem, "padding-bottom")} ${parseInt(value)}px`
+          }
+          else {
+            if (incdecsign == "+") {
+              border_el.style.borderColor = `${parseInt(getComputedValue(border_el, "border-top-width")) + parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
+
+            } else if (incdecsign == "-") {
+              border_el.style.borderColor = `${parseInt(getComputedValue(border_el, "border-top-width")) - parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
+
+            }
+          }
+          break
+        case "padding-right":
+          if (incdecsign == undefined) {
+            textpaddingelem.style.padding = `${getComputedValue(textpaddingelem, "padding-top")} ${parseInt(value)}px ${getComputedValue(textpaddingelem, "padding-bottom")} ${getComputedValue(textpaddingelem, "padding-left")}`
+          }
+          else {
+            if (incdecsign == "+") {
+              border_el.style.borderColor = `${parseInt(getComputedValue(border_el, "border-top-width")) + parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
+
+            } else if (incdecsign == "-") {
+              border_el.style.borderColor = `${parseInt(getComputedValue(border_el, "border-top-width")) - parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
+
+            }
+          }
+          break
+        case "padding-bottom":
+          textpaddingelem = textpaddingelem.parentNode
+          if (incdecsign == undefined) {
+            textpaddingelem.style.padding = `${getComputedValue(textpaddingelem, "padding-top")} ${getComputedValue(textpaddingelem, "padding-right")} ${parseInt(value)}px  ${getComputedValue(textpaddingelem, "padding-left")}`
+          }
+          else {
+            if (incdecsign == "+") {
+              border_el.style.borderColor = `${parseInt(getComputedValue(border_el, "border-top-width")) + parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
+
+            } else if (incdecsign == "-") {
+              border_el.style.borderColor = `${parseInt(getComputedValue(border_el, "border-top-width")) - parseInt(value)}px ${getComputedValue(border_el, "border-right-width")} ${getComputedValue(border_el, "border-bottom-width")} ${getComputedValue(border_el, "border-left-width")}`
+
+            }
+          }
+          break
+        case "stroke-width":
+          element.style[prop] = parseFloat(value) + "px"
+        case "stroke":
+          element.style[prop] = value
+        case "src":
+          BoxContainer.ChangeSrc(element, value)
+          break
         // if (element_type == "Audio" || element_type == "YoutubeVideo" || ) {
         //   var json =  { src: value,element_name:element.getAttribute('element_name'),element_stake : element.getAttribute('element_stake') }
         //   BoxContainer.Add(element,json)
-          
+
         //   //BoxContainer.delete(element)
         //   // element.remove()
         // }
@@ -3547,21 +3612,22 @@ export const InteracStyles = {
         //   BoxContainer.delete(element)
         //   // element.remove()
         // }
-      // case "border-bottom-right-radius":
-      //   if (incdecsign == undefined) {
-      //     border_el.style.borderBottomRightRadius = `${parseInt(value)}px`}         
-      //     else{
-      //       if (incdecsign == "+") {
-      //     border_el.style.borderBottomRightRadius = `${parseInt(value)}px`
+        // case "border-bottom-right-radius":
+        //   if (incdecsign == undefined) {
+        //     border_el.style.borderBottomRightRadius = `${parseInt(value)}px`}         
+        //     else{
+        //       if (incdecsign == "+") {
+        //     border_el.style.borderBottomRightRadius = `${parseInt(value)}px`
 
-      //       } else if (incdecsign == "-"){
-      //     border_el.style.borderColor = `${parseInt(getComputedValue(border_el,"border-top-width")) - parseInt(value)}px ${getComputedValue(border_el,"border-right-width")} ${getComputedValue(border_el,"border-bottom-width")} ${getComputedValue(border_el,"border-left-width")}`       
+        //       } else if (incdecsign == "-"){
+        //     border_el.style.borderColor = `${parseInt(getComputedValue(border_el,"border-top-width")) - parseInt(value)}px ${getComputedValue(border_el,"border-right-width")} ${getComputedValue(border_el,"border-bottom-width")} ${getComputedValue(border_el,"border-left-width")}`       
 
-      // }
-      // }
+        // }
+        // }
 
-      // break
-    }}
+        // break
+      }
+    }
   },
 
   getValue: function (json) {
@@ -3569,20 +3635,20 @@ export const InteracStyles = {
     var prop = json.prop;
     var element_type = element.getAttribute("primary-element-type");
     var SvgEl = element_type == "Path";
-    var TextEl =  element_type == "Text";
-    var TextpathEl =  element_type == "Textpath";
-    if(TextEl){
+    var TextEl = element_type == "Text";
+    var TextpathEl = element_type == "Textpath";
+    if (TextEl) {
       var Text_stylel = element.children[0]
     }
-    if(TextpathEl){
+    if (TextpathEl) {
       var Textpath_stylel = element.children[0]
     }
     var textpaddingelem = element.children[0].children[0]
     switch (CamelToHypehn(prop)) {
       case "inner-text":
-        if ( element_type == "Textpath") {
+        if (element_type == "Textpath") {
           return element.children[0].innerHTML || "";
-        }else if(element_type == "Text"){
+        } else if (element_type == "Text") {
           return element.children[0].children[0].innerHTML || "";
         }
         break;
@@ -3598,14 +3664,14 @@ export const InteracStyles = {
         }
         break;
       case "src":
-        if(element_type == 'Audio' || element_type== 'Video'){
+        if (element_type == 'Audio' || element_type == 'Video') {
           return element.querySelector('source').src
-        }else if(element_type == 'Image'){
+        } else if (element_type == 'Image') {
           return element.querySelector('img').src
-        }else if(element_type =='YoutubeVideo' ){
+        } else if (element_type == 'YoutubeVideo') {
           return element.getAttribute('yt-id')
         }
-      break
+        break
       case "background-color":
         if (SvgEl) {
           if (element.style.fill != "" && element.style.fill != "transparent") {
@@ -3645,67 +3711,71 @@ export const InteracStyles = {
         return element.children[0].style[snakeToCamel(prop)];
         break;
       case "color":
-        if(TextEl){
-          if(Text_stylel.style[prop] != ""){
-          return tinycolor(Text_stylel.style[prop]).toHexString()}
-          else{
+        if (TextEl) {
+          if (Text_stylel.style[prop] != "") {
+            return tinycolor(Text_stylel.style[prop]).toHexString()
+          }
+          else {
             return "#000000"
           }
-        }else if(TextpathEl){
+        } else if (TextpathEl) {
           //console.log(Textpath_stylel.style.fill)
-          if(Textpath_stylel.style.fill != ""){
-            return tinycolor(Textpath_stylel.style.fill).toHexString()}
-            else{
-              return "#000000"
-            }
-          
+          if (Textpath_stylel.style.fill != "") {
+            return tinycolor(Textpath_stylel.style.fill).toHexString()
+          }
+          else {
+            return "#000000"
+          }
+
         }
-      break
+        break
       case "-webkit-text-stroke-color":
-        if(TextEl){
-          if(Text_stylel.style[prop] != ""){
-            return tinycolor(Text_stylel.style[prop]).toHexString()}
-            else{
-              return Text_stylel.style[prop]
-            }
-        }else if(TextpathEl){
-          if(Textpath_stylel.style.fill != ""){
-            return tinycolor(Textpath_stylel.style.stroke).toHexString()}
-            else{
-              return "none"
-            }
-          
+        if (TextEl) {
+          if (Text_stylel.style[prop] != "") {
+            return tinycolor(Text_stylel.style[prop]).toHexString()
+          }
+          else {
+            return Text_stylel.style[prop]
+          }
+        } else if (TextpathEl) {
+          if (Textpath_stylel.style.fill != "") {
+            return tinycolor(Textpath_stylel.style.stroke).toHexString()
+          }
+          else {
+            return "none"
+          }
+
         }
         // if (!SvgEl) {
         //   return tinycolor(element.children[0].style[prop]).toHexString() || "none";
         // }
         break
       case "-webkit-text-stroke-width":
-        if(TextEl){
+        if (TextEl) {
           return Text_stylel.style[prop]
-        }else if(TextpathEl){
+        } else if (TextpathEl) {
           return Textpath_stylel.style.strokeWidth || 0
         }
         break
       case "padding-right":
       case "padding-top":
       case "padding-left":
-          if(TextEl){
-            if (getComputedValue(textpaddingelem, prop) == "") {
-              BoxContainer.svg().append(element);
-              var data = getComputedValue(textpaddingelem, prop);
-              element.remove();
-              console.log(data)
-              return data;
-            } else {
-              // console.log(getComputedValue(element.children[0], prop));
-              return getComputedValue(textpaddingelem, prop);
-            }
+        if (TextEl) {
+          if (getComputedValue(textpaddingelem, prop) == "") {
+            BoxContainer.svg().append(element);
+            var data = getComputedValue(textpaddingelem, prop);
+            element.remove();
+            console.log(data)
+            return data;
+          } else {
+            // console.log(getComputedValue(element.children[0], prop));
+            return getComputedValue(textpaddingelem, prop);
           }
+        }
 
-      break
+        break
       case "padding-bottom":
-        if(TextEl){
+        if (TextEl) {
           textpaddingelem = textpaddingelem.parentNode
           if (getComputedValue(textpaddingelem, prop) == "") {
             BoxContainer.svg().append(element);
@@ -3719,7 +3789,7 @@ export const InteracStyles = {
           }
         }
 
-      break
+        break
 
       case "text-shadow":
       case "word-spacing":
@@ -4345,20 +4415,20 @@ document.querySelector("#CreateTextPathBtn").onclick = (e) => {
     BoxContainer.svg().style.cursor = "auto";
     BoxContainer.svg().onmousedown = (e) => { };
   } else {
-    
+
     BoxContainer.svg().style.cursor = "crosshair";
 
     e.target.classList.add("collapsed_div");
 
-   
+
     BoxContainer.svg().onmousedown = (e) => {
-     
+
       var Created = BoxContainer.CreateTextPathElement({ return: true });
       var path = Created.path;
       var textpath = Created.textpath;
       var svg_text = Created.svg_text;
       BoxContainer.set_stake(svg_text);
-      InteractMessage("textpath Added","lightgreen")
+      InteractMessage("textpath Added", "lightgreen")
       layerDiv.Add(svg_text);
       // var points = `M${e.clientX},${e.clientY}`
       var ex = e.x - parseFloat(BoxContainer.svg().getBoundingClientRect().left);
@@ -4373,8 +4443,8 @@ document.querySelector("#CreateTextPathBtn").onclick = (e) => {
 
         path.setAttributeNS(null, "d", points);
         textpath.innerHTML = textpath.innerHTML + "Text_here";
-        
-       
+
+
       };
       BoxContainer.svg().onmouseup = (e) =>
         (BoxContainer.svg().onmousemove = (e) => { });

@@ -1,6 +1,6 @@
 import { transformFunc } from './Interact_style.js';
 import { getactiveel, } from './index.js';
-import { gettarget, toolboxFuncs, activeelFunction, activeel_position_divFuncs, getparent } from './functionsfile.js';
+import { gettarget, toolboxFuncs, activeelFunction, activeel_position_divFuncs, getparent,getJsonAttr } from './functionsfile.js';
 import { BoxContainer } from './Interac_BoxContainer.js';
 import { UpdateTransformStyleDiv, } from './UpdateStyleDiv.js';
 
@@ -197,8 +197,8 @@ export function DragMoveListener() {
             activeel_position_divFuncs.position()
             UpdateTransformStyleDiv(target)
             document.body.onmousemove = (e) => {
-                    var dx = e.clientX - startX 
-                    var dy = e.clientY - startY
+                    var dx = (e.clientX - startX )/ parseFloat(getJsonAttr(BoxContainer.elem(), "settings").scale)
+                    var dy = (e.clientY - startY)/ parseFloat(getJsonAttr(BoxContainer.elem(), "settings").scale)
                     // var dx = (e.clientX - startX) / 0.5
                     // var dy = (e.clientY - startY) / 0.5
 
@@ -212,7 +212,7 @@ export function DragMoveListener() {
                 },
                 document.body.onmouseup = (e) => {
                     target.style.cursor = "grab"
-                   // activeel_position_divFuncs.hide()
+                    activeel_position_divFuncs.hide()
                     document.body.onmousemove = (e) => {
                         ""
                     }

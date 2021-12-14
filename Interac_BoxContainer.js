@@ -54,11 +54,11 @@ export const BoxContainer = {
     // div: function () { return document.querySelector("[interactcontainer]").children[0] },
     set_stake: function (el, stake) {
         if (stake != undefined) {
-            el.setAttribute("element_stake",stake);
-        }else{
-            if(BoxContainer.svg().children.length != 1 && BoxContainer.svg().children.length != 0 ){
-                el.setAttribute("element_stake",parseInt(BoxContainer.svg().children[BoxContainer.svg().children.length - 2].getAttribute("element_stake")) + 1);
-            }else{
+            el.setAttribute("element_stake", stake);
+        } else {
+            if (BoxContainer.svg().children.length != 1 && BoxContainer.svg().children.length != 0) {
+                el.setAttribute("element_stake", parseInt(BoxContainer.svg().children[BoxContainer.svg().children.length - 2].getAttribute("element_stake")) + 1);
+            } else {
                 el.setAttribute("element_stake", 1);
             }
             // if(BoxContainer.svg().children.length != 1 && BoxContainer.svg().children.length != 0 ){
@@ -73,55 +73,55 @@ export const BoxContainer = {
             //     el.setAttribute("element_stake", 1);
             // }
         }
-    //     var istel;
-    //     if (stake == undefined) {
-    //         if(BoxContainer.svg().children.length != 0){
-    //             console.log(true)
-    //             if(BoxContainer.svg().children[BoxContainer.svg().children.length - 1].getAttribute("element_stake") != null){
-    //             istel = parseInt(BoxContainer.svg().children[BoxContainer.svg().children.length - 1].getAttribute("element_stake"))
-    //         }else{
-    //             istel = 0
-    //         }}
-    //         else{
-    //             istel = 0
-    //         }
-    //     }
-    //     console.log(parseInt(BoxContainer.svg().children[BoxContainer.svg().children.length - 1].getAttribute("element_stake")))
-    //     console.log(BoxContainer.svg().children[BoxContainer.svg().children.length - 1].getAttribute("element_stake"))
-    //     console.log(istel)
-    //     el.setAttribute(
-    //         "element_stake",
-    //         stake ||
-    //         istel + 1);
-    console.log(el.getAttribute("element_stake"))
-    if(el.getAttribute("element_stake") == NaN || el.getAttribute("element_stake") == "NaN" || el.getAttribute("element_stake") == null){
-        el.setAttribute("element_stake", 1);
-    }
+        //     var istel;
+        //     if (stake == undefined) {
+        //         if(BoxContainer.svg().children.length != 0){
+        //             console.log(true)
+        //             if(BoxContainer.svg().children[BoxContainer.svg().children.length - 1].getAttribute("element_stake") != null){
+        //             istel = parseInt(BoxContainer.svg().children[BoxContainer.svg().children.length - 1].getAttribute("element_stake"))
+        //         }else{
+        //             istel = 0
+        //         }}
+        //         else{
+        //             istel = 0
+        //         }
+        //     }
+        //     console.log(parseInt(BoxContainer.svg().children[BoxContainer.svg().children.length - 1].getAttribute("element_stake")))
+        //     console.log(BoxContainer.svg().children[BoxContainer.svg().children.length - 1].getAttribute("element_stake"))
+        //     console.log(istel)
+        //     el.setAttribute(
+        //         "element_stake",
+        //         stake ||
+        //         istel + 1);
+        console.log(el.getAttribute("element_stake"))
+        if (el.getAttribute("element_stake") == NaN || el.getAttribute("element_stake") == "NaN" || el.getAttribute("element_stake") == null) {
+            el.setAttribute("element_stake", 1);
+        }
     },
     getAllBoxElementsInfo: function () {
         var element_names = [];
-    var element_groups = [];
-    var element_ids = [];
-    //console.log(BoxContainer.elem())
-    //console.log(BoxContainer.elem().querySelectorAll('[element_name]'))
-    for (var el of BoxContainer.elem().querySelectorAll('[element_name]')) {
-        element_ids.push(el.id)
-        if (el.getAttribute('element_name') != "") {
-            element_names.push(el.getAttribute('element_name'))
-        }
-        if (el.getAttribute('element_groups') != "" && el.getAttribute('element_groups') != null) {
-            for (var groups of el.getAttribute('element_groups').split(',')) {
-                element_groups.push(groups)
+        var element_groups = [];
+        var element_ids = [];
+        //console.log(BoxContainer.elem())
+        //console.log(BoxContainer.elem().querySelectorAll('[element_name]'))
+        for (var el of BoxContainer.elem().querySelectorAll('[element_name]')) {
+            element_ids.push(el.id)
+            if (el.getAttribute('element_name') != "") {
+                element_names.push(el.getAttribute('element_name'))
             }
-            element_groups = [...new Set(element_groups)]
-        }
+            if (el.getAttribute('element_groups') != "" && el.getAttribute('element_groups') != null) {
+                for (var groups of el.getAttribute('element_groups').split(',')) {
+                    element_groups.push(groups)
+                }
+                element_groups = [...new Set(element_groups)]
+            }
 
-    }
-    return {
-        element_names: element_names,
-        element_ids: element_ids,
-        element_groups: element_groups,
-    }
+        }
+        return {
+            element_names: element_names,
+            element_ids: element_ids,
+            element_groups: element_groups,
+        }
         // if (BoxContainer.elem().querySelector("primary-element-type") == null) {
         //     return null;
         // } else {
@@ -274,10 +274,11 @@ export const BoxContainer = {
                 width: InteracStyles.getValue({ element: object, prop: "width" })
             };
             json.style = {};
-            try{if(object.querySelector('.freeze_div').style.height == "100%")
-                {
-                json.freeze = true}
-            }catch (err){
+            try {
+                if (object.querySelector('.freeze_div').style.height == "100%") {
+                    json.freeze = true
+                }
+            } catch (err) {
                 json.freeze = false
             }
             var audio_props = [
@@ -295,7 +296,7 @@ export const BoxContainer = {
                 });
             }
             BoxContainer.CreateAudioElement(editJsonVals(givenjson, json))
-        }else if (object.tagName == "video" || obj_type == "Video") {
+        } else if (object.tagName == "video" || obj_type == "Video") {
             var json = {
                 src: object.src || object.querySelector('source').src,
                 element_groups: object.getAttribute("element_groups") || ""
@@ -308,12 +309,13 @@ export const BoxContainer = {
                 width: InteracStyles.getValue({ element: object, prop: "width" })
             };
             json.style = {};
-            try{if(object.querySelector('.freeze_div').style.height == "100%")
-            {
-            json.freeze = true}
-        }catch (err){
-            json.freeze = false
-        }
+            try {
+                if (object.querySelector('.freeze_div').style.height == "100%") {
+                    json.freeze = true
+                }
+            } catch (err) {
+                json.freeze = false
+            }
             var audio_props = [
                 "drop-shadow",
                 "border-color",
@@ -329,15 +331,16 @@ export const BoxContainer = {
                 });
             }
             BoxContainer.CreateVideoElement(editJsonVals(givenjson, json))
-        }else if (obj_type == "YoutubeVideo") {
+        } else if (obj_type == "YoutubeVideo") {
             var json = {
                 src: object.src || object.getAttribute('yt-id') || object.querySelector('source').src,
-                element_groups: object.getAttribute("element_groups") || "",element_name:object.getAttribute("element_name") || ""
+                element_groups: object.getAttribute("element_groups") || "", element_name: object.getAttribute("element_name") || ""
             };
-            try{if(object.querySelector('.freeze_div').style.height == "100%")
-                {
-                json.freeze = true}
-            }catch (err){
+            try {
+                if (object.querySelector('.freeze_div').style.height == "100%") {
+                    json.freeze = true
+                }
+            } catch (err) {
                 json.freeze = false
             }
             json.transform = {
@@ -364,7 +367,7 @@ export const BoxContainer = {
                 });
             }
             BoxContainer.CreateYtVideoElement(editJsonVals(givenjson, json))
-        }else if(object.tagName == "path"){
+        } else if (object.tagName == "path") {
             json.transform = {
                 "position-x": InteracStyles.getValue({ element: object, prop: "position-x" }),
                 "position-y": InteracStyles.getValue({ element: object, prop: "position-y" }),
@@ -375,7 +378,7 @@ export const BoxContainer = {
             var path_props = [
                 "drop-shadow",
                 "background-color",
-                
+
             ];
             for (var propes of audio_props) {
                 json.style[propes] = InteracStyles.getValue({
@@ -383,13 +386,13 @@ export const BoxContainer = {
                     prop: propes
                 });
             }
-        }else if(obj_type == "Textpath"){
+        } else if (obj_type == "Textpath") {
             var json = {
-            element_groups: object.getAttribute("element_groups") || "",
-            innerText :object.children[0].innerHTML || "",
-            d:BoxContainer.svg().querySelector("#" + object.getAttribute('textpathid')).getAttribute('d')
-        };
-            
+                element_groups: object.getAttribute("element_groups") || "",
+                innerText: object.children[0].innerHTML || "",
+                d: BoxContainer.svg().querySelector("#" + object.getAttribute('textpathid')).getAttribute('d')
+            };
+
             json.transform = {
                 "position-x": InteracStyles.getValue({ element: object, prop: "position-x" }),
                 "position-y": InteracStyles.getValue({ element: object, prop: "position-y" }),
@@ -401,14 +404,14 @@ export const BoxContainer = {
 
             var textpath_props = [
                 "text-shadow",
-    "font-family",
-    "color",
-    "font-size","text-decoration",
-    "font-weight",
-    "font-style",
-    "letter-spacing",
-    "word-spacing","-webkit-text-stroke-width",
-    "-webkit-text-stroke-color",
+                "font-family",
+                "color",
+                "font-size", "text-decoration",
+                "font-weight",
+                "font-style",
+                "letter-spacing",
+                "word-spacing", "-webkit-text-stroke-width",
+                "-webkit-text-stroke-color",
             ];
             for (var propes of textpath_props) {
                 json.style[propes] = InteracStyles.getValue({
@@ -419,25 +422,27 @@ export const BoxContainer = {
             BoxContainer.CreateTextPathElement(editJsonVals(givenjson, json))
         }
     },
-    delete: function (element) 
-    { 
-        
+    delete: function (element) {
+
         layerDiv.delete(element)
         element.remove()
     },
     SetAspectRatio: function (arw, arh) {
         // if (digits_only(arw) && digits_only(arh)) {
-        BoxContainer.elem().style.top = "20%";
+        // BoxContainer.elem().style.top = "20%";
+        //BoxContainer.elem().style.left = "33%";
+        BoxContainer.elem().style.top = "10%";
         BoxContainer.elem().style.left = "33%";
         var mah = parseInt(
-            window.innerHeight - BoxContainer.elem().getBoundingClientRect().top - 20
+            //window.innerHeight - BoxContainer.elem().getBoundingClientRect().top - 20
+            window.innerHeight - BoxContainer.elem().getBoundingClientRect().top
         );
         // var maw = (window.innerWidth - BoxContainer.elem().getBoundingClientRect().x) - 20
         // var maw = (window.innerWidth - parseInt(getComputedValue(BoxContainer.elem(), 'left'))) - 20
         var left = parseInt((window.innerWidth * 33) / 100);
-        var top = parseInt((window.innerHeight * 20) / 100);
-        var maw = parseInt(window.innerWidth - left - 40);
-        var mah = parseInt(window.innerHeight - top - 40);
+        var top = parseInt((window.innerHeight * 10) / 100);
+        var maw = parseInt(window.innerWidth - left - 20);
+        var mah = parseInt(window.innerHeight - top - 20);
 
         // console.log(BoxContainer.elem().getBoundingClientRect().top)
         var nh = (maw * arh) / arw;
@@ -540,18 +545,33 @@ export const BoxContainer = {
             prop: "drop-shadow",
             val: json.style["drop-shadow"] || ""
         });
-        
+
 
         if (json.return) {
             return fo;
         } else {
             BoxContainer.set_stake(fo);
-            InteractMessage("Image Added","lightgreen")
+            InteractMessage("Image Added", "lightgreen")
             BoxContainer.svg().append(fo);
 
             layerDiv.Add(fo);
         }
     },
+
+    UpdateInContainerScaleFactor: function (json) {
+        var maw = window.innerWidth / 100 * json.maw
+        console.log(maw, window.innerWidth)
+
+        if (parseInt(BoxContainer.elem().style.width) > maw) {
+            BoxContainer.elem().style.transform = `scale(${parseInt(BoxContainer.elem().style.width) / maw})`
+            setJsonAttr(BoxContainer.elem(), "settings", "scale", `${parseInt(BoxContainer.elem().style.width) / maw}`)
+        }else{
+            BoxContainer.elem().style.transform = `scale(${ maw / parseInt(BoxContainer.elem().style.width) })`
+            setJsonAttr(BoxContainer.elem(), "settings", "scale", `${ maw / parseInt(BoxContainer.elem().style.width) }`)
+        }
+
+    }
+    ,
     CreateTextElement: function (json) {
         var fo = document.createElementNS(
             "http://www.w3.org/2000/svg",
@@ -561,21 +581,21 @@ export const BoxContainer = {
         var text_div = document.createElement("div");
         var text_p = document.createElement("div");
         var text = document.createElement("p");
-            text_div.addEventListener('dblclick',function(){
-                this.children[0].contentEditable = true
-            })
+        text_div.addEventListener('dblclick', function () {
+            this.children[0].contentEditable = true
+        })
 
-            // text_p.addEventListener('input',function(){
-            //     console.log('in')
-            //     var str = this.innerText.split('');
-            //     this.innerHTML = ""
-            //     for(var char of str){
-            //         var span = document.createElement('span');
-            //         span.innerText = char
-            //         this.append(span)
-            //     }
-    
-            // })
+        // text_p.addEventListener('input',function(){
+        //     console.log('in')
+        //     var str = this.innerText.split('');
+        //     this.innerHTML = ""
+        //     for(var char of str){
+        //         var span = document.createElement('span');
+        //         span.innerText = char
+        //         this.append(span)
+        //     }
+
+        // })
         text_div.append(text_p);
         text_p.append(text);
 
@@ -600,7 +620,7 @@ export const BoxContainer = {
         fo.setAttribute("y", json.transform["position-y"] || 50);
         fo.style.height = json.transform["height"] || "100px";
         fo.style.width = json.transform["width"] || "100px";
-        
+
         InteracStyles.UpdateStyles({ element: fo, prop: "rotate", value: (json.transform == {}) ? "0" : json.transform["rotate"] });
         // !!
 
@@ -640,7 +660,7 @@ export const BoxContainer = {
             prop: "paddingLeft",
             val: json.style["padding-left"] || "2px"
         });
-        
+
         InteracStyles.UpdateStyles({
             element: fo,
             layer: false,
@@ -754,7 +774,7 @@ export const BoxContainer = {
         });
 
 
-        fo.addEventListener("paste", function(e) {
+        fo.addEventListener("paste", function (e) {
             // cancel paste
             e.preventDefault();
             // get text representation of clipboard
@@ -771,7 +791,7 @@ export const BoxContainer = {
         } else {
             BoxContainer.set_stake(fo);
             // console.log(BoxContainer.svg())
-            InteractMessage("Text Added","lightgreen")
+            InteractMessage("Text Added", "lightgreen")
             BoxContainer.svg().append(fo);
 
             layerDiv.Add(fo);
@@ -840,7 +860,7 @@ export const BoxContainer = {
     CreateVideoElement: function (json) {
         var freeze_div = document.createElement("div");
         freeze_div.classList.add("freeze_div");
-        var fo = document.createElementNS("http://www.w3.org/2000/svg","foreignObject");
+        var fo = document.createElementNS("http://www.w3.org/2000/svg", "foreignObject");
         fo.id = getUniqueid("Interact-video-element");
 
         fo.setAttribute("primary-element-type", "Video");
@@ -933,7 +953,7 @@ export const BoxContainer = {
             preview_box.querySelector('svg').append(fo)
             // return fo;
         } else {
-            InteractMessage("Video Added","lightgreen")
+            InteractMessage("Video Added", "lightgreen")
             BoxContainer.set_stake(fo);
             layerDiv.Add(fo);
         }
@@ -941,7 +961,7 @@ export const BoxContainer = {
     CreatePathElement: function (json) {
         var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
         path.id = getUniqueid("Interact-path-element");
-        
+
         path.classList.add("draggable");
         transformFunc.defaultTransform(path);
         path.setAttribute("primary-element-type", "Path");
@@ -973,13 +993,13 @@ export const BoxContainer = {
     },
     CreateYtVideoElement: function (json) {
         // var div = document.createElement('div');
-        var fo = document.createElementNS("http://www.w3.org/2000/svg","foreignObject");
+        var fo = document.createElementNS("http://www.w3.org/2000/svg", "foreignObject");
 
         fo.setAttribute("primary-element-type", "YoutubeVideo");
         fo.id = getUniqueid("Interact-yt-element");
 
         fo.innerHTML = `<div id="" class="ytvideo" data-plyr-provider="youtube" data-plyr-embed-id=""></div> `;
-        
+
         BoxContainer.svg().append(fo);
 
         fo.style.height = json.height || "300px";
@@ -1006,20 +1026,20 @@ export const BoxContainer = {
         var check = fo.querySelector("div")
         var player = new Plyr(`#${fo.querySelector("div").id}`);
         console.log(player)
-        player.prototype.farewell = function() {
+        player.prototype.farewell = function () {
             alert('hihiiihi');
-          };
-          console.log(player)
+        };
+        console.log(player)
         console.log(check)
 
         var freeze_div = document.createElement("div");
         freeze_div.classList.add("freeze_div");
         fo.append(freeze_div);
-        if(json.style == undefined){
+        if (json.style == undefined) {
             json.style = {}
         }
-/STYLING/
-InteracStyles.UpdateStyles({ element: fo, prop: "position-x", value: (json.transform == {} || json.transform == undefined || json.transform["position-x"] == "") ? "0" : json.transform["position-x"] });
+        /STYLING/
+        InteracStyles.UpdateStyles({ element: fo, prop: "position-x", value: (json.transform == {} || json.transform == undefined || json.transform["position-x"] == "") ? "0" : json.transform["position-x"] });
         InteracStyles.UpdateStyles({ element: fo, prop: "position-y", value: (json.transform == {} || json.transform == undefined || json.transform["position-y"] == "") ? "0" : json.transform["position-y"] });
         InteracStyles.UpdateStyles({ element: fo, prop: "height", value: (json.transform == {} || json.transform == undefined || json.transform["height"] == "") ? "300" : json.transform["height"] });
         InteracStyles.UpdateStyles({ element: fo, prop: "width", value: (json.transform == {} || json.transform == undefined || json.transform["width"] == "") ? "300" : json.transform["width"] });
@@ -1081,9 +1101,9 @@ InteracStyles.UpdateStyles({ element: fo, prop: "position-x", value: (json.trans
             preview_box.querySelector('svg').append(fo)
             // console.log(fo)
             // return fo;
-            
+
         } else {
-            InteractMessage("Youtube Video Added","lightgreen")
+            InteractMessage("Youtube Video Added", "lightgreen")
             BoxContainer.set_stake(fo);
             BoxContainer.svg().append(fo);
             layerDiv.Add(fo);
@@ -1099,9 +1119,9 @@ InteracStyles.UpdateStyles({ element: fo, prop: "position-x", value: (json.trans
         // fo styling
         fo.style.height = json.height || "300px";
         fo.style.width = json.width || "300px";
-        fo.setAttribute("y", json["position-y"]  || "50");
+        fo.setAttribute("y", json["position-y"] || "50");
         fo.setAttribute("x", json["position-x"] || "50");
-        
+
         BoxContainer.svg().append(fo);
         // !!
         fo.setAttribute("primary-element-type", "Audio");
@@ -1109,7 +1129,7 @@ InteracStyles.UpdateStyles({ element: fo, prop: "position-x", value: (json.trans
     <source src="" type="audio/mp3">
        </audio> </div>`;
         fo.querySelector("audio").id = getUniqueid("audio-element");
-        fo.querySelector("source").src = json.src ;
+        fo.querySelector("source").src = json.src;
 
         fo.classList.add("draggable");
         transformFunc.defaultTransform(fo);
@@ -1122,7 +1142,7 @@ InteracStyles.UpdateStyles({ element: fo, prop: "position-x", value: (json.trans
         freeze_div.classList.add("freeze_div");
         fo.append(freeze_div);
         // trans
-        if(json.style == undefined){
+        if (json.style == undefined) {
             json.style = {}
         }
         console.log(json.transform)
@@ -1184,7 +1204,7 @@ InteracStyles.UpdateStyles({ element: fo, prop: "position-x", value: (json.trans
             console.log(json.freeze)
             freeze_div.style.height = "100%";
             freeze_div.style.width = "100%";
-        }else{
+        } else {
             console.log(json.freeze)
             freeze_div.style.height = "0%";
             freeze_div.style.width = "0%";
@@ -1198,7 +1218,7 @@ InteracStyles.UpdateStyles({ element: fo, prop: "position-x", value: (json.trans
             //     fo.remove()
             // }
         } else {
-            InteractMessage("Audio Added","lightgreen")
+            InteractMessage("Audio Added", "lightgreen")
             BoxContainer.set_stake(fo);
             BoxContainer.svg().append(fo);
             layerDiv.Add(fo);
@@ -1221,7 +1241,7 @@ InteracStyles.UpdateStyles({ element: fo, prop: "position-x", value: (json.trans
         svg_text.classList.add("draggable");
         svg_text.setAttribute("primary-element-type", "Textpath");
         textpath.setAttribute("secondary-element-type", "Textpath");
-        
+
         svg_text.setAttribute("element_groups", json.element_groups || "");
         svg_text.id = getUniqueid("Interact-textpath-element");
         svg_text.setAttribute(
@@ -1231,101 +1251,101 @@ InteracStyles.UpdateStyles({ element: fo, prop: "position-x", value: (json.trans
             BoxContainer.elem().querySelectorAll("[primary-element-type=Textpath")
                 .length
         );
-            console.log(json.d)
-        path.setAttribute('d',json.d || "")
-        textpath.innerHTML = json.innerText|| "Text"
-        
+        console.log(json.d)
+        path.setAttribute('d', json.d || "")
+        textpath.innerHTML = json.innerText || "Text"
+
         // InteracStyles.UpdateStyles({ element:svg_text, prop: "position-x", value: (json.transform == {} || json.transform == undefined || json.transform["position-x"] == "") ? "0" : json.transform["position-x"] });
         // InteracStyles.UpdateStyles({ element: svg_text, prop: "position-y", value: (json.transform == {} || json.transform == undefined || json.transform["position-y"] == "") ? "0" : json.transform["position-y"] });
         // InteracStyles.UpdateStyles({ element: svg_text, prop: "height", value: (json.transform == {} || json.transform == undefined || json.transform["height"] == "") ? "100" : json.transform["height"] });
         // InteracStyles.UpdateStyles({ element: svg_text, prop: "width", value: (json.transform == {} || json.transform == undefined || json.transform["width"] == "") ? "100" : json.transform["width"] });
-         InteracStyles.UpdateStyles({ element: svg_text, prop: "rotate", value: (json.transform == {} || json.transform == undefined || json.transform["rotate"] == "") ? "0" : json.transform["rotate"] });
+        InteracStyles.UpdateStyles({ element: svg_text, prop: "rotate", value: (json.transform == {} || json.transform == undefined || json.transform["rotate"] == "") ? "0" : json.transform["rotate"] });
 
 
 
 
-       // Styling
-       if(json.style == undefined){
-        json.style = {}
-    }
-       
-       
-       InteracStyles.UpdateStyles({
-        element: svg_text,
-        layer: false,
-        prop: "fontFamily",
-        val: json.style["font-family"] || "arial"
-    });
-    InteracStyles.UpdateStyles({
-        element: svg_text,
-        layer: false,
-        prop: "fontSize",
-        val: json.style["font-size"] || "25px"
-    });
-    InteracStyles.UpdateStyles({
-        element: svg_text,
-        layer: false,
-        prop: "letterSpacing",
-        val: json.style["letter-spacing"] || ""
-    });
-    InteracStyles.UpdateStyles({
-        element: svg_text,
-        layer: false,
-        prop: "wordSpacing",
-        val: json.style["word-spacing"] || ""
-    });
-    InteracStyles.UpdateStyles({
-        element: svg_text,
-        layer: false,
-        prop: "color",
-        val: json.style["color"] || "black"
-    });
+        // Styling
+        if (json.style == undefined) {
+            json.style = {}
+        }
 
-    InteracStyles.UpdateStyles({
-        element: svg_text,
-        layer: false,
-        prop: "text-shadow",
-        val: json.style["text-shadow"]
-    });
-    InteracStyles.UpdateStyles({
-        element: svg_text,
-        layer: false,
-        prop: "text-decoration",
-        val: json.style["text-decoration"] || "none"
-    });
-    InteracStyles.UpdateStyles({
-        element: svg_text,
-        layer: false,
-        prop: "font-weight",
-        val: json.style["font-weight"] || "normal"
-    });
-    InteracStyles.UpdateStyles({
-        element: svg_text,
-        layer: false,
-        prop: "font-style",
-        val: json.style["font-style"] || "noraml"
-    });
-    InteracStyles.UpdateStyles({
-        element: svg_text,
-        layer: false,
-        prop: "drop-shadow",
-        val: json.style["drop-shadow"] || ""
-    });
 
-    InteracStyles.UpdateStyles({
-        element:svg_text,
-        layer: false,
-        prop: "-webkit-text-stroke-color",
-        val: json.style["-webkit-text-stroke-color"] || "none"
-    });
-    InteracStyles.UpdateStyles({
-        element: svg_text,
-        layer: false,
-        prop: "-webkit-text-stroke-width",
-        val: json.style["-webkit-text-stroke-width"] || "0px"
-    });
+        InteracStyles.UpdateStyles({
+            element: svg_text,
+            layer: false,
+            prop: "fontFamily",
+            val: json.style["font-family"] || "arial"
+        });
+        InteracStyles.UpdateStyles({
+            element: svg_text,
+            layer: false,
+            prop: "fontSize",
+            val: json.style["font-size"] || "25px"
+        });
+        InteracStyles.UpdateStyles({
+            element: svg_text,
+            layer: false,
+            prop: "letterSpacing",
+            val: json.style["letter-spacing"] || ""
+        });
+        InteracStyles.UpdateStyles({
+            element: svg_text,
+            layer: false,
+            prop: "wordSpacing",
+            val: json.style["word-spacing"] || ""
+        });
+        InteracStyles.UpdateStyles({
+            element: svg_text,
+            layer: false,
+            prop: "color",
+            val: json.style["color"] || "black"
+        });
 
-       // Styling
+        InteracStyles.UpdateStyles({
+            element: svg_text,
+            layer: false,
+            prop: "text-shadow",
+            val: json.style["text-shadow"]
+        });
+        InteracStyles.UpdateStyles({
+            element: svg_text,
+            layer: false,
+            prop: "text-decoration",
+            val: json.style["text-decoration"] || "none"
+        });
+        InteracStyles.UpdateStyles({
+            element: svg_text,
+            layer: false,
+            prop: "font-weight",
+            val: json.style["font-weight"] || "normal"
+        });
+        InteracStyles.UpdateStyles({
+            element: svg_text,
+            layer: false,
+            prop: "font-style",
+            val: json.style["font-style"] || "noraml"
+        });
+        InteracStyles.UpdateStyles({
+            element: svg_text,
+            layer: false,
+            prop: "drop-shadow",
+            val: json.style["drop-shadow"] || ""
+        });
+
+        InteracStyles.UpdateStyles({
+            element: svg_text,
+            layer: false,
+            prop: "-webkit-text-stroke-color",
+            val: json.style["-webkit-text-stroke-color"] || "none"
+        });
+        InteracStyles.UpdateStyles({
+            element: svg_text,
+            layer: false,
+            prop: "-webkit-text-stroke-width",
+            val: json.style["-webkit-text-stroke-width"] || "0px"
+        });
+
+        // Styling
 
 
         if (json.return == true) {
@@ -1336,7 +1356,7 @@ InteracStyles.UpdateStyles({ element: fo, prop: "position-x", value: (json.trans
             };
         } else {
             BoxContainer.set_stake(svg_text);
-            InteractMessage("textpth Added","lightgreen")
+            InteractMessage("textpth Added", "lightgreen")
             layerDiv.Add(svg_text);
         }
         // ?Styling
@@ -1370,9 +1390,9 @@ InteracStyles.UpdateStyles({ element: fo, prop: "position-x", value: (json.trans
         } else if (el_type == "Container") {
         }
     },
-    ChangeSrc : function(element,newsrc){
+    ChangeSrc: function (element, newsrc) {
         //var id = element.querySelector("div").id
-      var el_type = element.getAttribute('primary-element-type')
+        var el_type = element.getAttribute('primary-element-type')
         var json = {}
         json.style = {}
 
@@ -1391,43 +1411,43 @@ InteracStyles.UpdateStyles({ element: fo, prop: "position-x", value: (json.trans
             });
         }
 
-        try{
-        var freeze = element.querySelector('.freeze_div').style.height == '100%'
-        }catch(Err){}
-        if(el_type == 'YoutubeVideo'){
-        var id =  getUniqueid("Yt-element");
-        console.log(element.querySelector("div"))
-        element.innerHTML = `<div id="" class="ytvideo" data-plyr-provider="youtube" data-plyr-embed-id=""></div> `;
-        element.querySelector("div").id =id;
-        element.querySelector("div").setAttribute("data-plyr-embed-id", newsrc);
-        element.setAttribute("yt-id", newsrc);
-        var player = new Plyr(`#${element.querySelector("div").id}`);
+        try {
+            var freeze = element.querySelector('.freeze_div').style.height == '100%'
+        } catch (Err) { }
+        if (el_type == 'YoutubeVideo') {
+            var id = getUniqueid("Yt-element");
+            console.log(element.querySelector("div"))
+            element.innerHTML = `<div id="" class="ytvideo" data-plyr-provider="youtube" data-plyr-embed-id=""></div> `;
+            element.querySelector("div").id = id;
+            element.querySelector("div").setAttribute("data-plyr-embed-id", newsrc);
+            element.setAttribute("yt-id", newsrc);
+            var player = new Plyr(`#${element.querySelector("div").id}`);
         }
-        else if( el_type == 'Image'){
+        else if (el_type == 'Image') {
             element.querySelector('img').src = newsrc
         }
-        else if( el_type == 'Audio'){
+        else if (el_type == 'Audio') {
             element.innerHTML = `<div secondary-element-type="Audio"><audio  controls crossorigin playsinline >
             <source src="" type="audio/mp3">
                </audio> </div>`;
             element.querySelector("audio").id = getUniqueid("audio-element");
-            element.querySelector("source").src = newsrc ;
+            element.querySelector("source").src = newsrc;
             var player = new Plyr(`#${element.querySelector("audio").id}`);
         }
-        else if( el_type == 'Video'){
+        else if (el_type == 'Video') {
             element.innerHTML = `<video  controls crossorigin playsinline poster="">
     <source src="" type="video/mp4">
        </video> `;
-        element.querySelector("video").id = getUniqueid("video-element");
-        element.querySelector("source").src = newsrc;
-        var player = new Plyr(`#${element.querySelector("video").id}`);
+            element.querySelector("video").id = getUniqueid("video-element");
+            element.querySelector("source").src = newsrc;
+            var player = new Plyr(`#${element.querySelector("video").id}`);
 
         }
 
-        if(el_type == 'Audio' ||el_type == 'Video' ||el_type == 'YoutubeVideo'){
+        if (el_type == 'Audio' || el_type == 'Video' || el_type == 'YoutubeVideo') {
             var freeze_div = document.createElement("div");
-        freeze_div.classList.add("freeze_div");
-        element.append(freeze_div);
+            freeze_div.classList.add("freeze_div");
+            element.append(freeze_div);
         }
 
         if (freeze == true) {
@@ -1477,7 +1497,7 @@ InteracStyles.UpdateStyles({ element: fo, prop: "position-x", value: (json.trans
             prop: "drop-shadow",
             val: json.style["drop-shadow"] || ""
         });
-        
+
     }
 };
 
@@ -1606,9 +1626,9 @@ export const layerDiv = {
         getparent(layerDiv.GetElLayer(element), "layer_containers").remove();
         // LayerTopPosition -= 21
     },
-    resetLayerArrangement:function(){
-        for(var el of layerDiv.children){
-            
+    resetLayerArrangement: function () {
+        for (var el of layerDiv.children) {
+
         }
     },
     funcs: function () { },
@@ -1640,7 +1660,7 @@ export const layerDiv = {
                 this.children[0].classList.add("bi-lock-fill");
                 BoxContainer.div().querySelector(`[element_name=${el}]`).classList.remove("draggable");
                 BoxContainer.div().querySelector(`[element_name=${el}]`).setAttribute("locked", "true");
-                BoxContainer.div().querySelector(`[element_name=${el}]`).onmousedown = (e) => {};
+                BoxContainer.div().querySelector(`[element_name=${el}]`).onmousedown = (e) => { };
                 activeel_size_handler.hide();
             }
         });
@@ -1690,20 +1710,20 @@ element_ContainerLayer.innerHTML = `<svg preserveAspectRatio="none" class="svgFo
 
 export function selectTagOptionsListener(element) {
     for (el of element.querySelectorAll('.selectTag_options')) {
-        el.addEventListener('click', function(e) {
+        el.addEventListener('click', function (e) {
             var selecttag = gettarget(e, 'selectTag');
             selecttag.setAttribute('value', this.innerText);
             var selecttag_innerhtml;
 
             selecttag_innerhtml = this.innerHTML
             selecttag.setAttribute('type', this.getAttribute('type'))
-                // if (selecttag_innerhtml.includes('element_group_icon')) {
-                //     selecttag.setAttribute('type', 'element_group')
-                // } else if() {
-                //     selecttag.setAttribute('type', 'element_name')
-                // }else if() {
-                //     selecttag.setAttribute('type', 'itself')
-                // }
+            // if (selecttag_innerhtml.includes('element_group_icon')) {
+            //     selecttag.setAttribute('type', 'element_group')
+            // } else if() {
+            //     selecttag.setAttribute('type', 'element_name')
+            // }else if() {
+            //     selecttag.setAttribute('type', 'itself')
+            // }
 
             selecttag.querySelector('.selectTag_value').innerHTML = selecttag_innerhtml
             getparent(e.target, 'selectTag_options_div').style.display = "none"
@@ -1761,7 +1781,7 @@ export function update_effector_selector(selector) {
     p.setAttribute('type', 'element_itself')
     p.innerHTML = `<i class="bi bi-file element_name_icon" ></i>element itself`
     options_div.append(p)
-        // 
+    // 
     var p = document.createElement('p');
     p.classList.add('selectTag_options');
     p.setAttribute('type', 'element_itself_parentNode')
@@ -1778,108 +1798,113 @@ export function update_effector_selector(selector) {
 
 export function NewBoxContainer(json) {
     // ?deleting/saving old
-    if(BoxContainer.elem() != null){
+    if (BoxContainer.elem() != null) {
         FunctioneditorCreateDivs.ResetFuncDiv()
         layerDiv.Reset()
         BoxContainer.elem().remove()
     }
     //if (document.body.querySelector('#interac_crtr') == null && document.body.querySelector('[interactcontainer]') == null) {
-        if (json.dataHtml == undefined) {
-            
-            var BoxContainer_elem = document.createElement('div')
-            var BoxContainer_div = document.createElement('div')
-            BoxContainer_div.innerHTML = ` <svg InteractSvg=${getUniqueid("InteractSvg")} xmlns="http://www.w3.org/2000/svg" xlinkns="http://www.w3.org/1999/xlink" xmlns:xlink="http://www.w3.org/1999/xlink">`
-            document.body.append(BoxContainer_elem)
-            BoxContainer_elem.append(BoxContainer_div)
-            var BoxContainer_svg = BoxContainer_div.children[0]
-      
-            BoxContainer_elem.setAttribute("InteractContainer", getUniqueid("InteractContainer"))
-            BoxContainer_elem.spellcheck = false
-            BoxContainer_elem.setAttribute("InteractState", "Active")
-            BoxContainer_div.setAttribute("InteractDiv", getUniqueid("InteractDiv"))
-            BoxContainer_svg.setAttribute("InteractSvg",getUniqueid("InteractSvg"))
-           
-            try {
-                BoxContainer.SetAspectRatio(json.aspectratio.w, json.aspectratio.h)
-            }
-            catch (err) {
-                BoxContainer.SetAspectRatio(16, 9)
-            }
-            // BoxContainer.style.top = ""
-            // BoxContainer.style.left = ""
-            BoxContainer.elem().style.backgroundColor = "white"
-            
-        } else {
-           
-            BoxContainer.dataBox.innerHTML = json.dataHtml;
-            var dataBox = BoxContainer.dataBox
-            var BoxContainer_elem = document.createElement('div');
-            var dataBoxContainer_elem = dataBox.querySelector('[InteractContainer]')
-            BoxContainer_elem.innerHTML = dataBoxContainer_elem.innerHTML
-            BoxContainer_elem.spellcheck = false
-            BoxContainer_elem.setAttribute('settings', dataBoxContainer_elem.getAttribute('settings'));
-            BoxContainer_elem.setAttribute('interacfunctions', dataBoxContainer_elem.getAttribute('interacfunctions'));
-            BoxContainer_elem.setAttribute('interactcontainer', dataBoxContainer_elem.getAttribute('interactcontainer'));
-            BoxContainer_elem.setAttribute("InteractState", "Active")
-            //   //? elem styling
-            BoxContainer_elem.style.width = dataBoxContainer_elem.style.width;
-            BoxContainer_elem.style.height = dataBoxContainer_elem.style.height;
-            BoxContainer_elem.style.backgroundColor = dataBoxContainer_elem.style.backgroundColor;
-            BoxContainer_elem.style.backgroundImage = dataBoxContainer_elem.style.backgroundImage;
-            BoxContainer_elem.style.top = "19%"
-            BoxContainer_elem.style.left = "33%"
-            BoxContainer_elem.style.position = "fixed"
-            BoxContainer_elem.style.transform = "none"
-            document.body.append(BoxContainer_elem)
-            
-            //?Media
-            // for(var el of BoxContainer_elem.querySelectorAll('[primary-element-type=YoutubeVideo]')){
-            //     console.log(el.getAttribute('yt-id'))
-            //     BoxContainer.ChangeYtvideo(el,el.getAttribute('yt-id'))
-            // }
-            for (var el of preview_box.querySelectorAll('[primary-element-type=Video]')) {
-    
-                BoxContainer.ChangeSrc(el,InteracStyles.getValue({
-                    element: el,
-                    prop: "src"
-                }))
-    
-            }
-            for (var el of preview_box.querySelectorAll('[primary-element-type=YoutubeVideo]')) {
-                BoxContainer.ChangeSrc(el,InteracStyles.getValue({
-                    element: el,
-                    prop: "src"
-                }))
-    
-    
-            }
-            for (var el of preview_box.querySelectorAll('[primary-element-type=Audio]')) {
-                
-                BoxContainer.ChangeSrc(el,InteracStyles.getValue({
-                    element: el,
-                    prop: "src"
-                }))
-    
-            }
-            
-            
-            // ??INteract function 
-            //console.log(BoxContainer_elem.getAttribute("InteracFunctions"))
-            try{
+    if (json.dataHtml == undefined) {
+
+        var BoxContainer_elem = document.createElement('div')
+        var BoxContainer_div = document.createElement('div')
+        BoxContainer_div.innerHTML = ` <svg InteractSvg=${getUniqueid("InteractSvg")} xmlns="http://www.w3.org/2000/svg" xlinkns="http://www.w3.org/1999/xlink" xmlns:xlink="http://www.w3.org/1999/xlink">`
+        document.body.append(BoxContainer_elem)
+        BoxContainer_elem.append(BoxContainer_div)
+        var BoxContainer_svg = BoxContainer_div.children[0]
+
+        BoxContainer_elem.setAttribute("InteractContainer", getUniqueid("InteractContainer"))
+        BoxContainer_elem.spellcheck = false
+        BoxContainer_elem.setAttribute("InteractState", "Active")
+        BoxContainer_div.setAttribute("InteractDiv", getUniqueid("InteractDiv"))
+        BoxContainer_svg.setAttribute("InteractSvg", getUniqueid("InteractSvg"))
+
+        try {
+            BoxContainer.SetAspectRatio(json.aspectratio.w, json.aspectratio.h)
+        }
+        catch (err) {
+            BoxContainer.SetAspectRatio(16, 9)
+        }
+        // BoxContainer.style.top = ""
+        // BoxContainer.style.left = ""
+        setJsonAttr(BoxContainer_elem, "settings", "scale", `1`)
+        BoxContainer.elem().style.backgroundColor = "white"
+
+    } else {
+
+        BoxContainer.dataBox.innerHTML = json.dataHtml;
+        var dataBox = BoxContainer.dataBox
+        var BoxContainer_elem = document.createElement('div');
+        var dataBoxContainer_elem = dataBox.querySelector('[InteractContainer]')
+        BoxContainer_elem.innerHTML = dataBoxContainer_elem.innerHTML
+        BoxContainer_elem.spellcheck = false
+        BoxContainer_elem.setAttribute('settings', dataBoxContainer_elem.getAttribute('settings'));
+        BoxContainer_elem.setAttribute('interacfunctions', dataBoxContainer_elem.getAttribute('interacfunctions'));
+        BoxContainer_elem.setAttribute('interactcontainer', dataBoxContainer_elem.getAttribute('interactcontainer'));
+        BoxContainer_elem.setAttribute("InteractState", "Active")
+        setJsonAttr(BoxContainer_elem, "settings", "scale", `1`)
+
+        //   //? elem styling
+        BoxContainer_elem.style.width = dataBoxContainer_elem.style.width;
+        BoxContainer_elem.style.height = dataBoxContainer_elem.style.height;
+        BoxContainer_elem.style.backgroundColor = dataBoxContainer_elem.style.backgroundColor;
+        BoxContainer_elem.style.backgroundImage = dataBoxContainer_elem.style.backgroundImage;
+        BoxContainer_elem.style.top = "19%"
+        BoxContainer_elem.style.left = "33%"
+        BoxContainer_elem.style.position = "fixed"
+        BoxContainer_elem.style.transform = "none"
+        document.body.append(BoxContainer_elem)
+
+        //?Media
+        // for(var el of BoxContainer_elem.querySelectorAll('[primary-element-type=YoutubeVideo]')){
+        //     console.log(el.getAttribute('yt-id'))
+        //     BoxContainer.ChangeYtvideo(el,el.getAttribute('yt-id'))
+        // }
+        for (var el of preview_box.querySelectorAll('[primary-element-type=Video]')) {
+
+            BoxContainer.ChangeSrc(el, InteracStyles.getValue({
+                element: el,
+                prop: "src"
+            }))
+
+        }
+        for (var el of preview_box.querySelectorAll('[primary-element-type=YoutubeVideo]')) {
+            BoxContainer.ChangeSrc(el, InteracStyles.getValue({
+                element: el,
+                prop: "src"
+            }))
+
+
+        }
+        for (var el of preview_box.querySelectorAll('[primary-element-type=Audio]')) {
+
+            BoxContainer.ChangeSrc(el, InteracStyles.getValue({
+                element: el,
+                prop: "src"
+            }))
+
+        }
+
+
+        // ??INteract function 
+        //console.log(BoxContainer_elem.getAttribute("InteracFunctions"))
+        try {
             var InteracFuns = JSON.parse(BoxContainer.elem().getAttribute("InteracFunctions"))
             Object.keys(InteracFuns).forEach(function (key) {
                 console.log(InteracFuns[key])
                 FunctioneditorCreateDivs.CreateFunctionEditorDiv(InteracFuns[key], true)
-            })}catch(err){}
+            })
+        } catch (err) { }
 
-            for (var el of BoxContainer.svg().children) {
-                layerDiv.Add(el)
-                if(el.getAttribute('locked') != true){
-                el.classList.add('draggable')}
+        for (var el of BoxContainer.svg().children) {
+            layerDiv.Add(el)
+            if (el.getAttribute('locked') != true) {
+                el.classList.add('draggable')
             }
-            dataBox.innerHTML = ""
         }
-    
+        dataBox.innerHTML = ""
+    }
+
 
 
     BoxContainer.div().oninput = (e) => {
@@ -1897,7 +1922,7 @@ export function NewBoxContainer(json) {
 }
 
 
- NewBoxContainer({})
+NewBoxContainer({})
 
 // NewBoxContainer({
 //   dataHtml: `<div id="interac_Container" settings="{&quot;aspect-ratio&quot;:&quot;1:1&quot;}" style="top: 20%;left: 33%;height: 442px;width: 442px;background-color: white;transform: scale(0.5);" interacfunctions="{&quot;dsasa&quot;:{&quot;triggerers&quot;:{&quot;names&quot;:[&quot;text1&quot;],&quot;groups&quot;:[]},&quot;effectors&quot;:{&quot;names&quot;:[{&quot;name&quot;:&quot;text2&quot;,&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;block&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null},{&quot;name&quot;:&quot;image1&quot;,&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;block&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null}],&quot;groups&quot;:[]},&quot;this&quot;:{&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}}},&quot;event&quot;:&quot;click&quot;,&quot;name&quot;:&quot;dsasa&quot;},&quot;hui&quot;:{&quot;triggerers&quot;:{&quot;names&quot;:[&quot;image1&quot;],&quot;groups&quot;:[]},&quot;effectors&quot;:{&quot;names&quot;:[{&quot;name&quot;:&quot;text2&quot;,&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;none&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null}],&quot;groups&quot;:[]},&quot;this&quot;:{&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;none&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null},&quot;event&quot;:&quot;click&quot;,&quot;name&quot;:&quot;hui&quot;},&quot;huo&quot;:{&quot;triggerers&quot;:{&quot;names&quot;:[&quot;image1&quot;],&quot;groups&quot;:[]},&quot;effectors&quot;:{&quot;names&quot;:[{&quot;name&quot;:&quot;text2&quot;,&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;none&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null}],&quot;groups&quot;:[]},&quot;this&quot;:{&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;none&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null},&quot;event&quot;:&quot;click&quot;,&quot;name&quot;:&quot;huo&quot;},&quot;crossdetails&quot;:{&quot;triggerers&quot;:{&quot;names&quot;:[&quot;image1&quot;],&quot;groups&quot;:[]},&quot;effectors&quot;:{&quot;names&quot;:[],&quot;groups&quot;:[{&quot;group&quot;:&quot;detailsmodal&quot;,&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;none&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null}]},&quot;this&quot;:{&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;none&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null},&quot;event&quot;:&quot;click&quot;,&quot;name&quot;:&quot;crossdetails&quot;},&quot;1stbookdetails&quot;:{&quot;triggerers&quot;:{&quot;names&quot;:[&quot;text1&quot;],&quot;groups&quot;:[]},&quot;effectors&quot;:{&quot;names&quot;:[{&quot;name&quot;:&quot;text2&quot;,&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;block&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null},{&quot;name&quot;:&quot;image1&quot;,&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;block&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null}],&quot;groups&quot;:[]},&quot;this&quot;:{&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}}},&quot;event&quot;:&quot;click&quot;,&quot;name&quot;:&quot;1stbookdetails&quot;},&quot;2ndbookdetail&quot;:{&quot;triggerers&quot;:{&quot;names&quot;:[&quot;text1clone&quot;],&quot;groups&quot;:[]},&quot;effectors&quot;:{&quot;names&quot;:[{&quot;name&quot;:&quot;text2clone&quot;,&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;block&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null},{&quot;name&quot;:&quot;image1&quot;,&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;block&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null}],&quot;groups&quot;:[]},&quot;this&quot;:{&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}}},&quot;event&quot;:&quot;click&quot;,&quot;name&quot;:&quot;2ndbookdetail&quot;},&quot;detailbtnhover&quot;:{&quot;triggerers&quot;:{&quot;names&quot;:[],&quot;groups&quot;:[&quot;detailbtn&quot;]},&quot;effectors&quot;:{&quot;names&quot;:[],&quot;groups&quot;:[]},&quot;this&quot;:{&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;color&quot;],&quot;val&quot;:[&quot;#0d0c0c&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null},&quot;event&quot;:&quot;mouseover&quot;,&quot;name&quot;:&quot;detailbtnhover&quot;}}">
@@ -1924,10 +1949,10 @@ export function NewBoxContainer(json) {
 //     prop: "inner-text"
 //   });
 // });
-const ml  = document.createElement('div');
+const ml = document.createElement('div');
 ml.innerHTML = `<i class="bi bi-plus-square add_sibling"></i>`
 var icon = `<i class="bi bi-plus-square add_sibling"></i>`
-export function Save(Interacml){
+export function Save(Interacml) {
     var div = document.createElement('div');
     //div.append(Interacml)
     div.innerHTML = Interacml + icon
@@ -1945,14 +1970,14 @@ export function Save(Interacml){
     div.querySelector('[interactcontainer]').setAttribute("InteractState", "Image")
     var interacheight = parseFloat(BoxContainer.elem().style.height) * newwidth
     div.style.gridAutoRows = `${interacheight}px 50px`
-    
-    for(var el of div.querySelectorAll('[primary-element-type]')){
+
+    for (var el of div.querySelectorAll('[primary-element-type]')) {
         activeelFunction.makeunmovable(el)
         el.classList.remove('active')
     }
 
-    div.querySelector('.add_sibling').addEventListener('click',function(){
-        NewBoxContainer({dataHtml:this.parentNode.querySelector('[interactcontainer]').outerHTML})
+    div.querySelector('.add_sibling').addEventListener('click', function () {
+        NewBoxContainer({ dataHtml: this.parentNode.querySelector('[interactcontainer]').outerHTML })
     })
 
 }

@@ -1,9 +1,10 @@
 export function NewArrowBox(json) {
     var linker = '_' + Math.random().toString(36).substr(2, 9)
+    var showarrow = json.showarrow 
     json.for.setAttribute('arrowBoxbtnFor', linker)
     var arrowBox = document.createElement('div');
     arrowBox.setAttribute('arrowBoxFor', linker)
-    arrowBox.setAttribute('arrowposition', 'up')
+    //arrowBox.setAttribute('arrowposition', 'up')
     var arrowboxdatacontainer = document.createElement('div');
     if (json.dataHtml != undefined) {
         arrowboxdatacontainer.innerHTML = json.dataHtml
@@ -32,11 +33,13 @@ export function NewArrowBox(json) {
     
         arrowBox.style.top = json.for.getBoundingClientRect().bottom + 15 + "px"
         arrowBox.style.left = (json.for.getBoundingClientRect().left + (json.for.getBoundingClientRect().width / 2)) - (arrowBox.getBoundingClientRect().width / 2) + "px"
-        arrowBox.setAttribute('arrowposition', 'up')
+        if(showarrow){
+        arrowBox.setAttribute('arrowposition', 'up')}
     
         if (json.for.getBoundingClientRect().bottom + 15 + arrowBox.getBoundingClientRect().height > window.innerHeight) {
             arrowBox.style.top = (json.for.getBoundingClientRect().top - arrowBox.getBoundingClientRect().height) - 15 + "px"
-            arrowBox.setAttribute('arrowposition', 'down')
+            if(showarrow){
+            arrowBox.setAttribute('arrowposition', 'down')}
     
         }
         if (json.for.getBoundingClientRect().left + arrowBox.getBoundingClientRect().width > window.innerWidth) {

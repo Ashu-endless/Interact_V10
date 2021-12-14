@@ -458,6 +458,7 @@ function B_mousemove(e,e_x,e_y){
 export function BoxContainerClickFunc(e) {
     activeelFunction.nullactive()
     DragMoveListener()
+    toolboxFuncs.hide()
     if(e.target.getAttribute('InteractSvg') != null ){
     selctor_div.style.display = "block"
     var e_y = e.y
@@ -485,6 +486,8 @@ export function BoxContainerClickFunc(e) {
      if(gotelement != null ){
          gotelement.classList.add('active')
          EndlessSizeHandler.SetHandler({element:gotelement})
+         show_styling_properties(getactiveel() || "")
+         toolboxFuncs.position()
      }
  }
 }
@@ -1112,13 +1115,22 @@ element_opt_closer_cross.style.display = "none"
 element_opt_closer.style.display = "none"
 
 element_opt_closer.onclick = () => {
-        for (el of options_modal) {
-            el.style.display = "none"
+    //console.l
+        for (var modals of options_modal) {
+            modals.style.height = '0px'
+            setTimeout(function() {
+                for (var modals of options_modal) {
+                    modals.style.display = "none"
+                }
+            }, 500);
+            //el.style.display = "none"
         }
         for (el of document.querySelectorAll('.options_head')) {
-            el.style.borderBottom = "4px double #252935"
+            //el.style.borderBottom = "4px double #252935"
+            el.style.color = "white"
         }
-        element_opt_closer.style.display = "none"
+        element_opt_closer.style.height = "0px"
+        BoxContainer.UpdateInContainerScaleFactor({maw:90})
     }
     // 
 element_opt_two_closer.onclick = () => {
@@ -1167,6 +1179,7 @@ for (el of options_two_head) {
 }
 
 function optionsTwoHideAndShow(target) {
+
     for (el of customisable_div) {
         el.style.display = "none"
     }
@@ -1181,20 +1194,39 @@ function optionsTwoHideAndShow(target) {
 }
 
 function optionsHideAndShow(target) {
+   // console.log(element_opt_closer.style.height)
+    element_opt_closer.style.transition = `all 0s linear`
+    element_opt_closer.style.height = '0px'
+    element_opt_closer.style.display = 'none'
     var options_modal = document.querySelectorAll('.options_modal');
     for (el of options_modal) {
+        el.style.height = "0px"
         el.style.display = "none"
+        
     }
-    for (el of document.querySelectorAll('.options_head')) {
-        el.style.borderBottom = "4px double #252935"
-    }
+    //setTimeout(function(){  element_opt_closer.style.height = (window.innerHeight - document.querySelector('#options_div').getBoundingClientRect().height) + "px" }, 3000);
+   
+    console.log(element_opt_closer.style.height)
+     for (el of document.querySelectorAll('.options_head')) {
+        // el.style.borderBottom = "4px double #252935"
+        el.style.color = "white"
+        el.style.border = 'none'
+     }
+    element_opt_closer.style.transition = `all 0.5s linear`
+    element_opt_closer.style.display = "block"
     document.querySelector(`#divbar_${target.id}`).style.display = "block";
-    target.style.borderBottom = "4px blueviolet solid";
-    if (window.innerWidth > 400) {
-        element_opt_closer.style.display = "block"
-    } else {
-        element_opt_closer_cross.style.display = "block"
-    }
+    console.log((window.innerHeight - document.querySelector('#options_div').getBoundingClientRect().height) + "px")
+    document.querySelector(`#divbar_${target.id}`).style.height = (window.innerHeight - document.querySelector('#options_div').getBoundingClientRect().height) +  4 + "px"
+    element_opt_closer.style.height = (window.innerHeight - document.querySelector('#options_div').getBoundingClientRect().height) +  4 + "px"
+    //target.style.borderBottom = "4px blueviolet solid";
+    target.style.color = 'blueviolet';
+    target.style.border = '2px #3f1580 solid'
+    BoxContainer.UpdateInContainerScaleFactor({maw:63})
+    // if (window.innerWidth > 400) {
+    //     element_opt_closer.style.display = "block"
+    // } else {
+    //     element_opt_closer_cross.style.display = "block"
+    // }
 }
 
 
@@ -2726,10 +2758,10 @@ var observer = new MutationObserver(function() {
 });
 
 // configuration of the observer:
-var config = { attributes: true, childList: true, characterData: true, subtree: true }
+//var config = { attributes: true, childList: true, characterData: true, subtree: true }
 
 // pass in the target node, as well as the observer options
-observer.observe(target, config);
+//observer.observe(target, config);
 
 // later, you can stop observing
 // observer.disconnect();
@@ -3115,3 +3147,10 @@ window.addEventListener("load", function(){
     //EndlessSizeHandler.NewSizeHandler({element:document.querySelector('#preview_btn')})
     //EndlessSizeHandler.NewSizeHandler({element:BoxContainer.elem()})
 });
+
+
+
+
+// NewArrowBox({
+//     for:document.querySelector('#text'),showarrow:false,dataHtml:"Text",event:'mouseover',
+// })

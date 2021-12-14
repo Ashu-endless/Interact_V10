@@ -150,6 +150,10 @@ export function heightInc() {
 }
 
 
+export function getactiveels(){
+    return document.querySelectorAll('.active')
+}
+
 //? Attribute json
 export function getJsonAttr(el, attr, prop) {
     if (el.getAttribute(attr) == null || el.getAttribute(attr) == "") {

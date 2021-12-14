@@ -1,12 +1,12 @@
-import { getparent, gettarget, getUniqueid } from "./functionsfile.js";
+import { getparent, gettarget, getUniqueid ,  } from "./functionsfile.js";
 import { getactiveel } from "./index.js";
 import { transformFunc } from './Interact_style.js';
 
+import { BoxContainer } from "./Interac_BoxContainer.js";
+import { getJsonAttr,getactiveels } from "./functionsfile.js";
 export const EndlessSizeHandler = {} 
 
-function getactiveels(){
-    return document.querySelectorAll('.active')
-}
+
 
 EndlessSizeHandler ['SizeHandlerElems'] = ['container_top','container_bottom','container_left',
 'container_right','mid_bottom','mid_right','mid_left','mid_top','bottom_right','bottom_left',
@@ -18,7 +18,7 @@ const minHeight = 40;
 
 EndlessSizeHandler['NewSizeHandler'] = function (json){
     var NewSHJson = {}
-    var uniqueid = getUniqueid('')
+    var uniqueid = getUniqueid('sh')
     for (var size_handler of EndlessSizeHandler.SizeHandlerElems){
         //?Creating
         NewSHJson[size_handler] = document.createElement('div');
@@ -97,11 +97,31 @@ EndlessSizeHandler['SetHandler'] = function(json) {
 }
 
 
+function getAllPrimaryFrom_e(e,){
+
+}
+
+
 EndlessSizeHandler['Setposition'] = function(json) {
     var element = json.element
     var size_handler = json.sizehandler
     var sizehandlerID = element.getAttribute('SizeHandlerId')
     var element_rotation = transformFunc.getValue(element).rotate || 0
+    var stored_rotation_json = {}
+    if(element.getAttribute('primary-element-type') == 'Container'){
+
+        for(var i=0;i<element.querySelectorAll('[primary-element-type]').length;i++){
+            stored_rotation_json[i] = {}
+            stored_rotation_json[i] = transformFunc.getValue(element.querySelectorAll('[primary-element-type]')[i]).rotate   
+            transformFunc.updateValue(element.querySelectorAll('[primary-element-type]')[i], 'rotate', '0')
+        }
+    }
+
+    if(getparent(element,'primary-element-type','Container') != null){
+            var contR  = transformFunc.getValue(getparent(element,'primary-element-type','Container')).rotate   
+            transformFunc.updateValue(getparent(element,'primary-element-type','Container'), 'rotate', '0')
+    }
+
     //var element_rotation =  0
     //console.log(element_rotation)
     transformFunc.updateValue(element, 'rotate', '0')
@@ -218,12 +238,32 @@ EndlessSizeHandler['Setposition'] = function(json) {
     //     el.style.transform = `rotate(${element_rotation}deg)`
     // }
 
+    if(getparent(element,'primary-element-type','Container') != null){
+    var SH_cont = document.createElement('div');
+    console.log('huh')
+    for(var el of EndlessSizeHandler.SizeHandlerElems){
+        SH_cont.append(size_handler[el])
+    }
+
+    document.body.append(SH_cont)
+    console.log(SH_cont)
+    transformFunc.updateValue(getparent(element,'primary-element-type','Container'), 'rotate', contR)
+}
+
+
     for(var el of EndlessSizeHandler.SizeHandlerElems){
         size_handler[el].style.transform = `rotate(${element_rotation}deg)`
     }
 
     transformFunc.updateValue(element, 'rotate', element_rotation)
-    
+    if(element.getAttribute('primary-element-type') == 'Container'){
+
+        for(var i=0;i<element.querySelectorAll('[primary-element-type]').length;i++){
+            //stored_rotation_json[i] = {}
+            //stored_rotation_json[i] = transformFunc.getValue(element.querySelectorAll('[primary-element-type]')[i]).rotate   
+            transformFunc.updateValue(element.querySelectorAll('[primary-element-type]')[i], 'rotate', stored_rotation_json[i])
+        }
+    }
 }
 
 
@@ -270,8 +310,8 @@ function resizeHandler(event, left = false, top = false, xResize = false, yResiz
     }
     function eventMoveHandler(event) {
         for(var i=0;i<elem.length;i++){
-        var wDiff = (event.clientX - mousePressX) ;
-        var hDiff = (event.clientY - mousePressY);
+        var wDiff = (event.clientX - mousePressX) / parseFloat(getJsonAttr(BoxContainer.elem(), "settings").scale) ;
+        var hDiff = (event.clientY - mousePressY) / parseFloat(getJsonAttr(BoxContainer.elem(), "settings").scale);
         // var wDiff = (event.clientX - mousePressX) /1.5;
         // var hDiff = (event.clientY - mousePressY)/1.5;
         var rotatedWDiff = cosFraction * wDiff + sinFraction * hDiff;
@@ -501,3 +541,14 @@ function resizeHhfghgfandler(event, left = false, top = false, xResize = false, 
         window.removeEventListener('mouseup', eventEndHandler);
     }, false);
 }
+
+
+EndlessSizeHandler["UpdateHandlerOnWindowResize"] = function(){
+    for(var el of getactiveels()){
+        EndlessSizeHandler.SetHandler({element:el})
+    }
+}
+
+document.body.addEventListener('click',function(){
+    EndlessSizeHandler.UpdateHandlerOnWindowResize()
+})
