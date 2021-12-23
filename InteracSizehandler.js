@@ -18,7 +18,7 @@ const minHeight = 40;
 
 EndlessSizeHandler['NewSizeHandler'] = function (json){
     var NewSHJson = {}
-    var uniqueid = getUniqueid('sh')
+    var uniqueid = json.element.id
     for (var size_handler of EndlessSizeHandler.SizeHandlerElems){
         //?Creating
         NewSHJson[size_handler] = document.createElement('div');
@@ -552,3 +552,12 @@ EndlessSizeHandler["UpdateHandlerOnWindowResize"] = function(){
 document.body.addEventListener('click',function(){
     EndlessSizeHandler.UpdateHandlerOnWindowResize()
 })
+
+
+EndlessSizeHandler['DeleteHandler'] = function(element){
+    for(var el of document.querySelectorAll(`[sizehandlerid=${element.id}]`)){
+        if(el.tagName !='foreignObject' ){
+            el.remove()
+        }
+    }
+}

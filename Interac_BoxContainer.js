@@ -772,7 +772,9 @@ export const BoxContainer = {
             prop: "-webkit-text-stroke-width",
             val: json.style["-webkit-text-stroke-width"] || "0px"
         });
-
+        fo.addEventListener('input',function(){
+            layerDiv.UpdateLayerElement(this)
+        })
 
         fo.addEventListener("paste", function (e) {
             // cancel paste
@@ -1498,6 +1500,107 @@ export const BoxContainer = {
             val: json.style["drop-shadow"] || ""
         });
 
+
+    }
+    ,
+    ShowElementSelection: function(json){
+
+        var ElModal = document.querySelector('#ElementSelectorContainer');
+        ElModal.innerHTML = ``
+        document.querySelector('#ElementSelectorHead-title').innerText = json.headtitle
+        document.querySelector('#ElementSelectorBlurBg').style.display = "grid"
+        var all_element_names = BoxContainer.getAllBoxElementsInfo().element_names
+        var all_element_groups = []
+        for(var elem of all_element_names){
+            var div = document.createElement('div')
+            var elem_name_span = document.createElement('span');
+            var elem_div = document.createElement('div');
+            elem_name_span.classList.add('ElementSelectorModel-namespan')
+            div.classList.add('ElementSelectorModel-container')
+            elem_div.classList.add('ElementSelectorModel-elem_div')
+            elem_name_span.append(BoxContainer.GetIconAndName({element:BoxContainer.elem().querySelector(`[element_name=${elem}]`)}))
+            elem_div.append(BoxContainer.GetElementCloneSvg(BoxContainer.elem().querySelector(`[element_name=${elem}]`)))
+            div.append(elem_name_span)
+            div.append(elem_div)
+            ElModal.append(div)
+        }
+
+        for(var el of ElModal.querySelectorAll(`.ElementSelectorModel-container`)){
+            el.addEventListener('click',function(){
+                for(var elem of ElModal.querySelectorAll(`.ElementSelectorModel-container`) ){
+                    elem.style.borderWidth = "0px"
+                    elem.style.borderBottom = "2px skyblue dashed"    
+                }
+                this.style.border = "2px skyblue solid";
+                console.log(ElModal.querySelector('#ElementSelectorHead-element'))
+                document.querySelector('#ElementSelectorHead-element').innerHTML = ``
+                document.querySelector('#ElementSelectorHead-element').append(BoxContainer.GetIconAndName({element:this.querySelector(`[primary-element-type]`)}))
+                json.triggererEl.innerHTML = ``
+                json.triggererEl.append(BoxContainer.GetIconAndName({element:this.querySelector(`[primary-element-type]`)}))
+            })
+        }
+
+
+
+
+        for(var elem in all_element_groups){
+            var div = document.createElement('div')
+            var elem_name_span = document.createElement('span');
+            var elem_div = document.createElement('div');
+            span.innerHTML = ``
+            div.append(elem_name_span)
+            div.append(elem_div)
+            for(var elm of BoxContainer.elem().querySelectorAll(`[element_groups=${elem}]`)){
+                elem_div.append(BoxContainer.GetElementCloneSvg(elm))
+            }
+        }
+    },
+    GetElementCloneSvg : function(element){
+        var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");;
+        var elem_h = transformFunc.getValue(element).height
+        var elem_w = transformFunc.getValue(element).width
+        svg.setAttribute('viewBox',`0 0 ${elem_w} ${elem_h}`)
+        svg.setAttribute("preserveAspectRatio","none")
+        svg.classList.add('Elclonesvg')
+        var cln_el = element.cloneNode(true)
+        transformFunc.updateValue(cln_el,'position-x','0')
+        transformFunc.updateValue(cln_el,'position-y','0')
+        transformFunc.updateValue(cln_el,'rotate','0')
+        cln_el.classList.remove('active','draggable')
+        svg.append(cln_el)
+        return svg
+    },
+    GetIconAndName:function(json){
+        if(json.element != undefined){
+            var icon;
+            var div = document.createElement('div')
+            div.classList.add('IE_icon-name');
+            switch (json.element.getAttribute('primary-element-type')) {
+                case 'Text':
+                    icon = `<i class="bi bi-type"></i>`
+                    break;
+                case 'Image':
+                    icon = `<i class="bi bi-card-image"></i>`
+                    break
+                case 'Video':
+                    break
+                default:
+                    break;
+            }
+
+            div.innerHTML = div.innerHTML + icon
+            var name_span = document.createElement('span');
+            name_span.innerText = json.element.getAttribute('element_name');
+            div.append(name_span);
+            return div
+        }
+
+        else{
+
+        var icon = json.icon
+        var nametext = json.nametext
+        }
+
     }
 };
 
@@ -1529,101 +1632,123 @@ export const layerDiv = {
         return document.querySelector(`[layer_element_name=${element.getAttribute("element_name")}]`);
     },
     Add: function (element) {
-        element = element.cloneNode(true);
+
+        //BoxContainer.GetElementCloneSvg(element)
         var newCont = layerDiv.CreateElementContainerLayer();
-        var svg_el = newCont.querySelector("svg");
-        var div_el = newCont.querySelector("div");
-        div_el.style.backgroundColor = BoxContainer.elem().style.backgroundColor;
-        svg_el.style.backgroundColor = BoxContainer.elem().style.backgroundColor;
-        var el_type = element.getAttribute("primary-element-type");
-        newCont.querySelector(".element_name").innerText = element.getAttribute("element_name") || "no_name";
-        if (element.style.display == "none") {
-            newCont.querySelector("[layer_btn=eye]").children[0].classList.remove("bi-eye");
-            newCont.querySelector("[layer_btn=eye]").children[0].classList.add("bi-eye-slash");
-        }
-        if (element.getAttribute("locked") == "true") {
-            newCont.querySelector("[layer_btn=lock]").children[0].classList.remove("bi-unlock-fill");
-            newCont.querySelector("[layer_btn=lock]").children[0].classList.add("bi-lock-fill");
-        }
-        if (el_type == "Text") {
-            div_el.style.display = "block";
-            div_el.innerHTML = element.innerHTML;
-            div_el.children[0].style.wordBreak = "break-all";
-            div_el.children[0].style.overflowY = "auto";
-        } else if (el_type == "Container") {
-            div_el.style.display = "block";
-            div_el.innerHTML = element.innerHTML;
-        } else if (el_type == "Image") {
-            div_el.style.display = "block";
-            div_el.innerHTML = element.innerHTML;
-            div_el.children[0].style.height = "100%";
-            div_el.children[0].style.width = "100%";
-            div_el.children[0].style.position = "absolute";
-            div_el.children[0].style.top = "0px";
-            div_el.children[0].style.left = "0px";
-            div_el.children[0].style.transform = "none";
-        } else if (
-            el_type == "Audio" ||
-            el_type == "Video" ||
-            el_type == "YoutubeVideo"
-        ) {
-            div_el.style.display = "block";
-            div_el.innerHTML = element.innerHTML;
-        } else if (element.tagName == "path") {
-            svg_el.style.display = "block";
-            svg_el.append(element);
-            transformFunc.updateValue(element, "positionX", "0");
-            transformFunc.updateValue(element, "positionY", "0");
-            svg_el.setAttribute(
-                "viewBox",
-                `0 0 ${BoxContainer.svg().getBoundingClientRect().width} ${BoxContainer.svg().getBoundingClientRect().height
-                }`
-            );
-        } else if (element.tagName == "text") {
-            svg_el.style.display = "block";
-            svg_el.append(element);
-            transformFunc.updateValue(element, "positionX", "0");
-            transformFunc.updateValue(element, "positionY", "0");
-            svg_el.setAttribute(
-                "viewBox",
-                `0 0 ${BoxContainer.svg().getBoundingClientRect().width} ${BoxContainer.svg().getBoundingClientRect().height
-                }`
-            );
-        } else if (el_type == "Video") {
-            div_el.innerHTML == element.innerHTML;
-            console.log(element.innerHTML);
-            // div_el.append(element)
-            div_el.style.display = "block";
-            // element.style.height = "100%"
-            // element.style.width = "100%"
-            // element.style.position = "absolute"
-
-            // element.style.top = '0px'
-            // element.style.left = "0px"
-            // element.style.transform = "none"
-        }
-        element.classList.remove("draggable");
-        element.onmousedown = () => { };
-
-        try {
-            div_el.children[0].setAttribute("layer_element_name", element.getAttribute("element_name"));
-            div_el.children[0].style.height = "100%";
-            div_el.children[0].style.width = "100%";
-        } catch (err) { }
-        try {
-            svg_el.children[0].setAttribute("layer_element_name", element.getAttribute("element_name"));
-        } catch (err) { }
-
-        element.setAttribute("layerer_element_name", element.getAttribute("element_name"));
-        element.removeAttribute("element_name");
+        newCont.querySelector('.layers-svg').append(BoxContainer.GetElementCloneSvg(element))
         layerDiv.elem.append(newCont);
-        // newCont.style.top = LayerTopPosition + "%";
-        // LayerTopPosition += 21;
-        element.removeAttribute("element_groups");
-        // layerDiv.elem.append(newCont)
+        newCont.querySelector('.layers-element_name').append(BoxContainer.GetIconAndName({element:element}))
+        newCont.setAttribute('layerFor',element.id)
+        // element = element.cloneNode(true);
+        // var newCont = layerDiv.CreateElementContainerLayer();
+        // var svg_el = newCont.querySelector("svg");
+        // var div_el = newCont.querySelector("div");
+        // div_el.style.backgroundColor = BoxContainer.elem().style.backgroundColor;
+        // svg_el.style.backgroundColor = BoxContainer.elem().style.backgroundColor;
+        // var el_type = element.getAttribute("primary-element-type");
+        // newCont.querySelector(".element_name").innerText = element.getAttribute("element_name") || "no_name";
+        // if (element.style.display == "none") {
+        //     newCont.querySelector("[layer_btn=eye]").children[0].classList.remove("bi-eye");
+        //     newCont.querySelector("[layer_btn=eye]").children[0].classList.add("bi-eye-slash");
+        // }
+        // if (element.getAttribute("locked") == "true") {
+        //     newCont.querySelector("[layer_btn=lock]").children[0].classList.remove("bi-unlock-fill");
+        //     newCont.querySelector("[layer_btn=lock]").children[0].classList.add("bi-lock-fill");
+        // }
+        // if (el_type == "Text") {
+        //     div_el.style.display = "block";
+        //     div_el.innerHTML = element.innerHTML;
+        //     div_el.children[0].style.wordBreak = "break-all";
+        //     div_el.children[0].style.overflowY = "auto";
+        // } else if (el_type == "Container") {
+        //     div_el.style.display = "block";
+        //     div_el.innerHTML = element.innerHTML;
+        // } else if (el_type == "Image") {
+        //     div_el.style.display = "block";
+        //     div_el.innerHTML = element.innerHTML;
+        //     div_el.children[0].style.height = "100%";
+        //     div_el.children[0].style.width = "100%";
+        //     div_el.children[0].style.position = "absolute";
+        //     div_el.children[0].style.top = "0px";
+        //     div_el.children[0].style.left = "0px";
+        //     div_el.children[0].style.transform = "none";
+        // } else if (
+        //     el_type == "Audio" ||
+        //     el_type == "Video" ||
+        //     el_type == "YoutubeVideo"
+        // ) {
+        //     div_el.style.display = "block";
+        //     div_el.innerHTML = element.innerHTML;
+        // } else if (element.tagName == "path") {
+        //     svg_el.style.display = "block";
+        //     svg_el.append(element);
+        //     transformFunc.updateValue(element, "positionX", "0");
+        //     transformFunc.updateValue(element, "positionY", "0");
+        //     svg_el.setAttribute(
+        //         "viewBox",
+        //         `0 0 ${BoxContainer.svg().getBoundingClientRect().width} ${BoxContainer.svg().getBoundingClientRect().height
+        //         }`
+        //     );
+        // } else if (element.tagName == "text") {
+        //     svg_el.style.display = "block";
+        //     svg_el.append(element);
+        //     transformFunc.updateValue(element, "positionX", "0");
+        //     transformFunc.updateValue(element, "positionY", "0");
+        //     svg_el.setAttribute(
+        //         "viewBox",
+        //         `0 0 ${BoxContainer.svg().getBoundingClientRect().width} ${BoxContainer.svg().getBoundingClientRect().height
+        //         }`
+        //     );
+        // } else if (el_type == "Video") {
+        //     div_el.innerHTML == element.innerHTML;
+        //     console.log(element.innerHTML);
+        //     // div_el.append(element)
+        //     div_el.style.display = "block";
+        //     // element.style.height = "100%"
+        //     // element.style.width = "100%"
+        //     // element.style.position = "absolute"
+
+        //     // element.style.top = '0px'
+        //     // element.style.left = "0px"
+        //     // element.style.transform = "none"
+        // }
+        // element.classList.remove("draggable");
+        // element.onmousedown = () => { };
+
+        // try {
+        //     div_el.children[0].setAttribute("layer_element_name", element.getAttribute("element_name"));
+        //     div_el.children[0].style.height = "100%";
+        //     div_el.children[0].style.width = "100%";
+        // } catch (err) { }
+        // try {
+        //     svg_el.children[0].setAttribute("layer_element_name", element.getAttribute("element_name"));
+        // } catch (err) { }
+
+        // element.setAttribute("layerer_element_name", element.getAttribute("element_name"));
+        // element.removeAttribute("element_name");
+        // layerDiv.elem.append(newCont);
+        // // newCont.style.top = LayerTopPosition + "%";
+        // // LayerTopPosition += 21;
+        // element.removeAttribute("element_groups");
+        // // layerDiv.elem.append(newCont)
     },
+    UpdateLayerElement: function(element){
+        var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");;
+        var elem_h = transformFunc.getValue(element).height
+        var elem_w = transformFunc.getValue(element).width
+        svg.setAttribute('viewBox',`0 0 ${elem_w} ${elem_h}`)
+        svg.setAttribute("preserveAspectRatio","none")
+        var cln_el = element.cloneNode(true)
+        transformFunc.updateValue(cln_el,'position-x','0')
+        transformFunc.updateValue(cln_el,'position-y','0')
+        svg.append(cln_el)
+        svg.classList.add('layers-svg')
+        cln_el.classList.remove('active','draggable')
+        document.querySelector(`[layerFor=${element.id}]`).querySelector('svg').replaceWith(svg)
+    },
+
     delete: function (element) {
-        getparent(layerDiv.GetElLayer(element), "layer_containers").remove();
+        layerDiv.elem.querySelector(`[layerFor=${element.id}]`).remove()
         // LayerTopPosition -= 21
     },
     resetLayerArrangement: function () {
@@ -1670,15 +1795,29 @@ export const layerDiv = {
 layerDiv.funcs();
 
 const element_ContainerLayer = document.createElement("div");
-element_ContainerLayer.classList.add("layer_containers");
-element_ContainerLayer.innerHTML = `<svg preserveAspectRatio="none" class="svgForLayers" viewBox="0 0 0 0" ></svg>
-<div class="divForLayers"> </div>
-<div class="layers_options_div">
-    <div class="layers_options element_name" >Container1</div>
-    <div class="layers_options" layer_btn="eye"><i class="bi bi-eye"></i></div>
-    <div class="layers_options" layer_btn="lock"><i class="bi bi-unlock-fill"></i></div>
-    <div style="display:none;" ><i class="bi bi-arrow-down-square-fill"></i></div>
-</div>`;
+element_ContainerLayer.classList.add("layers-containers");
+
+element_ContainerLayer.innerHTML = `
+<div class="layers-element_name"></div>
+<div class="layers-options_div">
+    <div class="layers-options" layer_btn="eye"><i class="bi bi-eye"></i></div>
+    <div class="layers-options" layer_btn="lock"><i class="bi bi-unlock-fill"></i></div>
+    <div><i class="bi bi-gear-fill"></i></div>
+    
+    </div>
+    <div class="layers-svg"></div>`;
+
+
+// element_ContainerLayer.innerHTML = `<svg preserveAspectRatio="none" class="svgForLayers" viewBox="0 0 0 0" ></svg>
+// <div class="divForLayers"> </div>
+// <div class="layers_options_div">
+//     <div class="layers_options element_name" >Container1</div>
+//     <div class="layers_options" layer_btn="eye"><i class="bi bi-eye"></i></div>
+//     <div class="layers_options" layer_btn="lock"><i class="bi bi-unlock-fill"></i></div>
+//     <div style="display:none;" ><i class="bi bi-arrow-down-square-fill"></i></div>
+// </div>`;
+
+
 
 // BoxContainer.elem().addEventListener('click', function() {
 //         BoxContainer.SetAspectRatio(16, 9)
@@ -1981,3 +2120,13 @@ export function Save(Interacml) {
     })
 
 }
+
+
+document.querySelector('#show_stylesfor_select').addEventListener('click',function(){
+    BoxContainer.ShowElementSelection({headtitle:'Show props For',triggererEl:this})
+})
+
+document.querySelector('#update_stylesfor_select').addEventListener('click',function(){
+    BoxContainer.ShowElementSelection({headtitle:'Oninput Update Styles For',triggererEl:this})
+})
+

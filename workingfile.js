@@ -12,15 +12,6 @@ document.querySelector('#LayerBtn').addEventListener('click',function(){
     }
 })
 
-var style_div_main_props = document.querySelectorAll('.style_div_main_props');
-for(var el of style_div_main_props){
-    el.addEventListener('click',function(){
-        for(var elem of style_div_main_props){
-            elem.style.border = "none"
-        }
-        this.style.border = "5px #3f1580 solid"
-    })
-}
 
 
 for(var child of document.querySelector('#options_div').children){
@@ -33,3 +24,11 @@ for(var child of document.querySelector('#options_div').children){
         
       });
 }
+
+for (var el of document.querySelectorAll('.hide_myprnt')) {
+        console.log(el)
+        el.addEventListener('click', function() {
+            this.parentNode.style.display = "none";
+            console.log('hiding')
+        })
+    }

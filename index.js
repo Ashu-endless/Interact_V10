@@ -174,20 +174,21 @@ document.body.onmousedown = (e) => {
 }
 
 
-document.body.oninput = (e) => {
-    if (gettarget(e, 'toolbox_more') == null) {
-        toolbox_more.style.display = 'none'
-    }
+// document.body.oninput = (e) => {
+//     if (gettarget(e, 'toolbox_more') == null) {
+//         toolbox_more.style.display = 'none'
+//     }
 
-    if (check_activeel()) {
-       // activeel_size_handler.position(getactiveel())
-            // activeel_container_position()
+//     if (check_activeel()) {
+//        // activeel_size_handler.position(getactiveel())
+//             // activeel_container_position()
 
-    }
-}
-document.body.onclick = () => {
-    hide_myprnt()
-}
+//     }
+// }
+
+// document.body.onclick = () => {
+//     hide_myprnt()
+// }
 
 
 
@@ -486,7 +487,7 @@ export function BoxContainerClickFunc(e) {
      if(gotelement != null ){
          gotelement.classList.add('active')
          EndlessSizeHandler.SetHandler({element:gotelement})
-         show_styling_properties(getactiveel() || "")
+        //  show_styling_properties(getactiveel() || "")
          toolboxFuncs.position()
      }
  }
@@ -3154,3 +3155,28 @@ window.addEventListener("load", function(){
 // NewArrowBox({
 //     for:document.querySelector('#text'),showarrow:false,dataHtml:"Text",event:'mouseover',
 // })
+
+
+//Setscale(ah,aw,transform_origin)
+
+
+var style_div_main_props = document.querySelectorAll('.style_div_main_props');
+for(var el of style_div_main_props){
+    el.addEventListener('click',function(){
+        for(var elem of style_div_main_props){
+            elem.style.border = "none"
+        }
+        for(var elem of document.querySelectorAll('.style_div_props_cont')){
+            elem.style.transition = 'none'
+            elem.style.display = "none"
+            elem.style.width = "0px"
+            
+        }
+        document.querySelector(`#Style_div-${this.id}`).style.display = "block"
+        document.querySelector(`#Style_div-${this.id}`).style.height = ((this.parentNode.parentNode.getBoundingClientRect().height - document.querySelector('#styles_div_el_Select').getBoundingClientRect().height) - this.parentNode.getBoundingClientRect().height) + 'px'  
+        document.querySelector(`#Style_div-${this.id}`).style.transition = '1s linear width'
+        document.querySelector(`#Style_div-${this.id}`).style.width = '100%'
+        
+        this.style.border = "5px #3f1580 solid"
+    })
+}

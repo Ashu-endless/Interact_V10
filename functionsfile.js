@@ -770,8 +770,10 @@ toolboxFuncs.select_container_btn.addEventListener('click', function() {
 
 toolboxFuncs.delete_activeel.onclick = () => {
     layerDiv.delete(getactiveel())
+    
+    // show_styling_properties()
+    EndlessSizeHandler.DeleteHandler(getactiveel())
     activeelFunction.delete()
-    show_styling_properties()
 }
 
 toolboxFuncs.clone_activeel.onclick = () => {

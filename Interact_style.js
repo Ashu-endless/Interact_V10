@@ -1364,6 +1364,9 @@ export const CreateStyleDiv = {
   },
 };
 
+document.querySelector('#Style_div-TextStyles').append(CreateStyleDiv.CreateTextStyleDiv())
+document.querySelector('#Style_div-BorderStyles').append(CreateStyleDiv.CreateBorderStyleDiv())
+
 // export function UpdateTransformStyleDiv() {
 //   var styleDiv = activeel_Transform;
 //   var element = getactiveel()

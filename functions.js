@@ -1027,7 +1027,7 @@ var CreateFunctionalityPropValueDiv = function (json) {
         case 'position-x':
         case 'scroll-x':
 
-            var div = CreateRangeValueTemplate({ prop: json.prop, val: json.val, suffex: 'X', incdec: json.incdec })
+            var div = alueTemplate({ prop: json.prop, val: json.val, suffex: 'X', incdec: json.incdec })
 
             div.setAttribute('Functionality_prop', json.prop)
             div.querySelector('input[type=range]').addEventListener('input', function () {

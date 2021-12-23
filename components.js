@@ -172,7 +172,7 @@ BorderStyleSelect.innerHTML =  `<option selected value="none">  </option>
 <option class="border" value="none">none</option>`
 
 export const FontFamilySelect = document.createElement('select');
-FontFamilySelect.innerHTML = `<option  class="border" value="arial" selected>arial</option>
+FontFamilySelect.innerHTML = `<option  class="" value="arial" selected>arial</option>
 <option class="border" value="fantasy">fantasy</option>
 <option class="border" value="monospace">monospace</option>
 <option class="border" value="serif">serif</option>
@@ -405,8 +405,8 @@ TextpathStyleDiv.innerHTML = `<div class="fontstyleDiv" >
     </select>
 
   <div style="display: grid;grid-template-columns: 1fr 4fr 3fr;height: 4vh;gap: 10px;"> <span class="material-icons">format_size</span>
-      <input type="number" class="border" style-attr="font-size" placeholder="size" name="" min="0" max="1000" step="1" style="height: 100%;">
-      <input type="color" class="borde colorpicker" value="#0000ff" style-attr="color" style="height: 100%;">
+      <input type="number" class="dark-num-inp" style-attr="font-size" placeholder="size" name="" min="0" max="1000" step="1" style="height: 100%;">
+      <input type="color" class="colorpicker" value="#0000ff" style-attr="color" style="height: 100%;">
   </div>
 </div>
   <div Main-style="text-decoration" style="display: grid;grid-auto-columns: 1fr;grid-template-columns: 33% 33% 33%;grid-template-rows: max-content max-content;gap: 5px 2px;justify-items: center;">
@@ -499,13 +499,13 @@ TextpathStyleDiv.innerHTML = `<div class="fontstyleDiv" >
 export const TextStyleDiv = document.createElement('div');
 TextStyleDiv.setAttribute('StyleDivFor', 'TextStyleDiv');
 TextStyleDiv.innerHTML = `<div class="fontstyleDiv" >
-    <div main-style="font" style="gap: 5px;">  <select class="border" style-attr="font-family" style="height: 5vh; width: 100%; font-family: arial;">
+    <div main-style="font" style="gap: 5px;">  <select class="" style-attr="font-family" style="height: 5vh; width: 100%; font-family: arial;">
     ${FontFamilySelect.innerHTML}
     </select>
 
   <div style="display: grid;grid-template-columns: 1fr 4fr 3fr;height: 4vh;gap: 10px;"> <span class="material-icons">format_size</span>
-      <input type="number" class="border" style-attr="font-size" placeholder="size" name="" min="0" max="1000" step="1" style="height: 100%;">
-      <input type="color" class="borde colorpicker" value="#0000ff" style-attr="color" style="height: 100%;">
+      <input type="number" class="dark-num-inp" style-attr="font-size" placeholder="size" name="" min="0" max="1000" step="1" style="height: 100%;">
+      <input type="color" class="colorpicker" value="#0000ff" style-attr="color" style="height: 100%;">
   </div>
 </div>
   <div Main-style="text-decoration" style="display: grid;grid-auto-columns: 1fr;grid-template-columns: 33% 33% 33%;grid-template-rows: max-content max-content;gap: 5px 2px;justify-items: center;">
@@ -610,76 +610,79 @@ BrushStyleDiv.innerHTML = `<div class="divninput" Main-style="text-stroke">
          <!-- <input type="range" class="border" style="width:95%" style-attr="-webkit-text-stroke-width" placeholder="stroke" name="" value="0" min="0" max="10" step="0.1"> -->
   
 </div>`
+
+
+
 export const BorderStyleDiv = document.createElement('div');
 BorderStyleDiv.setAttribute('StyleDivFor', 'BorderStyleDiv');
 BorderStyleDiv.innerHTML = `<div class="">
 
 <div class="border_style_label"> <span class="form-check form-switch" style="display: block;z-index: 1;position: relative;right: -5px;">
 <input class="form-check-input border_style_switcher" id="" type="checkbox" id="flexSwitchCheckDefault"></span>
-    <span class="border_prop one_grid tile">style</span>
-    <span class="border_prop one_grid tile">width</span>
-    <span class="border_prop one_grid tile">color</span> </div>
+    <span class="tile">style</span>
+    <span class="tile">width</span>
+    <span class="tile">color</span> </div>
 
 <div class="diff_borders_div">
   <div class="borderstyledivstyle" Main-style="border-top" > 
     <span class="material-icons border_icon ">border_top</span>
-      <select class="border" style-attr="border-style" >
+      <select class="" style-attr="border-style" >
 <option selected value="none">  </option>
-<option class="border" value="solid">_______</option>
-<option class="border" value="double">=====</option>
-<option class="border" value="dashed">----</option>
-<option class="border" value="dotted">.....</option>
-<option class="border" value="ridge">ridge</option>
-<option class="border" value="groove">groove</option>
-<option class="border" value="none">none</option>
+<option class="" value="solid">_______</option>
+<option class="" value="double">=====</option>
+<option class="" value="dashed">----</option>
+<option class="" value="dotted">.....</option>
+<option class="" value="ridge">ridge</option>
+<option class="" value="groove">groove</option>
+<option class="" value="none">none</option>
 </select>
-    <input type="number" class="border" name=""  style-attr="border-width"   value="0" min="0" max="100"  >
-    <input type="color" class="border" name=""  style-attr="border-color" >
+    <input type="number" class="dark-num-inp" name=""  style-attr="border-width"   value="0" min="0" max="100">
+    <input type="color" class="" name=""  style-attr="border-color" >
 </div>
   <div class="borderstyledivstyle" Main-style="border-right" > 
     <span class="material-icons border_icon ">border_right</span>
-      <select class="border" style-attr="border-style" >
+      <select class="" style-attr="border-style" >
 <option selected value="none" >  </option>
-<option class="border" value="solid">_______</option>
-<option class="border" value="double">=====</option>
-<option class="border" value="dashed">----</option>
-<option class="border" value="dotted">.....</option>
-<option class="border" value="ridge">ridge</option>
-<option class="border" value="groove">groove</option>
-<option class="border" value="none">none</option>
+<option class="" value="solid">_______</option>
+<option class="" value="double">=====</option>
+<option class="" value="dashed">----</option>
+<option class="" value="dotted">.....</option>
+<option class="" value="ridge">ridge</option>
+<option class="" value="groove">groove</option>
+<option class="" value="none">none</option>
 </select>
-    <input type="number" class="border" name=""  style-attr="border-width" value="0" min="0" max="100">
-    <input type="color" class="border" name=""  style-attr="border-color" >
+    <input type="number" class="dark-num-inp" name=""  style-attr="border-width" value="0" min="0" max="100">
+    <input type="color" class="" name=""  style-attr="border-color" >
 </div>
-  <div class="borderstyledivstyle" class="borderstyledivstyle" Main-style="border-left"> 
+  <div class="borderstyledivstyle"  Main-style="border-left"> 
     <span class="material-icons border_icon ">border_left</span>
-      <select class="border" style-attr="border-style">
+      <select class="" style-attr="border-style">
 <option selected value="none" > </option>
-<option class="border" value="solid">_______</option>
-<option class="border" value="double">=====</option>
-<option class="border" value="dashed">----</option>
-<option class="border" value="dotted">.....</option>
-<option class="border" value="ridge">ridge</option>
-<option class="border" value="groove">groove</option>
-<option class="border" value="none">none</option>
+<option class="" value="solid">_______</option>
+<option class="" value="double">=====</option>
+<option class="" value="dashed">----</option>
+<option class="" value="dotted">.....</option>
+<option class="" value="ridge">ridge</option>
+<option class="" value="groove">groove</option>
+<option class="" value="none">none</option>
 </select>
-    <input type="number" class="border" name="" style-attr="border-width" value="0" min="0" max="100">
-    <input type="color" class="border" name=""  style-attr="border-color">
+    <input type="number" class="dark-num-inp" name="" style-attr="border-width" value="0" min="0" max="100">
+    <input type="color" class="" name=""  style-attr="border-color">
 </div>
   <div class="borderstyledivstyle" Main-style="border-bottom" > 
     <span class="material-icons border_icon ">border_bottom</span>
-      <select class="border" style-attr="border-style" >
+      <select class="" style-attr="border-style" >
 <option selected value="none" > </option>
-<option class="border" value="solid">_______</option>
-<option class="border" value="double">=====</option>
-<option class="border" value="dashed">----</option>
-<option class="border" value="dotted">.....</option>
-<option class="border" value="ridge">ridge</option>
-<option class="border" value="groove">groove</option>
-<option class="border" value="none">none</option>
+<option class="" value="solid">_______</option>
+<option class="" value="double">=====</option>
+<option class="" value="dashed">----</option>
+<option class="" value="dotted">.....</option>
+<option class="" value="ridge">ridge</option>
+<option class="" value="groove">groove</option>
+<option class="" value="none">none</option>
 </select>
-    <input type="number" class="border" name="" style-attr="border-width" value="0" min="0" max="100">
-    <input type="color" class="border" name="" style-attr="border-color" >
+    <input type="number" class="dark-num-inp" name="" style-attr="border-width" value="0" min="0" max="100">
+    <input type="color" class="" name="" style-attr="border-color" >
 </div>
     
 
@@ -688,18 +691,18 @@ BorderStyleDiv.innerHTML = `<div class="">
 <div class="same_borders_div" style="display: none;">
     <div class="borderstyledivstyle" Main-style="border" > 
     <i class="bi bi-border-inner"></i>
-          <select class="border" style-attr="border-style" >
+          <select class="" style-attr="border-style" >
     <option selected value="none" > </option>
-    <option class="border" value="solid">_______</option>
-    <option class="border" value="double">=====</option>
-    <option class="border" value="dashed">----</option>
-    <option class="border" value="dotted">.....</option>
-    <option class="border" value="ridge">ridge</option>
-    <option class="border" value="groove">groove</option>
-    <option class="border" value="none">none</option>
+    <option class="" value="solid">_______</option>
+    <option class="" value="double">=====</option>
+    <option class="" value="dashed">----</option>
+    <option class="" value="dotted">.....</option>
+    <option class="" value="ridge">ridge</option>
+    <option class="" value="groove">groove</option>
+    <option class="" value="none">none</option>
     </select>
-        <input type="number" class="border" name="" style-attr="border-width" value="0" min="0" max="100">
-        <input type="color" class="border" name="" style-attr="border-color" >
+        <input type="number" class="dark-num-inp" name="" style-attr="border-width" value="0" min="0" max="100">
+        <input type="color" class="" name="" style-attr="border-color" >
     </div>
 
 </div>
