@@ -3,7 +3,7 @@ import { getactiveel, } from './index.js';
 import { gettarget, toolboxFuncs, activeelFunction, activeel_position_divFuncs, getparent,getJsonAttr } from './functionsfile.js';
 import { BoxContainer } from './Interac_BoxContainer.js';
 import { UpdateTransformStyleDiv, } from './UpdateStyleDiv.js';
-
+import { EndlessSizeHandler } from './InteracSizehandler.js';
 var el;
 var dx;
 var dy;
@@ -175,6 +175,7 @@ function resizeHandler(event, left = false, top = false, xResize = false, yResiz
 }
 
 export function DragMoveListener() {
+        console.log('del')
     var draggable = document.querySelectorAll('.draggable');
     for (var draggables of draggable) {
         draggables.onmousedown = (e) => {
@@ -195,7 +196,7 @@ export function DragMoveListener() {
         }
 
             activeel_position_divFuncs.position()
-            UpdateTransformStyleDiv(target)
+            //UpdateTransformStyleDiv(target)
             document.body.onmousemove = (e) => {
                     var dx = (e.clientX - startX )/ parseFloat(getJsonAttr(BoxContainer.elem(), "settings").scale)
                     var dy = (e.clientY - startY)/ parseFloat(getJsonAttr(BoxContainer.elem(), "settings").scale)
@@ -206,9 +207,10 @@ export function DragMoveListener() {
                     for(var i=0;i<elem.length;i++){
                     transformFunc.updateValue(elem[i], 'position-x', (Draggable_data[i].positionx + dx) + "px")
                     transformFunc.updateValue(elem[i], 'position-y',(Draggable_data[i].positiony + dy) + "px")
-                    }
+                    EndlessSizeHandler.SetHandler({element:elem[i]})
+                }
                     activeel_position_divFuncs.position()
-                    UpdateTransformStyleDiv(target)
+                   // UpdateTransformStyleDiv(target)
                 },
                 document.body.onmouseup = (e) => {
                     target.style.cursor = "grab"

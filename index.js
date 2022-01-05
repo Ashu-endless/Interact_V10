@@ -9,17 +9,17 @@ var elem;
 var j;
 var k;
 
-const preview = document.querySelector('#preview_btn');
-const preview_destroy = document.querySelector('#preview_destroy');
+
 
 import { EndlessSizeHandler } from './InteracSizehandler.js';
+import { UpdateRangeInpStyle } from './document.js';
 import { property_selector_container, transitions_controller } from './components.js';
 // import { keyframes_creator, InteractAnimation, keyframes, update_animation_keyframes } from './keyframes.js';
 import { style_textShadow_updater, style_boxShadow_updater, add_textshadow, apply_box_shadow, apply_text_shadow, add_boxshadow, applying_box_shadow, applying_text_shadow, box_shadow_type_switcher, refresh_style_div, transformFunc, show_styling_properties, CreateStyleDiv, styleDivOninputUpdate,InteracStyles, } from './Interact_style.js';
 import { activeel_size_handler, DragMoveListener, DragAndDropListener } from './size_handler.js';
 // import { activeel_container_resizer } from './size_handler_svg.js';
 import { InteractFunctions, InteractFunctionCreator } from './functions.js';
-import { heightInc, gettarget, getparent, bardivFunc, preview_selected_element, toolboxFuncs, LayersDivFuncs, activeelFunction, getUniqueid, getAllBoxElementsInfo, DragAboveandDrop } from './functionsfile.js';
+import { heightInc, gettarget, getparent, bardivFunc, preview_selected_element, toolboxFuncs, LayersDivFuncs, activeelFunction, getUniqueid, getAllBoxElementsInfo, DragAboveandDrop, getactiveels } from './functionsfile.js';
 import { NewArrowBox } from './arrowbox.js';
 import { Save,BoxContainer,NewBoxContainer, update_triggerer_selector, update_effector_selector } from './Interac_BoxContainer.js';
 import { UpdateOriginalStyleDivs } from './UpdateStyleDiv.js';
@@ -35,21 +35,21 @@ const activeel_Text_Shadow = document.querySelector('#Interact_activeel_Text_Sha
 const activeel_Drop_Shadow = document.querySelector('#Interact_activeel_Drop_Shadow');
 const activeel_Brush = document.querySelector('#Interact_activeel_Brush');
 
-activeel_Transform.append(CreateStyleDiv.CreateTransformStyleDiv());
-activeel_Border_Radius.append(CreateStyleDiv.CreateBorderRadiusStyleDiv());
-activeel_Text.append(CreateStyleDiv.CreateTextStyleDiv())
-activeel_Textpath.append(CreateStyleDiv.CreateTextpathStyleDiv())
-activeel_Border.append(CreateStyleDiv.CreateBorderStyleDiv())
-activeel_Brush.append(CreateStyleDiv.CreateBrushStyleDiv())
+// activeel_Transform.append(CreateStyleDiv.CreateTransformStyleDiv());
+// activeel_Border_Radius.append(CreateStyleDiv.CreateBorderRadiusStyleDiv());
+// activeel_Text.append(CreateStyleDiv.CreateTextStyleDiv())
+// activeel_Textpath.append(CreateStyleDiv.CreateTextpathStyleDiv())
+// activeel_Border.append(CreateStyleDiv.CreateBorderStyleDiv())
+// activeel_Brush.append(CreateStyleDiv.CreateBrushStyleDiv())
     // activeel_Text_Shadow.append(CreateStyleDiv.CreateTextShadowStyleDiv())
     // activeel_Drop_Shadow.append(CreateStyleDiv.CreateDropShadowStyleDiv())
-activeel_Background.append(CreateStyleDiv.CreateBackgroundStyleDiv())
+// activeel_Background.append(CreateStyleDiv.CreateBackgroundStyleDiv())
 document.querySelector('#tags_box_settings-border_content').append(CreateStyleDiv.CreateBorderRadiusStyleDiv())
 document.querySelector('#tags_box_settings-border_content').append(CreateStyleDiv.CreateBorderStyleDiv())
 heightInc()
 bardivFunc()
     // ?
-styleDivOninputUpdate()
+
 const check_activeel = () => {
         var active_el = document.querySelector('.active');
         if (active_el != undefined) {
@@ -288,97 +288,7 @@ var all_element_groups = [];
 //     add_element_groups('')
 // }
 
-export const preview_box = document.querySelector('#preview_box');
-// ?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! preview PREVFUNCS
-preview.onclick = () => {
-
-        // preview_box.innerText = box.innerHTML
-        // console.log(document.querySelector('#interac_Container').innerHTML)
-        // console.log(BoxContainer.elem())
-        preview_box.innerHTML = BoxContainer.div().innerHTML
-        preview_box.style.backgroundColor = BoxContainer.elem().style.backgroundColor
-        preview_box.style.left = BoxContainer.elem().style.left
-        preview_box.style.top = BoxContainer.elem().style.top
-        preview_box.style.height = BoxContainer.elem().style.height
-        preview_box.style.width = BoxContainer.elem().style.width
-        var preview_modal = document.querySelector('#preview_modal');
-        preview_modal.style.display = 'block'
-        preview_box.style.display = 'block'
-            // var all_data = []
-            // for (el of preview_box.querySelectorAll('div,img,p,path,g')) {
-            // for (el of preview_box.querySelectorAll('[primary-element-type]')) {
-            //     all_data.push(el)
-
-        // }
-
-        for (var p of preview_box.querySelectorAll('p')) {
-            p.contentEditable = false;
-        }
-        // for (var textinp of preview_box.querySelectorAll('[element-type=text-input]')) {
-        //     textinp.contentEditable = true;
-        //     textinp.innerText = "type your ______ here"
-        //     textinp.onclick = (e) => {
-        //         if (e.target.innerText == "type your ______ here") {
-        //             e.target.innerText = ""
-        //         }
-        //     }
-        // }
-        for (var el of preview_box.querySelectorAll('[primary-element-type=Video]')) {
-    
-            BoxContainer.ChangeSrc(el,InteracStyles.getValue({
-                element: el,
-                prop: "src"
-            }))
-
-        }
-        for (var el of preview_box.querySelectorAll('[primary-element-type=YoutubeVideo]')) {
-            BoxContainer.ChangeSrc(el,InteracStyles.getValue({
-                element: el,
-                prop: "src"
-            }))
-
-
-        }
-        for (var el of preview_box.querySelectorAll('[primary-element-type=Audio]')) {
-            
-            BoxContainer.ChangeSrc(el,InteracStyles.getValue({
-                element: el,
-                prop: "src"
-            }))
-
-        }
-        for (var el of preview_box.querySelectorAll('[element_hyperlink]')) {
-            // var a = document.createElement('a');
-            // a.href = el.getAttribute('element_hyperlink')
-            // el.insertBefore(a,el.children[0])
-            el.addEventListener('click',function(){
-                window.open(el.getAttribute('element_hyperlink'), '_blank').focus();
-                //window.location.href = el.getAttribute('element_hyperlink')
-            })
-
-        }
-
-
-        var all_data = preview_box.querySelectorAll(`[element_name]`);
-        for (var data of all_data) {
-            console.log(all_data)
-            data.classList.remove('active', 'draggable');
-            data.contentEditable = false;
-            data.setAttribute('previewer_element_name', data.getAttribute('element_name'))
-            data.setAttribute('previewer_element_groups', data.getAttribute('element_groups'))
-        }
-        // console.log('InteractFunctions', JSON.stringify(InteractFunctions))
-        BoxContainer.elem().setAttribute('InteracFunctions', JSON.stringify(InteractFunctions))
-        Object.keys(InteractFunctions).forEach(function(key) {
-            InteractFunctionCreator(InteractFunctions[key])
-        })
-
-    }
-    // ! TEST=======================================
-    preview_destroy.onclick=()=>{
-        preview_destroy.parentNode.style.display = "none"
-        preview_box.innerHTML = ""
-    } 
+ 
 
 
 var style_head_mob = document.querySelectorAll('.style-head_mob')
@@ -2797,9 +2707,6 @@ document.body.onload = () => {
 
 
 
-document.querySelector('#frfr').onclick = () => {
-    document.querySelector('.modal1').style.display = "grid"
-}
 
 
 
@@ -3180,3 +3087,63 @@ for(var el of style_div_main_props){
         this.style.border = "5px #3f1580 solid"
     })
 }
+
+document.querySelector('#InteracPageZoomSettings').querySelector('input[type=range]').addEventListener('input',function(){
+    var val = this.value;
+    UpdateRangeInpStyle(this,val)
+    BoxContainer.elem().style.transform = `scale(${val/10})`
+    this.parentNode.querySelector(`input[type=number]`).value = val
+})
+document.querySelector('#InteracPageLeftSettings').querySelector('input[type=range]').addEventListener('input',function(){
+    var val = this.value;
+    UpdateRangeInpStyle(this,val)
+    BoxContainer.elem().style.left= `${val}%`
+    this.parentNode.querySelector(`input[type=number]`).value = val
+})
+document.querySelector('#InteracPageTopSettings').querySelector('input[type=range]').addEventListener('input',function(){
+    var val = this.value;
+    UpdateRangeInpStyle(this,val)
+    console.log(val)
+    BoxContainer.elem().style.top = `${val}%`
+    this.parentNode.querySelector(`input[type=number]`).value = val
+})
+
+
+document.querySelector('#InteracPageZoomSettings').querySelector('input[type=number]').addEventListener('input',function(){
+    var val = this.value;
+    this.parentNode.querySelector(`input[type=range]`).value = val
+
+    UpdateRangeInpStyle(this.parentNode.querySelector(`input[type=range]`),this.parentNode.querySelector(`input[type=range]`).value)
+    BoxContainer.elem().style.transform = `scale(${val/10})`
+   // this.parentNode.querySelector(`input[type=number]`).value = val
+})
+document.querySelector('#InteracPageLeftSettings').querySelector('input[type=number]').addEventListener('input',function(){
+    var val = this.value;
+    this.parentNode.querySelector(`input[type=range]`).value = val
+
+    UpdateRangeInpStyle(this.parentNode.querySelector(`input[type=range]`),this.parentNode.querySelector(`input[type=range]`).value)
+    BoxContainer.elem().style.left= `${val}%`
+    //this.parentNode.querySelector(`input[type=number]`).value = val
+})
+document.querySelector('#InteracPageTopSettings').querySelector('input[type=number]').addEventListener('input',function(){
+    var val = this.value;
+    this.parentNode.querySelector(`input[type=range]`).value = val
+    UpdateRangeInpStyle(this.parentNode.querySelector(`input[type=range]`),this.parentNode.querySelector(`input[type=range]`).value)
+    BoxContainer.elem().style.top = `${val}%`
+   
+})
+
+
+document.querySelector('#InteractPagePosition').addEventListener('input',function(){
+    for(var el of getactiveels() ){
+    EndlessSizeHandler.SetHandler({element:el})}
+
+})
+
+document.querySelector('#InteractPagePositionBtn').addEventListener('click',function(){
+    if(document.querySelector('#InteractPagePosition').style.display == 'none'){
+    document.querySelector('#InteractPagePosition').style.display = 'block'}
+    else{
+        document.querySelector('#InteractPagePosition').style.display = 'none'
+    }
+})

@@ -77,9 +77,10 @@ functions_transitions_controller_div.innerHTML = `<div style="display:flex">
 
 export const InteractFunctionEditor = document.createElement('div');
 InteractFunctionEditor.classList.add('InteractFunctionEditor')
-InteractFunctionEditor.innerHTML = `<i class="bi bi-x-square delete_function"></i> <input type="text" class="property border three_grid function_name" style="width:75%" placeholder="function name">
-<i class="bi bi-arrow-up-square InteractFunctionEditor_height_btn" style="display:inline-block"></i>
+InteractFunctionEditor.innerHTML = `<div> <i class="bi bi-trash delete_function"></i> <input type="text" class="property border three_grid function_name" style="width:75%" placeholder="function name">
+<i class="bi bi-arrow-up-square InteractFunctionEditor_height_btn" style="display:inline-block"></i> </div>
 <hr class="style_hr">
+<div>
 <label for="" style="font-family: monospace;font-size: large;">Event : </label>
 <select name="" id="" class="function_event">
     <option value="click">click/tap</option>
@@ -88,6 +89,7 @@ InteractFunctionEditor.innerHTML = `<i class="bi bi-x-square delete_function"></
     <option value="dblclick">double click/tap</option>
     <option value="">hold</option>
 </select>
+</div>
 <hr class="style_hr">
 <label for="">Trigerer</label>
 <br>
@@ -517,87 +519,9 @@ TextStyleDiv.innerHTML = `<div class="fontstyleDiv" >
       <div class="clckbox" Main-style="textAlign" align="center"> <i class="fas fa-align-center"> </i> </div>
       <div class="clckbox" Main-style="textAlign" align="right"><i class="fas fa-align-right"> </i> </div>
   </div>
-
-  <!--  -->
-  <!-- <div class="divninput" Main-style="letter-spacing">
-      <div class="rangeinputdiv iconntextnval"> <span class="tile">a<i class="bi bi-arrow-left-right"></i>b </span><span class="">letter-spacing
-      </span> <span class="range_value">1</span></div>
-      <input type="range" name="" style-attr="letter-spacing" class="three_grid" min="-10" max="50" value="1">
-
-  </div> -->
-  <!-- line height -->
-  <!-- <div class="divninput" Main-style="line-height">
-    <div class="rangeinputdiv iconntextnval"> <span class="tile">ab<i class="bi bi-arrows-collapse"></i>ab</span> <span class="">line-height
-    </span><span class="range_value">100%</span></div>
-
-    <input type="range" name="" style-attr="line-height"  class="three_grid" value="100" min="0" max="500"></div>
-     -->
-
- 
-  <!--  -->
-  <!-- <div class="divninput" Main-style="word-spacing">
-    <div class="rangeinputdiv iconntextnval"> <span class="tile">ab<i class="bi bi-arrow-left-right"></i>ab</span> <span class="">word-spacing
-    </span> <span class="range_value">1</span></div>
-    <input type="range" style-attr="word-spacing" name="" class="three_grid" id="" value="1" min="-10" max="50">
-    
-</div> -->
-
-
-  <!-- <span class="tile">Text decorations</span>
-  <br>
-  <div class="border prop clckprop one_grid underline" name="" id="textDecoration"><i class="fas fa-underline"></i></div>
-  <div class="border prop clckprop one_grid line-through" name="" id="textDecoration"><i class="fas fa-underline"></i></div>
-  <div class="border prop clckprop one_grid overline" name="" id="textDecoration"><i class="fas fa-underline"></i></div>
-  <br> <select name="" class="border" id="text-decoration-style">
-  <option value="wavy"> ~~~~</option>
-  <option value="dashed"> -----</option>
-  <option value="solid"> _____</option>
-  <option value="double"> ======</option>
-  <option value="dotted">.....</option>
-</select>
-  <input type="number" class="border px" placeholder="thickness" id="text-decoration-thickness">
-  <input type="color" class="border colorpicker" id="text-decoration-color"> -->
-
-  <!-- Stroke text -->
-  <div class="divninput" Main-style="text-stroke">
-      <div class="rangeinputdiv" style="grid-template-columns: 2fr 6fr 2fr;">
-          <span class="material-icons">font_download</span> <span class="">stroke-color</span>
-           <!-- <span class="range_value">0</span> -->
-          <input type="color" class="border colorpicker" style-attr="-webkit-text-stroke-color" id="-webkit-text-stroke-color"></div>
-        
-               <!-- <input type="range" class="border" style="width:95%" style-attr="-webkit-text-stroke-width" placeholder="stroke" name="" value="0" min="0" max="10" step="0.1"> -->
-        
-    </div>
-<!--  -->
-<!-- <div class="divninput" Main-style="padding-top">
-    <div class="rangeinputdiv iconntextnval">
-    <i class="bi bi-layout-text-sidebar" style="transform:rotate(270deg);"></i> <span class="">Padding-top</span> <span class="range_value">0</span></div>
-    
-    <input type="range" class="border three_grid rotate" style-attr="padding-top" placeholder="" name="" min="0" max="50" step="1">
-</div> -->
-<!--  -->
-<!-- <div class="divninput" Main-style="padding-left">
-    <div class="rangeinputdiv iconntextnval">
-    <i class="bi bi-layout-text-sidebar" style="transform:rotate(180deg);"></i> <span class="">Padding-left</span> <span class="range_value">0</span></div>
-    
-    <input type="range" class="border three_grid rotate" style-attr="padding-left" placeholder="" name="" min="0" max="50" step="1">
-</div> -->
-<!--  -->
-<!-- <div class="divninput" Main-style="padding-right">
-    <div class="rangeinputdiv iconntextnval">
-    <i class="bi bi-layout-text-sidebar"></i></span> <span class="">Padding-right</span> <span class="range_value">0</span></div>
-    
-    <input type="range" class="border three_grid rotate" style-attr="padding-right" placeholder="" name="" min="0" max="50" step="1">
-</div> -->
-<!--  -->
-<!-- <div class="divninput" Main-style="padding-bottom">
-    <div class="rangeinputdiv iconntextnval">
-        <i class="bi bi-layout-text-sidebar" style="transform:rotate(90deg);"></i> <span class="">Padding-bottom</span> <span class="range_value">0</span></div>
-    
-    <input type="range" class="border three_grid rotate" style-attr="padding-bottom" placeholder="" name="" min="0" max="50" step="1">
-</div> -->
-<!--  -->
 </div>`
+
+
 
 export const BrushStyleDiv = document.createElement('div')
 BrushStyleDiv.setAttribute('StyleDivFor', 'BrushStyleDiv');
@@ -621,91 +545,11 @@ BorderStyleDiv.innerHTML = `<div class="">
 <input class="form-check-input border_style_switcher" id="" type="checkbox" id="flexSwitchCheckDefault"></span>
     <span class="tile">style</span>
     <span class="tile">width</span>
-    <span class="tile">color</span> </div>
-
-<div class="diff_borders_div">
-  <div class="borderstyledivstyle" Main-style="border-top" > 
-    <span class="material-icons border_icon ">border_top</span>
-      <select class="" style-attr="border-style" >
-<option selected value="none">  </option>
-<option class="" value="solid">_______</option>
-<option class="" value="double">=====</option>
-<option class="" value="dashed">----</option>
-<option class="" value="dotted">.....</option>
-<option class="" value="ridge">ridge</option>
-<option class="" value="groove">groove</option>
-<option class="" value="none">none</option>
-</select>
-    <input type="number" class="dark-num-inp" name=""  style-attr="border-width"   value="0" min="0" max="100">
-    <input type="color" class="" name=""  style-attr="border-color" >
-</div>
-  <div class="borderstyledivstyle" Main-style="border-right" > 
-    <span class="material-icons border_icon ">border_right</span>
-      <select class="" style-attr="border-style" >
-<option selected value="none" >  </option>
-<option class="" value="solid">_______</option>
-<option class="" value="double">=====</option>
-<option class="" value="dashed">----</option>
-<option class="" value="dotted">.....</option>
-<option class="" value="ridge">ridge</option>
-<option class="" value="groove">groove</option>
-<option class="" value="none">none</option>
-</select>
-    <input type="number" class="dark-num-inp" name=""  style-attr="border-width" value="0" min="0" max="100">
-    <input type="color" class="" name=""  style-attr="border-color" >
-</div>
-  <div class="borderstyledivstyle"  Main-style="border-left"> 
-    <span class="material-icons border_icon ">border_left</span>
-      <select class="" style-attr="border-style">
-<option selected value="none" > </option>
-<option class="" value="solid">_______</option>
-<option class="" value="double">=====</option>
-<option class="" value="dashed">----</option>
-<option class="" value="dotted">.....</option>
-<option class="" value="ridge">ridge</option>
-<option class="" value="groove">groove</option>
-<option class="" value="none">none</option>
-</select>
-    <input type="number" class="dark-num-inp" name="" style-attr="border-width" value="0" min="0" max="100">
-    <input type="color" class="" name=""  style-attr="border-color">
-</div>
-  <div class="borderstyledivstyle" Main-style="border-bottom" > 
-    <span class="material-icons border_icon ">border_bottom</span>
-      <select class="" style-attr="border-style" >
-<option selected value="none" > </option>
-<option class="" value="solid">_______</option>
-<option class="" value="double">=====</option>
-<option class="" value="dashed">----</option>
-<option class="" value="dotted">.....</option>
-<option class="" value="ridge">ridge</option>
-<option class="" value="groove">groove</option>
-<option class="" value="none">none</option>
-</select>
-    <input type="number" class="dark-num-inp" name="" style-attr="border-width" value="0" min="0" max="100">
-    <input type="color" class="" name="" style-attr="border-color" >
-</div>
-    
-
-
-</div>
-<div class="same_borders_div" style="display: none;">
-    <div class="borderstyledivstyle" Main-style="border" > 
-    <i class="bi bi-border-inner"></i>
-          <select class="" style-attr="border-style" >
-    <option selected value="none" > </option>
-    <option class="" value="solid">_______</option>
-    <option class="" value="double">=====</option>
-    <option class="" value="dashed">----</option>
-    <option class="" value="dotted">.....</option>
-    <option class="" value="ridge">ridge</option>
-    <option class="" value="groove">groove</option>
-    <option class="" value="none">none</option>
-    </select>
-        <input type="number" class="dark-num-inp" name="" style-attr="border-width" value="0" min="0" max="100">
-        <input type="color" class="" name="" style-attr="border-color" >
+    <span class="tile">color</span>
     </div>
 
-</div>
+<div class="diff_borders_div"></div>
+<div class="same_borders_div" style="display: none;"></div>
 </div>
 `
 

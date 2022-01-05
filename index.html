@@ -1107,9 +1107,14 @@
 
     <!-- !!!!!!!!!FUNCTIONS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
     <div class="border down_up options_modal" id="divbar_functions">
+       
+        <div id="add_InteractFunctionEditor_btn" >
+            <i class="bi bi-plus-square-dotted"></i>
+            Add Function
+        </div>
+        <ion-icon name="add-circle-outline" class="hide"  style="font-size: 25px;"></ion-icon>
 
-        <ion-icon name="add-circle-outline" id="add_InteractFunctionEditor_btn" style="font-size: 25px;"></ion-icon>
-        <hr class="style_hr">
+        
 
         <!-- <div>
                 <input type="text" class="property border three_grid" placeholder="function name">
@@ -1328,11 +1333,17 @@
 
         <div class="edit_options"  id="edit_options_more"> <i class="bi bi-three-dots-vertical"></i></div>
         
-        <div class="edit_options"> <i class="bi bi-trash"></i></div>
-        <div class="edit_options"> <i class="bi bi-back"></i></div>
+        <div class="edit_options" id="InteractPagePositionBtn" > <i class="bi bi-zoom-in"></i></div>
+        <div class="edit_options hide"> <i class="bi bi-trash"></i></div>
+        <div class="edit_options hide"> <i class="bi bi-back"></i></div>
         
 
 
+    </div>
+    <div id="InteractPagePosition" style="display: none;">
+        <div class="s" id="InteracPageZoomSettings" > Zoom  <input class="range_valueo_others" min="0" max="100" type="number" name="" id=""> <input type="range" min="0" max="100" name="" id=""> </div>
+        <div class="s" id="InteracPageTopSettings" > Top <input class="range_valueo_others" min="0" max="100" type="number" name="" id=""> <input type="range" min="0" max="100" name="" id=""> </div>
+        <div class="s" id="InteracPageLeftSettings" > Left <input class="range_valueo_others" min="0" max="100" type="number" name="" id=""> <input type="range" min="0" max="100" name="" id=""> </div>
     </div>
 
     <div id="ElementSelectorBlurBg">
@@ -1479,6 +1490,7 @@
         <div class="two_tile"><span class="tile">w:</span> <span id="activeel_position_div_w" class="tile">34</span></div>
         <div class="two_tile"><span class="tile">x:</span> <span id="activeel_position_div_x" class="tile">25</span></div>
         <div class="two_tile"><span class="tile">y:</span> <span id="activeel_position_div_y" class="tile">56</span></div>
+        <div class="two_tile"><span class="tile">r:</span> <span id="activeel_position_div_y" class="tile">56</span></div>
 
     </div>
     <div id="box_innerhtml"></div>
@@ -1547,6 +1559,8 @@
 <script src="https://unpkg.com/textures@1.2.0/dist/textures.js"></script>
 <script type="module" src="index.js"></script>
 <script type="module" src="workingfile.js"></script>
+<script type="module" src="Preview.js"></script>
+<!-- <script type="module" src="StyleDivFuncs.js"></script> -->
 <!-- <script type="module" src="components.js"></script> 
 <script type="module" src="Interact_style.js"></script>
 

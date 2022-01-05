@@ -3,7 +3,6 @@ import { ModifyRangeInput, getUniqueid,  getparent, snakeToCamel } from './funct
 import { transformFunc, CreateStyleDiv, getTextshadowfromStyleDiv, getDropshadowfromStyleDiv, getComputedValue, InteracStyles } from './Interact_style.js';
 import { BoxContainer, NewBoxContainer,update_triggerer_selector, update_effector_selector, } from './Interac_BoxContainer.js';
 import { NewArrowBox,RemoveArrowBox } from './arrowbox.js';
-import { preview_box } from './index.js';
 var el;
 var i;
 export const functions_div = document.querySelector('#functions_div')
@@ -425,113 +424,15 @@ else{
 
 }
 
-function GetFunctionValue(el, prop, value, incdecsign) { }
-
-function ApplyFunction(el, prop, value, incdecsign) {
-    switch (prop) {
-        case 'height':
-        case 'width':
-        case 'position-y':
-        case 'position-x':
-        case 'rotate':
-            if (incdecsign == undefined) {
-                transformFunc.updateValue(el, prop, value)
-            } else {
-                if (incdecsign == '+') {
-                    transformFunc.updateValue(el, prop, transformFunc.getValue(el)[prop] + parseFloat(value))
-                } else if (incdecsign == '-') {
-                    transformFunc.updateValue(el, prop, transformFunc.getValue(el)[prop] - parseFloat(value))
-                }
-
-            }
-            break
-
-        case 'font-size':
-        case 'padding-right':
-        case 'padding-top':
-        case 'padding-bottom':
-        case 'padding-left':
-        case 'letter-spacing':
-        case 'word-spacing':
-        case 'line-height':
-        case 'webkit-text-stroke-width':
-            if (incdecsign == undefined) {
-                el.style[snakeToCamel(prop)] = value
-
-            } else {
-                if (incdecsign == '+') {
-                    el.style[snakeToCamel(prop)] = parseInt(el.style[snakeToCamel(prop)]) + parseInt(value) + "px"
-                } else if (incdecsign == '-') {
-                    el.style[snakeToCamel(prop)] = parseInt(el.style[snakeToCamel(prop)]) - parseInt(value) + "px"
-                }
-
-            }
 
 
-            break
-        case 'border-top-left-radius':
-        case 'border-top-right-radius':
-        case 'border-bottom-left-radius':
-        case 'border-bottom-right-radius':
-        case 'border-radius':
-        case 'color':
-        case 'background-color':
-        case 'webkit-text-stroke-color':
-        case 'display':
-        case 'font-family':
-        case 'text-shadow':
-            el.style[snakeToCamel(prop)] = value
-            break
-        case 'innerText':
-            el.innerText = value
-            break
-        case 'scroll-x':
-            el.scrollBy(value, 0)
-            break
-        case 'scroll-y':
-            el.scrollBy(0, value)
-            break
-
-        case 'scroll-x':
-            var scrolled = el.children[0].getBoundingClientRect().x - el.getBoundingClientRect().x
-            el.scrollBy(scrolled - parseInt(value), 0)
-            break
-
-        case 'scroll-y':
-            var scrolled = el.children[0].getBoundingClientRect().y - el.getBoundingClientRect().y
-            el.scrollBy(0, scrolled - parseInt(value))
-            break
-
-
-
-    }
-}
-
-
-
-
-
-// function CreateFunctionEditorDiv(json) {
-//     var editorDiv = InteractFunctionEditor.cloneNode(true);
-//     // VALueSettings
-
-//     editorDiv.querySelector('[event]').value = json.event || '';
-//     editorDiv.querySelector('.function_name').value = json.function_name || '';
-
-
-//     // EVENTLISTENERD
-
-
-// }
 
 const add_InteractFunctionEditor_btn = document.querySelector('#add_InteractFunctionEditor_btn');
 add_InteractFunctionEditor_btn.onclick = (e) => {
     // e.target.parentNode.insertBefore(FunctioneditorCreateDivs.CreateFunctionEditorDiv({}), e.target)
     FunctioneditorCreateDivs.CreateFunctionEditorDiv({})
 }
-// Object.keys(InteractFunctions).forEach(function(key) {
-//     InteractFunctionCreator(InteractFunctions[key])
-// })
+
 export const FunctioneditorCreateDivs = {
     ResetFuncDiv:function () {
         for(var el of functions_div.querySelectorAll('.InteractFunctionEditor')){
@@ -546,22 +447,22 @@ export const FunctioneditorCreateDivs = {
 
 
         //    Expander // 
-        editordiv.querySelector('.InteractFunctionEditor_height_btn').onclick = (e) => {
-            {
-                if (e.target.parentNode.style.height == "5vh") {
-                    e.target.style.transform = "rotate(180deg)"
-                    e.target.style.transition = "all 1s linear"
-                    e.target.parentNode.style.height = "fit-content"
-
-
-                } else {
-                    e.target.style.transform = ""
-                    e.target.style.transition = "all 1s linear"
-                    e.target.parentNode.style.height = "5vh"
-
-                }
+        editordiv.querySelector('.InteractFunctionEditor_height_btn').addEventListener('click',function(){
+            var funcdiv = this.parentNode.parentNode
+            var funchead = this.parentNode
+            if(this.style.transform == `rotate(180deg)`){
+                //funcdiv.style.transition = 'none'
+                //funcdiv.style.height = 'fit-content';
+                var h = funcdiv.getBoundingClientRect().height;
+                funcdiv.style.height = 0 + 'px';
+                //funcdiv.style.transition = `1s linear height`
+                funcdiv.style.height = 400 + 'px'
+                this.style.transform = 'none'
+            }else{
+                this.style.transform = `rotate(180deg)`
+                funcdiv.style.height = funchead.getBoundingClientRect().height + 'px'
             }
-        }
+        })
         var add_triggerer_selector = editordiv.querySelector('.add_triggerer_selector')
         var add_effector_selector = editordiv.querySelector('.add_effector_selector')
         editordiv.querySelector('.add_triggerer_selector').addEventListener('click', function () {
@@ -1655,83 +1556,7 @@ export function CreateRangeValueTemplate(json) {
     return div
 }
 
-export function setmaxminForinput(elem, prop) {
-    if(prop == undefined){
-        prop = elem.getAttribute('main-style')
-    }
-    // console.log(elem)
-    if(elem.tagName != "INPUT"){
-        // console.log(elem.tagName)
-        elem = elem.querySelector("input[type='range']")
-    }
-    elem.min = '0'
-    elem.step = '1'
-    // console.log(prop)
-    // console.log(elem)
-        // console.log(prop)
-    switch (prop) {
-        case 'height':
-            elem.max = BoxContainer.elem().getBoundingClientRect().height
-            elem.step = '2'
-            break
-        case 'width':
-            elem.max = BoxContainer.elem().getBoundingClientRect().width
-            elem.step = '2'
-            break
-        case 'position-x':
-            elem.max = BoxContainer.elem().getBoundingClientRect().width
-            elem.step = '2'
-            break
-        case 'position-y':
-            elem.max = BoxContainer.elem().getBoundingClientRect().height
-            elem.step = '2'
-            break
-        case 'rotate':
-            elem.max = '360'
-            elem.step = '3'
-            elem.min = '-360'
-            break
-        case 'font-size':
-            elem.max = '1000'
-            elem.step = '2'
-            break
-        case "padding-top":
-        case "padding-bottom":
-            elem.max = BoxContainer.elem().getBoundingClientRect().height / 2
-            elem.step = '2'
-            break
-        case "padding-left":
-        case "padding-right":
-            elem.max = BoxContainer.elem().getBoundingClientRect().width / 2
-            elem.step = '2'
-            break
-        case "line-height":
-            elem.max = 200
-            elem.step = 3
-            break
-        case "letter-spacing":
-            elem.max = 200
-            elem.min = -20
-            elem.step = 2
-            break
-        case "word-spacing":
-            elem.max = 200
-            elem.min = -20
-            elem.step = 2
-            break
-        case "-webkit-text-stroke-width":
-            elem.max = 100
-            elem.step = 1
-            break
-        default:
-            elem.max = '100'
-            elem.step = '1'
-            elem.min = '-10'
 
-    }
-    // console.log(elem)
-    return elem
-}
 
 
 function AddfunctiontoJson(button){

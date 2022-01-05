@@ -12,7 +12,7 @@ import {
 } from "./components.js";
 import { getparent } from "./functionsfile.js";
 import { BoxContainer, text_props, layerDiv, } from "./Interac_BoxContainer.js";
-import { CreateRangeValueTemplate, setmaxminForinput } from "./functions.js";
+import { CreateRangeValueTemplate} from "./functions.js";
 import {
   getUniqueid,
   getJsonAttr,
@@ -713,6 +713,12 @@ export const transformFunc = {
         // console.log(el_settings.scrollHeight)
         // console.log(el_settings.scrollWidth)
         // console.log(getJsonAttr(element, 'settings').scrollHeight)
+        var cont_R = transformFunc.getValue(element).rotate;
+        transformFunc.updateValue(
+          element,
+          "rotate",
+          0,
+        );
         // console.log(parseInt(getJsonAttr(element, 'settings').scrollHeight))
         if (element.getAttribute("primary-element-type") == "Container") {
           // for (var el of element.querySelector('svg').children) {
@@ -723,13 +729,9 @@ export const transformFunc = {
           //     transformFunc.updateValue(el, 'position-y', py)
 
           // }
-          var cont_R = transformFunc.getValue(element).rotate;
+         
           
-              transformFunc.updateValue(
-                element,
-                "rotate",
-                0,
-              );
+             
           var element_h = transformFunc.getValue(element).fheight;
 
           if (el_settings.relativeSizingHeight) {
@@ -799,14 +801,15 @@ export const transformFunc = {
           }
         }
       } else if (prop == "width") {
-        if (element.getAttribute("primary-element-type") == "Container") {
-          var cont_R = transformFunc.getValue(element).rotate;
+        var cont_R = transformFunc.getValue(element).rotate;
           
               transformFunc.updateValue(
                 element,
                 "rotate",
                 0,
               );
+        if (element.getAttribute("primary-element-type") == "Container") {
+          
           
               var element_w = transformFunc.getValue(element).fwidth;
 
@@ -854,7 +857,7 @@ export const transformFunc = {
         }
 
         element.style.width = parseFloat(value) + "px";
-
+        console.log(cont_R)
         transformFunc.updateValue(
           element,
           "rotate",
@@ -1364,8 +1367,6 @@ export const CreateStyleDiv = {
   },
 };
 
-document.querySelector('#Style_div-TextStyles').append(CreateStyleDiv.CreateTextStyleDiv())
-document.querySelector('#Style_div-BorderStyles').append(CreateStyleDiv.CreateBorderStyleDiv())
 
 // export function UpdateTransformStyleDiv() {
 //   var styleDiv = activeel_Transform;
@@ -3247,12 +3248,18 @@ export function styleDivOninputUpdate() {
 
 // }
 
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!UpdateSTYLEEND
+
+
+
+
 export const InteracStyles = {
   // json = {el,incdecsign,prop,value,layer}
   UpdateStyles: function (json) {
     var elements;
     //console.log(Array.isArray(json.element))
-    if (NodeList.prototype.isPrototypeOf(json.element)) {
+    if (NodeList.prototype.isPrototypeOf(json.element) || Array.isArray(json.element)) {
       elements = json.element
     } else {
       elements = []

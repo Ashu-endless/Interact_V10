@@ -77,6 +77,7 @@ EndlessSizeHandler['HideHandler'] = function(json) {
 
 
 EndlessSizeHandler['SetHandler'] = function(json) {
+    //#element
     var element = json.element;
     var NHJson = {}
     if(element.getAttribute('SizeHandlerId') != null){
@@ -279,7 +280,7 @@ function MakingDraggable(){
 
 function resizeHandler(event, left = false, top = false, xResize = false, yResize = false) {
    // console.log(getactiveels())
-
+   
     //var id = gettarget(event,'sizehandlerid').getAttribute('sizehandlerid')
     //var elem = document.querySelector(`[SizeHandlerId="${id}"].active`)
     var elem = document.querySelectorAll('.active');
@@ -298,7 +299,7 @@ function resizeHandler(event, left = false, top = false, xResize = false, yResiz
 
     datajson[i].initW = transformFunc.getValue(elem[i]).width
     datajson[i].initH = transformFunc.getValue(elem[i]).height
-
+    console.log(transformFunc.getValue(elem[i]).rotate)
     // initRotate = getCurrentRotation(elem.parentNode);
     datajson[i].initRotate = getCurrentRotation(elem[i]);
     var initRadians = datajson[i].initRotate * Math.PI / 180;
@@ -362,7 +363,7 @@ function resizeHandler(event, left = false, top = false, xResize = false, yResiz
 
     //console.log(newH,newW,newX,newY,elem.getAttribute('element_name'))
    // for(var elem of getactiveels()){
-        console.log(elem[i])
+       console.log(transformFunc.getValue(elem[i]).rotate)
     transformFunc.updateValue(elem[i], 'width', newW)
     transformFunc.updateValue(elem[i], 'height', newH)
     transformFunc.updateValue(elem[i], 'position-x', newX - transformFunc.getValue(elem[i]).width / 2)

@@ -1,6 +1,7 @@
 import { activeel_size_handler } from "./size_handler.js";
 import { FunctioneditorCreateDivs, } from "./functions.js";
 import { InteractMessage } from "./InteracTerminal.js";
+import { UpdateStylingsOf} from "./StyleDivFuncs.js";
 
 import { BoxContainerClickFunc, update_all_elements_name_list } from "./index.js";
 import { transformFunc, getComputedValue } from "./Interact_style.js";
@@ -559,16 +560,16 @@ export const BoxContainer = {
     },
 
     UpdateInContainerScaleFactor: function (json) {
-        var maw = window.innerWidth / 100 * json.maw
-        console.log(maw, window.innerWidth)
+        // var maw = window.innerWidth / 100 * json.maw
+        // console.log(maw, window.innerWidth)
 
-        if (parseInt(BoxContainer.elem().style.width) > maw) {
-            BoxContainer.elem().style.transform = `scale(${parseInt(BoxContainer.elem().style.width) / maw})`
-            setJsonAttr(BoxContainer.elem(), "settings", "scale", `${parseInt(BoxContainer.elem().style.width) / maw}`)
-        }else{
-            BoxContainer.elem().style.transform = `scale(${ maw / parseInt(BoxContainer.elem().style.width) })`
-            setJsonAttr(BoxContainer.elem(), "settings", "scale", `${ maw / parseInt(BoxContainer.elem().style.width) }`)
-        }
+        // if (parseInt(BoxContainer.elem().style.width) > maw) {
+        //     BoxContainer.elem().style.transform = `scale(${parseInt(BoxContainer.elem().style.width) / maw})`
+        //     setJsonAttr(BoxContainer.elem(), "settings", "scale", `${parseInt(BoxContainer.elem().style.width) / maw}`)
+        // }else{
+        //     BoxContainer.elem().style.transform = `scale(${ maw / parseInt(BoxContainer.elem().style.width) })`
+        //     setJsonAttr(BoxContainer.elem(), "settings", "scale", `${ maw / parseInt(BoxContainer.elem().style.width) }`)
+        // }
 
     }
     ,
@@ -1504,7 +1505,7 @@ export const BoxContainer = {
     }
     ,
     ShowElementSelection: function(json){
-
+        //#headtitle #triggererEL #UpdateStylingsOf
         var ElModal = document.querySelector('#ElementSelectorContainer');
         ElModal.innerHTML = ``
         document.querySelector('#ElementSelectorHead-title').innerText = json.headtitle
@@ -1537,6 +1538,13 @@ export const BoxContainer = {
                 document.querySelector('#ElementSelectorHead-element').append(BoxContainer.GetIconAndName({element:this.querySelector(`[primary-element-type]`)}))
                 json.triggererEl.innerHTML = ``
                 json.triggererEl.append(BoxContainer.GetIconAndName({element:this.querySelector(`[primary-element-type]`)}))
+                var selected_elem = this.querySelector('.IE_icon-name').innerText
+                console.log(selected_elem)
+                //console.log(BoxContainer.elem().querySelector(`element_name=${selected_elem}`))
+                if(json.UpdateStylingsOf == true){
+                    UpdateStylingsOf.add(BoxContainer.elem().querySelector(`[element_name=${selected_elem}]`))
+                   console.log(UpdateStylingsOf.ElemList)
+                }
             })
         }
 
@@ -1554,6 +1562,7 @@ export const BoxContainer = {
                 elem_div.append(BoxContainer.GetElementCloneSvg(elm))
             }
         }
+        
     },
     GetElementCloneSvg : function(element){
         var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");;
@@ -2127,6 +2136,6 @@ document.querySelector('#show_stylesfor_select').addEventListener('click',functi
 })
 
 document.querySelector('#update_stylesfor_select').addEventListener('click',function(){
-    BoxContainer.ShowElementSelection({headtitle:'Oninput Update Styles For',triggererEl:this})
+    BoxContainer.ShowElementSelection({headtitle:'Oninput Update Styles For',triggererEl:this,UpdateStylingsOf:true})
 })
 

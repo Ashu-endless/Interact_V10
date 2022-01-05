@@ -101,8 +101,6 @@ input{
   gap: 5px;
 }
 
-#submit_btn,
-#preview_btn,
 .edit_options {
   padding-left: 2px;
   padding-right: 2px;
@@ -110,6 +108,12 @@ input{
   border: 1px rgb(53, 31, 31) dashed;
   text-align: center;
   border: 1px #9c27b0 dashed;
+  font-size: small;
+}
+
+.edit_options:hover {
+  border: 1px solid white;
+  border-radius: 50%;
 }
 
 .koi {
@@ -1142,7 +1146,8 @@ span.border_icon.material-icons {
   border: 1px #64cc40 solid;
 }
 
-.divninput {
+.divninput,
+.divninput_not_hover{
   display: grid;
   grid-auto-columns: 1fr;
   grid-template-columns: 1fr;
@@ -1168,26 +1173,9 @@ span.border_icon.material-icons {
   border: 1px white solid;
 }
 
-.divninput_hover,
-.divninput_not_hover {
-  display: grid;
-  grid-auto-columns: 1fr;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 10px 0px;
-  grid-template-areas: "."".";
-  width: 100%;
-  justify-items: center;
-  padding-top: 3px;
-  text-align: center;
-  height: 25px;
-  overflow: hidden;
-}
 
-.divninput_not_hover {
-  border-bottom: 0.1px white dotted;
-  border-top: 0.1px white dotted;
-}
+
+
 
 .divninput_hover:hover {
   height: fit-content;
@@ -1470,12 +1458,22 @@ span.border_icon.material-icons {
 }
 
 
-
+#add_InteractFunctionEditor_btn {
+  background: #B24592;
+  background: -webkit-linear-gradient(to right, #F15F79, #B24592);
+  background: linear-gradient(to right, #F15F79, #B24592);
+  margin: 5px;
+  margin-top: 15px;
+  text-align: center;
+  font-family: monospace;
+  padding: 5px;
+  border-radius: 5px;
+}
 .options_modal {
   color: white;
   display: none;
   /* background: var(--bg_two); */
-  background-color: #281028;
+  background-color: #001220;
   width: 28vw;
   position: fixed;
   left: 0vw;
@@ -2279,6 +2277,7 @@ span.border_icon.material-icons {
 #toolbox_more_btn:hover {
   transition: all s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border: 2px solid;
+  border-radius: 50%;
 }
 
 #innerText_activeel,
@@ -2735,6 +2734,7 @@ span.border_icon.material-icons {
   gap: 2px;
   grid-auto-flow: column;
   z-index: 1000;
+  color: white;
 }
 
 .modal1 {
@@ -4745,4 +4745,45 @@ input[type="number"i] {
 .dark-bg{
   background:#001220 ;
   color: white;
+}
+
+
+#InteractPagePosition {
+  position: fixed;
+  color: white;
+  background: #001220;
+  border: orange 1px solid;
+  border-radius: 5px;
+  top: 50%;
+  right: 30px;
+  z-index: 1;
+  padding: 5px;
+  width: 50vw;
+  max-width: 300px;
+  min-width: 250px;
+  font-family: monospace;
+  display: none;
+}
+.range_valueo_others {
+  background-color: #7131d3;
+  height: 100%;
+  display: grid;
+  align-items: center;
+  border-radius: 0px 2px 2px 0px;
+  width: 100%;
+  font-family: sans-serif;
+  color: white;
+  text-align: center;
+  font-size: small;
+  padding: 5px;
+  border: none;
+  max-width: 100px;
+  display: inline;
+}
+
+.s {
+  border-bottom: 1px solid #3f51b5;
+  margin: 10px 0px;
+  padding: 5px 0px;
+  width: 100%;
 }

@@ -32,3 +32,4 @@ for (var el of document.querySelectorAll('.hide_myprnt')) {
             console.log('hiding')
         })
     }
+
