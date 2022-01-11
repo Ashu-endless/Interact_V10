@@ -1,7 +1,7 @@
 import { activeel_size_handler } from "./size_handler.js";
 import { FunctioneditorCreateDivs, } from "./functions.js";
 import { InteractMessage } from "./InteracTerminal.js";
-import { UpdateStylingsOf} from "./StyleDivFuncs.js";
+import { InteractUpdateStyleDivs, UpdateStylingsOf} from "./StyleDivFuncs.js";
 
 import { BoxContainerClickFunc, update_all_elements_name_list } from "./index.js";
 import { transformFunc, getComputedValue } from "./Interact_style.js";
@@ -428,38 +428,40 @@ export const BoxContainer = {
         layerDiv.delete(element)
         element.remove()
     },
-    SetAspectRatio: function (arw, arh) {
+    //SetBox
+    SetAspectRatio: function (json) {
+        //#height #width #aspectratio
         // if (digits_only(arw) && digits_only(arh)) {
         // BoxContainer.elem().style.top = "20%";
         //BoxContainer.elem().style.left = "33%";
         BoxContainer.elem().style.top = "10%";
         BoxContainer.elem().style.left = "33%";
-        var mah = parseInt(
-            //window.innerHeight - BoxContainer.elem().getBoundingClientRect().top - 20
-            window.innerHeight - BoxContainer.elem().getBoundingClientRect().top
-        );
-        // var maw = (window.innerWidth - BoxContainer.elem().getBoundingClientRect().x) - 20
-        // var maw = (window.innerWidth - parseInt(getComputedValue(BoxContainer.elem(), 'left'))) - 20
-        var left = parseInt((window.innerWidth * 33) / 100);
-        var top = parseInt((window.innerHeight * 10) / 100);
-        var maw = parseInt(window.innerWidth - left - 20);
-        var mah = parseInt(window.innerHeight - top - 20);
+        // var mah = parseInt(
+        //     //window.innerHeight - BoxContainer.elem().getBoundingClientRect().top - 20
+        //     window.innerHeight - BoxContainer.elem().getBoundingClientRect().top
+        // );
+        // // var maw = (window.innerWidth - BoxContainer.elem().getBoundingClientRect().x) - 20
+        // // var maw = (window.innerWidth - parseInt(getComputedValue(BoxContainer.elem(), 'left'))) - 20
+        // var left = parseInt((window.innerWidth * 33) / 100);
+        // var top = parseInt((window.innerHeight * 10) / 100);
+        // var maw = parseInt(window.innerWidth - left - 20);
+        // var mah = parseInt(window.innerHeight - top - 20);
 
-        // console.log(BoxContainer.elem().getBoundingClientRect().top)
-        var nh = (maw * arh) / arw;
-        // console.log(mah, maw, nw, left)
-        // console.log(nw > maw)
+        // // console.log(BoxContainer.elem().getBoundingClientRect().top)
+        // var nh = (maw * arh) / arw;
+        // // console.log(mah, maw, nw, left)
+        // // console.log(nw > maw)
 
-        if (nh > mah) {
-            // console.log(parseFloat(nw), parseFloat(maw))
-            // mah = mah - (nh - mah)
-            maw = maw - (nh - mah);
-            nh = (maw * arh) / arw;
-            // console.log(nw, maw)
-        }
-        BoxContainer.elem().style.height = nh + "px";
-        BoxContainer.elem().style.width = maw + "px";
-        setJsonAttr(BoxContainer.elem(), "settings", "aspect-ratio", `${arw}:${arh}`)
+        // if (nh > mah) {
+        //     // console.log(parseFloat(nw), parseFloat(maw))
+        //     // mah = mah - (nh - mah)
+        //     maw = maw - (nh - mah);
+        //     nh = (maw * arh) / arw;
+        //     // console.log(nw, maw)
+        // }
+        BoxContainer.elem().style.height = json.height + "px";
+        BoxContainer.elem().style.width = json.width + "px";
+        setJsonAttr(BoxContainer.elem(), "settings", "aspect-ratio", `${json.aspectratio}`)
         // console.log(mah)
         // console.log(nw)
     },
@@ -1505,7 +1507,8 @@ export const BoxContainer = {
     }
     ,
     ShowElementSelection: function(json){
-        //#headtitle #triggererEL #UpdateStylingsOf
+        //#headtitle #triggererEL #UpdateStylingsOf #selectionfunc
+        console.log(json)
         var ElModal = document.querySelector('#ElementSelectorContainer');
         ElModal.innerHTML = ``
         document.querySelector('#ElementSelectorHead-title').innerText = json.headtitle
@@ -1542,9 +1545,10 @@ export const BoxContainer = {
                 console.log(selected_elem)
                 //console.log(BoxContainer.elem().querySelector(`element_name=${selected_elem}`))
                 if(json.UpdateStylingsOf == true){
-                    UpdateStylingsOf.add(BoxContainer.elem().querySelector(`[element_name=${selected_elem}]`))
+                    UpdateStylingsOf.make(BoxContainer.elem().querySelector(`[element_name=${selected_elem}]`))
                    console.log(UpdateStylingsOf.ElemList)
                 }
+                json.selectionfunc(BoxContainer.elem().querySelector(`[element_name=${selected_elem}]`))
             })
         }
 
@@ -2132,10 +2136,15 @@ export function Save(Interacml) {
 
 
 document.querySelector('#show_stylesfor_select').addEventListener('click',function(){
-    BoxContainer.ShowElementSelection({headtitle:'Show props For',triggererEl:this})
+    BoxContainer.ShowElementSelection({headtitle:'Show props For',triggererEl:this,selectionfunc:function(element){
+        console.log('dadadddad')
+        InteractUpdateStyleDivs(element).TextStyleDiv().BorderStyleDiv()
+    }})
 })
 
 document.querySelector('#update_stylesfor_select').addEventListener('click',function(){
     BoxContainer.ShowElementSelection({headtitle:'Oninput Update Styles For',triggererEl:this,UpdateStylingsOf:true})
 })
+
+
 

@@ -427,11 +427,11 @@ else{
 
 
 
-const add_InteractFunctionEditor_btn = document.querySelector('#add_InteractFunctionEditor_btn');
-add_InteractFunctionEditor_btn.onclick = (e) => {
-    // e.target.parentNode.insertBefore(FunctioneditorCreateDivs.CreateFunctionEditorDiv({}), e.target)
-    FunctioneditorCreateDivs.CreateFunctionEditorDiv({})
-}
+// const add_InteractFunctionEditor_btn = document.querySelector('#add_InteractFunctionEditor_btn');
+// add_InteractFunctionEditor_btn.onclick = (e) => {
+//     // e.target.parentNode.insertBefore(FunctioneditorCreateDivs.CreateFunctionEditorDiv({}), e.target)
+//     FunctioneditorCreateDivs.CreateFunctionEditorDiv({})
+// }
 
 export const FunctioneditorCreateDivs = {
     ResetFuncDiv:function () {

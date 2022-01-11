@@ -17,8 +17,9 @@
     <link rel="stylesheet" href="Sizehandler.css" crossorigin="anonymous">
     <link rel="stylesheet" href="Interact_element.css" crossorigin="anonymous">
     <link rel="stylesheet" href="arrowbox.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="InteractFunctionsStyles.css" crossorigin="anonymous">
     <link rel="stylesheet" href="pattern.css" crossorigin="anonymous">
-    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+    <!-- <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" /> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <link rel="stylesheet"href="https://unpkg.com/tippy.js@6/animations/scale.css"/>
     <title>Interact creator</title>
@@ -41,7 +42,7 @@
         <span>R</span>
     </div>
     <div id="dataBox"></div>
-    <div id="terminal"></div>
+    <div id="terminal" class="hide" ></div>
     <!-- <svg id="bgbg"> </svg> -->
     <div id="options_div" class="border" spellcheck="false">
         <div id="text" class="options_head">
@@ -50,7 +51,7 @@
         <div id="draw" class="options_head">
             <i class="bi bi-brush"></i>
         </div>
-        <div id="input" class="options_head">
+        <div id="input" class="options_head hide">
             <i class="bi bi-ui-checks"></i>
         </div>
         <!-- ? -->
@@ -58,10 +59,10 @@
             <i class="bi bi-file-richtext"></i>
         </div>
         <div id="functions" class="options_head">
-            <i class="bi bi-file-richtext"></i>
+            <i class="bi bi-code-slash"></i>
         </div>
         <div id="style" class="options_head">
-            <i class="bi bi-file-richtext"></i>
+            <i class="bi bi-stars"></i>
         </div>
         <!-- <div class="options_head">
             <span class="material-icons">
@@ -73,10 +74,10 @@
             <i class="bi bi-layout-text-window"></i>
         </div>
         <div id="elements" class="options_head">
-            <i class="bi bi-stars"></i>
+            <i class="bi bi-boxes"></i>
         </div>
-        <div id="box_settings" class="options_head">
-            <i class="bi bi-gear-fill"></i>
+        <div id="interact-Page" class="options_head">
+            <i class="bi bi-crop"></i>
         </div>
         <div class="options_head for_mobile" id="style_div_for_mobile">
             <span class="material-icons">
@@ -646,7 +647,7 @@
     </div>
     <!-- !!!!!!!!!!!!!!!INPUT -->
     <!-- !!!!!!!!!!!!!!!BOX SETTINGS -->
-    <div id="divbar_box_settings" class="border options_modal">
+    <div id="divbar_interact-Page" class="border options_modal">
         <div class="tags_holder">
             <div class="tags_box_settings" id="tags_box_settings-size">size</div>
             <div class="tags_box_settings" id="tags_box_settings-background">Background</div>
@@ -655,9 +656,9 @@
         </div>
 
         <div id="tags_box_settings-size_content" class="tags_box_settings_content tags_content">
-            <div class="aspect_ratio_option">1:1</div>
-            <div class="aspect_ratio_option">9:6</div>
-            <div class="aspect_ratio_option">16:9</div>
+            <div class="aspect_ratio_option" ar="1:1" h="1080" w="1080">1:1</div>
+            <div class="aspect_ratio_option" >9:6</div>
+            <div class="aspect_ratio_option" ar="16:9" w="1920" h="1080"  >16:9</div>
             <div class="aspect_ratio_option">4:5</div>
             <div class="aspect_ratio_option">5:4</div>
 
@@ -1341,7 +1342,7 @@
 
     </div>
     <div id="InteractPagePosition" style="display: none;">
-        <div class="s" id="InteracPageZoomSettings" > Zoom  <input class="range_valueo_others" min="0" max="100" type="number" name="" id=""> <input type="range" min="0" max="100" name="" id=""> </div>
+        <div class="s" id="InteracPageZoomSettings" > Zoom  <input class="range_valueo_others" min="0" max="500" type="number" name="" id=""> <input type="range" min="0" max="500" name="" id=""> </div>
         <div class="s" id="InteracPageTopSettings" > Top <input class="range_valueo_others" min="0" max="100" type="number" name="" id=""> <input type="range" min="0" max="100" name="" id=""> </div>
         <div class="s" id="InteracPageLeftSettings" > Left <input class="range_valueo_others" min="0" max="100" type="number" name="" id=""> <input type="range" min="0" max="100" name="" id=""> </div>
     </div>
@@ -1560,6 +1561,7 @@
 <script type="module" src="index.js"></script>
 <script type="module" src="workingfile.js"></script>
 <script type="module" src="Preview.js"></script>
+<script type="module" src="InteractFunctionsStyles.js"></script>
 <!-- <script type="module" src="StyleDivFuncs.js"></script> -->
 <!-- <script type="module" src="components.js"></script> 
 <script type="module" src="Interact_style.js"></script>

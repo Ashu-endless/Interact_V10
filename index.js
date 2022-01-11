@@ -3022,7 +3022,8 @@ for (var el of aspect_ratio_options) {
             }
             this.style.background = "rgb(58 188 41)"
             console.log(this.innerText.split(':')[0], this.innerText.split(':')[1])
-            BoxContainer.SetAspectRatio(parseInt(this.innerText.split(':')[0]), parseInt(this.innerText.split(':')[1]))
+            var json = {height:this.getAttribute('h'),width:this.getAttribute('w'),aspect_ratio : this.getAttribute('ar')} 
+            BoxContainer.SetAspectRatio(json)
         }
     })
 }
@@ -3091,7 +3092,7 @@ for(var el of style_div_main_props){
 document.querySelector('#InteracPageZoomSettings').querySelector('input[type=range]').addEventListener('input',function(){
     var val = this.value;
     UpdateRangeInpStyle(this,val)
-    BoxContainer.elem().style.transform = `scale(${val/10})`
+    BoxContainer.elem().style.transform = `scale(${val/100})`
     this.parentNode.querySelector(`input[type=number]`).value = val
 })
 document.querySelector('#InteracPageLeftSettings').querySelector('input[type=range]').addEventListener('input',function(){
@@ -3114,7 +3115,7 @@ document.querySelector('#InteracPageZoomSettings').querySelector('input[type=num
     this.parentNode.querySelector(`input[type=range]`).value = val
 
     UpdateRangeInpStyle(this.parentNode.querySelector(`input[type=range]`),this.parentNode.querySelector(`input[type=range]`).value)
-    BoxContainer.elem().style.transform = `scale(${val/10})`
+    BoxContainer.elem().style.transform = `scale(${val/100})`
    // this.parentNode.querySelector(`input[type=number]`).value = val
 })
 document.querySelector('#InteracPageLeftSettings').querySelector('input[type=number]').addEventListener('input',function(){

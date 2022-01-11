@@ -1,3 +1,4 @@
+
 // console.log();
 export const property_selector_container = document.createElement('div');
 property_selector_container.classList.add('property_selector_container');
@@ -77,35 +78,77 @@ functions_transitions_controller_div.innerHTML = `<div style="display:flex">
 
 export const InteractFunctionEditor = document.createElement('div');
 InteractFunctionEditor.classList.add('InteractFunctionEditor')
-InteractFunctionEditor.innerHTML = `<div> <i class="bi bi-trash delete_function"></i> <input type="text" class="property border three_grid function_name" style="width:75%" placeholder="function name">
-<i class="bi bi-arrow-up-square InteractFunctionEditor_height_btn" style="display:inline-block"></i> </div>
-<hr class="style_hr">
-<div>
-<label for="" style="font-family: monospace;font-size: large;">Event : </label>
-<select name="" id="" class="function_event">
-    <option value="click">click/tap</option>
-    <option value="hover">hover/tap</option>
-    <option value="mouseover">Mouseover/tap</option>
-    <option value="dblclick">double click/tap</option>
-    <option value="">hold</option>
-</select>
+InteractFunctionEditor.setAttribute("functioneditor","container")
+
+InteractFunctionEditor.innerHTML = `<div class="functioneditor-head" > <i class="bi bi-info-circle"></i> <input type="text" functioneditor="name" placeholder="function name">
+ <i class="bi bi-chevron-down" functioneditor="minmaxsizetoggler" ></i>
 </div>
-<hr class="style_hr">
-<label for="">Trigerer</label>
-<br>
-<div class="triggerers_container">
-<i class="bi bi-plus-square-dotted add_triggerer_selector"></i> </div>
+
+<div>
+    <label class="FE_label" for="">Triggerer </label>
+    <select name="" id="" class="function_event func_event_select" functioneditor="triggerer">
+     <option value="click">click/tap</option>
+     <option value="hover">hover/tap</option>
+     <option value="mouseover">Mouseover/tap</option>
+     <option value="dblclick">double click/tap</option>
+     <option value="">hold</option>
+    </select>
+</div>
+
+<div>
+<label class="FE_label" for="">Trigger</label>
+<div class="random" >
+    
+    <span> Add element <i class="bi bi-plus-square-dotted"></i>  </span>
+
+</div>
+</div>
+
+<div>
+    <label class="FE_label" for="">events</label>
+    <div class="random">
+        <span>Add event <i class="bi bi-plus-square-dotted"></i> </span>
+    </div>
+</div>
+
+<div class="rr" >
+    <span><i class="bi bi-slash-circle"></i></span>
+    <span><i class="bi bi-trash"></i></span>
+    <span><i class="bi bi-node-plus"></i></span>
+</div>
+`
+
+
+
+// InteractFunctionEditor.innerHTML = `<div> <i class="bi bi-trash delete_function"></i> <input type="text" class="property border three_grid function_name" style="width:75%" placeholder="function name">
+// <i class="bi bi-arrow-up-square InteractFunctionEditor_height_btn" style="display:inline-block"></i> </div>
+// <hr class="style_hr">
+// <div>
+// <label for="" style="font-family: monospace;font-size: large;">Event : </label>
+// <select name="" id="" class="function_event">
+//     <option value="click">click/tap</option>
+//     <option value="hover">hover/tap</option>
+//     <option value="mouseover">Mouseover/tap</option>
+//     <option value="dblclick">double click/tap</option>
+//     <option value="">hold</option>
+// </select>
+// </div>
+// <hr class="style_hr">
+// <label for="">Trigerer</label>
+// <br>
+// <div class="triggerers_container">
+// <i class="bi bi-plus-square-dotted add_triggerer_selector"></i> </div>
 
     
-    <label for="">Effectors</label>
-            <br>
-            <div class="effectors_container">
+//     <label for="">Effectors</label>
+//             <br>
+//             <div class="effectors_container">
             
-            <i class="bi bi-plus-square-dotted add_effector_selector"></i>
+//             <i class="bi bi-plus-square-dotted add_effector_selector"></i>
                
-        </div>
-        <div class="enable_function">Enable</div>
-        <hr class="end_hr">`
+//         </div>
+//         <div class="enable_function">Enable</div>
+//         <hr class="end_hr">`
     //<div class="functions_transitions_controller_div"></div>
 export const CustomSelectTag = document.createElement('div');
 CustomSelectTag.classList.add("selectTag", "two_grid", 'element_select_list')

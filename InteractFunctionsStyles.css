@@ -1,0 +1,96 @@
+.functioneditor-head {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 2%;
+    width: 100%;
+    padding: 0px 1%;
+    align-items: center;
+    grid-template-columns: 10% 75% 10%;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.functioneditor-eventdiv {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 38% 61%;
+    margin-top: 5px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    /* justify-items: inherit; */
+}
+
+element.style {
+    /* display: grid; */
+    grid-auto-flow: column;
+    grid-template-columns: 50% 50%;
+    margin-top: 5px;
+    justify-content: center;
+    align-content: center;
+    /* justify-items: inherit; */
+}
+
+.FE_label {
+    font-size: small;
+    font-family: monospace;
+    background: #543274;
+    padding: 0px 10px;
+    border-radius: 2px;
+    margin: 5px;
+    margin-left: 1px;
+}
+
+.func_event_select{
+    width: 100%;
+    border-width: 2px 0px;
+}
+
+.random {
+    min-height: 50px;
+    border: 2px #7a37e3 solid;
+    border-radius: 2px;
+    display: grid;
+    align-content: center;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    background: black;
+}
+
+#add_InteractFunctionEditor_btn {
+    background: #B24592;
+    background: -webkit-linear-gradient(to right, #F15F79, #B24592);
+    background: linear-gradient(to right, #F15F79, #B24592);
+    margin: 5px;
+    margin-top: 15px;
+    text-align: center;
+    font-family: monospace;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+
+
+.InteractFunctionEditor {
+    overflow: hidden;
+    border: 2px solid rgb(3 169 244);
+    border-radius: 4px;
+    height: 5vh;
+    margin-top: 5px;
+    font-family: "Patrick Hand";
+    background: #0c0f19;
+  }
+
+.rr {
+    border: 1px white solid;
+    /* margin-top: 5px; */
+    /* border-radius: 2px; */
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-around;
+    border-width: 0px 0px;
+    font-size: larger;
+    background: coral;
+}

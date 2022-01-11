@@ -1,23 +1,24 @@
-import { TextStyleDiv,BorderStyleDiv,BorderStyleSelect } from "./components.js";
-import { InteracStyles } from "./Interact_style.js";
+import { TextStyleDiv, BorderStyleDiv, BorderStyleSelect } from "./components.js";
 import { SetMinMaxRangeInput } from "./SetMinMaxRangeInput.js";
+import { InteractElement } from "./InteractElement.js"
+
 
 const MDStyleDiv = document.querySelector('#divbar_style');
-const MDTextStyleDiv = document.querySelector('#Style_div-TextStyles'); 
-const MDBorderStyleDiv = document.querySelector('#Style_div-BorderStyles'); 
+const MDTextStyleDiv = document.querySelector('#Style_div-TextStyles');
+const MDBorderStyleDiv = document.querySelector('#Style_div-BorderStyles');
 
 const InteractStyleDivs = {
-    TextStyleDiv : function(){
+    TextStyleDiv: function () {
         return document.querySelector("")
     }
 }
 
-export function UpdateRangeInpStyle(elem,value){
+export function UpdateRangeInpStyle(elem, value) {
     elem.value = value
     console.log(elem.min)
     // if(parseInt(elem.min) < 0){
     //     console.log(elem.min)
-        var percent = (elem.value - elem.min) / (elem.max - elem.min) * 100
+    var percent = (elem.value - elem.min) / (elem.max - elem.min) * 100
     // }else{
     //     console.log(elem.min)
     // var percent = (elem.value - elem.min || 0) / (elem.max || 100 - elem.min||0) * 100
@@ -26,10 +27,10 @@ export function UpdateRangeInpStyle(elem,value){
 }
 
 const InteractCreateSubDivs = {
-    CreateRangeValueDiv : function(json){
+    CreateRangeValueDiv: function (json) {
         var div = document.createElement('div');
         div.classList.add('divninput');
-        
+
         if (json.suffex == undefined && json.incdec == undefined && json.icon != undefined) {
             div.innerHTML = `<div class="rangeinputdiv iconntextnval"> ${json.icon} <span class="">${json.prop}</span> <div class="range_value_Cont" > <span class="range_value_add">+</span> <span class="range_value_minus">-</span> <input class="range_value" type="number"  value="${parseFloat(json.val)}"></div></div>`
         } else if (json.suffex == undefined && json.icon != undefined) {
@@ -45,17 +46,17 @@ const InteractCreateSubDivs = {
         } else if (json.incdec == undefined) {
             div.innerHTML = `<div class="rangeinputdiv iconntextnvalnsuffex"> ${json.icon} <span class="">${json.prop}</span> <div class="range_value_Cont" > <span class="range_value_add">+</span> <span class="range_value_minus">-</span> <input class="range_value" type="number"  value="${parseFloat(json.val)}"></div><span class="suffex">${json.suffex}</span></div>`
         }
-    
-    
-        div.querySelector('.range_value_Cont').addEventListener("mouseover",function(){
+
+
+        div.querySelector('.range_value_Cont').addEventListener("mouseover", function () {
             this.style.position = "absolute"
             this.style.right = "0"
-            this.style.width= "60%"
+            this.style.width = "60%"
             div.querySelector('.range_value_add').style.display = "block"
             div.querySelector('.range_value_minus').style.display = "block"
         })
 
-        div.querySelector('.range_value_Cont').addEventListener("mouseleave",function(){
+        div.querySelector('.range_value_Cont').addEventListener("mouseleave", function () {
             div.querySelector('.range_value_add').style.display = "none"
             div.querySelector('.range_value_minus').style.display = "none"
             this.style.position = "relative"
@@ -67,87 +68,91 @@ const InteractCreateSubDivs = {
         input.type = 'range'
         input.value = json.val
         div.append(input)
-    
-        if(json.attr != undefined){
-            div.setAttribute(json.attr,json.attrval)
+
+        if (json.attr != undefined) {
+            div.setAttribute(json.attr, json.attrval)
         }
-        
-        
+
+
         var range_value = div.querySelector('.range_value')
         var range_value_slider = div.querySelector('input[type="range"]')
-        SetMinMaxRangeInput(div,json.prop || "")
+        SetMinMaxRangeInput(div, json.prop || "")
         // ?????? add_tbn
         var timer;
         function continuosincerment() {
             var value = parseFloat(range_value.value) + 1
-            range_value.value = value 
-            UpdateRangeInpStyle(range_value_slider,value)
+            range_value.value = value
+            UpdateRangeInpStyle(range_value_slider, value)
             div.click()
             timer = setTimeout(continuosincerment, 50);
         }
         function timeoutClear() {
-                clearTimeout(timer);
+            clearTimeout(timer);
         }
-            
-        
+
+
         div.querySelector('.range_value_add').addEventListener('mousedown', continuosincerment);
         div.querySelector('.range_value_add').addEventListener('mouseup', timeoutClear);
         div.querySelector('.range_value_add').addEventListener('mouseleave', timeoutClear);
         range_value.contentEditable = true
-        range_value.addEventListener('input',function(){
-            UpdateRangeInpStyle(range_value_slider,this.value)
+        range_value.addEventListener('input', function () {
+            UpdateRangeInpStyle(range_value_slider, this.value)
         })
-        
+
         // ????MINUS BTN1 
         var timer;
         function continuosdecerment() {
             var value = parseFloat(range_value.value) - 1
-            range_value.value =value 
-            UpdateRangeInpStyle(range_value_slider,value)
+            range_value.value = value
+            UpdateRangeInpStyle(range_value_slider, value)
             div.click()
             timer = setTimeout(continuosdecerment, 50);
         }
         function timeoutClear() {
-                clearTimeout(timer);
+            clearTimeout(timer);
         }
-            
+
         // })
         div.querySelector('.range_value_minus').addEventListener('mousedown', continuosdecerment);
-    
+
         div.querySelector('.range_value_minus').addEventListener('mouseup', timeoutClear);
-    
+
         div.querySelector('.range_value_minus').addEventListener('mouseleave', timeoutClear);
-        range_value_slider.addEventListener('input',function(){
-            UpdateRangeInpStyle(this,this.value)
+        range_value_slider.addEventListener('input', function () {
+            UpdateRangeInpStyle(this, this.value)
             this.parentNode.querySelector('.range_value').value = this.value
         })
-        UpdateRangeInpStyle( range_value_slider, range_value_slider.value)
+        UpdateRangeInpStyle(range_value_slider, range_value_slider.value)
         // ModifyRangeInput({parentEl:div})
-        
+
         // try{
         //setmaxminForinput({div,json.prop || "" })
         // catch(Err){
-    
+
         // }
-        
+
         return div
     },
-    CreateColorValueDiv : function(json){
+    CreateColorValueDiv: function (json) {
         var div = document.createElement('div');
         div.classList.add('divninput_not_hover');
-        
-        
+
+
         div.innerHTML = `<div class="rangeinputdiv iconntextnval"> ${json.icon} <span class="">${json.prop}</span> <input class="" type="color"  value="${parseFloat(json.val)}"></div>`
         return div
     },
     //!!!!!!!!!!!!!!!!!
-    CreateBorderStyleSubDiv : function(icon,attr){
+    CreateBorderStyleSubDiv: function (icon, attr) {
         var div = document.createElement('div');
-        div.innerHTML = icon
+        div.innerHTML = `<span> ${icon} </span>`
         div.classList.add('borderstyledivstyle')
-        div.append(BorderStyleSelect.cloneNode(true));
+        var select = BorderStyleSelect.cloneNode(true)
+        select.setAttribute('style-attr',`border${attr}Style`)
+        div.append(select);
         var numinp = document.createElement('input');
+        numinp.setAttribute('style-attr',`border${attr}Width`)
         var colinp = document.createElement('input');
+        colinp.setAttribute('style-attr',`border${attr}Color`)
         numinp.type = 'number'
         colinp.type = 'color'
         numinp.classList.add('dark-num-inp');
@@ -161,13 +166,13 @@ const InteractCreateSubDivs = {
 const InteractCreateStyleDivs = {
     CreateTextStyleDiv: function () {
         var styleDiv = TextStyleDiv.cloneNode(true);
-    
+
         // EVENTLIST
         //customrangeinput(styleDiv);
         styleDiv.querySelector("[style-attr=font-family]").addEventListener("input", function () {
-          this.style.fontFamily = this.value;
+            this.style.fontFamily = this.value;
         });
-    
+
         // for (el of styleDiv.querySelector("[style-attr=font-family]").children) {
         //   el.style.fontFamily = el.value;
         //   el.style.border = "1px black solid";
@@ -182,26 +187,26 @@ const InteractCreateStyleDivs = {
         styleDiv.append(InteractCreateSubDivs.CreateRangeValueDiv({ prop: "padding-top", val: 0, icon: `<i class="bi bi-arrows-expand"></i>`, attr: "Main-style", attrval: "padding-top" }))
         styleDiv.append(InteractCreateSubDivs.CreateRangeValueDiv({ prop: "padding-bottom", val: 0, icon: `<i class="bi bi-arrows-expand"></i>`, attr: "Main-style", attrval: "padding-bottom" }))
         return styleDiv;
-      },
-      CreateBorderStyleDiv: function () {
+    },
+    CreateBorderStyleDiv: function () {
         var styleDiv = BorderStyleDiv.cloneNode(true);
         var same_div = styleDiv.querySelector(".same_borders_div")
         var diff_div = styleDiv.querySelector(".diff_borders_div")
-    diff_div.append(InteractCreateSubDivs.CreateBorderStyleSubDiv(`<i class="bi bi-border-top"></i>`,'border-style-top'))
+        diff_div.append(InteractCreateSubDivs.CreateBorderStyleSubDiv(`<i class="bi bi-border-top"></i>`, 'Top'))
 
         styleDiv
-          .querySelector("input[type=checkbox]")
-          .addEventListener("input", function () {
-            if (this.checked) {
-              styleDiv.querySelector(".diff_borders_div").style.display = "none";
-              styleDiv.querySelector(".same_borders_div").style.display = "grid";
-            } else {
-              styleDiv.querySelector(".diff_borders_div").style.display = "grid";
-              styleDiv.querySelector(".same_borders_div").style.display = "none";
-            }
-          });
+            .querySelector("input[type=checkbox]")
+            .addEventListener("input", function () {
+                if (this.checked) {
+                    styleDiv.querySelector(".diff_borders_div").style.display = "none";
+                    styleDiv.querySelector(".same_borders_div").style.display = "grid";
+                } else {
+                    styleDiv.querySelector(".diff_borders_div").style.display = "grid";
+                    styleDiv.querySelector(".same_borders_div").style.display = "none";
+                }
+            });
         return styleDiv;
-      }
+    }
 }
 
 
@@ -214,14 +219,29 @@ const InteractCreateStyleDivs = {
 //     }
 // }
 
-export function InteractUpdateStyleDivs(element){
-    return{
-        TextStyleDiv : function(){
-            MDTextStyleDiv.querySelector(`[style-attr=font-family]`).value = InteracStyles.getValue({element:element,prop:'font-family'})
+export function InteractUpdateStyleDivs(element) {
+    return {
+        TextStyleDiv: function () {
+            //console.log('fghgh')
+            MDTextStyleDiv.querySelector(`[style-attr=font-family]`).value = InteractElement(element).GetValue.fontFamily
+            MDTextStyleDiv.querySelector(`[style-attr=font-family]`).style.fontFamily = InteractElement(element).GetValue.fontFamily
             return InteractUpdateStyleDivs(element)
         },
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        BorderStyleDiv : function(){
+        BorderStyleDiv: function () {
+            for (var el of MDBorderStyleDiv.querySelectorAll('select')) {
+                el.value = InteractElement(element).GetValue[el.getAttribute('style-attr')]
+            }
+            //!!
+            for (var el of MDBorderStyleDiv.querySelectorAll(`input[type=number]`)) {
+                el.value = parseInt(InteractElement(element).GetValue[el.getAttribute('style-attr')])
+            }
+            //!!!
+            
+            for (var el of MDBorderStyleDiv.querySelectorAll(`input[type=color]`)) {
+                el.value = InteractElement(element).GetValue[el.getAttribute('style-attr')]
+            }
+            ///!
             return InteractUpdateStyleDivs(element)
         }
     }
@@ -229,33 +249,39 @@ export function InteractUpdateStyleDivs(element){
 
 
 const InteractStyleDivEventListeners = {
-    TextStyleDivListener : function(){
-        MDTextStyleDiv.querySelector(`[style-attr=font-family]`).addEventListener('input',function(){
-            InteracStyles.UpdateStyles({
-                element: UpdateStylingsOf.ElemList,
-                prop: "font-family",
-                value:this.value,
-              });
+    TextStyleDivListener: function () {
+        MDTextStyleDiv.querySelector(`[style-attr=font-family]`).addEventListener('input', function () {
+            for (var elem of UpdateStylingsOf.ElemList) {
+                InteractElement(elem).UpdateProp.fontFamily(this.value)
+            }
         })
     },
     //!???????????????
-    BorderStyleDivListener : function(){
-        // MDTextStyleDiv.querySelector(`[style-attr=font-family]`).addEventListener('input',function(){
-        //     InteracStyles.UpdateStyles({
-        //         element: UpdateStylingsOf.ElemList,
-        //         prop: "font-family",
-        //         value:this.value,
-        //       });
-        // })
-    for (var el of MDBorderStyleDiv.querySelectorAll('select')){
-        el.addEventListener('input',function(){
-            InteracStyles.UpdateStyles({
-                element: UpdateStylingsOf.ElemList,
-                prop: ``,
-                value:this.value,
-              });
-        })
-    }
+    BorderStyleDivListener: function () {
+        for (var el of MDBorderStyleDiv.querySelectorAll('select')) {
+            el.addEventListener('input', function () {
+                for (var elem of UpdateStylingsOf.ElemList) {
+                    console.log(this.value)
+                    InteractElement(elem).UpdateProp[this.getAttribute('style-attr')](this.value)
+                }
+            })
+        }
+        //!!!
+        for (var el of MDBorderStyleDiv.querySelectorAll(`input[type=number]`)) {
+            el.addEventListener('input', function () {
+                for (var elem of UpdateStylingsOf.ElemList) {
+                    InteractElement(elem).UpdateProp[this.getAttribute('style-attr')](`${this.value}px`)
+                }
+            })
+        }
+        //!!!
+        for (var el of MDBorderStyleDiv.querySelectorAll(`input[type=color]`)) {
+            el.addEventListener('input', function () {
+                for (var elem of UpdateStylingsOf.ElemList) {
+                    InteractElement(elem).UpdateProp[this.getAttribute('style-attr')](`${this.value}`)
+                }
+            })
+        }
     }
 }
 
@@ -265,7 +291,15 @@ export class UpdateStylingsOf {
 
     static ElemList = []
 
-    static add = function(elem){
+    static add = function (elem) {
+        UpdateStylingsOf.ElemList.push(elem)
+    }
+
+    static empty = function (elem) {
+        UpdateStylingsOf.ElemList = []
+    }
+    static make = function (elem) {
+        UpdateStylingsOf.ElemList = []
         UpdateStylingsOf.ElemList.push(elem)
     }
 }

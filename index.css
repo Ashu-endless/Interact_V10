@@ -99,6 +99,7 @@ input{
   display: grid;
   grid-auto-flow: row;
   gap: 5px;
+  z-index: 10;
 }
 
 .edit_options {
@@ -1258,7 +1259,7 @@ span.border_icon.material-icons {
   top: 6vh;
   /* height: 100%; */
   width: 12px;
-  /* z-index: 1; */
+  z-index: 7;
   background: #281028;
   clip-path: polygon(0% 0%, 25% 0%, 100% 50%, 26% 100%, 0% 100%);
   height: 0;
@@ -1420,7 +1421,7 @@ span.border_icon.material-icons {
 
 #layers_div {
   display: block;
-  z-index: 2;
+  z-index: 8;
   right: 20px;
   position: fixed;
   left: 100%;
@@ -1455,20 +1456,11 @@ span.border_icon.material-icons {
   color: white;
   border: 1px orange dashed;
   font-size: x-small;
+  z-index: 9;
 }
 
 
-#add_InteractFunctionEditor_btn {
-  background: #B24592;
-  background: -webkit-linear-gradient(to right, #F15F79, #B24592);
-  background: linear-gradient(to right, #F15F79, #B24592);
-  margin: 5px;
-  margin-top: 15px;
-  text-align: center;
-  font-family: monospace;
-  padding: 5px;
-  border-radius: 5px;
-}
+
 .options_modal {
   color: white;
   display: none;
@@ -1483,7 +1475,7 @@ span.border_icon.material-icons {
   padding: 5px 0 0 5px;
   /* box-shadow: 5px 5px 4px 9px #000000; */
   overflow: hidden;
-  z-index: 1;
+  z-index: 7;
   border-radius: 5px;
   /* padding: 5px; */
   border: 2px #a5962a dashed !important;
@@ -2303,15 +2295,7 @@ span.border_icon.material-icons {
   box-shadow: 5px 5px 4px 2px #000000;
 }
 
-.InteractFunctionEditor {
-  overflow: hidden;
-  border: 2px solid rgb(3 169 244);
-  border-radius: 4px;
-  height: 5vh;
-  margin-top: 5px;
-  font-family: "Patrick Hand";
-  background: #0c0f19;
-}
+
 
 .add_element_select_list_btn {
   margin-left: 5px;
@@ -4524,6 +4508,7 @@ img {
       #f857a6);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
+  text-transform: capitalize;
 }
 
 
@@ -4561,9 +4546,11 @@ img {
   grid-auto-flow: column;
   font-size: inherit;
   padding-left: 2px;
-  justify-content: start;
+  /* justify-content: start; */
   gap: 5px;
+  width: 100%;
 }
+
 
 .fantasy {
   font-size: small;
@@ -4594,6 +4581,7 @@ img {
   font-family: monospace;
   border-bottom: 1px #001220 solid;
   /* border-radius: 5px; */
+  text-align: center;
 }
 
 .Elclonesvg{
@@ -4756,7 +4744,7 @@ input[type="number"i] {
   border-radius: 5px;
   top: 50%;
   right: 30px;
-  z-index: 1;
+  z-index: 12;
   padding: 5px;
   width: 50vw;
   max-width: 300px;
