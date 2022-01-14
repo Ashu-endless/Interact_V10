@@ -12,7 +12,6 @@ var k;
 
 
 import { EndlessSizeHandler } from './InteracSizehandler.js';
-import { UpdateRangeInpStyle } from './document.js';
 import { property_selector_container, transitions_controller } from './components.js';
 // import { keyframes_creator, InteractAnimation, keyframes, update_animation_keyframes } from './keyframes.js';
 import { style_textShadow_updater, style_boxShadow_updater, add_textshadow, apply_box_shadow, apply_text_shadow, add_boxshadow, applying_box_shadow, applying_text_shadow, box_shadow_type_switcher, refresh_style_div, transformFunc, show_styling_properties, CreateStyleDiv, styleDivOninputUpdate,InteracStyles, } from './Interact_style.js';
@@ -20,7 +19,7 @@ import { activeel_size_handler, DragMoveListener, DragAndDropListener } from './
 // import { activeel_container_resizer } from './size_handler_svg.js';
 import { InteractFunctions, InteractFunctionCreator } from './functions.js';
 import { heightInc, gettarget, getparent, bardivFunc, preview_selected_element, toolboxFuncs, LayersDivFuncs, activeelFunction, getUniqueid, getAllBoxElementsInfo, DragAboveandDrop, getactiveels } from './functionsfile.js';
-import { NewArrowBox } from './arrowbox.js';
+
 import { Save,BoxContainer,NewBoxContainer, update_triggerer_selector, update_effector_selector } from './Interac_BoxContainer.js';
 import { UpdateOriginalStyleDivs } from './UpdateStyleDiv.js';
 

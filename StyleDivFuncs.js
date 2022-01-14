@@ -6,7 +6,7 @@ import { InteractElement } from "./InteractElement.js"
 const MDStyleDiv = document.querySelector('#divbar_style');
 const MDTextStyleDiv = document.querySelector('#Style_div-TextStyles');
 const MDBorderStyleDiv = document.querySelector('#Style_div-BorderStyles');
-
+const MDTransformStyleDiv= document.querySelector('#Style_div-TransformStyles');
 const InteractStyleDivs = {
     TextStyleDiv: function () {
         return document.querySelector("")
@@ -193,6 +193,12 @@ const InteractCreateStyleDivs = {
         var same_div = styleDiv.querySelector(".same_borders_div")
         var diff_div = styleDiv.querySelector(".diff_borders_div")
         diff_div.append(InteractCreateSubDivs.CreateBorderStyleSubDiv(`<i class="bi bi-border-top"></i>`, 'Top'))
+        diff_div.append(InteractCreateSubDivs.CreateBorderStyleSubDiv(`<i class="bi bi-border-left"></i>`, 'Left'))
+        diff_div.append(InteractCreateSubDivs.CreateBorderStyleSubDiv(`<i class="bi bi-border-right"></i>`, 'Right'))
+        diff_div.append(InteractCreateSubDivs.CreateBorderStyleSubDiv(`<i class="bi bi-border-bottom"></i>`, 'Bottom'))
+        
+        //
+        same_div.append(InteractCreateSubDivs.CreateBorderStyleSubDiv(`<i class="bi bi-border"></i>`,''))
 
         styleDiv
             .querySelector("input[type=checkbox]")
@@ -206,7 +212,18 @@ const InteractCreateStyleDivs = {
                 }
             });
         return styleDiv;
-    }
+    },
+    CreateTransformStyleDiv: function () {
+        var TransformStyleDiv = document.createElement('div');
+        TransformStyleDiv.setAttribute('StyleDivFor', 'TransformStyleDiv');
+        TransformStyleDiv.append(InteractCreateSubDivs.CreateRangeValueDiv({ prop: "Height", val: 0, icon: `<i class="bi bi-arrows-expand"></i>`, attr: "Main-style", attrval: "height" }))
+        TransformStyleDiv.append(InteractCreateSubDivs.CreateRangeValueDiv({ prop: "Width", val: 0, icon: `<i class="bi bi-arrows-expand" style="transform: rotate(90deg);"></i>`, attr: "Main-style", attrval: "width" }))
+        TransformStyleDiv.append(InteractCreateSubDivs.CreateRangeValueDiv({ prop: "Position", val: 0, icon: `<i class="bi bi-arrow-left-right"></i>`, suffex: "X", attr: "Main-style", attrval: "position-x" }))
+        TransformStyleDiv.append(InteractCreateSubDivs.CreateRangeValueDiv({ prop: "Position", val: 0, icon: `<i class="bi bi-arrow-down-up"></i>`, suffex: "Y", attr: "Main-style", attrval: "position-y" }))
+        TransformStyleDiv.append(InteractCreateSubDivs.CreateRangeValueDiv({ prop: "Rotate2d", val: 0, icon: `<i class="bi bi-arrow-repeat"></i>`, suffex: "deg", attr: "Main-style", attrval: "rotate" }))
+        
+        return TransformStyleDiv
+      }
 }
 
 
@@ -237,9 +254,9 @@ export function InteractUpdateStyleDivs(element) {
                 el.value = parseInt(InteractElement(element).GetValue[el.getAttribute('style-attr')])
             }
             //!!!
-            
+
             for (var el of MDBorderStyleDiv.querySelectorAll(`input[type=color]`)) {
-                el.value = InteractElement(element).GetValue[el.getAttribute('style-attr')]
+                el.value = tinycolor(InteractElement(element).GetValue[el.getAttribute('style-attr')]).toHexString() 
             }
             ///!
             return InteractUpdateStyleDivs(element)
@@ -261,7 +278,7 @@ const InteractStyleDivEventListeners = {
         for (var el of MDBorderStyleDiv.querySelectorAll('select')) {
             el.addEventListener('input', function () {
                 for (var elem of UpdateStylingsOf.ElemList) {
-                    console.log(this.value)
+                    console.log(this.value,this.getAttribute('style-attr'),this.value)
                     InteractElement(elem).UpdateProp[this.getAttribute('style-attr')](this.value)
                 }
             })
@@ -270,6 +287,9 @@ const InteractStyleDivEventListeners = {
         for (var el of MDBorderStyleDiv.querySelectorAll(`input[type=number]`)) {
             el.addEventListener('input', function () {
                 for (var elem of UpdateStylingsOf.ElemList) {
+                    console.log(this.value,this.getAttribute('style-attr'),this.value)
+                    console.log(InteractElement(elem))
+                    console.log(elem)
                     InteractElement(elem).UpdateProp[this.getAttribute('style-attr')](`${this.value}px`)
                 }
             })
@@ -278,6 +298,7 @@ const InteractStyleDivEventListeners = {
         for (var el of MDBorderStyleDiv.querySelectorAll(`input[type=color]`)) {
             el.addEventListener('input', function () {
                 for (var elem of UpdateStylingsOf.ElemList) {
+                    console.log(this.value,this.getAttribute('style-attr'),this.value)
                     InteractElement(elem).UpdateProp[this.getAttribute('style-attr')](`${this.value}`)
                 }
             })
@@ -322,6 +343,8 @@ export class UpdateStylingsOf {
 //ONE TIME FUNCS
 MDTextStyleDiv.append(InteractCreateStyleDivs.CreateTextStyleDiv())
 MDBorderStyleDiv.append(InteractCreateStyleDivs.CreateBorderStyleDiv())
+MDTransformStyleDiv.append(InteractCreateStyleDivs.CreateTransformStyleDiv())
+
 
 InteractStyleDivEventListeners.TextStyleDivListener()
 InteractStyleDivEventListeners.BorderStyleDivListener()

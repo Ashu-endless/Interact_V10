@@ -1,0 +1,16 @@
+element.style {
+    display: grid;
+    justify-content: center;
+    font-size: medium;
+    align-content: center;
+    background: inherit;
+    border-radius: 50%;
+}
+
+
+.style_div_props_cont{
+    transition: 1s linear width;
+    background:#000;
+    overflow-x: hidden;
+    display: none;
+  }

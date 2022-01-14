@@ -1478,7 +1478,7 @@ span.border_icon.material-icons {
   z-index: 7;
   border-radius: 5px;
   /* padding: 5px; */
-  border: 2px #a5962a dashed !important;
+  border: 1px #3f1580 dashed !important;
   transition: all 0.5s cubic-bezier(0, 0, 0.79, 0.02);
   transition: all 0.5s linear;
 }
@@ -2473,7 +2473,9 @@ span.border_icon.material-icons {
   color: wheat;
   font-size: large;
 }
-
+#divbar_functions{
+  padding-left: 0px;
+}
 #upload_or_span {
   font-size: x-large;
   background: #1c0c1c;
@@ -4512,11 +4514,7 @@ img {
 }
 
 
-.style_div_props_cont{
-  transition: 1s linear width;
-  background:#000;
-  overflow-x: hidden;
-}
+
 
 #styles_div_el_Select {
   position: absolute;
@@ -4620,10 +4618,11 @@ img {
   grid-auto-rows: 15% 80%;
   /* grid-auto-columns: 100% 20%; */
   padding: 5px;
-  border-bottom: 2px skyblue dashed;
+  border-bottom: 2px #9c27b0 dotted;
   gap: 5px;
   border-radius: 5px;
   height: 200px;
+  cursor: pointer;
 }
 
 
@@ -4640,17 +4639,17 @@ img {
 }
 
 div#ElementSelectorContainer {
-  height: 100%;
+  height: 98%;
   position: relative;
   overflow-y: auto;
 }
 
 div#ElementSelectorHead {
-  background: chartreuse;
+  background: #13212a;
   margin-bottom: 1%;
   height: fit-content;
-  border-radius: 2px;
-  color: crimson;
+  border-radius: 5px;
+  color: #03c5ff;
   display: grid;
   grid-auto-flow: column;
   justify-items: stretch;
@@ -4661,15 +4660,28 @@ div#ElementSelectorHead {
   text-align: center;
 }
 div#ElementSelectorHead-element {
-  background: #9d7eed;
+  background: #0066ff;
   color: white;
   border-radius: 5px;
   padding: 0px 10px;
 }
 
+#ElementSelectorDoneBtn {
+  text-align: center;
+  background: #0066ff;
+  color: white;
+  border-radius: 5px;
+  /* min-height: 30px; */
+  display: grid;
+  align-content: center;
+  cursor: pointer;
+  font-family: fangsong;
+  font-size: larger;
+}
+
 #ElementSelectorModel {
   position: absolute;
-  top: 10vw;
+  top: 8vw;
   left: 5vw;
   right: 5vw;
   bottom: 10vh;
@@ -4689,7 +4701,7 @@ div#ElementSelectorHead-element {
   right: 5vw;
   font-size: xx-large;
   color: white;
-  bottom: 90vh;
+  bottom: 92vh;
 }
 
 

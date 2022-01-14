@@ -2,7 +2,7 @@ import { InteractFunctionEditor, CustomSelectTag, functions_transitions_controll
 import { ModifyRangeInput, getUniqueid,  getparent, snakeToCamel } from './functionsfile.js';
 import { transformFunc, CreateStyleDiv, getTextshadowfromStyleDiv, getDropshadowfromStyleDiv, getComputedValue, InteracStyles } from './Interact_style.js';
 import { BoxContainer, NewBoxContainer,update_triggerer_selector, update_effector_selector, } from './Interac_BoxContainer.js';
-import { NewArrowBox,RemoveArrowBox } from './arrowbox.js';
+
 var el;
 var i;
 export const functions_div = document.querySelector('#functions_div')

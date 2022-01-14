@@ -1507,14 +1507,18 @@ export const BoxContainer = {
     }
     ,
     ShowElementSelection: function(json){
-        //#headtitle #triggererEL #UpdateStylingsOf #selectionfunc
-        console.log(json)
+        //#headtitle #triggererEL #UpdateStylingsOf #selectionfunc #elemstoshow #ondone
+        //console.log(json)
         var ElModal = document.querySelector('#ElementSelectorContainer');
         ElModal.innerHTML = ``
         document.querySelector('#ElementSelectorHead-title').innerText = json.headtitle
         document.querySelector('#ElementSelectorBlurBg').style.display = "grid"
         var all_element_names = BoxContainer.getAllBoxElementsInfo().element_names
         var all_element_groups = []
+
+        //adding given el queryselector
+
+        //el name 
         for(var elem of all_element_names){
             var div = document.createElement('div')
             var elem_name_span = document.createElement('span');
@@ -1529,43 +1533,54 @@ export const BoxContainer = {
             ElModal.append(div)
         }
 
+
+        //!!!End adding
+        var selected_elem;
+        //Onselection 
         for(var el of ElModal.querySelectorAll(`.ElementSelectorModel-container`)){
             el.addEventListener('click',function(){
                 for(var elem of ElModal.querySelectorAll(`.ElementSelectorModel-container`) ){
                     elem.style.borderWidth = "0px"
-                    elem.style.borderBottom = "2px skyblue dashed"    
+                    elem.style.borderBottom = "2px #9c27b0 dotted"    
                 }
-                this.style.border = "2px skyblue solid";
-                console.log(ElModal.querySelector('#ElementSelectorHead-element'))
+                //this.style.border = "2px skyblue solid";
+                this.style.border = "4px solid #0066ff";
                 document.querySelector('#ElementSelectorHead-element').innerHTML = ``
                 document.querySelector('#ElementSelectorHead-element').append(BoxContainer.GetIconAndName({element:this.querySelector(`[primary-element-type]`)}))
-                json.triggererEl.innerHTML = ``
-                json.triggererEl.append(BoxContainer.GetIconAndName({element:this.querySelector(`[primary-element-type]`)}))
-                var selected_elem = this.querySelector('.IE_icon-name').innerText
-                console.log(selected_elem)
-                //console.log(BoxContainer.elem().querySelector(`element_name=${selected_elem}`))
-                if(json.UpdateStylingsOf == true){
-                    UpdateStylingsOf.make(BoxContainer.elem().querySelector(`[element_name=${selected_elem}]`))
-                   console.log(UpdateStylingsOf.ElemList)
+                //json.triggererEl.innerHTML = ``
+               // json.triggererEl.append(BoxContainer.GetIconAndName({element:this.querySelector(`[primary-element-type]`)}))
+                var selected_elem_text = this.querySelector('.IE_icon-name').innerText
+                selected_elem = BoxContainer.elem().querySelector(`[element_name=${selected_elem_text}]`)
+                
+                //!onselection
+                if(json.onselection  != undefined){
+                    json.onselection(selected_elem)
                 }
-                json.selectionfunc(BoxContainer.elem().querySelector(`[element_name=${selected_elem}]`))
             })
         }
 
-
-
-
-        for(var elem in all_element_groups){
-            var div = document.createElement('div')
-            var elem_name_span = document.createElement('span');
-            var elem_div = document.createElement('div');
-            span.innerHTML = ``
-            div.append(elem_name_span)
-            div.append(elem_div)
-            for(var elm of BoxContainer.elem().querySelectorAll(`[element_groups=${elem}]`)){
-                elem_div.append(BoxContainer.GetElementCloneSvg(elm))
+        //Ondone
+        document.querySelector(`#ElementSelectorDoneBtn`).onclick=()=>{
+            document.querySelector(`#ElementSelectorBlurBg`).style.display = 'none';
+            if (json.ondone != undefined ) {
+                json.ondone(selected_elem)
             }
         }
+        //if(json.ondone ! = undefined){
+         //   ElModal.querySelectorAll(`.ElementSelectorModel-container`))//
+        //}
+
+        // for(var elem in all_element_groups){
+        //     var div = document.createElement('div')
+        //     var elem_name_span = document.createElement('span');
+        //     var elem_div = document.createElement('div');
+        //     span.innerHTML = ``
+        //     div.append(elem_name_span)
+        //     div.append(elem_div)
+        //     for(var elm of BoxContainer.elem().querySelectorAll(`[element_groups=${elem}]`)){
+        //         elem_div.append(BoxContainer.GetElementCloneSvg(elm))
+        //     }
+        // }
         
     },
     GetElementCloneSvg : function(element){
@@ -1584,6 +1599,7 @@ export const BoxContainer = {
         return svg
     },
     GetIconAndName:function(json){
+        // #element #preview
         if(json.element != undefined){
             var icon;
             var div = document.createElement('div')
@@ -1605,6 +1621,13 @@ export const BoxContainer = {
             var name_span = document.createElement('span');
             name_span.innerText = json.element.getAttribute('element_name');
             div.append(name_span);
+
+            if(json.preiew == true){
+               div.addEventListener('mouseover',function(){
+
+               }) 
+            }
+
             return div
         }
 
@@ -2136,14 +2159,19 @@ export function Save(Interacml) {
 
 
 document.querySelector('#show_stylesfor_select').addEventListener('click',function(){
-    BoxContainer.ShowElementSelection({headtitle:'Show props For',triggererEl:this,selectionfunc:function(element){
-        console.log('dadadddad')
+    BoxContainer.ShowElementSelection({headtitle:'Show props For',triggererEl:this,onselection:function(element){
+    this.triggererEl.innerHTML = ``
+    this.triggererEl.append(BoxContainer.GetIconAndName({element:element}))
         InteractUpdateStyleDivs(element).TextStyleDiv().BorderStyleDiv()
     }})
 })
 
 document.querySelector('#update_stylesfor_select').addEventListener('click',function(){
-    BoxContainer.ShowElementSelection({headtitle:'Oninput Update Styles For',triggererEl:this,UpdateStylingsOf:true})
+    BoxContainer.ShowElementSelection({headtitle:'Oninput Update Styles For',triggererEl:this,onselection:function(elements){
+        this.triggererEl.innerHTML = ``
+        this.triggererEl.append(BoxContainer.GetIconAndName({element:elements}))
+        UpdateStylingsOf.make(elements)
+    }})
 })
 
 

@@ -80,7 +80,7 @@ export const InteractFunctionEditor = document.createElement('div');
 InteractFunctionEditor.classList.add('InteractFunctionEditor')
 InteractFunctionEditor.setAttribute("functioneditor","container")
 
-InteractFunctionEditor.innerHTML = `<div class="functioneditor-head" > <i class="bi bi-info-circle"></i> <input type="text" functioneditor="name" placeholder="function name">
+InteractFunctionEditor.innerHTML = `<div class="functioneditor-head" functioneditor="head" > <i class="bi bi-info-circle"></i> <input type="text" functioneditor="name" class="funcnm" placeholder="function name">
  <i class="bi bi-chevron-down" functioneditor="minmaxsizetoggler" ></i>
 </div>
 
@@ -97,17 +97,17 @@ InteractFunctionEditor.innerHTML = `<div class="functioneditor-head" > <i class=
 
 <div>
 <label class="FE_label" for="">Trigger</label>
-<div class="random" >
+<div class="random" functioneditor="trigger_container" >
     
-    <span> Add element <i class="bi bi-plus-square-dotted"></i>  </span>
+    <span functioneditor="add_triggers" class="ayy" > Add element <i class="bi bi-plus-square-dotted"></i>  </span>
 
 </div>
 </div>
 
 <div>
     <label class="FE_label" for="">events</label>
-    <div class="random">
-        <span>Add event <i class="bi bi-plus-square-dotted"></i> </span>
+    <div class="random" functioneditor="event_container">
+        <span functioneditor="add_event" class="ayy bigbtn" >Add event <i class="bi bi-plus-square-dotted"></i> </span>
     </div>
 </div>
 

@@ -3,7 +3,7 @@
     grid-auto-flow: column;
     gap: 2%;
     width: 100%;
-    padding: 0px 1%;
+    padding:1%;
     align-items: center;
     grid-template-columns: 10% 75% 10%;
     align-content: center;
@@ -35,11 +35,12 @@ element.style {
 .FE_label {
     font-size: small;
     font-family: monospace;
-    background: #543274;
+    background: #001220;
     padding: 0px 10px;
     border-radius: 2px;
     margin: 5px;
     margin-left: 1px;
+    border: 1px #2222f1 dotted;
 }
 
 .func_event_select{
@@ -73,15 +74,15 @@ element.style {
 
 
 
-.InteractFunctionEditor {
+  .InteractFunctionEditor {
     overflow: hidden;
-    border: 2px solid rgb(3 169 244);
+    border: 2px solid rgb(94 35 187);
     border-radius: 4px;
     height: 5vh;
     margin-top: 5px;
     font-family: "Patrick Hand";
     background: #0c0f19;
-  }
+}
 
 .rr {
     border: 1px white solid;
@@ -92,5 +93,142 @@ element.style {
     justify-content: space-around;
     border-width: 0px 0px;
     font-size: larger;
-    background: coral;
+    background: #001220;
+    color: cadetblue;
+}
+
+element.style {
+    background: royalblue;
+    color: white;
+    border: 1px #7a37e3 solid;
+    border-radius: 2px;
+}
+
+.bigbtn{
+    margin: 5px;
+    width: calc(100% - 10px);
+    text-align: center;
+}
+
+.ayy {
+    background: #180e1a;
+    padding: 0px 5px;
+    border-radius: 2px;
+    color: cyan;
+    cursor: pointer;
+}
+
+span.ayy:hover {
+    border: 1px blue dotted;
+}
+[functioneditor="trigger"] {
+    width: fit-content;
+    display: grid;
+    grid-auto-flow: column;
+    border: 1px blue solid;
+    border-radius: 2px;
+    padding: 0px 5px;
+    font-family: verdana;
+}
+
+
+
+[functioneditor="trigger_container"] {
+    overflow-x: auto;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    gap: 5%;
+}
+[functioneditor="remove_trigger"]{
+    color: blueviolet;
+}
+[functioneditor="trigger_container"]::-webkit-scrollbar-track {
+    background: inherit;
+    overflow: hidden;
+    border-radius: 0px; }
+  
+
+[functioneditor="trigger_container"]::-webkit-scrollbar-thumb {
+    background: #7752b9;
+    border-radius: 0px;
+}
+
+
+[functioneditor="trigger_container"]::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+    overflow: hidden;
+    background: inherit;
+    border-radius: 0px;
+  }
+
+element.style {
+    border: 1px solid #7a37e3;
+    border-radius: 2px;
+    background: #000000;
+    color: white;
+    font-weight: bolder;
+    font-family: sans-serif;
+    border: none;
+    background: inherit;
+}
+
+
+span.gyi {
+    background: #080e18;
+    color: cornflowerblue;
+    cursor: pointer;
+    border: 1px #3f1580 solid;
+}
+
+.diwali {
+    background: #001220;
+    padding: 15px 5px;
+    display: grid;
+    gap: 2px;
+}
+
+
+.Event-Change-Cont {
+    border: 4px solid #ff5722;
+    border-radius: 5px;
+    text-align: center;
+    color: whitesmoke;
+}
+
+.Event-Change-Cont-head {
+    display: grid;
+    grid-auto-flow: column;
+    background: #0b1c2a;
+    grid-auto-columns: 39% 49% 9%;
+    gap: 2%;
+}
+
+[functioneditor="event_container"]{
+    padding: 0px;
+}
+
+span.gyi:hover {
+    background: black;
+}
+.specatt {
+    width: fit-content;
+    display: grid;
+    grid-auto-flow: column;
+    border: 1px blue solid;
+    border-radius: 3px;
+    padding: 0px 5px;
+    font-family: verdana;
+    background: black;
+    color: whitesmoke;
+}
+
+.funcnm {
+    background: #001220;
+    color: floralwhite;
+    border-radius: 2px;
+    font-weight: bold;
+    border: 1px dashed #3f1580;
+    font-family: monospace;
+    font-size: larger;
 }

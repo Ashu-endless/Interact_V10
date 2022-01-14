@@ -34,6 +34,18 @@ const UpdateProp = function (element) {
       element.children[0].style.fontFamily = value;
       return UpdateProp(element)
     },
+    borderColor : function (value) {
+      element.children[0].style.borderColor = `${value}`
+      return UpdateProp(element)
+    },
+    borderStyle : function (value) {
+      element.children[0].style.borderStyle = `${value}`
+      return UpdateProp(element)
+    },
+    borderWidth : function (value) {
+      element.children[0].style.borderWidth = `${parseInt(value)}px`
+      return UpdateProp(element)
+    },
     borderTopColor : function (value) {
       element.children[0].style.borderColor = `${value} ${getComputedValue(element.children[0], "border-right-color")} ${getComputedValue(element.children[0], "border-bottom-color")} ${getComputedValue(element.children[0], "border-left-color")}`
       return UpdateProp(element)
@@ -46,6 +58,44 @@ const UpdateProp = function (element) {
       element.children[0].style.borderWidth = `${parseInt(value)}px ${getComputedValue(element.children[0], "border-right-width")} ${getComputedValue(element.children[0], "border-bottom-width")} ${getComputedValue(element.children[0], "border-left-width")}`
       return UpdateProp(element)
     },
+    borderLeftColor : function (value) {
+      element.children[0].style.borderColor = `${getComputedValue(element.children[0], "border-top-color")} ${getComputedValue(element.children[0], "border-right-color")} ${getComputedValue(element.children[0], "border-bottom-color")} ${value}`
+      return UpdateProp(element)
+    },
+    borderLeftStyle : function (value) {
+      element.children[0].style.borderStyle = `${getComputedValue(element.children[0], "border-top-style")} ${getComputedValue(element.children[0], "border-right-style")} ${getComputedValue(element.children[0], "border-bottom-style")} ${value}`
+      return UpdateProp(element)
+    },
+    borderLeftWidth : function (value) {
+      element.children[0].style.borderWidth = `${getComputedValue(element.children[0], "border-top-width")} ${getComputedValue(element.children[0], "border-right-width")} ${getComputedValue(element.children[0], "border-bottom-width")} ${parseInt(value)}px`
+      return UpdateProp(element)
+    },
+    borderRightColor : function (value) {
+      element.children[0].style.borderColor = `${getComputedValue(element.children[0], "border-top-color")} ${value} ${getComputedValue(element.children[0], "border-bottom-color")} ${getComputedValue(element.children[0], "border-left-color")}`
+      return UpdateProp(element)
+    },
+    borderRightStyle : function (value) {
+      element.children[0].style.borderStyle = `${getComputedValue(element.children[0], "border-top-style")} ${value} ${getComputedValue(element.children[0], "border-bottom-style")} ${getComputedValue(element.children[0], "border-left-style")}`
+      return UpdateProp(element)
+    },
+    borderRightWidth : function (value) {
+      element.children[0].style.borderWidth = `${getComputedValue(element.children[0], "border-top-width")} ${parseInt(value)}px ${getComputedValue(element.children[0], "border-bottom-width")} ${getComputedValue(element.children[0], "border-left-width")}`
+      return UpdateProp(element)
+    },
+
+    borderBottomColor : function (value) {
+      element.children[0].style.borderColor = `${getComputedValue(element.children[0], "border-top-color")} ${getComputedValue(element.children[0], "border-right-color")} ${value} ${getComputedValue(element.children[0], "border-left-color")}`
+      return UpdateProp(element)
+    },
+    borderBottomStyle : function (value) {
+      element.children[0].style.borderStyle = `${getComputedValue(element.children[0], "border-top-style")} ${getComputedValue(element.children[0], "border-right-style")} ${value} ${getComputedValue(element.children[0], "border-left-style")}`
+      return UpdateProp(element)
+    },
+    borderBottomWidth : function (value) {
+      element.children[0].style.borderWidth = `${getComputedValue(element.children[0], "border-top-width")} ${getComputedValue(element.children[0], "border-right-width")} ${parseInt(value)}px ${getComputedValue(element.children[0], "border-left-width")}`
+      return UpdateProp(element)
+    }
+
     
   }
 }

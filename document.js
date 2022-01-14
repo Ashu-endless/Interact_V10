@@ -1,4 +1,4 @@
-export function UpdateRangeInpStyle(elem,value,color){
+function UpdateRangeInpStyle(elem,value,color){
     if(color == undefined){
 
     }
@@ -16,7 +16,7 @@ export function UpdateRangeInpStyle(elem,value,color){
 
 
 
-export function getparentel(element,queryselector) {
+function getparentel(element,queryselector) {
     for (var parent of $(element).parents()) {
 
         if(queryselector.startsWith('.') && parent.classList.contains(queryselector)){
