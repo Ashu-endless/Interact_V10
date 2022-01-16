@@ -40,8 +40,8 @@ export const InteractFunctionsDiv = {
         NewArrowBox({for:editordiv.querySelector('[functioneditor="add_event"]'),
         dataHtml:`<div><span style="color: #61a7dd;" >Select event type</span>
             <div class='diwali'>
-                <span class="gyi hideprntab">Modify Element</span>
-                <span class="gyi hideprntab">Modify Element</span>
+                <span class="gyi hideprntab">Change an Elements's properties</span>
+                <span class="gyi hideprntab">Increase/decrease an Elements Properties</span>
             </div>
         </div>`,
         //showarrow:true,
@@ -102,7 +102,17 @@ export function ExtractInteractFuncJsonFromFED(functioneditor) {
     json.name = functioneditor.querySelector(`[functioneditor=name]`)
     json.triggerer = functioneditor.querySelector(`[functioneditor=triggerer]`)
     json.triggers = []
-    json.events = {}
+    var triggers_container = functioneditor.querySelector(`[functioneditor="trigger_container"]`)
+    var event_container = functioneditor.querySelector(`[functioneditor="event_container"]`)
+    
+    for(var el of triggers_container.querySelector('.IE_icon-name')){
+        json.triggers.push(el.getAttribute('query'))
+    }
+    json.triggers = [...new Set(json.triggers)];
+    json.events = []
+    for(var el of event_container.querySelector(`[]`)){
+        
+    }
     return json 
 }
 

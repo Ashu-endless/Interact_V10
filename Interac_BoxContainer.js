@@ -1,9 +1,10 @@
-import { activeel_size_handler } from "./size_handler.js";
 import { FunctioneditorCreateDivs, } from "./functions.js";
 import { InteractMessage } from "./InteracTerminal.js";
 import { InteractUpdateStyleDivs, UpdateStylingsOf} from "./StyleDivFuncs.js";
+import { EndlessSizeHandler } from './InteracSizehandler.js';
 
-import { BoxContainerClickFunc, update_all_elements_name_list } from "./index.js";
+
+
 import { transformFunc, getComputedValue } from "./Interact_style.js";
 import {
     getUniqueid,
@@ -15,6 +16,7 @@ import {
     activeelFunction
 } from "./functionsfile.js";
 import { InteracStyles } from "./Interact_style.js";
+import { InteractElement } from "./InteractElement.js"
 var el;
 // import { boxContainer } from "."
 export const text_props = [
@@ -99,6 +101,15 @@ export const BoxContainer = {
             el.setAttribute("element_stake", 1);
         }
     },
+    getAllElements :function (params) {
+        return BoxContainer.elem().querySelectorAll(`[primary-element-type]`)
+    },
+    nullactive: function() {
+        var any_active = BoxContainer.elem().querySelectorAll('.active');
+        for (el of any_active) {
+            el.classList.remove('active');
+            EndlessSizeHandler.HideHandler({element:el})
+        }},
     getAllBoxElementsInfo: function () {
         var element_names = [];
         var element_groups = [];
@@ -584,10 +595,10 @@ export const BoxContainer = {
         var text_div = document.createElement("div");
         var text_p = document.createElement("div");
         var text = document.createElement("p");
-        text_div.addEventListener('dblclick', function () {
-            this.children[0].contentEditable = true
-        })
-
+        // text_div.addEventListener('dblclick', function () {
+        //     this.children[0].contentEditable = true
+        // })
+        text_p.contentEditable = true
         // text_p.addEventListener('input',function(){
         //     console.log('in')
         //     var str = this.innerText.split('');
@@ -1604,6 +1615,8 @@ export const BoxContainer = {
             var icon;
             var div = document.createElement('div')
             div.classList.add('IE_icon-name');
+
+
             switch (json.element.getAttribute('primary-element-type')) {
                 case 'Text':
                     icon = `<i class="bi bi-type"></i>`
@@ -1616,7 +1629,8 @@ export const BoxContainer = {
                 default:
                     break;
             }
-
+            console.log(InteractElement(json.element).name)
+            div.setAttribute('query',`##${InteractElement(json.element).name}`)
             div.innerHTML = div.innerHTML + icon
             var name_span = document.createElement('span');
             name_span.innerText = json.element.getAttribute('element_name');
@@ -1669,103 +1683,23 @@ export const layerDiv = {
     },
     Add: function (element) {
 
-        //BoxContainer.GetElementCloneSvg(element)
         var newCont = layerDiv.CreateElementContainerLayer();
         newCont.querySelector('.layers-svg').append(BoxContainer.GetElementCloneSvg(element))
         layerDiv.elem.append(newCont);
         newCont.querySelector('.layers-element_name').append(BoxContainer.GetIconAndName({element:element}))
         newCont.setAttribute('layerFor',element.id)
-        // element = element.cloneNode(true);
-        // var newCont = layerDiv.CreateElementContainerLayer();
-        // var svg_el = newCont.querySelector("svg");
-        // var div_el = newCont.querySelector("div");
-        // div_el.style.backgroundColor = BoxContainer.elem().style.backgroundColor;
-        // svg_el.style.backgroundColor = BoxContainer.elem().style.backgroundColor;
-        // var el_type = element.getAttribute("primary-element-type");
-        // newCont.querySelector(".element_name").innerText = element.getAttribute("element_name") || "no_name";
-        // if (element.style.display == "none") {
-        //     newCont.querySelector("[layer_btn=eye]").children[0].classList.remove("bi-eye");
-        //     newCont.querySelector("[layer_btn=eye]").children[0].classList.add("bi-eye-slash");
-        // }
-        // if (element.getAttribute("locked") == "true") {
-        //     newCont.querySelector("[layer_btn=lock]").children[0].classList.remove("bi-unlock-fill");
-        //     newCont.querySelector("[layer_btn=lock]").children[0].classList.add("bi-lock-fill");
-        // }
-        // if (el_type == "Text") {
-        //     div_el.style.display = "block";
-        //     div_el.innerHTML = element.innerHTML;
-        //     div_el.children[0].style.wordBreak = "break-all";
-        //     div_el.children[0].style.overflowY = "auto";
-        // } else if (el_type == "Container") {
-        //     div_el.style.display = "block";
-        //     div_el.innerHTML = element.innerHTML;
-        // } else if (el_type == "Image") {
-        //     div_el.style.display = "block";
-        //     div_el.innerHTML = element.innerHTML;
-        //     div_el.children[0].style.height = "100%";
-        //     div_el.children[0].style.width = "100%";
-        //     div_el.children[0].style.position = "absolute";
-        //     div_el.children[0].style.top = "0px";
-        //     div_el.children[0].style.left = "0px";
-        //     div_el.children[0].style.transform = "none";
-        // } else if (
-        //     el_type == "Audio" ||
-        //     el_type == "Video" ||
-        //     el_type == "YoutubeVideo"
-        // ) {
-        //     div_el.style.display = "block";
-        //     div_el.innerHTML = element.innerHTML;
-        // } else if (element.tagName == "path") {
-        //     svg_el.style.display = "block";
-        //     svg_el.append(element);
-        //     transformFunc.updateValue(element, "positionX", "0");
-        //     transformFunc.updateValue(element, "positionY", "0");
-        //     svg_el.setAttribute(
-        //         "viewBox",
-        //         `0 0 ${BoxContainer.svg().getBoundingClientRect().width} ${BoxContainer.svg().getBoundingClientRect().height
-        //         }`
-        //     );
-        // } else if (element.tagName == "text") {
-        //     svg_el.style.display = "block";
-        //     svg_el.append(element);
-        //     transformFunc.updateValue(element, "positionX", "0");
-        //     transformFunc.updateValue(element, "positionY", "0");
-        //     svg_el.setAttribute(
-        //         "viewBox",
-        //         `0 0 ${BoxContainer.svg().getBoundingClientRect().width} ${BoxContainer.svg().getBoundingClientRect().height
-        //         }`
-        //     );
-        // } else if (el_type == "Video") {
-        //     div_el.innerHTML == element.innerHTML;
-        //     console.log(element.innerHTML);
-        //     // div_el.append(element)
-        //     div_el.style.display = "block";
-        //     // element.style.height = "100%"
-        //     // element.style.width = "100%"
-        //     // element.style.position = "absolute"
 
-        //     // element.style.top = '0px'
-        //     // element.style.left = "0px"
-        //     // element.style.transform = "none"
-        // }
-        // element.classList.remove("draggable");
-        // element.onmousedown = () => { };
+        if (element.style.display == "none") {
+                newCont.querySelector("[layer_btn=eye]").children[0].classList.remove("bi-eye");
+                newCont.querySelector("[layer_btn=eye]").children[0].classList.add("bi-eye-slash");
+            }
 
-        // try {
-        //     div_el.children[0].setAttribute("layer_element_name", element.getAttribute("element_name"));
-        //     div_el.children[0].style.height = "100%";
-        //     div_el.children[0].style.width = "100%";
-        // } catch (err) { }
-        // try {
-        //     svg_el.children[0].setAttribute("layer_element_name", element.getAttribute("element_name"));
-        // } catch (err) { }
+        if (element.getAttribute("locked") == "true") {
+                newCont.querySelector("[layer_btn=lock]").children[0].classList.remove("bi-unlock-fill");
+                newCont.querySelector("[layer_btn=lock]").children[0].classList.add("bi-lock-fill");
+            }
 
-        // element.setAttribute("layerer_element_name", element.getAttribute("element_name"));
-        // element.removeAttribute("element_name");
-        // layerDiv.elem.append(newCont);
-        // // newCont.style.top = LayerTopPosition + "%";
-        // // LayerTopPosition += 21;
-        // element.removeAttribute("element_groups");
+        
         // // layerDiv.elem.append(newCont)
     },
     UpdateLayerElement: function(element){
@@ -1792,43 +1726,44 @@ export const layerDiv = {
 
         }
     },
-    funcs: function () { },
     CreateElementContainerLayer: function () {
         var div = element_ContainerLayer.cloneNode(true);
         div.querySelector("[layer_btn=eye]").addEventListener("click", function () {
-            var el = div.querySelector("[layer_element_name]").getAttribute("layer_element_name");
+            var el = BoxContainer.div().querySelector(`#${div.getAttribute('layerfor')}`)
 
             if (this.children[0].classList.contains("bi-eye-slash")) {
                 this.children[0].classList.remove("bi-eye-slash");
                 this.children[0].classList.add("bi-eye");
-                BoxContainer.div().querySelector(`[element_name=${el}]`).style.display = "block";
+                InteractElement(el).setdisplay('block')
             } else {
                 this.children[0].classList.remove("bi-eye");
-                BoxContainer.div().querySelector(`[element_name=${el}]`).style.display = "none";
+                InteractElement(el).setdisplay('none')
                 this.children[0].classList.add("bi-eye-slash");
             }
         });
         div.querySelector("[layer_btn=lock]").addEventListener("click", function () {
-            var el = div.querySelector("[layer_element_name]").getAttribute("layer_element_name");
+            var el = BoxContainer.div().querySelector(`#${div.getAttribute('layerfor')}`)
 
             if (this.children[0].classList.contains("bi-lock-fill")) {
                 this.children[0].classList.remove("bi-lock-fill");
                 this.children[0].classList.add("bi-unlock-fill");
-                BoxContainer.div().querySelector(`[element_name=${el}]`).classList.add("draggable");
-                BoxContainer.div().querySelector(`[element_name=${el}]`).setAttribute("locked", "false");
+                InteractElement(el).setlock('false')
+                // BoxContainer.div().querySelector(`[element_name=${el}]`).classList.add("draggable");
+               // BoxContainer.div().querySelector(`[element_name=${el}]`).setAttribute("locked", "false");
             } else {
                 this.children[0].classList.remove("bi-unlock-fill");
                 this.children[0].classList.add("bi-lock-fill");
-                BoxContainer.div().querySelector(`[element_name=${el}]`).classList.remove("draggable");
-                BoxContainer.div().querySelector(`[element_name=${el}]`).setAttribute("locked", "true");
-                BoxContainer.div().querySelector(`[element_name=${el}]`).onmousedown = (e) => { };
-                activeel_size_handler.hide();
+                InteractElement(el).setlock('true')
+                //BoxContainer.div().querySelector(`[element_name=${el}]`).classList.remove("draggable");
+                //BoxContainer.div().querySelector(`[element_name=${el}]`).setAttribute("locked", "true");
+                //BoxContainer.div().querySelector(`[element_name=${el}]`).onmousedown = (e) => { };
+                
             }
         });
         return div;
     }
 };
-layerDiv.funcs();
+
 
 const element_ContainerLayer = document.createElement("div");
 element_ContainerLayer.classList.add("layers-containers");
@@ -2090,12 +2025,107 @@ export function NewBoxContainer(json) {
         }
     }
 
-    BoxContainer.elem().addEventListener('mousedown', e => BoxContainerClickFunc(e))
+    BoxContainer.elem().addEventListener('mousedown', function(e) {
+        BoxContainer.nullactive()
+    EndlessSizeHandler.DragMoveListener()
+    //toolboxFuncs.hide()
+
+    if(e.target.getAttribute('InteractSvg') != null ){
+    selctor_div.style.display = "block"
+    var e_y = e.y
+    var e_x = e.x
+    
+    SelectorRect.width = 0
+    SelectorRect.height = 0
+    SelectorRect.y = e.y
+    SelectorRect.x = e.x
+    
+    
+ //BoxContainer.elem().addEventListener('mousemove',e => B_mousemove(e,e_x,e_y))
+ BoxContainer.elem().onmousemove=(e)=>{
+     //B_mousemove(e,e_x,e_y)
+     BoxContainer.nullactive()
+     for(var el of BoxContainer.getAllElements()){
+         var elrect = el.getBoundingClientRect()
+         var selectorrect = selctor_div.getBoundingClientRect()
+         //this if sttment defines el area in left-top 
+        if ( (elrect.left > selectorrect.x && elrect.left < selectorrect.right && elrect.top > selectorrect.top && elrect.top < selectorrect.bottom ) || (elrect.right < selectorrect.right && elrect.right > selectorrect.left && elrect.bottom < selectorrect.bottom && elrect.bottom > selectorrect.top) ) {
+            var gotelement = el
+            if(gotelement != null && gotelement.classList.contains('active') == false){
+                     gotelement.classList.add('active')
+                     EndlessSizeHandler.SetHandler({element:gotelement})
+                 }
+        }
+     }
+    //var gotelement = gettarget(e,'primary-element-type');
+    // if(gotelement != null && gotelement.classList.contains('active') == false){
+    //      gotelement.classList.add('active')
+    //      EndlessSizeHandler.SetHandler({element:gotelement})
+    //  }
+    if((e.y - e_y)>1){
+        SelectorRect.height = e.y - e_y
+    }else{
+        
+        SelectorRect.height = e_y - e.y
+        SelectorRect.y = e_y - SelectorRect.height
+
+    }
+    if((e.x - e_x)>1){
+        SelectorRect.width = e.x - e_x
+    }else{
+        SelectorRect.width = e_x - e.x
+        SelectorRect.x = e_x - SelectorRect.width
+    }
+ }
+
+ window.onmouseup=(e)=>{
+     selctor_div.style.display = "none"
+    BoxContainer.elem().onmousemove=(e)=>{
+        ""
+    }
+     
+ }}else{
+     BoxContainer.nullactive()
+     var gotelement = gettarget(e,'primary-element-type');
+     if(gotelement != null ){
+         gotelement.classList.add('active')
+         EndlessSizeHandler.SetHandler({element:gotelement})
+        //  show_styling_properties(getactiveel() || "")
+         //toolboxFuncs.position()
+     }
+ }
+    })
 
 
 
 }
-
+const selctor_div = document.querySelector('.koi')
+const SelectorRect =  {
+    set x(x_){
+        selctor_div.style.left = parseFloat(x_) + 'px'
+    },
+    set y(y_){
+        selctor_div.style.top = parseFloat(y_) + 'px'
+    },
+    set height(x_){
+        selctor_div.style.height = parseFloat(x_) + 'px'
+    },
+    set width(x_){
+        selctor_div.style.width = parseFloat(x_) + 'px'
+    },
+    get y(){
+       return parseFloat(selctor_div.style.top )    
+    },
+    get x(){
+       return parseFloat(selctor_div.style.left )
+    },
+    get height(){
+       return parseFloat(selctor_div.style.height)
+    },
+    get width(){
+       return parseFloat(selctor_div.style.width) 
+    },
+}
 
 NewBoxContainer({})
 

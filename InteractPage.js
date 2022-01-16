@@ -4,7 +4,13 @@ export function InteractPage(InteractPage) {
             return "Pass an InteractPage"
         },
         UpdateProp : UpdateProp(InteractPage),
-        GetValue : GetValue(InteractPage)
+        GetValue : GetValue(InteractPage),
+        querySelector  : function(query){
+            if(query.startsWith('##')){
+                return InteractPage.querySelector(`[element_name=${query.split('##')[1]}]`)
+            }
+
+        }
     }
 }
 

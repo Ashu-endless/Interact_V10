@@ -1403,6 +1403,13 @@ span.border_icon.material-icons {
   background: #001220;
   border-radius: 20px;
   z-index: 1;
+  grid-auto-columns: 33% 34% 33%;
+  text-align: center;
+  overflow: hidden;
+}
+
+[layer-btn]:hover {
+  background: #3f1580;
 }
 
 .layers-containers {
@@ -4717,6 +4724,12 @@ input[type=range]::-webkit-slider-thumb {
   cursor: pointer;
   -webkit-appearance: none;
 
+}
+
+input[type=range]::-webkit-slider-thumb:hover{
+  height: 20px;
+  width: 20px;
+  border: 2px solid rgb(77, 95, 192);
 }
 
 select {

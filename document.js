@@ -15,6 +15,9 @@ function UpdateRangeInpStyle(elem,value,color){
 }
 
 
+function getUniqueid(word) {
+    return word + Math.random().toString(36).substr(2, 9)
+}
 
 function getparentel(element,queryselector) {
     for (var parent of $(element).parents()) {

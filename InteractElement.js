@@ -1,4 +1,4 @@
-
+import { transformFunc } from "./Interact_style.js"
 
 
 
@@ -13,12 +13,20 @@ export function InteractElement(element) {
           element.remove()
         },
         GetValue: GetValue(element),
+        setlock : function (params) {
+          element.setAttribute('locked',params)
+        },
+        setdisplay :function (params) {
+          element.style.display = params
+        },
         // name: function (element) {return element.getAttribute('element_name')},
         // groups : function (element) {return element.getAttribute('element_groups')},
         // type : function (element) {return element.getAttribute('element_type')},
         name:element.getAttribute('element_name'),
         groups : element.getAttribute('element_groups'),
         type : element.getAttribute('element_type'),
+        //locked : element.getAttribute('locked'),
+        //display : element.style.display,
 
         }
 }
@@ -106,5 +114,10 @@ const GetValue = function (element) {
       borderTopStyle :getComputedValue(element.children[0], "border-top-style"),
       borderTopColor : getComputedValue(element.children[0], "border-top-color"),
       borderTopWidth : getComputedValue(element.children[0], "border-top-width"),
+      height:transformFunc.getValue(element).height,
+      positionx:transformFunc.getValue(element).positionX,
+      width:transformFunc.getValue(element).width,
+      positiony:transformFunc.getValue(element).positionY,
+      rotate:transformFunc.getValue(element).rotate,
   }
 }

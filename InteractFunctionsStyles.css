@@ -95,6 +95,12 @@ element.style {
     font-size: larger;
     background: #001220;
     color: cadetblue;
+    grid-auto-columns: 33% 34% 33%;
+    text-align: center;
+}
+
+.rr>span:hover{
+    background: #3f1580;
 }
 
 element.style {

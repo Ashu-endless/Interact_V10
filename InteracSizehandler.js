@@ -1,4 +1,4 @@
-import { getparent, gettarget, getUniqueid ,  } from "./functionsfile.js";
+import { getparent, gettarget, getUniqueid , activeel_position_divFuncs } from "./functionsfile.js";
 import { getactiveel } from "./index.js";
 import { transformFunc } from './Interact_style.js';
 
@@ -273,8 +273,52 @@ EndlessSizeHandler["MakeDraggable"] = function(element){
     //element.addEventListener('mousedown',)
 }
 
-function MakingDraggable(){
+EndlessSizeHandler["DragMoveListener"] = function () {
+    var draggable = document.querySelectorAll('.draggable');
+    for (var draggables of draggable) {
+        draggables.onmousedown = (e) => {
+            var target = gettarget(e, 'draggable')
+            target.style.cursor = "grabbing"
+            //toolbox.style.display = "none"
+    
+            //toolboxFuncs.hide()
 
+            var startX = e.x
+            var startY = e.y
+            var Draggable_data = {}
+            var elem = document.querySelectorAll('.active');
+            for(var i=0;i<elem.length;i++){
+                Draggable_data[i] = {}
+            Draggable_data[i].positionx = transformFunc.getValue(elem[i]).positionX
+            Draggable_data[i].positiony = transformFunc.getValue(elem[i]).positionY
+        }
+
+            activeel_position_divFuncs.position()
+            //UpdateTransformStyleDiv(target)
+            document.body.onmousemove = (e) => {
+                    var dx = (e.clientX - startX )/ parseFloat(getJsonAttr(BoxContainer.elem(), "settings").scale)
+                    var dy = (e.clientY - startY)/ parseFloat(getJsonAttr(BoxContainer.elem(), "settings").scale)
+                    // var dx = (e.clientX - startX) / 0.5
+                    // var dy = (e.clientY - startY) / 0.5
+
+                    // console.log(target.tagName)
+                    for(var i=0;i<elem.length;i++){
+                    transformFunc.updateValue(elem[i], 'position-x', (Draggable_data[i].positionx + dx) + "px")
+                    transformFunc.updateValue(elem[i], 'position-y',(Draggable_data[i].positiony + dy) + "px")
+                    EndlessSizeHandler.SetHandler({element:elem[i]})
+                }
+                   activeel_position_divFuncs.position()
+                   // UpdateTransformStyleDiv(target)
+                },
+                document.body.onmouseup = (e) => {
+                    target.style.cursor = "grab"
+                    activeel_position_divFuncs.hide()
+                    document.body.onmousemove = (e) => {
+                        ""
+                    }
+                }
+        }
+    }
 }
 
 

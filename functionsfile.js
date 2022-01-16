@@ -2,90 +2,15 @@ var el;
 var elem;
 import { transformFunc, show_styling_properties,InteracStyles } from './Interact_style.js'
 import { getactiveel, ShowUploadModal } from './index.js'
-import { DragAndDropListener, activeel_size_handler } from './size_handler.js';
+
 import { BoxContainer, layerDiv, } from './Interac_BoxContainer.js';
 import { InteractMessage } from "./InteracTerminal.js";
 import { EndlessSizeHandler } from './InteracSizehandler.js';
 // import { boxsvg } from '.';
 // import { box } from '.';
-const layers_div = document.querySelector('#layers_div')
-const element_ContainerLayer = document.createElement('div');
-element_ContainerLayer.classList.add('layer_containers');
-element_ContainerLayer.innerHTML = `<svg preserveAspectRatio="none" class="svgForLayers" viewBox="0 0 0 0" ></svg>
-<div class="layers_options_div">
-    <div class="layers_options">Container1</div>
-    <div class="layers_options"><i class="bi bi-eye-slash "></i></div>
-    <div class="layers_options"><i class="bi bi-file-lock2"></i></div>
-    <div><i class="bi bi-arrow-down-square-fill"></i></div>
-</div>`
-export const LayersDivFuncs = {
-    UpdateLayersDiv: function() {
-        layers_div.innerHTML = "";
-        // console.log(document.querySelector('#interac_Svg').children)
-        var data = []
-        for (el of document.querySelector('#interac_Svg').children) {
-            if (el.tagName == 'g' || el.tagName == 'foreignObject') {
-                data.push(el)
-            }
-        }
-        var top = 2
-        for (el of data) {
-            var cln = el.cloneNode(true)
-            cln.classList.remove('active', 'draggable')
-            transformFunc.defaultTransform(cln)
-            cln.style.position = 'relative'
-            if (cln.children[0] != undefined) {
-                cln.children[0].style.position = 'relative'
-            }
-            var cln2 = element_ContainerLayer.cloneNode(true)
 
-            if (el.tagName == 'polyline') {
-                var svgForPB = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-                svgForPB.setAttributeNS(null, 'height', document.querySelector('#interac_Svg').getBoundingClientRect().height);
-                svgForPB.setAttributeNS(null, 'width', document.querySelector('#interac_Svg').getBoundingClientRect().width);
-                // svgForPB.height = document.querySelector('#interac_Svg').getBoundingClientRect().height
-                // svgForPB.width = document.querySelector('#interac_Svg').getBoundingClientRect().width
-                svgForPB.append(cln);
-                cln2.querySelector('svg').append(svgForPB)
-                cln2.querySelector('svg').setAttributeNS(null, 'viewBox', `0 0 ${document.querySelector('#interac_Svg').getBoundingClientRect().width} ${document.querySelector('#interac_Svg').getBoundingClientRect().height}`)
-
-            } else {
-                cln2.querySelector('svg').append(cln)
-                cln2.querySelector('svg').setAttributeNS(null, 'viewBox', `0 0 ${el.getBoundingClientRect().width} ${el.getBoundingClientRect().height}`)
-            }
-            layers_div.append(cln2)
-            cln2.style.top = top + '%'
-            top = top + 22
-
-        }
-    }
-}
  
-export function getAllBoxElementsInfo() {
-    var element_names = [];
-    var element_groups = [];
-    var element_ids = [];
-    console.log(BoxContainer.elem())
-    console.log(BoxContainer.elem().querySelectorAll('[element_name]'))
-    for (el of BoxContainer.elem().querySelectorAll('[element_name]')) {
-        element_ids.push(el.id)
-        if (el.getAttribute('element_name') != "") {
-            element_names.push(el.getAttribute('element_name'))
-        }
-        if (el.getAttribute('element_groups') != "" && el.getAttribute('element_groups') != null) {
-            for (var groups of el.getAttribute('element_groups').split(',')) {
-                element_groups.push(groups)
-            }
-            element_groups = [...new Set(element_groups)]
-        }
 
-    }
-    return {
-        element_names: element_names,
-        element_ids: element_ids,
-        element_groups: element_groups,
-    }
-}
 
 
 
@@ -210,18 +135,7 @@ export function bardivFunc() {
     }
 }
 
-export function preview_selected_element() {
-    // document.querySelector('#preview_selected_element').innerHTML = ""
-    // var cln = getactiveel().cloneNode(true);
-    // transformFunc.defaultTransform(cln)
-    // cln.style.position = 'relative'
-    // if (cln.children[0] != undefined) {
-    //     cln.children[0].style.position = 'relative'
-    // }
-    // document.querySelector('#preview_selected_element').setAttributeNS(null, 'viewBox', `0 0 ${getactiveel().getBoundingClientRect().width} ${getactiveel().getBoundingClientRect().height}`)
-    // document.querySelector('#preview_selected_element').append(cln);
 
-}
 
 export const activeelFunction = {
     delete: function() {
@@ -789,15 +703,20 @@ export const activeel_position_divFuncs = {
     activeel_position_div_w: document.querySelector('#activeel_position_div_w'),
     activeel_position_div_x: document.querySelector('#activeel_position_div_x'),
     activeel_position_div_y: document.querySelector('#activeel_position_div_y'),
+    activeel_position_div_r: document.querySelector('#activeel_position_div_r'),
     position: function() {
         activeel_position_divFuncs.activeel_position_div.style.display = "grid"
         activeel_position_divFuncs.activeel_position_div_h.innerHTML = parseInt(getactiveel().getBoundingClientRect().height)
         activeel_position_divFuncs.activeel_position_div_w.innerHTML = parseInt(getactiveel().getBoundingClientRect().width)
         activeel_position_divFuncs.activeel_position_div_x.innerHTML = parseInt(getactiveel().getBoundingClientRect().left - BoxContainer.div().getBoundingClientRect().left)
         activeel_position_divFuncs.activeel_position_div_y.innerHTML = parseInt(getactiveel().getBoundingClientRect().top - BoxContainer.div().getBoundingClientRect().top)
+        activeel_position_divFuncs.activeel_position_div_r.innerHTML = parseInt(getactiveel().getBoundingClientRect().top - BoxContainer.div().getBoundingClientRect().top)
         activeel_position_div.style.top = getactiveel().getBoundingClientRect().bottom + 15 + "px"
         activeel_position_div.style.left = getactiveel().getBoundingClientRect().left + (getactiveel().getBoundingClientRect().width / 2) + "px"
-
+        if (parseInt(activeel_position_div.style.left) + activeel_position_div.getBoundingClientRect().width > window.innerWidth ) {
+            activeel_position_div.style.left = (parseInt(activeel_position_div.style.left) -  activeel_position_div.getBoundingClientRect().width) + 'px'
+            
+        }
     },
     hide: function() {
         activeel_position_divFuncs.activeel_position_div.style.display = "none"
@@ -805,11 +724,3 @@ export const activeel_position_divFuncs = {
 }
 
 
-// BoxFunctions = {
-//     BoxStyling : {
-//         BoxBackGroundDiv
-//     }
-// }
-
-// TESTING CODE
-// const
