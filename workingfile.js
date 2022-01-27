@@ -29,7 +29,7 @@ for (var el of document.querySelectorAll('.hide_myprnt')) {
         console.log(el)
         el.addEventListener('click', function() {
             this.parentNode.style.display = "none";
-            console.log('hiding')
+            //console.log('hiding')
         })
     }
 

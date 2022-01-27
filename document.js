@@ -22,11 +22,11 @@ function getUniqueid(word) {
 function getparentel(element,queryselector) {
     for (var parent of $(element).parents()) {
 
-        if(queryselector.startsWith('.') && parent.classList.contains(queryselector)){
+        if(queryselector.startsWith('.') && parent.classList.contains(queryselector.replace('.',''))){
             return parent
         }
 
-        else if(queryselector.startsWith('#') && parent.id == queryselector){
+        else if(queryselector.startsWith('#') && parent.id == queryselector.replace('#','')){
             return parent
         }
 
@@ -49,23 +49,39 @@ function getparentel(element,queryselector) {
      
 }
 // !
-// export function gettarget(e, queryselector) {
+function gettargetel(e, queryselector) {
 
-//     if(queryselector.startswith('.')){
+    if(queryselector.startsWith('.')){
+        console.log('oko')
+      if (e.target.classList.contains(queryselector.replace('.',''))){
+            return e.target
+      }else{
+          return getparentel(e.target,queryselector)
+      }
+    } 
 
-//       //  if(e.)
-//     } 
-//     else if(queryselector.startswith('#') && parent.id == queryselector){
-//         return parent
-//     }
-//     else if(queryselector.startswith('[') && parent.id == queryselector){
-//         return parent
-//     }
+    else if(queryselector.startsWith('#')){
+        if (e.target.id == queryselector.replace('#','')){
+            return e.target
+      }else{
+          return getparentel(e.target,queryselector)
+      }
+    } 
+    
+    
 
+    else if(queryselector.startsWith('[')){
+        var attr = queryselector.replace('[','').replace(']','').trim().split('=')
+       //console.log(attr)
+        //console.log(parent.getAttribute(attr[0]) == attr[1])
+        //!error while reading attr-value like `[attr="value"]
+        if(attr.length == 1 && parent.getAttribute(attr[0]) != null){
+            return parent
+        }
 
-//     if (e.target.classList.contains(clas) || e.target.id == clas || (e.target.getAttribute(clas) != null && e.target.getAttribute(clas) != "true" && e.target.getAttribute(clas) != "false")) {
-//         return e.target
-//     } else {
-//         return getparent(e.target, clas)
-//     }
-// }
+        else if(attr.length == 2 && parent.getAttribute(attr[0]) == attr[1] ){
+            console.log(parent)
+        return parent
+    }
+    }
+}

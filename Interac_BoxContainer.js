@@ -1,11 +1,30 @@
-import { FunctioneditorCreateDivs, } from "./functions.js";
-import { InteractMessage } from "./InteracTerminal.js";
-import { InteractUpdateStyleDivs, UpdateStylingsOf} from "./StyleDivFuncs.js";
-import { EndlessSizeHandler } from './InteracSizehandler.js';
+import {
+    FunctioneditorCreateDivs,
+} from "./functions.js";
+import {
+    InteractMessage
+} from "./InteracTerminal.js";
+import {
+    InteractUpdateStyleDivs,
+    UpdateStylingsOf
+} from "./StyleDivFuncs.js";
+import {
+    EndlessSizeHandler
+} from './InteracSizehandler.js';
+import {
+    data
+} from './data.js';
+import {
+    InteractFunctionsDiv,
+    MDFunctionDiv
+} from './InteractFunctionsStyles.js';
 
 
 
-import { transformFunc, getComputedValue } from "./Interact_style.js";
+import {
+    transformFunc,
+    getComputedValue
+} from "./Interact_style.js";
 import {
     getUniqueid,
     getJsonAttr,
@@ -15,8 +34,16 @@ import {
     gettarget,
     activeelFunction
 } from "./functionsfile.js";
-import { InteracStyles } from "./Interact_style.js";
-import { InteractElement } from "./InteractElement.js"
+
+import {
+    toolbox
+} from "./InteractToolbox.js";
+import {
+    InteracStyles
+} from "./Interact_style.js";
+import {
+    InteractElement
+} from "./InteractElement.js"
 var el;
 // import { boxContainer } from "."
 export const text_props = [
@@ -48,9 +75,18 @@ export const text_props = [
 
 export const BoxContainer = {
     dataBox: document.querySelector("#dataBox"),
-    elem: function () { return document.querySelector("[InteractState=Active]") },
-    svg: function () { return document.querySelector("[InteractState=Active]").children[0].children[0] },
-    div: function () { return document.querySelector("[InteractState=Active]").children[0] },
+    elem: function () {
+        return document.querySelector("[InteractState=Active]")
+    },
+    svg: function () {
+        return document.querySelector("[InteractState=Active]").children[0].children[0]
+    },
+    div: function () {
+        return document.querySelector("[InteractState=Active]").children[0]
+    },
+    getSelectedEl : function(){
+        return this.elem().querySelectorAll('.active')
+    },
     // dataBox: document.querySelector("#dataBox"),
     // elem: function () { return document.querySelector("[interactcontainer]") },
     // svg: function () { return document.querySelector("[interactcontainer]").children[0].children[0] },
@@ -101,15 +137,64 @@ export const BoxContainer = {
             el.setAttribute("element_stake", 1);
         }
     },
-    getAllElements :function (params) {
+    set width(val) {
+        BoxContainer.elem().style.width = parseFloat(val) + 'px'
+    },
+    set scale(val) {
+        BoxContainer.elem().style.transform = `scale(${parseFloat(val)})`
+    },
+    set height(val) {
+        BoxContainer.elem().style.height = parseFloat(val) + 'px'
+    },
+    get height() {
+        return parseFloat(BoxContainer.elem().style.height)
+    },
+    get width() {
+        return parseFloat(BoxContainer.elem().style.width)
+    },
+    get scale() {
+        return parseFloat(BoxContainer.elem().style.transform.split('scale(')[1].split(')')[0])
+    },
+    get Functions() {
+        return JSON.parse(this.elem().getAttribute('InteractFunctions'))
+    },
+    set Functions(array) {
+        this.elem().setAttribute('InteractFunctions', array)
+    },
+    set background(val) {
+        BoxContainer.div().style.background = val
+        BoxContainer.elem().style.background = val
+    },
+    get background() {
+        return BoxContainer.div().style.background
+    },
+
+    setAutoscale: function (json) {
+        BoxContainer.elem().style.top = json.top + '%';
+        BoxContainer.elem().style.left = json.left + '%';
+        //var bigger_value ;
+        if (BoxContainer.height > BoxContainer.width) {
+            //bigger_value = BoxContainer.height
+            var ah = (window.innerHeight / 100) * (100 - json.top)
+            BoxContainer.scale = ah / BoxContainer.height
+        } else {
+            // bigger_value = BoxContainer.width
+            var aw = (window.innerWidth / 100) * (100 - json.left)
+            BoxContainer.scale = aw / BoxContainer.width
+        }
+    },
+    getAllElements: function (params) {
         return BoxContainer.elem().querySelectorAll(`[primary-element-type]`)
     },
-    nullactive: function() {
+    nullactive: function () {
         var any_active = BoxContainer.elem().querySelectorAll('.active');
         for (el of any_active) {
             el.classList.remove('active');
-            EndlessSizeHandler.HideHandler({element:el})
-        }},
+            EndlessSizeHandler.HideHandler({
+                element: el
+            })
+        }
+    },
     getAllBoxElementsInfo: function () {
         var element_names = [];
         var element_groups = [];
@@ -180,9 +265,18 @@ export const BoxContainer = {
                     element: object,
                     prop: "position-y"
                 }),
-                rotate: InteracStyles.getValue({ element: object, prop: "rotate" }),
-                height: InteracStyles.getValue({ element: object, prop: "height" }),
-                width: InteracStyles.getValue({ element: object, prop: "width" })
+                rotate: InteracStyles.getValue({
+                    element: object,
+                    prop: "rotate"
+                }),
+                height: InteracStyles.getValue({
+                    element: object,
+                    prop: "height"
+                }),
+                width: InteracStyles.getValue({
+                    element: object,
+                    prop: "width"
+                })
             };
             console.log(json.transform);
             json.style = {};
@@ -227,11 +321,26 @@ export const BoxContainer = {
                     element_groups: object.getAttribute("element_groups")
                 };
                 json.transform = {
-                    "position-x": InteracStyles.getValue({ element: object, prop: "position-x" }),
-                    "position-y": InteracStyles.getValue({ element: object, prop: "position-y" }),
-                    "rotate": InteracStyles.getValue({ element: object, prop: "rotate" }),
-                    "height": InteracStyles.getValue({ element: object, prop: "height" }),
-                    "width": InteracStyles.getValue({ element: object, prop: "width" })
+                    "position-x": InteracStyles.getValue({
+                        element: object,
+                        prop: "position-x"
+                    }),
+                    "position-y": InteracStyles.getValue({
+                        element: object,
+                        prop: "position-y"
+                    }),
+                    "rotate": InteracStyles.getValue({
+                        element: object,
+                        prop: "rotate"
+                    }),
+                    "height": InteracStyles.getValue({
+                        element: object,
+                        prop: "height"
+                    }),
+                    "width": InteracStyles.getValue({
+                        element: object,
+                        prop: "width"
+                    })
                 };
 
                 json.style = {};
@@ -243,7 +352,10 @@ export const BoxContainer = {
                         prop: propes
                     });
                     console.log(
-                        InteracStyles.getValue({ element: object, prop: propes })
+                        InteracStyles.getValue({
+                            element: object,
+                            prop: propes
+                        })
                     );
                 }
             }
@@ -255,8 +367,7 @@ export const BoxContainer = {
                 d: path.getAttribute("d"),
                 fill: path.style.fill || path.getAttribute("fill"),
                 stroke: path.style.stroke || path.getAttribute("stroke"),
-                strokeWidth:
-                    path.style.strokeWidth || path.getAttribute("stroke-width"),
+                strokeWidth: path.style.strokeWidth || path.getAttribute("stroke-width"),
                 element_groups: object.getAttribute("element_groups")
             };
             editJsonVals(givenjson, json);
@@ -279,11 +390,26 @@ export const BoxContainer = {
                 element_groups: object.getAttribute("element_groups") || ""
             };
             json.transform = {
-                "position-x": InteracStyles.getValue({ element: object, prop: "position-x" }),
-                "position-y": InteracStyles.getValue({ element: object, prop: "position-y" }),
-                rotate: InteracStyles.getValue({ element: object, prop: "rotate" }),
-                height: InteracStyles.getValue({ element: object, prop: "height" }),
-                width: InteracStyles.getValue({ element: object, prop: "width" })
+                "position-x": InteracStyles.getValue({
+                    element: object,
+                    prop: "position-x"
+                }),
+                "position-y": InteracStyles.getValue({
+                    element: object,
+                    prop: "position-y"
+                }),
+                rotate: InteracStyles.getValue({
+                    element: object,
+                    prop: "rotate"
+                }),
+                height: InteracStyles.getValue({
+                    element: object,
+                    prop: "height"
+                }),
+                width: InteracStyles.getValue({
+                    element: object,
+                    prop: "width"
+                })
             };
             json.style = {};
             try {
@@ -314,11 +440,26 @@ export const BoxContainer = {
                 element_groups: object.getAttribute("element_groups") || ""
             };
             json.transform = {
-                "position-x": InteracStyles.getValue({ element: object, prop: "position-x" }),
-                "position-y": InteracStyles.getValue({ element: object, prop: "position-y" }),
-                rotate: InteracStyles.getValue({ element: object, prop: "rotate" }),
-                height: InteracStyles.getValue({ element: object, prop: "height" }),
-                width: InteracStyles.getValue({ element: object, prop: "width" })
+                "position-x": InteracStyles.getValue({
+                    element: object,
+                    prop: "position-x"
+                }),
+                "position-y": InteracStyles.getValue({
+                    element: object,
+                    prop: "position-y"
+                }),
+                rotate: InteracStyles.getValue({
+                    element: object,
+                    prop: "rotate"
+                }),
+                height: InteracStyles.getValue({
+                    element: object,
+                    prop: "height"
+                }),
+                width: InteracStyles.getValue({
+                    element: object,
+                    prop: "width"
+                })
             };
             json.style = {};
             try {
@@ -346,7 +487,8 @@ export const BoxContainer = {
         } else if (obj_type == "YoutubeVideo") {
             var json = {
                 src: object.src || object.getAttribute('yt-id') || object.querySelector('source').src,
-                element_groups: object.getAttribute("element_groups") || "", element_name: object.getAttribute("element_name") || ""
+                element_groups: object.getAttribute("element_groups") || "",
+                element_name: object.getAttribute("element_name") || ""
             };
             try {
                 if (object.querySelector('.freeze_div').style.height == "100%") {
@@ -356,11 +498,26 @@ export const BoxContainer = {
                 json.freeze = false
             }
             json.transform = {
-                "position-x": InteracStyles.getValue({ element: object, prop: "position-x" }),
-                "position-y": InteracStyles.getValue({ element: object, prop: "position-y" }),
-                rotate: InteracStyles.getValue({ element: object, prop: "rotate" }),
-                height: InteracStyles.getValue({ element: object, prop: "height" }),
-                width: InteracStyles.getValue({ element: object, prop: "width" })
+                "position-x": InteracStyles.getValue({
+                    element: object,
+                    prop: "position-x"
+                }),
+                "position-y": InteracStyles.getValue({
+                    element: object,
+                    prop: "position-y"
+                }),
+                rotate: InteracStyles.getValue({
+                    element: object,
+                    prop: "rotate"
+                }),
+                height: InteracStyles.getValue({
+                    element: object,
+                    prop: "height"
+                }),
+                width: InteracStyles.getValue({
+                    element: object,
+                    prop: "width"
+                })
             };
             json.style = {};
 
@@ -381,11 +538,26 @@ export const BoxContainer = {
             BoxContainer.CreateYtVideoElement(editJsonVals(givenjson, json))
         } else if (object.tagName == "path") {
             json.transform = {
-                "position-x": InteracStyles.getValue({ element: object, prop: "position-x" }),
-                "position-y": InteracStyles.getValue({ element: object, prop: "position-y" }),
-                rotate: InteracStyles.getValue({ element: object, prop: "rotate" }),
-                height: InteracStyles.getValue({ element: object, prop: "height" }),
-                width: InteracStyles.getValue({ element: object, prop: "width" })
+                "position-x": InteracStyles.getValue({
+                    element: object,
+                    prop: "position-x"
+                }),
+                "position-y": InteracStyles.getValue({
+                    element: object,
+                    prop: "position-y"
+                }),
+                rotate: InteracStyles.getValue({
+                    element: object,
+                    prop: "rotate"
+                }),
+                height: InteracStyles.getValue({
+                    element: object,
+                    prop: "height"
+                }),
+                width: InteracStyles.getValue({
+                    element: object,
+                    prop: "width"
+                })
             };
             var path_props = [
                 "drop-shadow",
@@ -406,11 +578,26 @@ export const BoxContainer = {
             };
 
             json.transform = {
-                "position-x": InteracStyles.getValue({ element: object, prop: "position-x" }),
-                "position-y": InteracStyles.getValue({ element: object, prop: "position-y" }),
-                rotate: InteracStyles.getValue({ element: object, prop: "rotate" }),
-                height: InteracStyles.getValue({ element: object, prop: "height" }),
-                width: InteracStyles.getValue({ element: object, prop: "width" })
+                "position-x": InteracStyles.getValue({
+                    element: object,
+                    prop: "position-x"
+                }),
+                "position-y": InteracStyles.getValue({
+                    element: object,
+                    prop: "position-y"
+                }),
+                rotate: InteracStyles.getValue({
+                    element: object,
+                    prop: "rotate"
+                }),
+                height: InteracStyles.getValue({
+                    element: object,
+                    prop: "height"
+                }),
+                width: InteracStyles.getValue({
+                    element: object,
+                    prop: "width"
+                })
             };
             json.style = {};
 
@@ -510,11 +697,31 @@ export const BoxContainer = {
         // // fo.style.width = json.transform["width"] || "100px";
         // console.log(json.transform["position-x"])
         BoxContainer.svg().append(fo)
-        InteracStyles.UpdateStyles({ element: fo, prop: "position-x", value: (json.transform == {} || json.transform == undefined || json.transform["position-x"] == "") ? "0" : json.transform["position-x"] });
-        InteracStyles.UpdateStyles({ element: fo, prop: "position-y", value: (json.transform == {} || json.transform == undefined || json.transform["position-y"] == "") ? "0" : json.transform["position-y"] });
-        InteracStyles.UpdateStyles({ element: fo, prop: "height", value: (json.transform == {} || json.transform == undefined || json.transform["height"] == "") ? "100" : json.transform["height"] });
-        InteracStyles.UpdateStyles({ element: fo, prop: "width", value: (json.transform == {} || json.transform == undefined || json.transform["width"] == "") ? "100" : json.transform["width"] });
-        InteracStyles.UpdateStyles({ element: fo, prop: "rotate", value: (json.transform == {} || json.transform == undefined || json.transform["rotate"] == "") ? "0" : json.transform["rotate"] });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "position-x",
+            value: (json.transform == {} || json.transform == undefined || json.transform["position-x"] == "") ? "0" : json.transform["position-x"]
+        });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "position-y",
+            value: (json.transform == {} || json.transform == undefined || json.transform["position-y"] == "") ? "0" : json.transform["position-y"]
+        });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "height",
+            value: (json.transform == {} || json.transform == undefined || json.transform["height"] == "") ? "100" : json.transform["height"]
+        });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "width",
+            value: (json.transform == {} || json.transform == undefined || json.transform["width"] == "") ? "100" : json.transform["width"]
+        });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "rotate",
+            value: (json.transform == {} || json.transform == undefined || json.transform["rotate"] == "") ? "0" : json.transform["rotate"]
+        });
         // console.log(json.style["border-width"])
         // !!!Img styling
         InteracStyles.UpdateStyles({
@@ -584,8 +791,7 @@ export const BoxContainer = {
         //     setJsonAttr(BoxContainer.elem(), "settings", "scale", `${ maw / parseInt(BoxContainer.elem().style.width) }`)
         // }
 
-    }
-    ,
+    },
     CreateTextElement: function (json) {
         var fo = document.createElementNS(
             "http://www.w3.org/2000/svg",
@@ -624,7 +830,7 @@ export const BoxContainer = {
             json.element_name ||
             "text" +
             BoxContainer.elem().querySelectorAll("[primary-element-type=Text")
-                .length
+            .length
         );
         text_div.setAttribute("secondary-element-type", "Textdiv");
         text_p.setAttribute("secondary-element-type", "Textp");
@@ -635,7 +841,11 @@ export const BoxContainer = {
         fo.style.height = json.transform["height"] || "100px";
         fo.style.width = json.transform["width"] || "100px";
 
-        InteracStyles.UpdateStyles({ element: fo, prop: "rotate", value: (json.transform == {}) ? "0" : json.transform["rotate"] });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "rotate",
+            value: (json.transform == {}) ? "0" : json.transform["rotate"]
+        });
         // !!
 
         InteracStyles.UpdateStyles({
@@ -786,7 +996,7 @@ export const BoxContainer = {
             prop: "-webkit-text-stroke-width",
             val: json.style["-webkit-text-stroke-width"] || "0px"
         });
-        fo.addEventListener('input',function(){
+        fo.addEventListener('input', function () {
             layerDiv.UpdateLayerElement(this)
         })
 
@@ -869,7 +1079,7 @@ export const BoxContainer = {
             json.element_name ||
             "container" +
             BoxContainer.elem().querySelectorAll("[primary-element-type=Container")
-                .length
+            .length
         );
         layerDiv.Add(fo);
     },
@@ -896,7 +1106,7 @@ export const BoxContainer = {
             json.element_name ||
             "video" +
             BoxContainer.elem().querySelectorAll("[primary-element-type=Video")
-                .length
+            .length
         );
         BoxContainer.svg().append(fo);
         var player = new Plyr(`#${fo.querySelector("video").id}`);
@@ -909,11 +1119,31 @@ export const BoxContainer = {
         fo.setAttribute("x", json.positionX || "50");
         // !
         // video styling
-        InteracStyles.UpdateStyles({ element: fo, prop: "position-x", value: (json.transform == {} || json.transform == undefined || json.transform["position-x"] == "") ? "0" : json.transform["position-x"] });
-        InteracStyles.UpdateStyles({ element: fo, prop: "position-y", value: (json.transform == {} || json.transform == undefined || json.transform["position-y"] == "") ? "0" : json.transform["position-y"] });
-        InteracStyles.UpdateStyles({ element: fo, prop: "height", value: (json.transform == {} || json.transform == undefined || json.transform["height"] == "") ? "300" : json.transform["height"] });
-        InteracStyles.UpdateStyles({ element: fo, prop: "width", value: (json.transform == {} || json.transform == undefined || json.transform["width"] == "") ? "300" : json.transform["width"] });
-        InteracStyles.UpdateStyles({ element: fo, prop: "rotate", value: (json.transform == {} || json.transform == undefined || json.transform["rotate"] == "") ? "0" : json.transform["rotate"] });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "position-x",
+            value: (json.transform == {} || json.transform == undefined || json.transform["position-x"] == "") ? "0" : json.transform["position-x"]
+        });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "position-y",
+            value: (json.transform == {} || json.transform == undefined || json.transform["position-y"] == "") ? "0" : json.transform["position-y"]
+        });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "height",
+            value: (json.transform == {} || json.transform == undefined || json.transform["height"] == "") ? "300" : json.transform["height"]
+        });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "width",
+            value: (json.transform == {} || json.transform == undefined || json.transform["width"] == "") ? "300" : json.transform["width"]
+        });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "rotate",
+            value: (json.transform == {} || json.transform == undefined || json.transform["rotate"] == "") ? "0" : json.transform["rotate"]
+        });
         // !trans
         // Styling 
         InteracStyles.UpdateStyles({
@@ -987,7 +1217,7 @@ export const BoxContainer = {
             json.element_name ||
             "drawing" +
             BoxContainer.elem().querySelectorAll("[primary-element-type=Path]")
-                .length
+            .length
         );
 
         //? Styling
@@ -1055,11 +1285,31 @@ export const BoxContainer = {
             json.style = {}
         }
         /STYLING/
-        InteracStyles.UpdateStyles({ element: fo, prop: "position-x", value: (json.transform == {} || json.transform == undefined || json.transform["position-x"] == "") ? "0" : json.transform["position-x"] });
-        InteracStyles.UpdateStyles({ element: fo, prop: "position-y", value: (json.transform == {} || json.transform == undefined || json.transform["position-y"] == "") ? "0" : json.transform["position-y"] });
-        InteracStyles.UpdateStyles({ element: fo, prop: "height", value: (json.transform == {} || json.transform == undefined || json.transform["height"] == "") ? "300" : json.transform["height"] });
-        InteracStyles.UpdateStyles({ element: fo, prop: "width", value: (json.transform == {} || json.transform == undefined || json.transform["width"] == "") ? "300" : json.transform["width"] });
-        InteracStyles.UpdateStyles({ element: fo, prop: "rotate", value: (json.transform == {} || json.transform == undefined || json.transform["rotate"] == "") ? "0" : json.transform["rotate"] });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "position-x",
+            value: (json.transform == {} || json.transform == undefined || json.transform["position-x"] == "") ? "0" : json.transform["position-x"]
+        });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "position-y",
+            value: (json.transform == {} || json.transform == undefined || json.transform["position-y"] == "") ? "0" : json.transform["position-y"]
+        });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "height",
+            value: (json.transform == {} || json.transform == undefined || json.transform["height"] == "") ? "300" : json.transform["height"]
+        });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "width",
+            value: (json.transform == {} || json.transform == undefined || json.transform["width"] == "") ? "300" : json.transform["width"]
+        });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "rotate",
+            value: (json.transform == {} || json.transform == undefined || json.transform["rotate"] == "") ? "0" : json.transform["rotate"]
+        });
         // !trans
         // Styling 
         InteracStyles.UpdateStyles({
@@ -1151,8 +1401,7 @@ export const BoxContainer = {
         transformFunc.defaultTransform(fo);
 
         fo.setAttribute("element_groups", json.element_groups || "");
-        fo.setAttribute("element_name", json.element_name || "audio" + BoxContainer.elem().querySelectorAll("[primary-element-type=Audio").length
-        );
+        fo.setAttribute("element_name", json.element_name || "audio" + BoxContainer.elem().querySelectorAll("[primary-element-type=Audio").length);
         var player = new Plyr(`#${fo.querySelector("audio").id}`);
         var freeze_div = document.createElement("div");
         freeze_div.classList.add("freeze_div");
@@ -1162,11 +1411,31 @@ export const BoxContainer = {
             json.style = {}
         }
         console.log(json.transform)
-        InteracStyles.UpdateStyles({ element: fo, prop: "position-x", value: (json.transform == {} || json.transform == undefined || json.transform["position-x"] == "") ? "0" : json.transform["position-x"] });
-        InteracStyles.UpdateStyles({ element: fo, prop: "position-y", value: (json.transform == {} || json.transform == undefined || json.transform["position-y"] == "") ? "0" : json.transform["position-y"] });
-        InteracStyles.UpdateStyles({ element: fo, prop: "height", value: (json.transform == {} || json.transform == undefined || json.transform["height"] == "") ? "100" : json.transform["height"] });
-        InteracStyles.UpdateStyles({ element: fo, prop: "width", value: (json.transform == {} || json.transform == undefined || json.transform["width"] == "") ? "300" : json.transform["width"] });
-        InteracStyles.UpdateStyles({ element: fo, prop: "rotate", value: (json.transform == {} || json.transform == undefined || json.transform["rotate"] == "") ? "0" : json.transform["rotate"] });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "position-x",
+            value: (json.transform == {} || json.transform == undefined || json.transform["position-x"] == "") ? "0" : json.transform["position-x"]
+        });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "position-y",
+            value: (json.transform == {} || json.transform == undefined || json.transform["position-y"] == "") ? "0" : json.transform["position-y"]
+        });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "height",
+            value: (json.transform == {} || json.transform == undefined || json.transform["height"] == "") ? "100" : json.transform["height"]
+        });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "width",
+            value: (json.transform == {} || json.transform == undefined || json.transform["width"] == "") ? "300" : json.transform["width"]
+        });
+        InteracStyles.UpdateStyles({
+            element: fo,
+            prop: "rotate",
+            value: (json.transform == {} || json.transform == undefined || json.transform["rotate"] == "") ? "0" : json.transform["rotate"]
+        });
         // !trans
         // Styling 
         InteracStyles.UpdateStyles({
@@ -1265,7 +1534,7 @@ export const BoxContainer = {
             json.element_name ||
             "textpath" +
             BoxContainer.elem().querySelectorAll("[primary-element-type=Textpath")
-                .length
+            .length
         );
         console.log(json.d)
         path.setAttribute('d', json.d || "")
@@ -1275,7 +1544,11 @@ export const BoxContainer = {
         // InteracStyles.UpdateStyles({ element: svg_text, prop: "position-y", value: (json.transform == {} || json.transform == undefined || json.transform["position-y"] == "") ? "0" : json.transform["position-y"] });
         // InteracStyles.UpdateStyles({ element: svg_text, prop: "height", value: (json.transform == {} || json.transform == undefined || json.transform["height"] == "") ? "100" : json.transform["height"] });
         // InteracStyles.UpdateStyles({ element: svg_text, prop: "width", value: (json.transform == {} || json.transform == undefined || json.transform["width"] == "") ? "100" : json.transform["width"] });
-        InteracStyles.UpdateStyles({ element: svg_text, prop: "rotate", value: (json.transform == {} || json.transform == undefined || json.transform["rotate"] == "") ? "0" : json.transform["rotate"] });
+        InteracStyles.UpdateStyles({
+            element: svg_text,
+            prop: "rotate",
+            value: (json.transform == {} || json.transform == undefined || json.transform["rotate"] == "") ? "0" : json.transform["rotate"]
+        });
 
 
 
@@ -1391,8 +1664,7 @@ export const BoxContainer = {
                 d: path.getAttribute("d"),
                 fill: path.style.fill || path.getAttribute("fill"),
                 stroke: path.style.stroke || path.getAttribute("stroke"),
-                strokeWidth:
-                    path.style.strokeWidth || path.getAttribute("stroke-width"),
+                strokeWidth: path.style.strokeWidth || path.getAttribute("stroke-width"),
                 return: true
             };
             return BoxContainer.CreatePathElement(json);
@@ -1403,8 +1675,7 @@ export const BoxContainer = {
         } else if (el_type == "Text") {
             var text = element.children[0];
             var json = {};
-        } else if (el_type == "Container") {
-        }
+        } else if (el_type == "Container") {}
     },
     ChangeSrc: function (element, newsrc) {
         //var id = element.querySelector("div").id
@@ -1429,7 +1700,7 @@ export const BoxContainer = {
 
         try {
             var freeze = element.querySelector('.freeze_div').style.height == '100%'
-        } catch (Err) { }
+        } catch (Err) {}
         if (el_type == 'YoutubeVideo') {
             var id = getUniqueid("Yt-element");
             console.log(element.querySelector("div"))
@@ -1438,19 +1709,16 @@ export const BoxContainer = {
             element.querySelector("div").setAttribute("data-plyr-embed-id", newsrc);
             element.setAttribute("yt-id", newsrc);
             var player = new Plyr(`#${element.querySelector("div").id}`);
-        }
-        else if (el_type == 'Image') {
+        } else if (el_type == 'Image') {
             element.querySelector('img').src = newsrc
-        }
-        else if (el_type == 'Audio') {
+        } else if (el_type == 'Audio') {
             element.innerHTML = `<div secondary-element-type="Audio"><audio  controls crossorigin playsinline >
             <source src="" type="audio/mp3">
                </audio> </div>`;
             element.querySelector("audio").id = getUniqueid("audio-element");
             element.querySelector("source").src = newsrc;
             var player = new Plyr(`#${element.querySelector("audio").id}`);
-        }
-        else if (el_type == 'Video') {
+        } else if (el_type == 'Video') {
             element.innerHTML = `<video  controls crossorigin playsinline poster="">
     <source src="" type="video/mp4">
        </video> `;
@@ -1515,9 +1783,8 @@ export const BoxContainer = {
         });
 
 
-    }
-    ,
-    ShowElementSelection: function(json){
+    },
+    ShowElementSelection: function (json) {
         //#headtitle #triggererEL #UpdateStylingsOf #selectionfunc #elemstoshow #ondone
         //console.log(json)
         var ElModal = document.querySelector('#ElementSelectorContainer');
@@ -1530,14 +1797,16 @@ export const BoxContainer = {
         //adding given el queryselector
 
         //el name 
-        for(var elem of all_element_names){
+        for (var elem of all_element_names) {
             var div = document.createElement('div')
             var elem_name_span = document.createElement('span');
             var elem_div = document.createElement('div');
             elem_name_span.classList.add('ElementSelectorModel-namespan')
             div.classList.add('ElementSelectorModel-container')
             elem_div.classList.add('ElementSelectorModel-elem_div')
-            elem_name_span.append(BoxContainer.GetIconAndName({element:BoxContainer.elem().querySelector(`[element_name=${elem}]`)}))
+            elem_name_span.append(BoxContainer.GetIconAndName({
+                element: BoxContainer.elem().querySelector(`[element_name=${elem}]`)
+            }))
             elem_div.append(BoxContainer.GetElementCloneSvg(BoxContainer.elem().querySelector(`[element_name=${elem}]`)))
             div.append(elem_name_span)
             div.append(elem_div)
@@ -1548,37 +1817,39 @@ export const BoxContainer = {
         //!!!End adding
         var selected_elem;
         //Onselection 
-        for(var el of ElModal.querySelectorAll(`.ElementSelectorModel-container`)){
-            el.addEventListener('click',function(){
-                for(var elem of ElModal.querySelectorAll(`.ElementSelectorModel-container`) ){
+        for (var el of ElModal.querySelectorAll(`.ElementSelectorModel-container`)) {
+            el.addEventListener('click', function () {
+                for (var elem of ElModal.querySelectorAll(`.ElementSelectorModel-container`)) {
                     elem.style.borderWidth = "0px"
-                    elem.style.borderBottom = "2px #9c27b0 dotted"    
+                    elem.style.borderBottom = "2px #9c27b0 dotted"
                 }
                 //this.style.border = "2px skyblue solid";
                 this.style.border = "4px solid #0066ff";
                 document.querySelector('#ElementSelectorHead-element').innerHTML = ``
-                document.querySelector('#ElementSelectorHead-element').append(BoxContainer.GetIconAndName({element:this.querySelector(`[primary-element-type]`)}))
+                document.querySelector('#ElementSelectorHead-element').append(BoxContainer.GetIconAndName({
+                    element: this.querySelector(`[primary-element-type]`)
+                }))
                 //json.triggererEl.innerHTML = ``
-               // json.triggererEl.append(BoxContainer.GetIconAndName({element:this.querySelector(`[primary-element-type]`)}))
+                // json.triggererEl.append(BoxContainer.GetIconAndName({element:this.querySelector(`[primary-element-type]`)}))
                 var selected_elem_text = this.querySelector('.IE_icon-name').innerText
                 selected_elem = BoxContainer.elem().querySelector(`[element_name=${selected_elem_text}]`)
-                
+
                 //!onselection
-                if(json.onselection  != undefined){
+                if (json.onselection != undefined) {
                     json.onselection(selected_elem)
                 }
             })
         }
 
         //Ondone
-        document.querySelector(`#ElementSelectorDoneBtn`).onclick=()=>{
+        document.querySelector(`#ElementSelectorDoneBtn`).onclick = () => {
             document.querySelector(`#ElementSelectorBlurBg`).style.display = 'none';
-            if (json.ondone != undefined ) {
+            if (json.ondone != undefined) {
                 json.ondone(selected_elem)
             }
         }
         //if(json.ondone ! = undefined){
-         //   ElModal.querySelectorAll(`.ElementSelectorModel-container`))//
+        //   ElModal.querySelectorAll(`.ElementSelectorModel-container`))//
         //}
 
         // for(var elem in all_element_groups){
@@ -1592,26 +1863,26 @@ export const BoxContainer = {
         //         elem_div.append(BoxContainer.GetElementCloneSvg(elm))
         //     }
         // }
-        
+
     },
-    GetElementCloneSvg : function(element){
+    GetElementCloneSvg: function (element) {
         var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");;
         var elem_h = transformFunc.getValue(element).height
         var elem_w = transformFunc.getValue(element).width
-        svg.setAttribute('viewBox',`0 0 ${elem_w} ${elem_h}`)
-        svg.setAttribute("preserveAspectRatio","none")
+        svg.setAttribute('viewBox', `0 0 ${elem_w} ${elem_h}`)
+        svg.setAttribute("preserveAspectRatio", "none")
         svg.classList.add('Elclonesvg')
         var cln_el = element.cloneNode(true)
-        transformFunc.updateValue(cln_el,'position-x','0')
-        transformFunc.updateValue(cln_el,'position-y','0')
-        transformFunc.updateValue(cln_el,'rotate','0')
-        cln_el.classList.remove('active','draggable')
+        transformFunc.updateValue(cln_el, 'position-x', '0')
+        transformFunc.updateValue(cln_el, 'position-y', '0')
+        transformFunc.updateValue(cln_el, 'rotate', '0')
+        cln_el.classList.remove('active', 'draggable')
         svg.append(cln_el)
         return svg
     },
-    GetIconAndName:function(json){
+    GetIconAndName: function (json) {
         // #element #preview
-        if(json.element != undefined){
+        if (json.element != undefined) {
             var icon;
             var div = document.createElement('div')
             div.classList.add('IE_icon-name');
@@ -1630,25 +1901,23 @@ export const BoxContainer = {
                     break;
             }
             console.log(InteractElement(json.element).name)
-            div.setAttribute('query',`##${InteractElement(json.element).name}`)
+            div.setAttribute('query', `##${InteractElement(json.element).name}`)
             div.innerHTML = div.innerHTML + icon
             var name_span = document.createElement('span');
             name_span.innerText = json.element.getAttribute('element_name');
             div.append(name_span);
 
-            if(json.preiew == true){
-               div.addEventListener('mouseover',function(){
+            if (json.preiew == true) {
+                div.addEventListener('mouseover', function () {
 
-               }) 
+                })
             }
 
             return div
-        }
+        } else {
 
-        else{
-
-        var icon = json.icon
-        var nametext = json.nametext
+            var icon = json.icon
+            var nametext = json.nametext
         }
 
     }
@@ -1686,34 +1955,36 @@ export const layerDiv = {
         var newCont = layerDiv.CreateElementContainerLayer();
         newCont.querySelector('.layers-svg').append(BoxContainer.GetElementCloneSvg(element))
         layerDiv.elem.append(newCont);
-        newCont.querySelector('.layers-element_name').append(BoxContainer.GetIconAndName({element:element}))
-        newCont.setAttribute('layerFor',element.id)
+        newCont.querySelector('.layers-element_name').append(BoxContainer.GetIconAndName({
+            element: element
+        }))
+        newCont.setAttribute('layerFor', element.id)
 
         if (element.style.display == "none") {
-                newCont.querySelector("[layer_btn=eye]").children[0].classList.remove("bi-eye");
-                newCont.querySelector("[layer_btn=eye]").children[0].classList.add("bi-eye-slash");
-            }
+            newCont.querySelector("[layer_btn=eye]").children[0].classList.remove("bi-eye");
+            newCont.querySelector("[layer_btn=eye]").children[0].classList.add("bi-eye-slash");
+        }
 
         if (element.getAttribute("locked") == "true") {
-                newCont.querySelector("[layer_btn=lock]").children[0].classList.remove("bi-unlock-fill");
-                newCont.querySelector("[layer_btn=lock]").children[0].classList.add("bi-lock-fill");
-            }
+            newCont.querySelector("[layer_btn=lock]").children[0].classList.remove("bi-unlock-fill");
+            newCont.querySelector("[layer_btn=lock]").children[0].classList.add("bi-lock-fill");
+        }
 
-        
+
         // // layerDiv.elem.append(newCont)
     },
-    UpdateLayerElement: function(element){
+    UpdateLayerElement: function (element) {
         var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");;
         var elem_h = transformFunc.getValue(element).height
         var elem_w = transformFunc.getValue(element).width
-        svg.setAttribute('viewBox',`0 0 ${elem_w} ${elem_h}`)
-        svg.setAttribute("preserveAspectRatio","none")
+        svg.setAttribute('viewBox', `0 0 ${elem_w} ${elem_h}`)
+        svg.setAttribute("preserveAspectRatio", "none")
         var cln_el = element.cloneNode(true)
-        transformFunc.updateValue(cln_el,'position-x','0')
-        transformFunc.updateValue(cln_el,'position-y','0')
+        transformFunc.updateValue(cln_el, 'position-x', '0')
+        transformFunc.updateValue(cln_el, 'position-y', '0')
         svg.append(cln_el)
         svg.classList.add('layers-svg')
-        cln_el.classList.remove('active','draggable')
+        cln_el.classList.remove('active', 'draggable')
         document.querySelector(`[layerFor=${element.id}]`).querySelector('svg').replaceWith(svg)
     },
 
@@ -1734,10 +2005,10 @@ export const layerDiv = {
             if (this.children[0].classList.contains("bi-eye-slash")) {
                 this.children[0].classList.remove("bi-eye-slash");
                 this.children[0].classList.add("bi-eye");
-                InteractElement(el).setdisplay('block')
+                InteractElement(el).display = 'block'
             } else {
                 this.children[0].classList.remove("bi-eye");
-                InteractElement(el).setdisplay('none')
+                InteractElement(el).display = 'none'
                 this.children[0].classList.add("bi-eye-slash");
             }
         });
@@ -1747,19 +2018,33 @@ export const layerDiv = {
             if (this.children[0].classList.contains("bi-lock-fill")) {
                 this.children[0].classList.remove("bi-lock-fill");
                 this.children[0].classList.add("bi-unlock-fill");
-                InteractElement(el).setlock('false')
+                InteractElement(el).lock = 'false'
                 // BoxContainer.div().querySelector(`[element_name=${el}]`).classList.add("draggable");
-               // BoxContainer.div().querySelector(`[element_name=${el}]`).setAttribute("locked", "false");
+                // BoxContainer.div().querySelector(`[element_name=${el}]`).setAttribute("locked", "false");
             } else {
                 this.children[0].classList.remove("bi-unlock-fill");
                 this.children[0].classList.add("bi-lock-fill");
-                InteractElement(el).setlock('true')
+                InteractElement(el).lock = 'true'
                 //BoxContainer.div().querySelector(`[element_name=${el}]`).classList.remove("draggable");
                 //BoxContainer.div().querySelector(`[element_name=${el}]`).setAttribute("locked", "true");
                 //BoxContainer.div().querySelector(`[element_name=${el}]`).onmousedown = (e) => { };
-                
+
             }
         });
+        div.querySelector("[layer_btn=settings]").addEventListener("click", function () {
+            var el = BoxContainer.div().querySelector(`#${div.getAttribute('layerfor')}`)
+            //toolbox.init(el);
+            toolbox.max.position(el)
+
+        });
+        tippy(div.querySelector("[layer_btn=settings]"), {
+            theme:'gradient',
+            content:"element settings",
+            arrow:false,
+            animation:'scale',
+            
+          });
+
         return div;
     }
 };
@@ -1773,7 +2058,7 @@ element_ContainerLayer.innerHTML = `
 <div class="layers-options_div">
     <div class="layers-options" layer_btn="eye"><i class="bi bi-eye"></i></div>
     <div class="layers-options" layer_btn="lock"><i class="bi bi-unlock-fill"></i></div>
-    <div><i class="bi bi-gear-fill"></i></div>
+    <div layer_btn="settings" class="layers-options" ><i class="bi bi-gear-fill" ></i></div>
     
     </div>
     <div class="layers-svg"></div>`;
@@ -1931,8 +2216,7 @@ export function NewBoxContainer(json) {
 
         try {
             BoxContainer.SetAspectRatio(json.aspectratio.w, json.aspectratio.h)
-        }
-        catch (err) {
+        } catch (err) {
             BoxContainer.SetAspectRatio(16, 9)
         }
         // BoxContainer.style.top = ""
@@ -1949,16 +2233,16 @@ export function NewBoxContainer(json) {
         BoxContainer_elem.innerHTML = dataBoxContainer_elem.innerHTML
         BoxContainer_elem.spellcheck = false
         BoxContainer_elem.setAttribute('settings', dataBoxContainer_elem.getAttribute('settings'));
-        BoxContainer_elem.setAttribute('interacfunctions', dataBoxContainer_elem.getAttribute('interacfunctions'));
+        BoxContainer_elem.setAttribute('InteractFunctions', dataBoxContainer_elem.getAttribute('InteractFunctions'));
         BoxContainer_elem.setAttribute('interactcontainer', dataBoxContainer_elem.getAttribute('interactcontainer'));
         BoxContainer_elem.setAttribute("InteractState", "Active")
-        setJsonAttr(BoxContainer_elem, "settings", "scale", `1`)
+        // setJsonAttr(BoxContainer_elem, "settings", "scale", `1`)
 
         //   //? elem styling
         BoxContainer_elem.style.width = dataBoxContainer_elem.style.width;
         BoxContainer_elem.style.height = dataBoxContainer_elem.style.height;
-        BoxContainer_elem.style.backgroundColor = dataBoxContainer_elem.style.backgroundColor;
-        BoxContainer_elem.style.backgroundImage = dataBoxContainer_elem.style.backgroundImage;
+        // BoxContainer_elem.style.background = dataBoxContainer_elem.style.backgroundColor;
+        //BoxContainer_elem.style.backgroundImage = dataBoxContainer_elem.style.backgroundImage;
         BoxContainer_elem.style.top = "19%"
         BoxContainer_elem.style.left = "33%"
         BoxContainer_elem.style.position = "fixed"
@@ -1998,13 +2282,19 @@ export function NewBoxContainer(json) {
 
         // ??INteract function 
         //console.log(BoxContainer_elem.getAttribute("InteracFunctions"))
-        try {
-            var InteracFuns = JSON.parse(BoxContainer.elem().getAttribute("InteracFunctions"))
-            Object.keys(InteracFuns).forEach(function (key) {
-                console.log(InteracFuns[key])
-                FunctioneditorCreateDivs.CreateFunctionEditorDiv(InteracFuns[key], true)
-            })
-        } catch (err) { }
+        console.log(BoxContainer.Functions)
+        for (var InteractFunction of BoxContainer.Functions) {
+            console.log(MDFunctionDiv.lastElementChild)
+            MDFunctionDiv.insertBefore(InteractFunctionsDiv.CreateFunctionEditor(InteractFunction), MDFunctionDiv.querySelector(`#add_InteractFunctionEditor_btn`))
+            //MDFunctionDiv.append(InteractFunctionsDiv.CreateFunctionEditor(InteractFunction))
+        }
+        // try {
+        //     var InteracFuns = JSON.parse(BoxContainer.elem().getAttribute("InteracFunctions"))
+        //     Object.keys(InteracFuns).forEach(function (key) {
+        //         console.log(InteracFuns[key])
+        //         FunctioneditorCreateDivs.CreateFunctionEditorDiv(InteracFuns[key], true)
+        //     })
+        // } catch (err) { }
 
         for (var el of BoxContainer.svg().children) {
             layerDiv.Add(el)
@@ -2015,7 +2305,10 @@ export function NewBoxContainer(json) {
         dataBox.innerHTML = ""
     }
 
-
+    BoxContainer.setAutoscale({
+        top: 10,
+        left: 32
+    })
 
     BoxContainer.div().oninput = (e) => {
         for (var el of BoxContainer.div().querySelectorAll('[secondary-element-type=Textp]')) {
@@ -2024,111 +2317,130 @@ export function NewBoxContainer(json) {
             }
         }
     }
-
-    BoxContainer.elem().addEventListener('mousedown', function(e) {
-        BoxContainer.nullactive()
-    EndlessSizeHandler.DragMoveListener()
-    //toolboxFuncs.hide()
-
-    if(e.target.getAttribute('InteractSvg') != null ){
-    selctor_div.style.display = "block"
-    var e_y = e.y
-    var e_x = e.x
-    
-    SelectorRect.width = 0
-    SelectorRect.height = 0
-    SelectorRect.y = e.y
-    SelectorRect.x = e.x
-    
-    
- //BoxContainer.elem().addEventListener('mousemove',e => B_mousemove(e,e_x,e_y))
- BoxContainer.elem().onmousemove=(e)=>{
-     //B_mousemove(e,e_x,e_y)
-     BoxContainer.nullactive()
-     for(var el of BoxContainer.getAllElements()){
-         var elrect = el.getBoundingClientRect()
-         var selectorrect = selctor_div.getBoundingClientRect()
-         //this if sttment defines el area in left-top 
-        if ( (elrect.left > selectorrect.x && elrect.left < selectorrect.right && elrect.top > selectorrect.top && elrect.top < selectorrect.bottom ) || (elrect.right < selectorrect.right && elrect.right > selectorrect.left && elrect.bottom < selectorrect.bottom && elrect.bottom > selectorrect.top) ) {
-            var gotelement = el
-            if(gotelement != null && gotelement.classList.contains('active') == false){
-                     gotelement.classList.add('active')
-                     EndlessSizeHandler.SetHandler({element:gotelement})
-                 }
-        }
-     }
-    //var gotelement = gettarget(e,'primary-element-type');
-    // if(gotelement != null && gotelement.classList.contains('active') == false){
-    //      gotelement.classList.add('active')
-    //      EndlessSizeHandler.SetHandler({element:gotelement})
-    //  }
-    if((e.y - e_y)>1){
-        SelectorRect.height = e.y - e_y
-    }else{
+    console.log('opp')
+    BoxContainer.elem().addEventListener('mousedown', function (e) {
         
-        SelectorRect.height = e_y - e.y
-        SelectorRect.y = e_y - SelectorRect.height
+        BoxContainer.nullactive()
+        EndlessSizeHandler.DragMoveListener()
+        //toolboxFuncs.hide()
 
-    }
-    if((e.x - e_x)>1){
-        SelectorRect.width = e.x - e_x
-    }else{
-        SelectorRect.width = e_x - e.x
-        SelectorRect.x = e_x - SelectorRect.width
-    }
- }
+        if (e.target.getAttribute('InteractSvg') != null || e.target.getAttribute('interactsvg') != null) {
+            selctor_div.style.display = "block"
+            var e_y = e.y
+            var e_x = e.x
 
- window.onmouseup=(e)=>{
-     selctor_div.style.display = "none"
-    BoxContainer.elem().onmousemove=(e)=>{
-        ""
-    }
-     
- }}else{
-     BoxContainer.nullactive()
-     var gotelement = gettarget(e,'primary-element-type');
-     if(gotelement != null ){
-         gotelement.classList.add('active')
-         EndlessSizeHandler.SetHandler({element:gotelement})
-        //  show_styling_properties(getactiveel() || "")
-         //toolboxFuncs.position()
-     }
- }
+            SelectorRect.width = 0
+            SelectorRect.height = 0
+            SelectorRect.y = e.y
+            SelectorRect.x = e.x
+
+            console.log('uihi')
+
+            BoxContainer.elem().onmousemove = (e) => {
+
+                BoxContainer.nullactive()
+                for (var el of BoxContainer.getAllElements()) {
+                    var elrect = el.getBoundingClientRect()
+                    var selectorrect = selctor_div.getBoundingClientRect()
+                    //this if sttment defines el area in left-top 
+                    if ((elrect.left > selectorrect.x && elrect.left < selectorrect.right && elrect.top > selectorrect.top && elrect.top < selectorrect.bottom) || (elrect.right < selectorrect.right && elrect.right > selectorrect.left && elrect.bottom < selectorrect.bottom && elrect.bottom > selectorrect.top)) {
+                        var gotelement = el
+                        if (gotelement != null && gotelement.classList.contains('active') == false) {
+                            gotelement.classList.add('active')
+                            EndlessSizeHandler.SetHandler({
+                                element: gotelement
+                            })
+                            toolbox.min.position(gotelement)
+                        }
+                    }
+                }
+                //var gotelement = gettarget(e,'primary-element-type');
+                // if(gotelement != null && gotelement.classList.contains('active') == false){
+                //      gotelement.classList.add('active')
+                //      EndlessSizeHandler.SetHandler({element:gotelement})
+                //  }
+                if ((e.y - e_y) > 1) {
+                    SelectorRect.height = e.y - e_y
+                } else {
+
+                    SelectorRect.height = e_y - e.y
+                    SelectorRect.y = e_y - SelectorRect.height
+
+                }
+                if ((e.x - e_x) > 1) {
+                    SelectorRect.width = e.x - e_x
+                } else {
+                    SelectorRect.width = e_x - e.x
+                    SelectorRect.x = e_x - SelectorRect.width
+                }
+            }
+
+            window.onmouseup = (e) => {
+                selctor_div.style.display = "none"
+                BoxContainer.elem().onmousemove = (e) => {
+                    ""
+                }
+
+            }
+        } else {
+            console.log('uihi')
+            BoxContainer.nullactive()
+            var gotelement = gettarget(e, 'primary-element-type');
+            if (gotelement != null) {
+                gotelement.classList.add('active')
+                EndlessSizeHandler.SetHandler({
+                    element: gotelement
+                })
+                toolbox.min.position(gotelement)
+                //  show_styling_properties(getactiveel() || "")
+                //toolboxFuncs.position()
+            }
+        }
     })
 
 
 
 }
 const selctor_div = document.querySelector('.koi')
-const SelectorRect =  {
-    set x(x_){
+const SelectorRect = {
+    set x(x_) {
         selctor_div.style.left = parseFloat(x_) + 'px'
     },
-    set y(y_){
+    set y(y_) {
         selctor_div.style.top = parseFloat(y_) + 'px'
     },
-    set height(x_){
+    set height(x_) {
         selctor_div.style.height = parseFloat(x_) + 'px'
     },
-    set width(x_){
+    set width(x_) {
         selctor_div.style.width = parseFloat(x_) + 'px'
     },
-    get y(){
-       return parseFloat(selctor_div.style.top )    
+    get y() {
+        return parseFloat(selctor_div.style.top)
     },
-    get x(){
-       return parseFloat(selctor_div.style.left )
+    get x() {
+        return parseFloat(selctor_div.style.left)
     },
-    get height(){
-       return parseFloat(selctor_div.style.height)
+    get height() {
+        return parseFloat(selctor_div.style.height)
     },
-    get width(){
-       return parseFloat(selctor_div.style.width) 
+    get width() {
+        return parseFloat(selctor_div.style.width)
     },
+
 }
-
-NewBoxContainer({})
-
+// window.addEventListener('load',function () {
+//     NewBoxContainer({dataHtml:data.one})
+// })
+$(document).ready(function () {
+    NewBoxContainer({
+        dataHtml: data.one
+    })
+})
+//NewBoxContainer({})
+// BoxContainer.height = 1080
+// BoxContainer.width = 1080
+// BoxContainer.setAutoscale({top:10,left:32})
 // NewBoxContainer({
 //   dataHtml: `<div id="interac_Container" settings="{&quot;aspect-ratio&quot;:&quot;1:1&quot;}" style="top: 20%;left: 33%;height: 442px;width: 442px;background-color: white;transform: scale(0.5);" interacfunctions="{&quot;dsasa&quot;:{&quot;triggerers&quot;:{&quot;names&quot;:[&quot;text1&quot;],&quot;groups&quot;:[]},&quot;effectors&quot;:{&quot;names&quot;:[{&quot;name&quot;:&quot;text2&quot;,&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;block&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null},{&quot;name&quot;:&quot;image1&quot;,&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;block&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null}],&quot;groups&quot;:[]},&quot;this&quot;:{&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}}},&quot;event&quot;:&quot;click&quot;,&quot;name&quot;:&quot;dsasa&quot;},&quot;hui&quot;:{&quot;triggerers&quot;:{&quot;names&quot;:[&quot;image1&quot;],&quot;groups&quot;:[]},&quot;effectors&quot;:{&quot;names&quot;:[{&quot;name&quot;:&quot;text2&quot;,&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;none&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null}],&quot;groups&quot;:[]},&quot;this&quot;:{&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;none&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null},&quot;event&quot;:&quot;click&quot;,&quot;name&quot;:&quot;hui&quot;},&quot;huo&quot;:{&quot;triggerers&quot;:{&quot;names&quot;:[&quot;image1&quot;],&quot;groups&quot;:[]},&quot;effectors&quot;:{&quot;names&quot;:[{&quot;name&quot;:&quot;text2&quot;,&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;none&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null}],&quot;groups&quot;:[]},&quot;this&quot;:{&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;none&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null},&quot;event&quot;:&quot;click&quot;,&quot;name&quot;:&quot;huo&quot;},&quot;crossdetails&quot;:{&quot;triggerers&quot;:{&quot;names&quot;:[&quot;image1&quot;],&quot;groups&quot;:[]},&quot;effectors&quot;:{&quot;names&quot;:[],&quot;groups&quot;:[{&quot;group&quot;:&quot;detailsmodal&quot;,&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;none&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null}]},&quot;this&quot;:{&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;none&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null},&quot;event&quot;:&quot;click&quot;,&quot;name&quot;:&quot;crossdetails&quot;},&quot;1stbookdetails&quot;:{&quot;triggerers&quot;:{&quot;names&quot;:[&quot;text1&quot;],&quot;groups&quot;:[]},&quot;effectors&quot;:{&quot;names&quot;:[{&quot;name&quot;:&quot;text2&quot;,&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;block&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null},{&quot;name&quot;:&quot;image1&quot;,&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;block&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null}],&quot;groups&quot;:[]},&quot;this&quot;:{&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}}},&quot;event&quot;:&quot;click&quot;,&quot;name&quot;:&quot;1stbookdetails&quot;},&quot;2ndbookdetail&quot;:{&quot;triggerers&quot;:{&quot;names&quot;:[&quot;text1clone&quot;],&quot;groups&quot;:[]},&quot;effectors&quot;:{&quot;names&quot;:[{&quot;name&quot;:&quot;text2clone&quot;,&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;block&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null},{&quot;name&quot;:&quot;image1&quot;,&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;display&quot;],&quot;val&quot;:[&quot;block&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null}],&quot;groups&quot;:[]},&quot;this&quot;:{&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}}},&quot;event&quot;:&quot;click&quot;,&quot;name&quot;:&quot;2ndbookdetail&quot;},&quot;detailbtnhover&quot;:{&quot;triggerers&quot;:{&quot;names&quot;:[],&quot;groups&quot;:[&quot;detailbtn&quot;]},&quot;effectors&quot;:{&quot;names&quot;:[],&quot;groups&quot;:[]},&quot;this&quot;:{&quot;functions&quot;:{&quot;change&quot;:{&quot;prop&quot;:[&quot;color&quot;],&quot;val&quot;:[&quot;#0d0c0c&quot;]},&quot;incdec&quot;:{&quot;prop&quot;:[],&quot;val&quot;:[],&quot;sign&quot;:[]}},&quot;transitions&quot;:null},&quot;event&quot;:&quot;mouseover&quot;,&quot;name&quot;:&quot;detailbtnhover&quot;}}">
 //         <div id="interac_crtr" spellcheck="false" contenteditable="false">
@@ -2182,27 +2494,38 @@ export function Save(Interacml) {
     }
 
     div.querySelector('.add_sibling').addEventListener('click', function () {
-        NewBoxContainer({ dataHtml: this.parentNode.querySelector('[interactcontainer]').outerHTML })
+        NewBoxContainer({
+            dataHtml: this.parentNode.querySelector('[interactcontainer]').outerHTML
+        })
     })
 
 }
 
 
-document.querySelector('#show_stylesfor_select').addEventListener('click',function(){
-    BoxContainer.ShowElementSelection({headtitle:'Show props For',triggererEl:this,onselection:function(element){
-    this.triggererEl.innerHTML = ``
-    this.triggererEl.append(BoxContainer.GetIconAndName({element:element}))
-        InteractUpdateStyleDivs(element).TextStyleDiv().BorderStyleDiv()
-    }})
+document.querySelector('#show_stylesfor_select').addEventListener('click', function () {
+    BoxContainer.ShowElementSelection({
+        headtitle: 'Show props For',
+        triggererEl: this,
+        onselection: function (element) {
+            this.triggererEl.innerHTML = ``
+            this.triggererEl.append(BoxContainer.GetIconAndName({
+                element: element
+            }))
+            InteractUpdateStyleDivs(element).TextStyleDiv().BorderStyleDiv().TransformStyleDiv()
+        }
+    })
 })
 
-document.querySelector('#update_stylesfor_select').addEventListener('click',function(){
-    BoxContainer.ShowElementSelection({headtitle:'Oninput Update Styles For',triggererEl:this,onselection:function(elements){
-        this.triggererEl.innerHTML = ``
-        this.triggererEl.append(BoxContainer.GetIconAndName({element:elements}))
-        UpdateStylingsOf.make(elements)
-    }})
+document.querySelector('#update_stylesfor_select').addEventListener('click', function () {
+    BoxContainer.ShowElementSelection({
+        headtitle: 'Oninput Update Styles For',
+        triggererEl: this,
+        onselection: function (elements) {
+            this.triggererEl.innerHTML = ``
+            this.triggererEl.append(BoxContainer.GetIconAndName({
+                element: elements
+            }))
+            UpdateStylingsOf.make(elements)
+        }
+    })
 })
-
-
-

@@ -6,19 +6,25 @@ import { transformFunc } from "./Interact_style.js"
 
 export function InteractElement(element) {
     
+
+
     return{
-  
         UpdateProp :UpdateProp(element),
         Delete :function (element) {
           element.remove()
         },
         GetValue: GetValue(element),
-        setlock : function (params) {
-          element.setAttribute('locked',params)
+        
+        set display(x){
+          element.style.display = x
         },
-        setdisplay :function (params) {
-          element.style.display = params
+        get display(){
+          return element.style.display
         },
+        set lock(x){
+          element.setAttribute('locked',x)
+        },
+        get lock(){ return element.setAttribute('locked',x)},
         // name: function (element) {return element.getAttribute('element_name')},
         // groups : function (element) {return element.getAttribute('element_groups')},
         // type : function (element) {return element.getAttribute('element_type')},
@@ -101,6 +107,26 @@ const UpdateProp = function (element) {
     },
     borderBottomWidth : function (value) {
       element.children[0].style.borderWidth = `${getComputedValue(element.children[0], "border-top-width")} ${getComputedValue(element.children[0], "border-right-width")} ${parseInt(value)}px ${getComputedValue(element.children[0], "border-left-width")}`
+      return UpdateProp(element)
+    },
+    height : function (value) {
+      transformFunc.updateValue(element, 'height', value);
+      return UpdateProp(element)
+    },
+    width : function (value) {
+      transformFunc.updateValue(element, 'width', value);
+      return UpdateProp(element)
+    },
+    rotate : function (value) {
+      transformFunc.updateValue(element, 'rotate', value);
+      return UpdateProp(element)
+    },
+    positiony : function (value) {
+      transformFunc.updateValue(element, 'position-y', value);
+      return UpdateProp(element)
+    },
+    positionx : function (value) {
+      transformFunc.updateValue(element, 'position-x', value);
       return UpdateProp(element)
     }
 

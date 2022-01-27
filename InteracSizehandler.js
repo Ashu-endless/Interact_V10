@@ -98,9 +98,7 @@ EndlessSizeHandler['SetHandler'] = function(json) {
 }
 
 
-function getAllPrimaryFrom_e(e,){
 
-}
 
 
 EndlessSizeHandler['Setposition'] = function(json) {
@@ -296,8 +294,8 @@ EndlessSizeHandler["DragMoveListener"] = function () {
             activeel_position_divFuncs.position()
             //UpdateTransformStyleDiv(target)
             document.body.onmousemove = (e) => {
-                    var dx = (e.clientX - startX )/ parseFloat(getJsonAttr(BoxContainer.elem(), "settings").scale)
-                    var dy = (e.clientY - startY)/ parseFloat(getJsonAttr(BoxContainer.elem(), "settings").scale)
+                    var dx = (e.clientX - startX )/ BoxContainer.scale
+                    var dy = (e.clientY - startY)/ BoxContainer.scale
                     // var dx = (e.clientX - startX) / 0.5
                     // var dy = (e.clientY - startY) / 0.5
 
@@ -355,8 +353,8 @@ function resizeHandler(event, left = false, top = false, xResize = false, yResiz
     }
     function eventMoveHandler(event) {
         for(var i=0;i<elem.length;i++){
-        var wDiff = (event.clientX - mousePressX) / parseFloat(getJsonAttr(BoxContainer.elem(), "settings").scale) ;
-        var hDiff = (event.clientY - mousePressY) / parseFloat(getJsonAttr(BoxContainer.elem(), "settings").scale);
+        var wDiff = (event.clientX - mousePressX) / BoxContainer.scale ;
+        var hDiff = (event.clientY - mousePressY) / BoxContainer.scale;
         // var wDiff = (event.clientX - mousePressX) /1.5;
         // var hDiff = (event.clientY - mousePressY)/1.5;
         var rotatedWDiff = cosFraction * wDiff + sinFraction * hDiff;
@@ -407,7 +405,7 @@ function resizeHandler(event, left = false, top = false, xResize = false, yResiz
 
     //console.log(newH,newW,newX,newY,elem.getAttribute('element_name'))
    // for(var elem of getactiveels()){
-       console.log(transformFunc.getValue(elem[i]).rotate)
+       //console.log(transformFunc.getValue(elem[i]).rotate)
     transformFunc.updateValue(elem[i], 'width', newW)
     transformFunc.updateValue(elem[i], 'height', newH)
     transformFunc.updateValue(elem[i], 'position-x', newX - transformFunc.getValue(elem[i]).width / 2)

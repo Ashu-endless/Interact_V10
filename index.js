@@ -1329,31 +1329,31 @@ document.querySelector('#Add_to_page_Youtubevideo').addEventListener('click', fu
     }}
 })
 
-var textdiv = document.createElement('div');
-            textdiv.contentEditable = true;
-            textdiv.id = "InnerText_activeel_div"
-            textdiv.addEventListener('input', function () {
-                if(getactiveel().getAttribute('primary-element-type') == "Text"){
-                getactiveel().children[0].children[0].innerHTML = this.innerHTML
-            }
-                else if(getactiveel().getAttribute('primary-element-type') == "Textpath"){
-                    getactiveel().children[0].innerHTML = this.innerText
-                }
-            })
+// var textdiv = document.createElement('div');
+//             textdiv.contentEditable = true;
+//             textdiv.id = "InnerText_activeel_div"
+//             textdiv.addEventListener('input', function () {
+//                 if(getactiveel().getAttribute('primary-element-type') == "Text"){
+//                 getactiveel().children[0].children[0].innerHTML = this.innerHTML
+//             }
+//                 else if(getactiveel().getAttribute('primary-element-type') == "Textpath"){
+//                     getactiveel().children[0].innerHTML = this.innerText
+//                 }
+//             })
 
 
-NewArrowBox({for:document.querySelector('#innerText_activeel'),data: textdiv,
-event: 'click'})
+// NewArrowBox({for:document.querySelector('#innerText_activeel'),data: textdiv,
+// event: 'click'})
 
 
-textdiv.addEventListener("paste", function(e) {
-    // cancel paste
-    e.preventDefault();
-    // get text representation of clipboard
-    var text = (e.originalEvent || e).clipboardData.getData('text/plain');
-    // insert text manually
-    document.execCommand("insertHTML", false, text);
-});
+// textdiv.addEventListener("paste", function(e) {
+//     // cancel paste
+//     e.preventDefault();
+//     // get text representation of clipboard
+//     var text = (e.originalEvent || e).clipboardData.getData('text/plain');
+//     // insert text manually
+//     document.execCommand("insertHTML", false, text);
+// });
 
 
 NewArrowBox({
@@ -1408,7 +1408,7 @@ document.querySelector('#Box_Style-Background-color').addEventListener('input', 
 })
 document.querySelector('#Box_Style-Background-color_adviser').addEventListener('click', function(e) {
     if (e.target.id != "Box_Style-Background-color_adviser") {
-        BoxContainer.elem().style.backgroundColor = e.target.style.backgroundColor;
+        BoxContainer.background = e.target.style.backgroundColor;
         document.querySelector('#Box_Style-Background-color').value = tinycolor(e.target.style.backgroundColor).toHexString();
     }
 })

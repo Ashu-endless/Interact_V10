@@ -10,6 +10,9 @@ export function InteractPage(InteractPage) {
                 return InteractPage.querySelector(`[element_name=${query.split('##')[1]}]`)
             }
 
+        },
+        Functions : function(params) {
+            return JSON.parse(InteractPage.getAttriute('InteractFunctions'))
         }
     }
 }

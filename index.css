@@ -601,15 +601,27 @@ input.range_value[type="number"]::-webkit-outer-spin-button {
 } */
 
 .range_value_minus {
-  background-color: red;
+  background-color: rgb(0, 0, 0);
   padding: 5px;
   display: none;
 }
-
+div#element_opt_closer:hover {
+  background: black;
+}
 .range_value_add {
-  background-color: lightgreen;
+  background-color: rgb(0, 0, 0);
   padding: 5px;
   display: none;
+}
+span.range_value_minus:hover {
+  background: #3f1580;
+}
+span.range_value_add:hover {
+  background: #3f1580;
+}
+
+.layers-options:hover{
+  background: #3f1580;
 }
 
 #borderLeft {
@@ -628,9 +640,7 @@ input.range_value[type="number"]::-webkit-outer-spin-button {
   grid-auto-rows: 150px 50px;
 }
 
-.hide {
-  display: none;
-}
+
 
 /* .transformstyleDiv {
     display: grid;} */
@@ -2039,7 +2049,7 @@ span.border_icon.material-icons {
   width: 100%;
 }
 
-#toolbox {
+#toolbox-min {
   display: none;
   width: fit-content;
   position: fixed;
@@ -2051,7 +2061,7 @@ span.border_icon.material-icons {
   font-family: monospace;
   background: #191e2b;
   border-radius: 5px;
-  border: 3px solid burlywood;
+  border: 3px solid #4a19bf;
 }
 
 .choose-image {
@@ -2064,7 +2074,7 @@ span.border_icon.material-icons {
   margin: 5px;
 }
 
-#toolbox_more {
+#toolbox-max {
   z-index: 100010;
   display: none;
   position: fixed;
@@ -2150,19 +2160,7 @@ span.border_icon.material-icons {
   border: 2px rgb(26, 0, 6) solid;
 }
 
-#toolbox_more:after {
-  /* bottom: 100%;
-    left: 50%;
-    border: solid transparent;
-    content: "";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-    border-color: rgba(255, 163, 249, 0);
-    border-bottom-color: #15161a;
-    border-width: 15px;
-    margin-left: -15px; */
+#toolbox-max:after {
   left: 100%;
   top: 50%;
   border: solid transparent;
@@ -2275,7 +2273,7 @@ span.border_icon.material-icons {
 #container_edit_btn:hover,
 #toolbox_more_btn:hover {
   transition: all s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border: 2px solid;
+  border:1px solid lightskyblue;
   border-radius: 50%;
 }
 
@@ -2296,7 +2294,7 @@ span.border_icon.material-icons {
   font-size: 15px;
   background: #191e2b;
   font-family: monospace;
-  color: #ffffff;
+  color: #5294e2;
   border-radius: 5px;
   /* outline: 2px #03a9f4 dashed; */
   box-shadow: 5px 5px 4px 2px #000000;
@@ -2525,7 +2523,7 @@ span.border_icon.material-icons {
 .suffex {
   height: 100%;
   font-size: larger;
-  background: #4caf50;
+  background: #001220;
 }
 
 .iconntextnvalnsuffex {
@@ -4799,4 +4797,8 @@ input[type="number"i] {
   margin: 10px 0px;
   padding: 5px 0px;
   width: 100%;
+}
+
+.hide {
+  display: none;
 }

@@ -377,322 +377,322 @@ export const toolboxFuncs = {
 }
 
 
-toolboxFuncs.freeze_activeel.addEventListener('click', function() {
-    var freeze_div = getactiveel().querySelector('.freeze_div')
-    if (freeze_div.style.height == "100%") {
-        freeze_div.style.height = "0"
-        freeze_div.style.width = "0"
-        this.innerHTML = `<i class="bi bi-file-earmark-play"></i>`
-    } else {
-        freeze_div.style.height = "100%"
-        freeze_div.style.width = "100%"
-        this.innerHTML = `<i class="bi bi-file-earmark-lock2"></i>`
-    }
-})
-toolboxFuncs.z_index_activeel.addEventListener('input', function() {
-    getactiveel().setAttribute('element_stake', this.value);
-    // BoxContainer.div().append(getactiveel())
-    // console.log(BoxContainer.div().children)
-    // console.log(BoxContainer.svg().children)
-    var el_list = []
-    var el_list = BoxContainer.svg().children
-    if(getparent(getactiveel(),'primary-element-type','Container') != null){
-        var el_list = getparent(getactiveel(),'primary-element-type','Container').querySelector('svg').children
-        var changing_Container = getparent(getactiveel(),'primary-element-type','Container').querySelector('svg') 
-    }else{
-    var el_list = BoxContainer.svg().children
-    var changing_Container = BoxContainer.svg()
-    }
+// toolboxFuncs.freeze_activeel.addEventListener('click', function() {
+//     var freeze_div = getactiveel().querySelector('.freeze_div')
+//     if (freeze_div.style.height == "100%") {
+//         freeze_div.style.height = "0"
+//         freeze_div.style.width = "0"
+//         this.innerHTML = `<i class="bi bi-file-earmark-play"></i>`
+//     } else {
+//         freeze_div.style.height = "100%"
+//         freeze_div.style.width = "100%"
+//         this.innerHTML = `<i class="bi bi-file-earmark-lock2"></i>`
+//     }
+// })
+// toolboxFuncs.z_index_activeel.addEventListener('input', function() {
+//     getactiveel().setAttribute('element_stake', this.value);
+//     // BoxContainer.div().append(getactiveel())
+//     // console.log(BoxContainer.div().children)
+//     // console.log(BoxContainer.svg().children)
+//     var el_list = []
+//     var el_list = BoxContainer.svg().children
+//     if(getparent(getactiveel(),'primary-element-type','Container') != null){
+//         var el_list = getparent(getactiveel(),'primary-element-type','Container').querySelector('svg').children
+//         var changing_Container = getparent(getactiveel(),'primary-element-type','Container').querySelector('svg') 
+//     }else{
+//     var el_list = BoxContainer.svg().children
+//     var changing_Container = BoxContainer.svg()
+//     }
    
-        // for (var elem of BoxContainer.svg().children ){
-        //     if(elem.getAttribute('primary-element-type' != null)){
+//         // for (var elem of BoxContainer.svg().children ){
+//         //     if(elem.getAttribute('primary-element-type' != null)){
 
-    //     }
-    // }
-    for (var el of el_list) {
-        try {
-            console.log(el_list)
-            if (el != getactiveel()) {
-                if (parseInt(el.getAttribute('element_stake')) > parseInt(this.value)) {
-                    console.log(getactiveel().getAttribute('element_stake'), '<', el.getAttribute('element_stake'))
-                    changing_Container.insertBefore(getactiveel(), el)
-                } else if (parseInt(el.getAttribute('element_stake')) < parseInt(this.value)) {
-                    console.log(getactiveel().getAttribute('element_stake'), '>', el.getAttribute('element_stake'))
-                    if (el.nextElementSibling != null) {
-                        changing_Container.insertBefore(getactiveel(), el.nextElementSibling)
+//     //     }
+//     // }
+//     for (var el of el_list) {
+//         try {
+//             console.log(el_list)
+//             if (el != getactiveel()) {
+//                 if (parseInt(el.getAttribute('element_stake')) > parseInt(this.value)) {
+//                     console.log(getactiveel().getAttribute('element_stake'), '<', el.getAttribute('element_stake'))
+//                     changing_Container.insertBefore(getactiveel(), el)
+//                 } else if (parseInt(el.getAttribute('element_stake')) < parseInt(this.value)) {
+//                     console.log(getactiveel().getAttribute('element_stake'), '>', el.getAttribute('element_stake'))
+//                     if (el.nextElementSibling != null) {
+//                         changing_Container.insertBefore(getactiveel(), el.nextElementSibling)
 
-                    } else {
-                        changing_Container.append(getactiveel())
-                    }
-                }
-            }
-        } catch (err) {}
-    }
-})
-toolboxFuncs.toolbox_moreFuncs.audio_settings_activeel.children[0].addEventListener('click',function(){
-    if(this.parentNode.children[1].style.display == "block"){
-        this.parentNode.children[1].style.display = "none"
-    }else{
-        this.parentNode.children[1].style.display = "block"
-    }
-})
-toolboxFuncs.toolbox_moreFuncs.video_settings_activeel.children[0].addEventListener('click',function(){
-    if(this.parentNode.children[1].style.display == "block"){
-        this.parentNode.children[1].style.display = "none"
-    }else{
-        this.parentNode.children[1].style.display = "block"
-    }
-})
-toolboxFuncs.toolbox_moreFuncs.ytvideo_settings_activeel.children[0].addEventListener('click',function(){
-    if(this.parentNode.children[1].style.display == "block"){
-        this.parentNode.children[1].style.display = "none"
-    }else{
-        this.parentNode.children[1].style.display = "block"
-    }
-})
-toolboxFuncs.toolbox_moreFuncs.scroll_settings_activeel.querySelector('#scroll-settings-width').addEventListener('input', function() {
-    var ContDiv = getactiveel().querySelector('[secondary-element-type=Container-div')
-    if (this.value == '0') {
-        ContDiv.style.width = '100%'
-    } else {
-        ContDiv.style.width = parseInt(getactiveel().style.width) + parseInt(this.value) + 'px'
-    }
-    setJsonAttr(getactiveel(), 'settings', 'scrollWidth', this.value)
-})
-toolboxFuncs.toolbox_moreFuncs.scroll_settings_activeel.querySelector('#scroll-settings-height').addEventListener('input', function() {
-    var ContDiv = getactiveel().querySelector('[secondary-element-type=Container-div')
+//                     } else {
+//                         changing_Container.append(getactiveel())
+//                     }
+//                 }
+//             }
+//         } catch (err) {}
+//     }
+// })
+// toolboxFuncs.toolbox_moreFuncs.audio_settings_activeel.children[0].addEventListener('click',function(){
+//     if(this.parentNode.children[1].style.display == "block"){
+//         this.parentNode.children[1].style.display = "none"
+//     }else{
+//         this.parentNode.children[1].style.display = "block"
+//     }
+// })
+// toolboxFuncs.toolbox_moreFuncs.video_settings_activeel.children[0].addEventListener('click',function(){
+//     if(this.parentNode.children[1].style.display == "block"){
+//         this.parentNode.children[1].style.display = "none"
+//     }else{
+//         this.parentNode.children[1].style.display = "block"
+//     }
+// })
+// toolboxFuncs.toolbox_moreFuncs.ytvideo_settings_activeel.children[0].addEventListener('click',function(){
+//     if(this.parentNode.children[1].style.display == "block"){
+//         this.parentNode.children[1].style.display = "none"
+//     }else{
+//         this.parentNode.children[1].style.display = "block"
+//     }
+// })
+// toolboxFuncs.toolbox_moreFuncs.scroll_settings_activeel.querySelector('#scroll-settings-width').addEventListener('input', function() {
+//     var ContDiv = getactiveel().querySelector('[secondary-element-type=Container-div')
+//     if (this.value == '0') {
+//         ContDiv.style.width = '100%'
+//     } else {
+//         ContDiv.style.width = parseInt(getactiveel().style.width) + parseInt(this.value) + 'px'
+//     }
+//     setJsonAttr(getactiveel(), 'settings', 'scrollWidth', this.value)
+// })
+// toolboxFuncs.toolbox_moreFuncs.scroll_settings_activeel.querySelector('#scroll-settings-height').addEventListener('input', function() {
+//     var ContDiv = getactiveel().querySelector('[secondary-element-type=Container-div')
 
-    if (this.value == '0') {
-        ContDiv.style.height = '100%'
-    } else {
-        ContDiv.style.height = parseInt(getactiveel().style.height) + parseInt(this.value) + 'px'
-    }
-    setJsonAttr(getactiveel(), 'settings', 'scrollHeight', this.value)
-})
+//     if (this.value == '0') {
+//         ContDiv.style.height = '100%'
+//     } else {
+//         ContDiv.style.height = parseInt(getactiveel().style.height) + parseInt(this.value) + 'px'
+//     }
+//     setJsonAttr(getactiveel(), 'settings', 'scrollHeight', this.value)
+// })
 
-toolboxFuncs.toolbox_moreFuncs.size_settings_activeel.querySelector('input').addEventListener('input', function() {
-    setJsonAttr(getactiveel(), 'settings', 'relativeSizingHeight', this.checked)
-})
-toolboxFuncs.toolbox_moreFuncs.size_settings_activeel.querySelectorAll('input')[1].addEventListener('input', function() {
-    setJsonAttr(getactiveel(), 'settings', 'relativeSizingWidth', this.checked)
-})
+// toolboxFuncs.toolbox_moreFuncs.size_settings_activeel.querySelector('input').addEventListener('input', function() {
+//     setJsonAttr(getactiveel(), 'settings', 'relativeSizingHeight', this.checked)
+// })
+// toolboxFuncs.toolbox_moreFuncs.size_settings_activeel.querySelectorAll('input')[1].addEventListener('input', function() {
+//     setJsonAttr(getactiveel(), 'settings', 'relativeSizingWidth', this.checked)
+// })
 
-toolboxFuncs.toolbox_moreFuncs.groups_activeel.oninput = (e) => {
-    for (el of toolboxFuncs.toolbox_moreFuncs.groups_activeel.querySelectorAll('.group_activeel')) {
-        console.log(el.value)
-        if (el.value == "") {
-            el.remove()
-        }
-    }
-    var activeel_groups = ""
+// toolboxFuncs.toolbox_moreFuncs.groups_activeel.oninput = (e) => {
+//     for (el of toolboxFuncs.toolbox_moreFuncs.groups_activeel.querySelectorAll('.group_activeel')) {
+//         console.log(el.value)
+//         if (el.value == "") {
+//             el.remove()
+//         }
+//     }
+//     var activeel_groups = ""
 
-    activeel_groups = activeel_groups.concat(groups_activeel.querySelectorAll('.group_activeel')[0].value)
+//     activeel_groups = activeel_groups.concat(groups_activeel.querySelectorAll('.group_activeel')[0].value)
 
-    for (var groupsCount = 1; groupsCount < groups_activeel.querySelectorAll('.group_activeel').length; groupsCount++) {
-        activeel_groups = activeel_groups.concat(`,${groups_activeel.querySelectorAll('.group_activeel')[groupsCount].value}`)
-    }
-    // console.log(activeel_groups)
-    getactiveel().setAttribute('element_groups', activeel_groups)
-}
+//     for (var groupsCount = 1; groupsCount < groups_activeel.querySelectorAll('.group_activeel').length; groupsCount++) {
+//         activeel_groups = activeel_groups.concat(`,${groups_activeel.querySelectorAll('.group_activeel')[groupsCount].value}`)
+//     }
+//     // console.log(activeel_groups)
+//     getactiveel().setAttribute('element_groups', activeel_groups)
+// }
 
-toolboxFuncs.toolbox_moreFuncs.add_element_groups_icon.onclick = (e) => {
-    toolboxFuncs.toolbox_moreFuncs.add_element_groups('')
-}
-toolboxFuncs.toolbox_moreFuncs.name_activeel.oninput = (e) => {
-    getactiveel().setAttribute('element_name', e.target.value)
-}
-toolboxFuncs.toolbox_moreFuncs.hyperlink_activeel.oninput = (e) => {
-    getactiveel().setAttribute('element_hyperlink', e.target.value)
-}
-toolboxFuncs.toolbox_moreFuncs.ChangeImage.querySelector('.change-btn').onclick = (e) => {
-    ShowUploadModal('Image', { element: getactiveel() })
+// toolboxFuncs.toolbox_moreFuncs.add_element_groups_icon.onclick = (e) => {
+//     toolboxFuncs.toolbox_moreFuncs.add_element_groups('')
+// }
+// toolboxFuncs.toolbox_moreFuncs.name_activeel.oninput = (e) => {
+//     getactiveel().setAttribute('element_name', e.target.value)
+// }
+// toolboxFuncs.toolbox_moreFuncs.hyperlink_activeel.oninput = (e) => {
+//     getactiveel().setAttribute('element_hyperlink', e.target.value)
+// }
+// toolboxFuncs.toolbox_moreFuncs.ChangeImage.querySelector('.change-btn').onclick = (e) => {
+//     ShowUploadModal('Image', { element: getactiveel() })
 
-}
-toolboxFuncs.toolbox_moreFuncs.ChangeAudio.onclick = (e) => {
-    ShowUploadModal('Audio', { element: getactiveel() })
+// }
+// toolboxFuncs.toolbox_moreFuncs.ChangeAudio.onclick = (e) => {
+//     ShowUploadModal('Audio', { element: getactiveel() })
 
-}
-toolboxFuncs.toolbox_moreFuncs.ChangeVideo.onclick = (e) => {
-    ShowUploadModal('Video', { element: getactiveel() })
+// }
+// toolboxFuncs.toolbox_moreFuncs.ChangeVideo.onclick = (e) => {
+//     ShowUploadModal('Video', { element: getactiveel() })
 
-}
-toolboxFuncs.toolbox_moreFuncs.ChangeYoutubevideo.onclick = (e) => {
-    ShowUploadModal('YoutubeVideo', { element: getactiveel() })
+// }
+// toolboxFuncs.toolbox_moreFuncs.ChangeYoutubevideo.onclick = (e) => {
+//     ShowUploadModal('YoutubeVideo', { element: getactiveel() })
 
-}
-toolboxFuncs.toolbox_moreFuncs.cancel_appending.onclick = (e) => {
-    var appendible_element = document.querySelector('.appendible_element')
-    appendible_element.removeEventListener('mousedown', DragAboveandDrop)
-    appendible_element.classList.remove('appendible_element')
-    appendible_element.classList.add('draggable');
-    toolboxFuncs.toolbox_moreFuncs.append_child_infoFuncs.hide();
-    toolboxFuncs.position()
-}
-
-
-toolboxFuncs.toolbox_moreFuncs.append_child_btn.onclick = (e) => {
-    toolboxFuncs.toolbox_moreFuncs.hide()
-    toolboxFuncs.toolbox_moreFuncs.append_child_infoFuncs.position()
-    toolboxFuncs.hide()
-
-    getactiveel().classList.add('appendible_element');
-    var AE = BoxContainer.elem().querySelector('.appendible_element');
+// }
+// toolboxFuncs.toolbox_moreFuncs.cancel_appending.onclick = (e) => {
+//     var appendible_element = document.querySelector('.appendible_element')
+//     appendible_element.removeEventListener('mousedown', DragAboveandDrop)
+//     appendible_element.classList.remove('appendible_element')
+//     appendible_element.classList.add('draggable');
+//     toolboxFuncs.toolbox_moreFuncs.append_child_infoFuncs.hide();
+//     toolboxFuncs.position()
+// }
 
 
-    AE.addEventListener('mousedown', DragAboveandDrop, false)
-}
+// toolboxFuncs.toolbox_moreFuncs.append_child_btn.onclick = (e) => {
+//     toolboxFuncs.toolbox_moreFuncs.hide()
+//     toolboxFuncs.toolbox_moreFuncs.append_child_infoFuncs.position()
+//     toolboxFuncs.hide()
 
-export function DragAboveandDrop() {
-    BoxContainer.svg().onmousemove = (e) => {
-        var AE = BoxContainer.elem().querySelector('.appendible_element');
-        for (el of BoxContainer.elem().querySelectorAll("[primary-element-type=Container]")) {
-            el.style.outlineWidth = "0px"
-            el.classList.remove('Add_in_this_container')
+//     getactiveel().classList.add('appendible_element');
+//     var AE = BoxContainer.elem().querySelector('.appendible_element');
 
-        }
-        for (el of BoxContainer.elem().querySelectorAll("[primary-element-type=Container]")) {
-            if (el != getactiveel()) {
-                var el_x = el.getBoundingClientRect().x
-                var el_y = el.getBoundingClientRect().y
-                var el_right = el.getBoundingClientRect().right
-                var el_bottom = el.getBoundingClientRect().bottom
-                var AE_y = AE.getBoundingClientRect().y
-                var AE_x = AE.getBoundingClientRect().x
-                var AE_right = AE.getBoundingClientRect().right
-                var AE_bottom = AE.getBoundingClientRect().bottom
-                var possible_conts = [];
-                var area = 0
-                var container_elem;
-                if ((el_x < e.x) && (el_y < e.y) && (el_right > e.x) && (el_bottom > e.y)) {
-                    // console.log(el)
-                    possible_conts.push(el)
-                        // el.style.outline = "2px dashed red"
-                        // el.classList.add('Add_in_this_container')
-                }
-                for (var conts of possible_conts) {
-                    if (possible_conts.length == 1) {
-                        for (el of BoxContainer.elem().querySelectorAll("[primary-element-type=Container]")) {
-                            el.style.outlineWidth = "0px"
-                            el.classList.remove('Add_in_this_container')
 
-                        }
-                        conts.style.outline = "2px dashed red"
-                        conts.classList.add('Add_in_this_container')
-                    } else {
-                        var new_area = (2 * conts.getBoundingClientRect().height) + (2 * conts.getBoundingClientRect().width)
-                        if (area > new_area) {
-                            area = new_area
-                            container_elem = conts
-                        }
-                        for (el of BoxContainer.elem().querySelectorAll("[primary-element-type=Container]")) {
-                            el.style.outlineWidth = "0px"
-                            el.classList.remove('Add_in_this_container')
+//     AE.addEventListener('mousedown', DragAboveandDrop, false)
+// }
 
-                        }
-                        container_elem.style.outline = "2px dashed red"
-                        container_elem.classList.add('Add_in_this_container')
-                    }
-                }
-            }
-        }
+// export function DragAboveandDrop() {
+//     BoxContainer.svg().onmousemove = (e) => {
+//         var AE = BoxContainer.elem().querySelector('.appendible_element');
+//         for (el of BoxContainer.elem().querySelectorAll("[primary-element-type=Container]")) {
+//             el.style.outlineWidth = "0px"
+//             el.classList.remove('Add_in_this_container')
 
-        BoxContainer.svg().onmouseup = (e) => {
-            var Container = BoxContainer.elem().querySelector('.Add_in_this_container');
-            // console.log(Container)
-            if (Container != null) {
-                // transformFunc.updateValue(AE, 'position-x', transformFunc.getValue(AE).positionX - transformFunc.getValue(Container).positionX)
-                // transformFunc.updateValue(AE, 'position-y', transformFunc.getValue(AE).positionY - transformFunc.getValue(Container).positionY)
+//         }
+//         for (el of BoxContainer.elem().querySelectorAll("[primary-element-type=Container]")) {
+//             if (el != getactiveel()) {
+//                 var el_x = el.getBoundingClientRect().x
+//                 var el_y = el.getBoundingClientRect().y
+//                 var el_right = el.getBoundingClientRect().right
+//                 var el_bottom = el.getBoundingClientRect().bottom
+//                 var AE_y = AE.getBoundingClientRect().y
+//                 var AE_x = AE.getBoundingClientRect().x
+//                 var AE_right = AE.getBoundingClientRect().right
+//                 var AE_bottom = AE.getBoundingClientRect().bottom
+//                 var possible_conts = [];
+//                 var area = 0
+//                 var container_elem;
+//                 if ((el_x < e.x) && (el_y < e.y) && (el_right > e.x) && (el_bottom > e.y)) {
+//                     // console.log(el)
+//                     possible_conts.push(el)
+//                         // el.style.outline = "2px dashed red"
+//                         // el.classList.add('Add_in_this_container')
+//                 }
+//                 for (var conts of possible_conts) {
+//                     if (possible_conts.length == 1) {
+//                         for (el of BoxContainer.elem().querySelectorAll("[primary-element-type=Container]")) {
+//                             el.style.outlineWidth = "0px"
+//                             el.classList.remove('Add_in_this_container')
 
-                transformFunc.updateValue(AE, 'position-x', AE.getBoundingClientRect().x - Container.getBoundingClientRect().x)
-                transformFunc.updateValue(AE, 'position-y', AE.getBoundingClientRect().y - Container.getBoundingClientRect().y)
-                    // Container.querySelector('svg').append(AE)
-                activeelFunction.makeunmovable(AE)
-                Container.style.outlineWidth = "0px"
-                Container.classList.remove('.Add_in_this_container')
-                BoxContainer.AddToContainer(Container, AE)
+//                         }
+//                         conts.style.outline = "2px dashed red"
+//                         conts.classList.add('Add_in_this_container')
+//                     } else {
+//                         var new_area = (2 * conts.getBoundingClientRect().height) + (2 * conts.getBoundingClientRect().width)
+//                         if (area > new_area) {
+//                             area = new_area
+//                             container_elem = conts
+//                         }
+//                         for (el of BoxContainer.elem().querySelectorAll("[primary-element-type=Container]")) {
+//                             el.style.outlineWidth = "0px"
+//                             el.classList.remove('Add_in_this_container')
+
+//                         }
+//                         container_elem.style.outline = "2px dashed red"
+//                         container_elem.classList.add('Add_in_this_container')
+//                     }
+//                 }
+//             }
+//         }
+
+//         BoxContainer.svg().onmouseup = (e) => {
+//             var Container = BoxContainer.elem().querySelector('.Add_in_this_container');
+//             // console.log(Container)
+//             if (Container != null) {
+//                 // transformFunc.updateValue(AE, 'position-x', transformFunc.getValue(AE).positionX - transformFunc.getValue(Container).positionX)
+//                 // transformFunc.updateValue(AE, 'position-y', transformFunc.getValue(AE).positionY - transformFunc.getValue(Container).positionY)
+
+//                 transformFunc.updateValue(AE, 'position-x', AE.getBoundingClientRect().x - Container.getBoundingClientRect().x)
+//                 transformFunc.updateValue(AE, 'position-y', AE.getBoundingClientRect().y - Container.getBoundingClientRect().y)
+//                     // Container.querySelector('svg').append(AE)
+//                 activeelFunction.makeunmovable(AE)
+//                 Container.style.outlineWidth = "0px"
+//                 Container.classList.remove('.Add_in_this_container')
+//                 BoxContainer.AddToContainer(Container, AE)
 
                 
-                    // if(AE.tagName == "path"){
-                    // var path = AE
-                    // var json = { d: path.getAttribute('d'), fill: path.style.fill || path.getAttribute('fill'), stroke: path.style.stroke || path.getAttribute('stroke'), strokeWidth: path.style.strokeWidth || path.getAttribute('stroke-width'), return: true }
-                    // var add_this = BoxContainer.CreatePathElement(json)
-                    // path.remove()}else{
+//                     // if(AE.tagName == "path"){
+//                     // var path = AE
+//                     // var json = { d: path.getAttribute('d'), fill: path.style.fill || path.getAttribute('fill'), stroke: path.style.stroke || path.getAttribute('stroke'), strokeWidth: path.style.strokeWidth || path.getAttribute('stroke-width'), return: true }
+//                     // var add_this = BoxContainer.CreatePathElement(json)
+//                     // path.remove()}else{
 
-                // }
+//                 // }
 
-                // Container.querySelector('svg').append(add_this)
-                // Container.innerHTML = Container.innerHTML
-                // Container.querySelector('svg').append(AE)
+//                 // Container.querySelector('svg').append(add_this)
+//                 // Container.innerHTML = Container.innerHTML
+//                 // Container.querySelector('svg').append(AE)
 
-                AE.removeEventListener('mousedown', DragAboveandDrop)
-                AE.classList.remove("appendible_element", 'draggable')
-                toolboxFuncs.toolbox_moreFuncs.append_child_infoFuncs.hide();
-                toolboxFuncs.position()
-                activeelFunction.makeunmovable(AE)
-                // ???
-                activeelFunction.makeactive(Container)
-                BoxContainer.svg().onmouseup = () => {
-                    ""
-                }
-                console.log('appended')
-            }
-            BoxContainer.svg().onmousemove = (e) => {
-                ""
-            }
-            console.log('removing event')
-        }
-        console.log(e.target)
+//                 AE.removeEventListener('mousedown', DragAboveandDrop)
+//                 AE.classList.remove("appendible_element", 'draggable')
+//                 toolboxFuncs.toolbox_moreFuncs.append_child_infoFuncs.hide();
+//                 toolboxFuncs.position()
+//                 activeelFunction.makeunmovable(AE)
+//                 // ???
+//                 activeelFunction.makeactive(Container)
+//                 BoxContainer.svg().onmouseup = () => {
+//                     ""
+//                 }
+//                 console.log('appended')
+//             }
+//             BoxContainer.svg().onmousemove = (e) => {
+//                 ""
+//             }
+//             console.log('removing event')
+//         }
+//         console.log(e.target)
 
-    }
-}
-
-toolboxFuncs.toolbox_more_btn.onclick = () => {
-    if (toolbox_more.style.display = "none") {
-        toolboxFuncs.toolbox_moreFuncs.position()
-    } else {
-        toolboxFuncs.toolbox_moreFuncs.hide()
-
-    }
-}
-
-// toolboxFuncs.container_edit_btn.onclick = () => {
-//     for (var i = 0; i < getactiveel().childElementCount; i++) {
-//         getactiveel().children[i].classList.add('draggable');
-//         getactiveel().children[0].classList.add('active');
 //     }
-//     getactiveel().classList.remove('active', 'draggable')
 // }
-toolboxFuncs.container_edit_btn.addEventListener('click', function() {
-    for (var el of getactiveel().querySelector('[secondary-element-type=Container-Svg]').children) {
-        el.classList.add('draggable')
-    }
-    // getactiveel().querySelectorAll('[secondary-element-type]')[1].classList.remove('draggable')
-    getactiveel().classList.remove('draggable');
-    getactiveel().onmousedown = () => {
 
-        }
-        // console.log(getactiveel().children[0])
-    activeelFunction.makeactive(getactiveel().querySelector('[primary-element-type]'))
-})
-toolboxFuncs.select_container_btn.addEventListener('click', function() {
-    activeelFunction.makeactive(getparent(getactiveel(), 'primary-element-type', 'Container'))
-    getactiveel().classList.add('draggable')
-    for (var el of getactiveel().querySelector('[secondary-element-type=Container-Svg]').children) {
-        activeelFunction.makeunmovable(el)
-    }
-})
+// toolboxFuncs.toolbox_more_btn.onclick = () => {
+//     if (toolbox_more.style.display = "none") {
+//         toolboxFuncs.toolbox_moreFuncs.position()
+//     } else {
+//         toolboxFuncs.toolbox_moreFuncs.hide()
 
-toolboxFuncs.delete_activeel.onclick = () => {
-    layerDiv.delete(getactiveel())
+//     }
+// }
+
+// // toolboxFuncs.container_edit_btn.onclick = () => {
+// //     for (var i = 0; i < getactiveel().childElementCount; i++) {
+// //         getactiveel().children[i].classList.add('draggable');
+// //         getactiveel().children[0].classList.add('active');
+// //     }
+// //     getactiveel().classList.remove('active', 'draggable')
+// // }
+// toolboxFuncs.container_edit_btn.addEventListener('click', function() {
+//     for (var el of getactiveel().querySelector('[secondary-element-type=Container-Svg]').children) {
+//         el.classList.add('draggable')
+//     }
+//     // getactiveel().querySelectorAll('[secondary-element-type]')[1].classList.remove('draggable')
+//     getactiveel().classList.remove('draggable');
+//     getactiveel().onmousedown = () => {
+
+//         }
+//         // console.log(getactiveel().children[0])
+//     activeelFunction.makeactive(getactiveel().querySelector('[primary-element-type]'))
+// })
+// toolboxFuncs.select_container_btn.addEventListener('click', function() {
+//     activeelFunction.makeactive(getparent(getactiveel(), 'primary-element-type', 'Container'))
+//     getactiveel().classList.add('draggable')
+//     for (var el of getactiveel().querySelector('[secondary-element-type=Container-Svg]').children) {
+//         activeelFunction.makeunmovable(el)
+//     }
+// })
+
+// toolboxFuncs.delete_activeel.onclick = () => {
+//     layerDiv.delete(getactiveel())
     
-    // show_styling_properties()
-    EndlessSizeHandler.DeleteHandler(getactiveel())
-    activeelFunction.delete()
-}
+//     // show_styling_properties()
+//     EndlessSizeHandler.DeleteHandler(getactiveel())
+//     activeelFunction.delete()
+// }
 
-toolboxFuncs.clone_activeel.onclick = () => {
-    activeelFunction.copy()
-}
+// toolboxFuncs.clone_activeel.onclick = () => {
+//     activeelFunction.copy()
+// }
 
 
 
